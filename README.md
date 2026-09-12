@@ -37,3 +37,15 @@
         │   └── docs/                    # En lugar de carpetas sueltas como "desarrollo"
         │       ├── backlog.md           # Tareas pendientes, historias de usuario
         │       └── wireframes/          # Diagramas o bocetos si los tienen
+
+# GIT
+#### Notas para los commits
+
+* Feat: Nueva funcionalidad
+* Fix: Correcion de un error
+* refactor:
+* docs: Documentacion
+* test: tests
+* Chore: Mantenimiento o Configuracion
+
+### UN buen commit ayuda a entender que cambio y porque
