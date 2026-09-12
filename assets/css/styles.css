@@ -45,7 +45,6 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Se queda fija al hacer scroll */
-
   min-height: 100vh;
 }
 
