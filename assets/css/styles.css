@@ -1,22 +1,115 @@
+*{
+  --fuente-montserrat : "Montserrat Alternates", sans-serif;
+  --fuente-onest : "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
+
+  font-family: var(--fuente--nunito);
+
+}
+
+#ideas-principales-contenedor h3,
+#mision-vision-contenedor h3,
+#vision-contenedor h3{
+  font-family: var(--fuente-montserrat);
+}
+
+#ideas-principales-contenedor > div > article,
+#mision-vision-contenedor > div > article,
+#descripcion-proyecto-contenedor .descripcion-proyecto-texto-contenedor,
+.contenedor-cards-participantes .card{
+  background-color: #F9FBF2 !important;
+}
+
+h1, h2{
+  font-family: var(--fuente-onest);
+  color: #40513B;
+  font-weight: bold;
+}
+
+h1.texto-que-es-instarama{
+  color: #FFFFFF !important;
+}
+
+#valores-contenedor h2{
+  font-size: 2rem !important;
+  font-family: var(--fuente-montserrat);
+  color: #FFFFFF;
+}
+
+h1{
+  font-size: 4rem;  
+}
+
+#valores-contenedor p{
+  font-size: 1.5rem;
+}
+
+#valores-lista-contenedor strong{
+  font-family: var(--fuente-montserrat);
+  font-size: 1.2rem;
+}
+
+#valores-lista-contenedor  p {
+  font-size: 1.1rem;
+}
+
+#valores-lista-contenedor > div > div:hover{
+  background-color: #3D6441;
+}
+
+header{
+  font-family: var(--fuente-onest) !important;
+}
+header p{
+  font-size: 2rem !important;
+}
+
+#descripcion-proyecto-contenedor .descripcion-titulo{
+  font-family: var(--fuente-onest);
+}
+
+#descripcion-proyecto-contenedor .descripcion-texto{
+  font-size: 1.2rem;
+}
+
+footer{
+  font-size: 1.3rem;
+  background-color: #40513B !important;
+}
+
+footer *{
+  color: black !important;
+}
+
+#descripcion-principal-contenedor{
+  font-size: 1.2rem !important;
+}
+
+a{
+  font-family: var(--fuente-onest);
+}
+
 /* Estilos para la Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #a3b8a0;
+  background-color: #40513B;
   padding: 15px 50px;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #333333;
-  font-weight: 500;
+.navbar-nav a{
+  color: #FFFFFF !important;
+}
+
+.navbar-nav a:hover{
+  text-decoration: underline;
 }
 
 /* Estilos para la Hero Section */
 .hero-header {
-  background-color: #f5f5f0;
+  background-color: #F9FBF2;
   color: #333333;
   text-align: center;
   padding: 40px 20px;
@@ -39,7 +132,7 @@
 body {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/assets/img/landing/fondoInstaRama.jpg");
+    url("./assets/img/landing/fondoInstaRama.jpg");
 
   /* Propiedades para que la imagen cubra toda la pantalla de forma perfecta */
   background-size: cover;
@@ -52,4 +145,10 @@ body {
   height: 430px;
   object-fit: cover;
   object-position: center;
+}
+
+#titulo-contenedor .titulo-explicativo{
+  font-family: var(--fuente-onest); 
+  font-size: 2rem;
+  color: #FFFFFF;
 }
