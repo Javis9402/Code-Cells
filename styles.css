@@ -1,0 +1,56 @@
+/* Estilos para la Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a3b8a0;
+  padding: 15px 50px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+}
+
+/* Estilos para la Hero Section */
+.hero-header {
+  background-color: #f5f5f0;
+  color: #333333;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero-header h1 {
+  font-size: clamp();
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-header p {
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #333333;
+  text-transform: uppercase;
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/assets/fondoInstaRama.jpg");
+
+  /* Propiedades para que la imagen cubra toda la pantalla de forma perfecta */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Se queda fija al hacer scroll */
+
+  min-height: 100vh;
+}
+
+.card-img-top {
+  height: 430px;
+  object-fit: cover;
+  object-position: center;
+}
