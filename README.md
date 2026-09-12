@@ -43,7 +43,7 @@
 
 * Feat: Nueva funcionalidad
 * Fix: Correcion de un error
-* refactor:
+* refactor: Mejoras en el codigo sin cambiar su comportamiento 
 * docs: Documentacion
 * test: tests
 * Chore: Mantenimiento o Configuracion
