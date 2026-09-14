@@ -1,17 +1,14 @@
 // ==========================================
 // PERSONAJES DEL CURSOR
 // ==========================================
-
-
 const personajes = [
-    "./assets/img/logo/assets/duendemorado.jpg",
-    "./assets/img/logo/assets/hada.jpg",
-    "./assets/img/logo/assets/hongo.jpg",
-    "./assets/img/logo/assets/celula.jpg"
+    "./assets/img/landing/fx/duendemorado.jpg",
+    "./assets/img/landing/fx/hada.jpg",
+    "./assets/img/landing/fx/hongo.jpg",
+    "./assets/img/landing/fx/celula.jpg"
 ];
 
 let personajeActual = 0;
-
 
 // ==========================================
 // CREAR EL CURSOR CON LA IMAGEN
@@ -76,7 +73,6 @@ window.addEventListener("scroll", () => {
     }, 6000);
 
 });
-
 
 
 // ==========================================
@@ -167,21 +163,15 @@ function lanzarConfeti(x, y) {
                 )
             ];
 
-
         confeti.style.backgroundColor = color;
-
 
         // Agregar confeti a la página
         document.body.appendChild(confeti);
 
-
         // Eliminar después de la animación
         setTimeout(() => {
-
             confeti.remove();
-
         }, 1200);
 
     }
-
 }
