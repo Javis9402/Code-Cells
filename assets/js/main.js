@@ -2,9 +2,9 @@
 // PERSONAJES DEL CURSOR
 // ==========================================
 const personajes = [
-    "./assets/img/landing/fx/duendemorado.jpg",
-    "./assets/img/landing/fx/hada.jpg",
-    "./assets/img/landing/fx/hongo.jpg",
+    "./assets/img/landing/fx/duendemorado.png",
+    "./assets/img/landing/fx/hada.png",
+    "./assets/img/landing/fx/hongo.png",
     "./assets/img/landing/fx/celula.jpg"
 ];
 
