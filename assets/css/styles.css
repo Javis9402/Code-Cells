@@ -72,14 +72,30 @@ header p{
   font-size: 1.2rem;
 }
 
-footer{
-  font-size: 1.3rem;
-  background-color: #40513B !important;
+/*estilos footer*/
+.footer{
+  background-color: #a3b8a0;
+  color: #40513B;
 }
 
-footer *{
-  color: black !important;
+.footer-links{
+  border-bottom: 1px solid #40513b4e;
 }
+.footer-links a{
+  color: #40513B;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover{
+  opacity: 0.7;
+}
+
+.footer p:last-child{
+  opacity: 0.75;
+}
+/*estilos footer*/
+
 
 #descripcion-principal-contenedor{
   font-size: 1.2rem !important;
@@ -89,7 +105,7 @@ a{
   font-family: var(--fuente-onest);
 }
 
-/* Estilos para la Navbar */
+/** Estilos para la Navbar */
 .logo{
   width: 150px;
   height: 80px;
@@ -141,7 +157,7 @@ a{
   transform: translateY(-1.5px);
   text-decoration: none;
 }
-/* terminan estilos para la Navbar */
+/** terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
 .hero-header {
