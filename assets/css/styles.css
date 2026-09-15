@@ -157,6 +157,34 @@ a{
   transform: translateY(-1.5px);
   text-decoration: none;
 }
+
+/*      RESPONSIVE NAV       */
+@media (max-width: 991.98px) {
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logo {
+        width: 120px;
+        height: 65px;
+    }
+
+    .btn-nav {
+        padding: 8px 5px;
+    }
+
+    .btn-iniciar {
+        display: inline-block;
+        padding: 8px 30px !important;
+        margin-top: 10px;
+    }
+
+    .navbar-collapse .navbar-nav:last-child {
+        align-items: center;
+    }
+
+}
 /** terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
