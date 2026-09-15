@@ -90,6 +90,16 @@ a{
 }
 
 /* Estilos para la Navbar */
+.logo{
+  width: 190px;
+  height: 120px;
+  object-fit: contain; 
+  /*
+    object-fit controla la manera que se adapta la imagen dentro de un espacio
+    sin deformarse
+  */
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
