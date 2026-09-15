@@ -9,10 +9,22 @@
   */
 }
 
+main{
+    background: linear-gradient(to bottom, #a3b8a0ae 50%, transparent 50%);
+}
+
+form.border {
+    background-color: #fff;
+}
+
 .navbar {
   background-color: #a3b8a0;
   padding: 15px 20px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+}
+
+nav #navbarNavAltMarkup a:hover{
+  color: #FFFFFF;
 }
 
 .btn-iniciar{
