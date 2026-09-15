@@ -73,26 +73,13 @@ header p{
 }
 
 /*estilos footer*/
-.footer{
-  background-color: #a3b8a0;
-  color: #40513B;
+footer{
+  font-size: 1.3rem;
+  background-color: #40513B !important;
 }
 
-.footer-links{
-  border-bottom: 1px solid #40513b4e;
-}
-.footer-links a{
-  color: #40513B;
-  font-size: 1.1rem;
-  transition: opacity 0.2s ease;
-}
-
-.footer-links a:hover{
-  opacity: 0.7;
-}
-
-.footer p:last-child{
-  opacity: 0.75;
+footer *{
+  color: black !important;
 }
 /*estilos footer*/
 
@@ -106,84 +93,21 @@ a{
 }
 
 /** Estilos para la Navbar */
-.logo{
-  width: 150px;
-  height: 80px;
-  object-fit: contain; 
-  /*
-    object-fit controla la manera que se adapta la imagen dentro de un espacio
-    sin deformarse
-  */
-}
-
 .navbar {
-  /*display: flex;
+  display: flex;
   justify-content: space-between;
-  align-items: center;*/
-  background-color: #a3b8a0;
-  padding: 15px 20px;
-  border-radius: 10px;
-  /*border-bottom: 1px solid #e0e0e0;*/
+  align-items: center;
+  background-color: #40513B;
+  padding: 15px 50px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.btn-iniciar{
-  padding: 10px 40px !important;
-  background-color: #255f38f5;
-  color: #F9FBF2 !important;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: background-color 0.3s ease-out, 
-              transform 0.3s ease-out, 
-              box-shadow 0.3s ease-out;
+.navbar-nav a{
+  color: #FFFFFF !important;
 }
 
-.btn-iniciar:hover{
-  background-color: #1c4a2c;
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px #40513b3a;
-}
-
-.btn-nav{ /*se cambio el nombre de */
-  padding: 10px;
-  color: #40513B;
-  border-bottom: 2px solid transparent;
-  /*border-radius: 6px;*/
-  transition: border-color 0.25s ease, transform 0.15s ease;
-}
-
-.btn-nav:hover{
-  color: #40513B;
-  border-color: #40513B;
-  transform: translateY(-1.5px);
-  text-decoration: none;
-}
-
-/*      RESPONSIVE NAV       */
-@media (max-width: 991.98px) {
-
-    .navbar {
-        padding: 10px 15px;
-    }
-
-    .logo {
-        width: 120px;
-        height: 65px;
-    }
-
-    .btn-nav {
-        padding: 8px 5px;
-    }
-
-    .btn-iniciar {
-        display: inline-block;
-        padding: 8px 30px !important;
-        margin-top: 10px;
-    }
-
-    .navbar-collapse .navbar-nav:last-child {
-        align-items: center;
-    }
-
+.navbar-nav a:hover{
+  text-decoration: underline;
 }
 /** terminan estilos para la Navbar */
 
@@ -209,7 +133,7 @@ a{
   text-transform: uppercase;
 }
 
-.imagen-fondo {
+body {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../img/landing/fondoInstaRama.jpg");
