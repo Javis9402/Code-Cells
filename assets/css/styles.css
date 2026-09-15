@@ -91,8 +91,8 @@ a{
 
 /* Estilos para la Navbar */
 .logo{
-  width: 190px;
-  height: 120px;
+  width: 150px;
+  height: 80px;
   object-fit: contain; 
   /*
     object-fit controla la manera que se adapta la imagen dentro de un espacio
@@ -101,21 +101,47 @@ a{
 }
 
 .navbar {
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #40513B;
-  padding: 15px 50px;
-  border-bottom: 1px solid #e0e0e0;
+  align-items: center;*/
+  background-color: #a3b8a0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  /*border-bottom: 1px solid #e0e0e0;*/
 }
 
-.navbar-nav a{
-  color: #FFFFFF !important;
+.btn-iniciar{
+  padding: 10px 40px !important;
+  background-color: #255f38f5;
+  color: #F9FBF2 !important;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-out, 
+              transform 0.3s ease-out, 
+              box-shadow 0.3s ease-out;
 }
 
-.navbar-nav a:hover{
-  text-decoration: underline;
+.btn-iniciar:hover{
+  background-color: #1c4a2c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px #40513b3a;
 }
+
+.btn-nav{ /*se cambio el nombre de */
+  padding: 10px;
+  color: #40513B;
+  border-bottom: 2px solid transparent;
+  /*border-radius: 6px;*/
+  transition: border-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-nav:hover{
+  color: #40513B;
+  border-color: #40513B;
+  transform: translateY(-1.5px);
+  text-decoration: none;
+}
+/* terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
 .hero-header {
@@ -139,7 +165,7 @@ a{
   text-transform: uppercase;
 }
 
-body {
+.imagen-fondo {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../img/landing/fondoInstaRama.jpg");
