@@ -72,6 +72,7 @@ header p{
   font-size: 1.2rem;
 }
 
+/*estilos footer*/
 footer{
   font-size: 1.3rem;
   background-color: #40513B !important;
@@ -80,6 +81,8 @@ footer{
 footer *{
   color: black !important;
 }
+/*estilos footer*/
+
 
 #descripcion-principal-contenedor{
   font-size: 1.2rem !important;
@@ -89,7 +92,7 @@ a{
   font-family: var(--fuente-onest);
 }
 
-/* Estilos para la Navbar */
+/** Estilos para la Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -106,6 +109,7 @@ a{
 .navbar-nav a:hover{
   text-decoration: underline;
 }
+/** terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
 .hero-header {
