@@ -2,8 +2,10 @@
 // PERSONAJES DEL CURSOR
 // ==========================================
 const personajes = [
-    "./assets/img/general/Cursor/duendemorado.png",
-    "./assets/img/general/Cursor/hada.png",
+    "./assets/img/general/Cursor/ajolote.png",
+    "./assets/img/general/Cursor/capy.png",
+    "./assets/img/general/Cursor/champi.png",
+    "./assets/img/general/Cursor/erizo.png",
     "./assets/img/general/Cursor/hongo.png",
     "./assets/img/general/Cursor/celula.jpg"
 ];
