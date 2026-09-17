@@ -92,7 +92,7 @@ a {
   font-family: var(--fuente-onest);
 }
 
-/** Estilos para la Navbar */
+/** Estilos para la Navbar 
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -109,7 +109,7 @@ a {
 .navbar-nav a:hover {
   text-decoration: underline;
 }
-/** terminan estilos para la Navbar */
+terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
 .hero-header {
