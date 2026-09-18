@@ -91,13 +91,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo</label>
-                            <input type="text" name="email" id="email" class="form-control">
+                            <input type="email" name="email" id="email" class="form-control">
                             <div class="invalid-feedback" id="emailError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="messageType" class="form-label">Tipo de mensaje</label>
                             <select class="form-select" id="messageType" aria-label="Default select example">
-                                <option selected>----------SELECCIONE UNA OPCIÓN----------</option>
+                                <option selected value="">----------SELECCIONE UNA OPCIÓN----------</option>
                                 <option value="1">Felicitaciones</option>
                                 <option value="2">Error</option>
                                 <option value="3">Queja</option>
@@ -151,6 +151,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+        <script src="/assets/js/validacionForm.js"></script>
 </body>
 
 </html>
