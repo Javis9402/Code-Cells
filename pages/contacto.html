@@ -87,29 +87,32 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
                             <input type="text" name="name" id="name" class="form-control">
+                            <div class="invalid-feedback" id="nameError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo</label>
                             <input type="text" name="email" id="email" class="form-control">
+                            <div class="invalid-feedback" id="emailError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="messageType" class="form-label">Tipo de mensaje</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" id="messageType" aria-label="Default select example">
                                 <option selected>----------SELECCIONE UNA OPCIÓN----------</option>
                                 <option value="1">Felicitaciones</option>
                                 <option value="2">Error</option>
                                 <option value="3">Queja</option>
                                 <option value="4">Sugerencia</option>
                             </select>
+                            <div class="invalid-feedback" id="messageTypeError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Mensaje</label>
                             <textarea name="message" id="message" class="form-control" aria-label="With textarea"></textarea>
+                            <div class="invalid-feedback" id="messageError"></div>
                         </div>
 
                         <button id="send-info" type="submit" class="btn btn-primary w-75 d-block mx-auto">Enviar</button>
                     </form>
-                    <p id="error" style="color: crimson;"></p>
                     <!-- ! FIN > PARTE IZQUIERDA INFERIOR -->
                 </div>
                 <!-- ! FIN > PARTE IZQUIERDA -->
