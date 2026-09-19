@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed | InstaRama</title>
+
+    </head>
+
+<body>
+
+<!--Demostracion de publicaciones y aprende la clasificacion de reinos-->
+<div class="row justify-content-center mb-5">
+    <div class="col-12 col-md-5">
+        <label
+            for="filtro-reino"
+            class="form-label fw-bold">
+            Reino
+        </label>
+
+        <select
+            id="filtro-reino"
+            class="form-select">
+            <option value="">
+                Selecciona un reino
+            </option>
+            <option value="1">Monera</option>
+            <option value="2">Protista</option>
+            <option value="3">Fungi</option>
+            <option value="4">Plantae</option>
+            <option value="5">Animalia</option>
+        </select>
+
+    </div>
+
+    <div class="col-12 col-md-5">
+        <label
+            for="filtro-categoria"
+            class="form-label fw-bold">
+            Categoría
+        </label>
+        <select
+            id="filtro-categoria"
+            class="form-select"
+            disabled>
+            <option value="">
+                Primero selecciona un reino
+            </option>
+        </select>
+    </div>
+
+</div>
+ <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../assets/css/objetos.css">
+</head>
+<body>
+     <main class="container py-5">
+        <div class="text-center mb-5">
+            <h1>Explora la biodiversidad</h1>
+            <p>
+                Descubre las observaciones compartidas por nuestra comunidad.
+            </p>
+
+<p class="text-muted">
+    En InstaRama utilizamos una clasificación educativa de cinco reinos
+    para ayudarte a reconocer y organizar los seres vivos que observas.
+    No necesitas ser especialista: selecciona el grupo que más se parezca
+    a tu hallazgo y aprende sus características principales.
+</p>
+
+<p class="text-center">
+    ¿No sabes dónde clasificar tu observación?
+</p>
+
+<div class="text-center mb-4">
+    <button
+        class="btn btn-outline-success"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#guiaClasificacion">
+        🌿 Ver guía rápida de clasificación
+    </button>
+</div>
+
+<div class="collapse" id="guiaClasificacion">
+    <div class="accordion mb-5" id="accordionReinos">
+        <!-- MONERA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#monera">
+                    🦠 Reino Monera
+                </button>
+            </h2>
+            <div
+                id="monera"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionReinos">
+                <div class="accordion-body">
+                    <p>
+                        Organismos microscópicos formados generalmente por
+                        una sola célula y sin un núcleo verdadero.
+                    </p>
+                    <strong>Bacterias</strong>
+                    <p>
+                        Microorganismos unicelulares presentes en el suelo,
+                        agua, aire y otros seres vivos.
+                    </p>
+                    <strong>Cianobacterias</strong>
+                    <p>
+                        Bacterias capaces de realizar fotosíntesis.
+                        Suelen encontrarse en ambientes acuáticos o húmedos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PROTISTA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#protista">
+                    🔬 Reino Protista
+                </button>
+            </h2>
+            <div
+                id="protista"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionReinos">
+                <div class="accordion-body">
+                   <p>
+                        Grupo educativo que incluye organismos principalmente
+                        microscópicos que viven con frecuencia en ambientes
+                        acuáticos o húmedos.
+                    </p>
+                    <strong>Protozoarios</strong>
+                    <p>
+                        Organismos microscópicos que pueden desplazarse mediante
+                        cilios, flagelos u otras estructuras.
+                    </p>
+                    <strong>Algas microscópicas</strong>
+                    <p>
+                        Organismos acuáticos microscópicos capaces de realizar
+                        fotosíntesis.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- FUNGI -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#fungi">
+                    🍄 Reino Fungi
+                </button>
+            </h2>
+            <div
+                id="fungi"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionReinos">
+                <div class="accordion-body">
+                    <p>
+                        Los hongos obtienen sus nutrientes absorbiendo materia
+                        orgánica. Son muy importantes en la descomposición y
+                        reciclaje de nutrientes.
+                    </p>
+                    <strong>Hongos macroscópicos</strong>
+                    <p>
+                        Son aquellos que podemos observar a simple vista,
+                        como muchas setas.
+                    </p>
+                    <strong>Mohos</strong>
+                    <p>
+                        Forman estructuras filamentosas y suelen crecer sobre
+                        materia orgánica húmeda.
+                    </p>
+                    <strong>Levaduras</strong>
+                    <p>
+                        Hongos unicelulares microscópicos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PLANTAE -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#plantae">
+
+                    🌿 Reino Plantae
+               </button>
+            </h2>
+
+            <div
+                id="plantae"
+                class="accordion-collapse collapse"
+               data-bs-parent="#accordionReinos">
+                <div class="accordion-body">
+                    <p>
+                        Las plantas realizan fotosíntesis y producen gran parte
+                        del oxígeno y alimento que sostiene los ecosistemas.
+                    </p>
+                    <strong>Musgos / Briófitas</strong>
+                    <p>
+                        Plantas pequeñas, sin flores ni semillas.
+                        Se reproducen mediante esporas y suelen crecer en lugares húmedos.
+                    </p>
+                    <strong>Helechos / Pteridófitas</strong>
+                    <p>
+                        Tienen raíces, tallos y hojas verdaderas, pero no producen
+                        flores ni semillas. Se reproducen mediante esporas.
+                    </p>
+                    <strong>Gimnospermas</strong>
+                    <p>
+                        Plantas con semillas que no están encerradas dentro de un fruto.
+                        Los pinos son un ejemplo típico y producen conos.
+                    </p>
+                    <strong>Angiospermas</strong>
+                    <p>
+                        Son las plantas con flores. Sus semillas se desarrollan
+                        dentro de frutos. Ejemplos: girasoles, árboles frutales
+                        y muchas plantas de jardín.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- ANIMALIA -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#animalia">
+                    🐾 Reino Animalia
+                </button>
+            </h2>
+            <div
+                id="animalia"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionReinos">
+                <div class="accordion-body">
+                    <p>
+                        Los animales son organismos multicelulares que obtienen
+                        alimento de otros seres vivos. Para facilitar su
+                        identificación los dividimos en vertebrados e invertebrados.
+                    </p>
+                    <h5>Vertebrados</h5>
+                    <strong>🐻 Mamíferos</strong>
+                    <p>
+                        Tienen pelo en alguna etapa de su vida, respiran mediante
+                        pulmones y las hembras producen leche para alimentar a sus crías.
+                    </p>
+                    <strong>🐦 Aves</strong>
+                    <p>
+                        Tienen plumas, pico, alas y ponen huevos.
+                        Muchas especies voladoras poseen un esternón con una
+                        quilla desarrollada donde se insertan músculos del vuelo.
+                    </p>
+                    <strong>🦎 Reptiles</strong>
+                    <p>
+                        Generalmente presentan piel cubierta de escamas,
+                        respiran mediante pulmones y regulan su temperatura
+                        principalmente utilizando el ambiente.
+                    </p>
+                    <strong>🐸 Anfibios</strong>
+                    <p>
+                        Suelen tener piel húmeda y muchas especies pasan una
+                        parte de su ciclo de vida en el agua y otra en tierra.
+                    </p>
+                    <strong>🐟 Peces</strong>
+                    <p>
+                        Viven en ambientes acuáticos, poseen aletas y generalmente
+                        respiran mediante branquias.
+                    </p>
+                    <h5 class="mt-4">Invertebrados</h5>
+                    <strong>🐞 Insectos</strong>
+                    <p>
+                        Tienen seis patas, dos antenas y el cuerpo dividido
+                        en cabeza, tórax y abdomen.
+                    </p>
+                    <strong>🕷️ Arácnidos</strong>
+                    <p>
+                        Tienen ocho patas y no poseen antenas.
+                        Aquí encontramos arañas, escorpiones y ácaros.
+                    </p>
+                    <strong>🦀 Crustáceos</strong>
+                    <p>
+                        Poseen un exoesqueleto y muchos viven en ambientes acuáticos.
+                        Ejemplos: cangrejos y camarones.
+                    </p>
+                    <strong>🐌 Moluscos</strong>
+                    <p>
+                        Tienen cuerpo blando y algunos poseen concha.
+                        Ejemplos: caracoles, almejas y pulpos.
+                    </p>
+                    <strong>🪱 Anélidos</strong>
+                    <p>
+                        Su cuerpo está dividido en segmentos.
+                        Las lombrices son un ejemplo conocido.
+                    </p>
+                    <strong>⭐ Equinodermos</strong>
+                    <p>
+                        Son exclusivamente marinos. Incluyen estrellas de mar
+                        y erizos.
+                    </p>
+                    <strong>Otros invertebrados</strong>
+                    <p>
+                        Aquí se pueden colocar organismos que no correspondan
+                        claramente con los grupos anteriores.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</p>
+
+
+        </div>
+        <!-- Aquí JavaScript las publicaci ones-->
+
+      <p
+    id="mensaje-filtro"
+    class="text-center text-muted fs-5">
+    Selecciona un reino para descubrir sus publicaciones.
+</p>  
+
+<p class="small text-muted mt-4">
+    Nota: InstaRama utiliza el modelo de cinco reinos como una herramienta
+    educativa y sencilla de clasificación. La clasificación biológica moderna
+    puede organizar algunos grupos de manera diferente.
+</p>
+        <div
+            id="lista-publicaciones"
+            class="row row-cols-1 row-cols-md-2  g-4">
+        </div>
+    </main>
+  <!-- 1. Primero cargamos las categorías -->
+<script src="../assets/js/categorias.js"></script>
+
+<!-- 2. Después cargamos las publicaciones -->
+<script src="../assets/js/objetos_publicacion.js"></script>
+
+<!-- 3. Finalmente cargamos la lógica del feed -->
+<script src="../assets/js/feed_objeto.js"></script>
+
+<!-- Bootstrap -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+</body>
+</html>
