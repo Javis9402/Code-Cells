@@ -13,7 +13,7 @@ const messageTypeError = document.getElementById('messageTypeError');
 const messageError = document.getElementById('messageError');
 
 
-form.addEventListener('submit', function (evento) {
+formulario.addEventListener('submit', function (evento) {
 
     //evitamos el comportamiento predeterminado
     evento.preventDefault();
