@@ -1,27 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
+  <head>
+    <!--TODO  CDN de Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-</head>
+    <!-- TODO Google Fonts: Istok Web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- TODO Nuestro archivo CSS personalizado -->
+    <link rel="stylesheet" defer href="/assets/css/contactanos.css" />
+    <link rel="stylesheet" href="/assets/css/registro.css" />
 
-<body>
-    <h1>Pagina para el registro</h1>
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../assets/img/general/Desarollando.jpeg" class="d-block w-100" alt="pagina en desarrollo">
-            </div>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro InstaRama</title>
+  </head>
+  <body>
+   
+    <!--TODO HEADER -->
+    <header class="header-instarama py-3">
+      <div
+        class="container-fluid d-flex justify-content-end align-items-center h-100"
+      >
+        <a href="login.html" class="btn-iniciar">Iniciar sesión</a>
+      </div>
+    </header>
+
+    <!-- TODO Contenedor principal: Ocupa el resto de la pantalla y centra el contenido -->
+    <div
+      class="container main-content d-flex justify-content-center align-items-center"
+    >
+      <!-- Fila principal: Divide la pantalla en dos columnas -->
+      <div class="row w-100 justify-content-center align-items-center">
+        <!-- TODO COLUMNA IZQUIERDA: Logo y Nombre -->
+        <div class="col-md-6 text-center mb-5 mb-md-0">
+          <!--  TODO Enlace al Feed con el Logo -->
+          <a href="../index.html" class="d-block mb-3 logo-link">
+            <img
+              src="../assets/img/mode-clear/logoInstarama-Login(ficticio).svg"
+              alt="Logo de InstaRama"
+              class="img-fluid logo-img"
+            />
+          </a>
         </div>
+
+        <!-- TODO COLUMNA DERECHA: Formulario de Registro -->
+        <div class="col-md-5">
+          <h2 class="mb-4 form-title">Instarama</h2>
+
+          <form action="#" method="POST">
+            <!-- Campo: Nombre de usuario -->
+            <div class="mb-3">
+              <label for="username" class="form-label"
+                >Nombre de usuario.</label
+              >
+              <input type="text" class="form-control" id="username" required />
+            </div>
+
+            <!-- Campo: Correo electrónico -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electronico.</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+
+            <!-- Campo: Contraseña -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña.</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                required
+              />
+            </div>
+
+            <!-- Campo: Confirmar Contraseña -->
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label"
+                >Confirmar contraseña.</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                required
+              />
+            </div>
+
+            <!-- TODO Checkboxes -->
+            <div class="mb-4">
+              <div class="form-check mb-2">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberMe"
+                />
+                <label class="form-check-label" for="rememberMe"
+                  >Recuérdame</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="terms"
+                  required
+                />
+                <label class="form-check-label" for="terms"
+                  >Acepto terminos y condiciones</label
+                >
+              </div>
+            </div>
+
+            <!-- TODO  Botón de envío -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-lg custom-btn">
+                Crear mi cuenta
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-</body>
-
+    <!-- TODO CDN de Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
