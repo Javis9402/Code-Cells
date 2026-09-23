@@ -1,0 +1,177 @@
+/* =========================================
+   VARIABLES DE COLOR
+   ========================================= */
+:root {
+  --color-fondo: #edf1d6;
+  --color-verde-1: #609966;
+  --color-verde-2: #40513b;
+  --color-verde-3: #27391c;
+  --color-blanco: #ffffff;
+  --color-negro: #000000;
+}
+
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-fondo);
+  font-family: "Istok Web", sans-serif;
+  color: var(--color-negro);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header-instarama {
+  background-color: var(--color-verde-3);
+  color: var(--color-blanco);
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.header-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-blanco);
+}
+
+.header-instarama .btn-iniciar {
+  border-color: #000000;
+  white-space: nowrap;
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
+.main-content {
+  flex: 1;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* =========================================
+   LOGO Y EFECTO HOVER (LOGO DE INSTARAMA)
+   ========================================= */
+.logo-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  width: 350px;
+}
+
+.logo-link:hover .logo-img {
+  filter: brightness(0.7);
+  transition: filter 0.3s ease;
+}
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
+.form-title {
+  color: var(--color-verde-2);
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-label {
+  color: var(--color-verde-2);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.form-control {
+  border: 2px solid var(--color-verde-1);
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+}
+
+.form-control:focus {
+  border-color: var(--color-verde-2);
+  box-shadow: 0 0 0 0.25rem rgba(96, 153, 102, 0.25);
+}
+
+/* =========================================
+   BOTÓN PERSONALIZADO (Crear mi cuenta)
+   ========================================= */
+.custom-btn {
+  background-color: var(--color-verde-1);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.custom-btn:hover {
+  background-color: var(--color-verde-2);
+  color: var(--color-blanco);
+  transform: scale(1.02);
+}
+
+.custom-btn:active {
+  background-color: var(--color-verde-3);
+}
+
+/* =========================================
+   CHECKBOXES
+   ========================================= */
+.form-check-input:checked {
+  background-color: var(--color-verde-1);
+  border-color: var(--color-verde-1);
+}
+
+.form-check-label {
+  color: var(--color-verde-2);
+}
+
+/* =========================================
+   RESPONSIVIDAD
+   ========================================= */
+@media (max-width: 768px) {
+  .logo-img {
+    width: 250px;
+  }
+  .form-title {
+    font-size: 1.8rem;
+  }
+  .header-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-img {
+    width: 200px;
+  }
+  .form-title {
+    font-size: 1.5rem;
+  }
+  .header-text {
+    font-size: 1rem;
+  }
+}
