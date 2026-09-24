@@ -21,7 +21,7 @@
 
 h1,
 h2 {
-  font-family: var(--fuente-onest);
+  font-family: var(--fuente-onest) !important;
   color: #40513b;
   font-weight: bold;
 }
@@ -32,7 +32,7 @@ h1.texto-que-es-instarama {
 
 #valores-contenedor h2 {
   font-size: 2rem !important;
-  font-family: var(--fuente-montserrat);
+  font-family: var(--fuente-montserrat) !important;
   color: #ffffff;
 }
 
@@ -45,7 +45,7 @@ h1 {
 }
 
 #valores-lista-contenedor strong {
-  font-family: var(--fuente-montserrat);
+  font-family: var(--fuente-montserrat) !important;
   font-size: 1.2rem;
 }
 
@@ -65,7 +65,7 @@ header p {
 }
 
 #descripcion-proyecto-contenedor .descripcion-titulo {
-  font-family: var(--fuente-onest);
+  font-family: var(--fuente-onest) !important;
 }
 
 #descripcion-proyecto-contenedor .descripcion-texto {
@@ -79,7 +79,7 @@ footer {
 }
 
 footer * {
-  color: black !important;
+  color: white !important;
 }
 /*estilos footer*/
 
@@ -88,27 +88,110 @@ footer * {
 }
 
 a {
-  font-family: var(--fuente-onest);
+  font-family: var(--fuente-onest) !important;
 }
 
-/** Estilos para la Navbar 
+/** Estilos para la Navbar */
+.logo {
+  width: 150px;
+  height: 80px;
+  object-fit: contain;
+  /*
+    object-fit controla la manera que se adapta la imagen dentro de un espacio
+    sin deformarse
+  */
+}
+
+/* main {
+  background: linear-gradient(to bottom, #a3b8a0ae 50%, transparent 50%);
+  min-height: 100vh;
+  width: 100%;
+} */
+main {
+  background-color: rgba(163, 184, 160, 0.68);
+  min-height: 100vh;
+  width: 100%;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  margin: 2rem auto;
+}
+
+form.border {
+  background-color: #fff;
+}
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #40513b;
-  padding: 15px 50px;
-  border-bottom: 1px solid #e0e0e0;
+  background-color: #a3b8a0;
+  padding: 15px 20px;
+  /* border-radius: 10px; */
 }
 
-.navbar-nav a {
-  color: #ffffff !important;
+nav #navbarNavAltMarkup a:hover {
+  color: #ffffff;
 }
 
-.navbar-nav a:hover {
-  text-decoration: underline;
+.btn-iniciar {
+  padding: 10px 40px !important;
+  background-color: #255f38f5;
+  color: #f9fbf2 !important;
+  border-radius: 30px;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease-out,
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
 }
-terminan estilos para la Navbar */
+
+.btn-iniciar:hover {
+  background-color: #1c4a2c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px #40513b3a;
+}
+
+.btn-nav {
+  /*se cambio el nombre de */
+  padding: 10px;
+  color: #40513b;
+  border-bottom: 2px solid transparent;
+  /*border-radius: 6px;*/
+  transition:
+    border-color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.btn-nav:hover {
+  color: #40513b;
+  border-color: #40513b;
+  transform: translateY(-1.5px);
+  text-decoration: none;
+}
+
+/*      RESPONSIVE NAV       */
+@media (max-width: 991.98px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 65px;
+  }
+
+  .btn-nav {
+    padding: 8px 5px;
+  }
+
+  .btn-iniciar {
+    display: inline-block;
+    padding: 8px 30px !important;
+    margin-top: 10px;
+  }
+
+  .navbar-collapse .navbar-nav:last-child {
+    align-items: center;
+  }
+}
+/** terminan estilos para la Navbar */
 
 /* Estilos para la Hero Section */
 .hero-header {
@@ -151,7 +234,7 @@ body {
 }
 
 #titulo-contenedor .titulo-explicativo {
-  font-family: var(--fuente-onest);
+  font-family: var(--fuente-onest) !important;
   font-size: 2rem;
   color: #ffffff;
 }
@@ -174,4 +257,39 @@ body {
   text-align: left;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+#btn-verGuiaClasificacion {
+  font-size: 1.5rem !important;
+  background-color: #1c4a2c !important;
+  color: #ffffff;
+  border: none !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Estado hover (al pasar el mouse) */
+#btn-verGuiaClasificacion:hover {
+  color: #ffffff !important;
+  background-color: #40513b !important;
+  border-color: #40513b !important;
+}
+
+.feed-section {
+  background: linear-gradient(135deg, #3d6441 0%, #3d6441 100%);
+  padding: 2rem 0;
+}
+
+.feed-encabezado {
+  background: linear-gradient(
+    to bottom,
+    rgba(163, 184, 160, 0.6) 0%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
