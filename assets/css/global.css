@@ -4,11 +4,10 @@
    ========================================== */
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
-
 
 /* ==========================================
    CURSOR DE PERSONAJE
@@ -18,63 +17,53 @@ body {
 
 body.cursor-personaje,
 body.cursor-personaje * {
-    cursor: none !important;
+  cursor: none !important;
 }
-
 
 /* Imagen del personaje que sigue al mouse */
 
 #personaje-cursor {
-    position: fixed;
+  position: fixed;
 
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 
-    object-fit: contain;
+  object-fit: contain;
 
-    pointer-events: none;
+  pointer-events: none;
 
-    z-index: 10000;
+  z-index: 10000;
 
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-
 
 /* ==========================================
    CONFETI
    ========================================== */
 
 .confeti {
-    position: fixed;
+  position: fixed;
 
-    pointer-events: none;
+  pointer-events: none;
 
-    z-index: 9999;
+  z-index: 9999;
 
-    animation: confeti 1.2s ease-out forwards;
+  animation: confeti 1.2s ease-out forwards;
 }
-
 
 /* Animación del confeti */
 
 @keyframes confeti {
+  0% {
+    opacity: 1;
 
-    0% {
-        opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
 
-        transform:
-            translate(0, 0)
-            rotate(0deg);
-    }
+  100% {
+    opacity: 0;
 
-    100% {
-        opacity: 0;
-
-        transform:
-            translate(
-                var(--movimiento-x),
-                var(--movimiento-y)
-            )
-            rotate(var(--rotacion));
-    }
+    transform: translate(var(--movimiento-x), var(--movimiento-y))
+      rotate(var(--rotacion));
+  }
 }
