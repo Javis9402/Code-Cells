@@ -1,11 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!--TODO  FUENTES -->
+
+    <!-- TODO Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yuyu+Short&display=swap"
+        rel="stylesheet">
+
+    <!-- TODO MONTSERRAT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- TODO ONEST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <!--! FIN  FUENTES -->
+
+    <!--?Inicio página publicación-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Publicación</title>
+    <!-- CSS Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- CSS páginas -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/contactanos.css" />
+    <link rel="stylesheet" href="../assets/css/publicacion.css" />
 </head>
-<body>
-    
+
+<body class="d-flex flex-column min-vh-100">
+    <!--Inicia nav-->
+    <nav class="navbar navbar-expand-lg bg">
+        <div class="container-fluid">
+            <!--Logo-->
+            <a class="navbar-brand" href="../pages/feed.html">
+                <img src="../assets/img/logo/logoInstarama(ficticio)SF.png" alt="logo de la red social" class="logo" />
+            </a>
+            <!--Logo-->
+            <!--Botón responsive-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Botón responsive-->
+            <!--Navegación-->
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav mx-auto gap-2 gap-lg-4">
+                    <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
+                    <a class="nav-link btn-nav" href="../pages/feed.html">Inicio</a>
+                    <a class="nav-link btn-nav" href="../index.html">Proyecto</a>
+                    <a class="nav-link btn-nav" href="../index.html">Equipo</a>
+                    <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
+                </div>
+
+            </div>
+            <!--Navegación-->
+        </div>
+    </nav>
+    <!--termina nav-->
+
+    <!--? Contenedor de fondo -->
+    <div class="fondo-responsivo flex-grow-1">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                    <!--Icono - Hongo (Success Alert)-->
+                    <symbol id="hongo-icon" viewBox="0 0 16 16">
+                        <path
+                            d="M8 2a6 6 0 0 0-6 6c0 .552.448 1 1 1h10c.552 0 1-.448 1-1a6 6 0 0 0-6-6zM5 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm6 1a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        <path d="M6 10v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3H6z" />
+                    </symbol>
+                    <!-- Icono - Mosca (Warning Alert)-->
+                    <symbol id="mosca-icon" viewBox="0 0 16 16">
+                        <path d="M6 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                        <path d="M7 5.5a1 1 0 0 0-1 1v4a2 2 0 0 0 4 0v-4a1 1 0 0 0-1-1H7z" />
+                        <path d="M5.5 5c-1.5 0-4 1.5-4 4s2 3 3.5 2c.8-.5 1-1.8 1-2.5V5.5A1 1 0 0 0 5.5 5z" />
+                        <path d="M10.5 5c1.5 0 4 1.5 4 4s-2 3-3.5 2c-.8-.5-1-1.8-1-2.5V5.5a1 1 0 0 1 1-1z" />
+                    </symbol>
+                    <!-- Icono - Árbol (Error Alert) -->
+                    <symbol id="arbol-icono" viewBox="0 0 16 16">
+                        <path
+                            d="M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5z" />
+                    </symbol>
+                    <!-- Icono - Abeja (Categoría Alert) -->
+                    <symbol id="abeja-icon" viewBox="0 0 16 16">
+                        <!-- Cabeza y antenas -->
+                        <path
+                            d="M7 3a1 1 0 0 1 2 0v1H7V3zM6 1.5a.5.5 0 0 1 .5-.5h.2a.5.5 0 0 1 .5.5V2H6v-.5zm3 0a.5.5 0 0 1 .5-.5h.2a.5.5 0 0 1 .5.5V2H9v-.5z" />
+                        <!-- Cuerpo y rayas -->
+                        <path
+                            d="M5 5a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0V5zm3 8a.5.5 0 0 0 .5.5h.01a.5.5 0 0 0 .5-.5v-.5H8v.5zm-2-2h4V9.5H6V11zm0-3h4V6.5H6V8z" />
+                        <!-- Alas -->
+                        <path
+                            d="M11 5.5c1.5-1 3.5 0 3.5 2s-1.5 2.5-3.5 1.5V5.5zM5 5.5C3.5 4.5 1.5 5.5 1.5 7.5S3 10 5 9V5.5z" />
+                    </symbol>
+
+                </svg>
+
+                <!--! Card principal -->
+                <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
+
+                    <!--todo Alerta de éxito -->
+                    <div id="alertaExito"
+                        class="alert alert-success align-items-center alert-dismissible fade d-none mb-4" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#hongo-icon" />
+                        </svg>
+                        <div>
+                            ¡Publicación creada exitosamente!
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <!--todo Alerta de advertencia -->
+                    <div id="alertaAdvertencia"
+                        class="alert alert-warning align-items-center alert-dismissible fade d-none mb-4" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+                            <use xlink:href="#arbol-icono" />
+                        </svg>
+                        <div> ¡Aún no has comentado tu hallazgo! </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+
+                    <!--todo Alerta de error -->
+                    <div id="alertaError"
+                        class="alert alert-danger align-items-center alert-dismissible fade d-none mb-4" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Error:">
+                            <use xlink:href="#mosca-icon" />
+                        </svg>
+                        <div> ¡Un momento, aquí no hay una imagen! </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <!--todo Alerta Sin Clasificar-->
+                    <div id="alertaCategoria"
+                        class="alert alert-info align-items-center alert-dismissible fade d-none mb-4" role="alert">
+                        <svg width="24" height="24" fill="currentColor" class="me-2 flex-shrink-0">
+                            <use href="#abeja-icon" />
+                        </svg>
+
+                        <div> ¡Por favor elige la categoria de tu descubrimiento! </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+
+                    <!--! Inicio de formulario -->
+                    <div id="contenedorFormulario">
+                        <form id="formularioPublicacion" novalidate action="#" method="POST"
+                            enctype="multipart/form-data">
+                            <!-- novalidate: Desactiva la alerta del navegador -->
+
+                            <!--* Input de archivo -->
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label fw-semibold d-flex align-items-center">
+                                    <!--<i class="bi bi-camera-fill me-2"></i>-->
+                                    <img src="../assets/img/publicacion/cam-icon.png" alt="Cámara"
+                                        style="width: 44px; height: 32px;">
+                                    Sube tu descubrimiento
+                                </label>
+                                <input class="form-control" type="file" id="formFile" accept="image/*,video/*" required>
+                            </div>
+
+                            <!--* Vista previa de imagen-->
+                            <figure id="vistaPrevia" class="figure text-center d-block my-3">
+                                <!--Imagen predeterminada-->
+                                <img id="imagenPreview" src="../assets/img/publicacion/imagenPredeterminada.png"
+                                    class="figure-img img-fluid rounded mx-auto d-block shadow-sm"
+                                    alt="Vista previa predeterminada"> <!--style="max-width: 100%; height: auto;"-->
+                                <figcaption class="figure-caption text-center mt-2">Vista previa de tu publicación
+                                </figcaption>
+                            </figure>
+
+                            <!--? Clasificación (Menú desplegable) -->
+                            <div class="mb-4">
+                                <label for="selectCategoria" class="form-label fw-semibold">Tipo de
+                                    descubrimiento</label>
+                                <select class="form-select" id="selectCategoria" required>
+                                    <option value="" selected disabled>Selecciona una categoría...</option>
+                                    <option value="Fungi">🍄 Reino Fungi</option>
+                                    <option value="Plantae">🌿 Reino Plantae</option>
+                                    <option value="Animalia">🐾 Reino Animalia</option>
+                                    <option value="sinClasificar">ℹ️ Desconozco la clasificación</option>
+                                </select>
+                            </div>
+
+                            <!--? Sub menú desplegable: Animalia -->
+                            <div class="mb-4 d-none" id="contenedorSubCategoria">
+                                <label for="selectSubCategoria" class="form-label fw-semibold">Clasificación de
+                                    Animalia</label>
+                                <select class="form-select" id="selectSubCategoria">
+                                    <option value="" selected disabled>¿Es vertebrado o invertebrado?</option>
+                                    <option value="Vertebrado">🦴 Vertebrado</option>
+                                    <option value="Invertebrado">🐛 Invertebrado</option>
+                                </select>
+
+                            </div>
+
+                            <!--* Área de descripción-->
+                            <div class="mb-4"> <!-- form-floating -->
+                                <textarea class="form-control" placeholder="Descripción de tu hallazgo..."
+                                    id="floatingTextarea" style="height: 100px;" required></textarea>
+                                <!--<label for="floatingTextarea"></label>-->
+                            </div>
+
+                            <!--* Botones de acción-->
+                            <div class="d-flex gap-3 gap-3 justify-content-center mt-4">
+                                <!--Botón para Publicar-->
+                                <button class="btn btn-primary w-50" type="submit">Publicar</button>
+                                <!--Botón para Cancelar-->
+                                <button class="btn btn-outline-secondary w-50" type="button"
+                                    id="btnCancelarPrincipal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div> <!--! Fin del formulario-->
+
+                    <!--? Publicación terminada (Oculto) -->
+                    <div id="contenedorPublicacionTerminada" class="d-none">
+                        <div class="card border-0 shadow-none">
+                            <!-- Encabezado del post -->
+                            <div class="bg-secondary rounded-circle d-flex justify-content-center align-items-center me-2"
+                                style="width: 40px; height: 40px;">
+                                <i class="bi bi-person-fill fs-5"></i>
+                            </div>
+                            <span class="fw-bold" id="nombreUsuarioEncabezado">Explorador_Bótanico</span>
+                        </div>
+                        <!--Imagen por JS-->
+                        <img id="imagenPublicada" src="" class="card-img-top rounded" alt="Publicación final">
+                        <!-- Cuerpo de la publicación con la descripción -->
+                        <div class="card-body px-0 pb-0">
+                            <!-- Insignia de la categoría -->
+                            <div class="mb-2 mt-2">
+                                <span id="insigniaCategoria" class="badge text-bg-success">Categoría</span>
+                            </div>
+
+                            <p class="card-text">
+                                <span class="fw-bold me-2" id="nombreUsuarioCuerpo">Explorador_Bótanico</span>
+                                <span id="textoPublicado"></span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!--?Modal de confirmación para Cancelar-->
+                    <div class="modal fade" id="modalCancelar" tabindex="-1" aria-labelledby="tituloModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-dark">
+
+                                <div class="modal-header border-0 pb-0">
+                                    <h5 class="modal-title fw-bold" id="tituloModal">¿Deseas descartar la publicación?
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Cerrar"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    Si cancelas perderás tu publicación. ¿Descartar de
+                                    todos modos?
+                                </div>
+
+                                <div class="modal-footer border-0 pt-0">
+                                    <!--Botón para cerrar el modal y seguir editando-->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir
+                                        editando</button>
+
+                                    <!--Botón de limpieza de formulario y redirección-->
+                                    <button type="button" class="btn btn-danger fw-bold" id="btnConfirmarCancelar">Sí,
+                                        descartar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--! Fin de la card principal -->
+            </div>
+            
+        </div>
+
+    </div> <!--? Fin del contenedor de fondo -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="../assets/js/publicacion.js"></script>
 </body>
+
 </html>
