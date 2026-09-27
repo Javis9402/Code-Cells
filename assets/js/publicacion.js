@@ -188,7 +188,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                // Objeto JavaScript (JSON)
 
+// Construcción del objeto JS
+const nuevaPublicacion = {
+  id: crypto.randomUUID(), // Genera un ID único 
+  usuario: userLogged,
+  imagen: {
+    nombre: inputArchivo.files[0]?.name || null,
+    tamano: inputArchivo.files[0]?.size || null,
+    tipo: inputArchivo.files[0]?.type || null
+  },
+  categoria: selectCategoria.value,
+  subcategoria: selectSubCategoria.value || null,
+  descripcion: textarea.value.trim(),
+  fechaCreacion: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
+  likes: 0,
+  comentarios: []
+};
 
+// Conversión a cadena  texto JSON
+const publicacionJSON = JSON.stringify(nuevaPublicacion, null, 2); // El '2' es formaro mejorado para imprimir
+
+console.log("Objeto JSON listo:");
+console.log(publicacionJSON);
                // Limpia formulario automáticamente
                formulario.reset();
                // Oculta el menú de SubCategoría
