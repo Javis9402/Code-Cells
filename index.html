@@ -37,28 +37,41 @@
 
   <link rel="stylesheet" href="./assets/css/styles.css" />
   <link rel="stylesheet" href="./assets/css/global.css">
+  <link rel="stylesheet" href="./assets/css/contactanos.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg bg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="./assets/img/logo/logoInstarama(ficticio)SF.png"
-          alt="logo de la red social" height="120px" width="190px" /></a>
+      <!--Logo-->
+      <a class="navbar-brand" href="./pages/feed.html">
+        <img src="/assets/img/logo/logoInstarama(ficticio)SF.png" alt="logo de la red social" class="logo" />
+      </a>
+      <!--Logo-->
+      <!--Botón responsive-->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!--Botón responsive-->
+      <!--Navegación-->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="./pages/acercaDe.html">Acerca de</a>
-          <a class="nav-link" href="./pages/feed.html">Inicio</a>
-          <a class="nav-link" href="./index.html">Proyecto</a>
-          <a class="nav-link" href="./index.html">Equipo</a>
-          <a class="nav-link" href="./pages/contacto.html">Contacto</a>
+        <div class="navbar-nav mx-auto gap-2 gap-lg-4">
+          <a class="nav-link btn-nav" href="./pages/acercaDe.html">Acerca de</a>
+          <a class="nav-link btn-nav" href="./pages/feed.html">Inicio</a>
+          <a class="nav-link btn-nav" href="./index.html">Proyecto</a>
+          <a class="nav-link btn-nav" href="./index.html">Equipo</a>
+          <a class="nav-link btn-nav" href="./pages/contacto.html">Contacto</a>
+        </div>
+        <div class="navbar-nav ms-lg-3 gap-3">
+          <a href="./pages/login.html" class="btn-iniciar">Iniciar sesión</a>
+          <a href="./pages/registro.html" class="btn-iniciar">Registrate</a>
         </div>
       </div>
+      <!--Navegación-->
     </div>
   </nav>
+  <!--termina nav-->
 
   <header class="hero-header">
     <h1>NUESTRO PROYECTO</h1>
@@ -335,6 +348,12 @@
       </div>
     </div>
 
+    <header class="hero-header">
+      <h1>NUESTRO EQUIPO</h1>
+    </header>
+
+    <br>
+
     <div class="container text-center mb-4" id="descripcion-cards-contenedor">
       <div class="row g-3 align-items-start contenedor-cards-participantes">
         <div class="col-12 col-md-6 col-lg-4">
@@ -482,13 +501,15 @@
     </div>
   </div>
   <!--Cierre contenedor-->
+  
+  <!-- Inicia <footer> -->
   <footer class="text-center mt-5 py-4">
     <div class="container">
       <div class="mb-3">
-        <a href="#" class="text-light text-decoration-none mx-2 small">Inicio</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Proyecto</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Equipo</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Contacto</a>
+        <a href="./pages/feed.html" class="text-light text-decoration-none mx-2 small">Inicio</a>
+        <a href="./index.html" class="text-light text-decoration-none mx-2 small">Proyecto</a>
+        <a href="./index.html" class="text-light text-decoration-none mx-2 small">Equipo</a>
+        <a href="./pages/contacto.html" class="text-light text-decoration-none mx-2 small">Contacto</a>
       </div>
       <p class="mb-1 text-light fw-semibold">
         "Conocer la naturaleza es el primer paso para cuidarla." 🌿
@@ -498,6 +519,7 @@
       </p>
     </div>
   </footer>
+  <!-- termina <footer> -->
 
   <!--Todo ZONA de Sripts  -->
   <script src="./assets/js/main.js" type="module"> </script>

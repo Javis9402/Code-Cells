@@ -1,11 +1,18 @@
+/* ==========================================
+   Java Scrip 
+   General - NavBar, resposivo, fotter
+   ========================================== */
+s
 // ==========================================
 // PERSONAJES DEL CURSOR
 // ==========================================
 const personajes = [
-    "./assets/img/landing/fx/duendemorado.png",
-    "./assets/img/landing/fx/hada.png",
-    "./assets/img/landing/fx/hongo.png",
-    "./assets/img/landing/fx/celula.jpg"
+    "./assets/img/general/Cursor/ajolote.png",
+    "./assets/img/general/Cursor/capy.png",
+    "./assets/img/general/Cursor/champi.png",
+    "./assets/img/general/Cursor/erizo.png",
+    "./assets/img/general/Cursor/hongo.png",
+    "./assets/img/general/Cursor/celula.jpg"
 ];
 
 let personajeActual = 0;

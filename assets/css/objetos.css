@@ -1,0 +1,12 @@
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
