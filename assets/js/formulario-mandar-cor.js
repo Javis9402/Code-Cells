@@ -20,10 +20,10 @@ ${message}`;
     window.location.href = mailtoLink;
 }
 
-const form = document.querySelector("form");
+const formulario = document.querySelector("form");
 
-form.addEventListener("submit", (event) => {
+formulario.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    sendFormByEmail(form);
+    sendFormByEmail(formulario);
 });
