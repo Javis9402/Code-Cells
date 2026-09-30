@@ -86,10 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //* 3. Correo inválido
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
       mostrarAlertaBootstrap(
-        "Por favor, ingrese un correo electrónico válido.",
+        "Por favor, ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).",
         "warning",
       );
       return;
