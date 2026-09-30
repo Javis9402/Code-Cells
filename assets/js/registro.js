@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
+  const alertContainer = document.getElementById("alert-container");
 
-  // Elementos del Modal (los crearemos dinámicamente si no existen en el HTML,
-  // pero para que funcione el CSS de Bootstrap, los inyectamos aquí)
+  // TODO: --- MODAL SOLO PARA ÉXITO (BIENVENIDA) ---
   const modalHTML = `
-    <div class="modal fade" id="modalAlerta" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal fade" id="modalExito" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center" style="border-radius: 15px; border: none;">
           <div class="modal-header border-0 pb-0 justify-content-end">
@@ -13,145 +13,140 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="modal-body pt-0">
             <!-- Icono Araña -->
             <img src="../assets/img/alerts/alerta-arana.svg" alt="Alerta" style="width: 80px; margin-bottom: 15px;">
-            <h5 class="modal-title fw-bold mb-3" id="modalTitulo">Usuario ya registrado.</h5>
-            <p class="mb-4" id="modalMensaje">El usuario al que estas ingresando ya esta registrado. Intente nuevamente</p>
-            <button type="button" class="btn custom-btn w-100" data-bs-dismiss="modal" id="btnModalCerrar">Continuar</button>
+            <h5 class="modal-title fw-bold mb-3">¡Bienvenido a Instarama!</h5>
+            <p class="mb-4">Tu cuenta ha sido creada exitosamente.</p>
+            <button type="button" class="btn custom-btn w-100" id="btnModalContinuar">Continuar</button>
           </div>
         </div>
       </div>
     </div>
   `;
-
-  // Inyectar el modal en el body
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-  const modalElement = document.getElementById("modalAlerta");
+  const modalElement = document.getElementById("modalExito");
   const modalInstance = new bootstrap.Modal(modalElement);
-  const modalTitulo = document.getElementById("modalTitulo");
-  const modalMensaje = document.getElementById("modalMensaje");
-  const btnModalCerrar = document.getElementById("btnModalCerrar");
+  const btnModalContinuar = document.getElementById("btnModalContinuar");
 
-  // Función para mostrar el modal
-  function mostrarAlerta(titulo, mensaje, recargar = false) {
-    modalTitulo.textContent = titulo;
-    modalMensaje.textContent = mensaje;
+  //* FUNCION PARA REDIRIGIR A PAGINA DE LOGIN CUANDO SELECCIONE CONTINUAR
+  btnModalContinuar.onclick = function () {
+    window.location.href = "login.html";
+  };
 
-    // Si es el mensaje de "ya registrado", configuramos el botón para recargar
-    if (recargar) {
-      btnModalCerrar.onclick = function () {
-        location.reload(); // Recarga la página
-      };
-    } else {
-      btnModalCerrar.onclick = function () {
-        modalInstance.hide();
-      };
-    }
+  // TODO: --- FUNCIÓN PARA MOSTRAR ALERTAS DE BOOTSTRAP ---
+  function mostrarAlertaBootstrap(mensaje, tipo = "danger") {
+    alertContainer.innerHTML = "";
 
-    modalInstance.show();
+    const alertaHTML = `
+      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    `;
+
+    alertContainer.innerHTML = alertaHTML;
+
+    //* Auto-cerrar después de 4 segundos
+    setTimeout(() => {
+      const alerta = alertContainer.querySelector(".alert");
+      if (alerta) {
+        alerta.classList.remove("show");
+        setTimeout(() => alerta.remove(), 300);
+      }
+    }, 4000);
   }
 
-  // Escuchar el envío del formulario
+  // TODO: --- LÓGICA DEL FORMULARIO ---
   form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Evitar envío por defecto
+    event.preventDefault();
 
-    // Obtener valores
     const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     const terms = document.getElementById("terms").checked;
-    const rememberMe = document.getElementById("rememberMe").checked;
 
-    // 1. Validar Campos Vacíos
+    alertContainer.innerHTML = "";
+
+    //* 1. Campos vacíos
     if (!username || !email || !password || !confirmPassword) {
-      mostrarAlerta(
-        "Campos incompletos",
+      mostrarAlertaBootstrap(
         "Por favor, complete todos los campos del formulario.",
+        "danger",
       );
       return;
     }
 
-    // 2. Validar Correo Electrónico (Regex básico)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //* 2. Longitud de la contraseña (minimo 8 caracteres)
+    if (password.length < 8) {
+      mostrarAlertaBootstrap(
+        "La contraseña no puede tener menos de 8 caracteres.",
+        "danger",
+      );
+      return;
+    }
+
+    //* 3. Correo inválido
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
-      mostrarAlerta(
-        "Correo inválido",
-        "Por favor, ingrese un correo electrónico válido.",
+      mostrarAlertaBootstrap(
+        "Por favor, ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).",
+        "warning",
       );
       return;
     }
 
-    // 3. Validar Contraseña coincide
+    //* 4. Contraseñas no coinciden
     if (password !== confirmPassword) {
-      mostrarAlerta(
-        "Contraseñas no coinciden",
+      mostrarAlertaBootstrap(
         "Las contraseñas ingresadas no son iguales. Intente nuevamente.",
+        "danger",
       );
       return;
     }
 
-    // 4. Validar Términos y Condiciones
+    //* 5. Términos no aceptados
     if (!terms) {
-      mostrarAlerta(
-        "Términos y condiciones",
+      mostrarAlertaBootstrap(
         "Debe aceptar los términos y condiciones para registrarse.",
+        "warning",
       );
       return;
     }
 
-    // --- VALIDACIONES PASADAS ---
-
-    // Crear objeto JSON del usuario
+    // TODO: Crear objeto JSON
     const usuario = {
       username: username,
       email: email,
-      password: password, // En un caso real, esto debe ir encriptado
+      password: password,
       fechaRegistro: new Date().toISOString(),
     };
 
-    // Obtener usuarios registrados del localStorage (simulando base de datos)
     let usuariosRegistrados =
       JSON.parse(localStorage.getItem("usuariosInstarama")) || [];
 
-    // Verificar si el usuario ya existe (por username o email)
     const usuarioExistente = usuariosRegistrados.find(
       (u) => u.username === username || u.email === email,
     );
 
+    // TODO: 6. Usuario ya registrado -> ALERTA BOOTSTRAP
     if (usuarioExistente) {
-      // REQUISITO: Si el usuario ya está registrado, mostrar modal y recargar
-      // La imagen 3 muestra este mensaje exacto
-      mostrarAlerta(
-        "Usuario ya registrado.",
-        "El usuario al que estas ingresando ya esta registrado. Intente nuevamente",
-        true, // Activar recarga al cerrar
+      mostrarAlertaBootstrap(
+        "El usuario al que estas ingresando ya esta registrado. Intente nuevamente.",
+        "danger",
       );
-
-      // Nota: El requisito dice "actualizar la pagina automaticamente... y cuando este vuelve a ser registrado el modal deberia aparecer".
-      // Al hacer clic en "Continuar", se ejecutará location.reload().
-      // Si el usuario intenta registrarse de nuevo, el modal volverá a aparecer.
-    } else {
-      // Guardar nuevo usuario
-      usuariosRegistrados.push(usuario);
-      localStorage.setItem(
-        "usuariosInstarama",
-        JSON.stringify(usuariosRegistrados),
-      );
-
-      // Éxito
-      mostrarAlerta(
-        "Registro exitoso",
-        "¡Bienvenido a Instarama! Tu cuenta ha sido creada.",
-      );
-
-      // Limpiar formulario
-      form.reset();
-
-      // Opcional: Redirigir después de un tiempo o al cerrar el modal
-      btnModalCerrar.onclick = function () {
-        modalInstance.hide();
-        // window.location.href = "login.html"; // Redirigir si se desea
-      };
+      return;
     }
+
+    // TODO: Guardar nuevo usuario
+    usuariosRegistrados.push(usuario);
+    localStorage.setItem(
+      "usuariosInstarama",
+      JSON.stringify(usuariosRegistrados),
+    );
+
+    //* Éxito: Mostrar MODAL de bienvenida
+    modalInstance.show();
+
+    form.reset();
   });
 });
