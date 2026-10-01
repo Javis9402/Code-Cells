@@ -200,9 +200,7 @@ const nuevaPublicacion = {
   categoria: selectCategoria.value,
   subcategoria: selectSubCategoria.value || null,
   descripcion: textarea.value.trim(),
-  fechaCreacion: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
-  likes: 0,
-  comentarios: []
+  fechaCreacion: new Date().toISOString() // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
 };
 
 // Conversión a cadena  texto JSON
