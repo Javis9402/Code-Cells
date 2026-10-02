@@ -6,13 +6,15 @@
 // Espera a que el HTML cargue completamente
 document.addEventListener('DOMContentLoaded', function () {
    // Variables formulario
+   const formulario = document.getElementById('formularioPublicacion');
    const inputArchivo = document.getElementById('formFile');
    const imagenPreview = document.getElementById('imagenPreview');
-   const textarea = document.getElementById('floatingTextarea');
    const selectCategoria = document.getElementById('selectCategoria');
    const selectSubCategoria = document.getElementById('selectSubCategoria')
    const contenedorSubCategoria = document.getElementById('contenedorSubCategoria');
-   const formulario = document.getElementById('formularioPublicacion');
+   const inputTitulo = document.getElementById('inputTitulo');
+   const tituloPublicado = document.getElementById('tituloPublicado')
+   const textarea = document.getElementById('floatingTextarea');
 
    // Variables alertas
    const alertaExito = document.getElementById('alertaExito');
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Verifica si hay un archivo cargado o texto escrito
             const tieneArchivo = inputArchivo.value !== '';
             // .trim() borra los espacios en blanco
+            const tieneTitulo = inputTitulo.value.trim() !== '';
             const tieneTexto = textarea.value.trim() !== '';
             const tieneCategoria = selectCategoria.value !== '';
 
@@ -118,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (textarea) textarea.value = ''; // Medida de seguridad extra
             if (selectCategoria) selectCategoria.value = '';
             if (selectSubCategoria) selectSubCategoria.value = '';
+            if (inputTitulo) inputTitulo.value = '';
             // Redirección al feed
             window.location.href = '../pages/feed.html';
          });
@@ -162,6 +166,11 @@ document.addEventListener('DOMContentLoaded', function () {
                alertaAdvertencia.classList.remove('d-none');
                alertaAdvertencia.classList.add('d-flex', 'show');
             }
+
+               // Alerta morada: Falta titulo
+
+
+
             else {
                // Lógica de éxito
                if (contenedorFormulario && contenedorPublicacionTerminada && imagenPublicada && textoPublicado && insigniaCategoria) {
@@ -188,28 +197,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                // Objeto JavaScript (JSON)
 
-// Construcción del objeto JS
-const nuevaPublicacion = {
-  id: crypto.randomUUID(), // Genera un ID único 
-  usuario: userLogged,
-  imagen: {
-    nombre: inputArchivo.files[0]?.name || null,
-    tamano: inputArchivo.files[0]?.size || null,
-    tipo: inputArchivo.files[0]?.type || null
-  },
-  categoria: selectCategoria.value,
-  subcategoria: selectSubCategoria.value || null,
-  descripcion: textarea.value.trim(),
-  fechaCreacion: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
-  likes: 0,
-  comentarios: []
-};
+               // Construcción del objeto JS
+               const nuevaPublicacion = {
+                  id: crypto.randomUUID(), // Genera un ID único 
+                  usuario: userLogged,
+                  titulo: inputTitulo.value.trim(),
+                  imagen: {
+                     nombre: inputArchivo.files[0]?.name || null,
+                     tamano: inputArchivo.files[0]?.size || null,
+                     tipo: inputArchivo.files[0]?.type || null
+                  },
+                  categoria: selectCategoria.value,
+                  subcategoria: selectSubCategoria.value || null,
+                  descripcion: textarea.value.trim(),
+                  fechaCreacion: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
+                  comentarios: []
+               };
 
-// Conversión a cadena  texto JSON
-const publicacionJSON = JSON.stringify(nuevaPublicacion, null, 2); // El '2' es formaro mejorado para imprimir
+               // Conversión a cadena  texto JSON
+               const publicacionJSON = JSON.stringify(nuevaPublicacion, null, 2); // El '2' es formato mejorado para imprimir
 
-console.log("Objeto JSON listo:");
-console.log(publicacionJSON);
+               console.log("Objeto JSON listo:");
+               console.log(publicacionJSON);
                // Limpia formulario automáticamente
                formulario.reset();
                // Oculta el menú de SubCategoría
