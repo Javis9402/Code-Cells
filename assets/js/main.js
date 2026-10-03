@@ -4,14 +4,19 @@ import { normalizeActualPageName } from "./utils.js";
    Java Scrip 
    General - NavBar, resposivo, fotter
    ========================================== */
+
+// ==========================================
+// NOMBRE DE LA PÁGINA ACTUAL Y RUTA DE LOS RECURSOS
+// SI LA PÁGINA ES INDEX, SE USA './assets', SI NO, SE USA '../assets'
+// ==========================================
+
 const nombrePagina = normalizeActualPageName(window.location.href);
-console.log(nombrePagina);
-console.log("============== ENLACES ==============");
+const isIndexPage = nombrePagina.includes("index");
+const prefixRoute = `${isIndexPage ? './assets' : '../assets'}`
 
 // ==========================================
 // PERSONAJES DEL CURSOR
 // ==========================================
-const prefixRoute = `${nombrePagina.includes("index") ? './assets' : '../assets'}`
 
 const personajes = [
     `${prefixRoute}/img/general/Cursor/ajolote.png`,
@@ -19,10 +24,18 @@ const personajes = [
     `${prefixRoute}/img/general/Cursor/champi.png`,
     `${prefixRoute}/img/general/Cursor/erizo.png`,
     `${prefixRoute}/img/general/Cursor/hongo.png`,
-    `$./assets/img/general/Cursor/celula.jpg`
+    `${prefixRoute}/img/general/Cursor/celula.jpg`
 ];
 
-let personajeActual = 0;
+// TODO > Cambiar el personaje al azar al cargar la página
+const randIndex = Math.floor(Math.random() * personajes.length);
+
+/* 
+    TODO > Cambiar el personaje al azar al cargar la página.
+    *       Si la página es index, se usa el primer personaje (ajolote).
+    *       Si no, se usa un personaje al azar.
+*/
+let personajeActual = isIndexPage ? 0 : randIndex;
 
 // ==========================================
 // CREAR EL CURSOR CON LA IMAGEN
@@ -56,8 +69,10 @@ document.addEventListener("mousemove", (event) => {
 
 // ==========================================
 // CAMBIAR PERSONAJE AL HACER SCROLL
+// *    Si la página es index, se puede cambiar el personaje al hacer scroll. 
+// *    Si no, no se puede cambiar.
 // ==========================================
-let puedeCambiar = true;
+let puedeCambiar = isIndexPage ? true : false;
 
 window.addEventListener("scroll", () => {
 
