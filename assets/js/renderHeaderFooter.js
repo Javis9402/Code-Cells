@@ -1,3 +1,8 @@
+const nombrePagina = normalizeActualPageName(window.location.href);
+console.log(nombrePagina);
+
+const isPagContacto = nombrePagina.includes("contacto");
+
 const paginas = {
     acercaDe: "../pages/acercaDe.html",
     contacto: "../pages/contacto.html",
@@ -49,8 +54,8 @@ const headerElement = `
                 <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
             </div>
             <div class="navbar-nav ms-lg-3 gap-3">
-                <a href="./pages/login.html" class="btn-iniciar">Iniciar sesión</a>
-                <a href="./pages/registro.html" class="btn-iniciar">Registrate</a>
+                <a href="${isPagContacto ? '..' : '.'}/pages/login.html" class="btn-iniciar">Iniciar sesión</a>
+                <a href="${isPagContacto ? '..' : '.'}/pages/registro.html" class="btn-iniciar">Registrate</a>
             </div>
         </div>
         <!--Navegación-->
@@ -115,8 +120,7 @@ const footerElementNoNaim = `
     </footer>
 `
 
-const nombrePagina = normalizeActualPageName(window.location.href);
-console.log(nombrePagina);
+
 
 
 if (!nombrePagina.includes("contacto")) {
