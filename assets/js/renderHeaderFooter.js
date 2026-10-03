@@ -77,7 +77,24 @@ const footerElement = `
     </footer>
 `
 
-
+const footerContacto = `
+    <footer class="footer text-center mt-2 py-4">
+        <div class="container px-3">
+            <div class="footer-links d-flex justify-content-center flex-wrap gap-3 pb-3 mb-3">
+                <a href="./feed.html" class="text-decoration-none">Inicio</a>
+                <a href="../index.html" class="text-decoration-none">Proyecto</a>
+                <a href="../index.html" class="text-decoration-none">Equipo</a>
+                <a href="./contacto.html" class="text-decoration-none">Contacto</a>
+            </div>
+            <p class="mb-2">
+                "Conocer la naturaleza es el primer paso para cuidarla." 🌿
+            </p>
+            <p class="mb-0 small">
+                © 2026 — InstaRama. All rights reserved.
+            </p>
+        </div>
+    </footer>
+`
 
 const footerElementNoNaim = `
     <footer class="footer text-center mt-2 py-4">
@@ -102,16 +119,16 @@ const nombrePagina = normalizeActualPageName(window.location.href);
 console.log(nombrePagina);
 
 
-if (nombrePagina.includes("index.html")) {
-    
+if (!nombrePagina.includes("contacto")) {
+
+    body.insertAdjacentHTML("beforeend", footerElement);
     // console.log("Estas en la pagina principal");
 }
-if (nombrePagina.includes("contacto.html")) {
-    body.insertAdjacentHTML("beforeend", footerElement);
+if (nombrePagina.includes("contacto")) {
+    body.insertAdjacentHTML("beforeend", footerContacto);
     // console.log("Estas en la pagina de contactanos");
 }
 
-body.insertAdjacentHTML("beforeend", footerElement);
 body.insertAdjacentHTML("afterbegin", headerElement);
 
 
@@ -151,5 +168,5 @@ function loadFooter(pageName) {
 }
 
 function obtenerEnlaces(pageName) {
-    
+
 }
