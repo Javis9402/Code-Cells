@@ -4,14 +4,14 @@ console.log(nombrePagina);
 const isPagContacto = nombrePagina.includes("contacto");
 
 const paginas = {
-    acercaDe: "../pages/acercaDe.html",
-    contacto: "../pages/contacto.html",
-    feed: "../pages/feed.html", // --> inicio
-    login: "../pages/login.html",
-    objetos: "../pages/objetos.html",
-    publicacion: "../pages/publicacion.html",
-    registro: "../pages/registro.html",
-    index: "../index.html"
+  acercaDe: "../pages/acercaDe.html",
+  contacto: "../pages/contacto.html",
+  feed: "../pages/feed.html", // --> inicio
+  login: "../pages/login.html",
+  objetos: "../pages/objetos.html",
+  publicacion: "../pages/publicacion.html",
+  registro: "../pages/registro.html",
+  index: "../index.html",
 };
 
 // const paginas = {
@@ -35,7 +35,7 @@ const headerElement = `
         <div class="container-fluid">
         <!--Logo-->
         <a class="navbar-brand" href="../pages/feed.html">
-            <img src="/assets/img/logo/logoInstarama(ficticio)SF.png" alt="logo de la red social" class="logo" />
+            <img src="/assets/img/logo/Logo contexto.svg" alt="logo de la red social" class="logo" />
         </a>
         <!--Logo-->
         <!--Botón responsive-->
@@ -61,7 +61,7 @@ const headerElement = `
         <!--Navegación-->
         </div>
     </nav>
-  `
+  `;
 
 const footerElement = `
     <footer class="text-center mt-5 py-4">
@@ -80,6 +80,9 @@ const footerElement = `
         </p>
         </div>
     </footer>
+<<<<<<< HEAD
+`;
+=======
 `
 
 const footerContacto = `
@@ -100,6 +103,7 @@ const footerContacto = `
         </div>
     </footer>
 `
+>>>>>>> main
 
 const footerElementNoNaim = `
     <footer class="footer text-center mt-2 py-4">
@@ -118,9 +122,17 @@ const footerElementNoNaim = `
             </p>
         </div>
     </footer>
-`
+`;
 
 
+<<<<<<< HEAD
+if (nombrePagina.includes("index.html")) {
+  // console.log("Estas en la pagina principal");
+}
+if (nombrePagina.includes("contacto.html")) {
+  body.insertAdjacentHTML("beforeend", footerElement);
+  // console.log("Estas en la pagina de contactanos");
+=======
 
 
 if (!nombrePagina.includes("contacto")) {
@@ -131,27 +143,26 @@ if (!nombrePagina.includes("contacto")) {
 if (nombrePagina.includes("contacto")) {
     body.insertAdjacentHTML("beforeend", footerContacto);
     // console.log("Estas en la pagina de contactanos");
+>>>>>>> main
 }
 
 body.insertAdjacentHTML("afterbegin", headerElement);
 
-
 // TODO > ================= FUNCIONES =================
 
 function normalizeActualPageName(url) {
-    const splittedUrl = url.split("/");
-    console.log(splittedUrl);
-    const pageNameAndExtension = splittedUrl.at(-1);
-    const spiltNameAndExtension = pageNameAndExtension.split(".");
-    const pageName = spiltNameAndExtension[0];
-    return pageName;
+  const splittedUrl = url.split("/");
+  console.log(splittedUrl);
+  const pageNameAndExtension = splittedUrl.at(-1);
+  const spiltNameAndExtension = pageNameAndExtension.split(".");
+  const pageName = spiltNameAndExtension[0];
+  return pageName;
 }
 
 function loadFooter(pageName) {
+  obtenerEnlaces(pageName);
 
-    obtenerEnlaces(pageName);
-
-    const footerElement = `
+  const footerElement = `
     <footer class="text-center mt-5 py-4">
         <div class="container">
         <div class="mb-3">
@@ -171,6 +182,10 @@ function loadFooter(pageName) {
   `;
 }
 
+<<<<<<< HEAD
+function obtenerEnlaces(pageName) {}
+=======
 function obtenerEnlaces(pageName) {
 
 }
+>>>>>>> main
