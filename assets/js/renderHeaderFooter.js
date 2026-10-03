@@ -1,3 +1,8 @@
+const nombrePagina = normalizeActualPageName(window.location.href);
+console.log(nombrePagina);
+
+const isPagContacto = nombrePagina.includes("contacto");
+
 const paginas = {
   acercaDe: "../pages/acercaDe.html",
   contacto: "../pages/contacto.html",
@@ -49,8 +54,8 @@ const headerElement = `
                 <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
             </div>
             <div class="navbar-nav ms-lg-3 gap-3">
-                <a href="./pages/login.html" class="btn-iniciar">Iniciar sesión</a>
-                <a href="./pages/registro.html" class="btn-iniciar">Registrate</a>
+                <a href="${isPagContacto ? '..' : '.'}/pages/login.html" class="btn-iniciar">Iniciar sesión</a>
+                <a href="${isPagContacto ? '..' : '.'}/pages/registro.html" class="btn-iniciar">Registrate</a>
             </div>
         </div>
         <!--Navegación-->
@@ -75,7 +80,30 @@ const footerElement = `
         </p>
         </div>
     </footer>
+<<<<<<< HEAD
 `;
+=======
+`
+
+const footerContacto = `
+    <footer class="footer text-center mt-2 py-4">
+        <div class="container px-3">
+            <div class="footer-links d-flex justify-content-center flex-wrap gap-3 pb-3 mb-3">
+                <a href="./feed.html" class="text-decoration-none">Inicio</a>
+                <a href="../index.html" class="text-decoration-none">Proyecto</a>
+                <a href="../index.html" class="text-decoration-none">Equipo</a>
+                <a href="./contacto.html" class="text-decoration-none">Contacto</a>
+            </div>
+            <p class="mb-2">
+                "Conocer la naturaleza es el primer paso para cuidarla." 🌿
+            </p>
+            <p class="mb-0 small">
+                © 2026 — InstaRama. All rights reserved.
+            </p>
+        </div>
+    </footer>
+`
+>>>>>>> main
 
 const footerElementNoNaim = `
     <footer class="footer text-center mt-2 py-4">
@@ -96,18 +124,28 @@ const footerElementNoNaim = `
     </footer>
 `;
 
-const nombrePagina = normalizeActualPageName(window.location.href);
-console.log(nombrePagina);
 
+<<<<<<< HEAD
 if (nombrePagina.includes("index.html")) {
   // console.log("Estas en la pagina principal");
 }
 if (nombrePagina.includes("contacto.html")) {
   body.insertAdjacentHTML("beforeend", footerElement);
   // console.log("Estas en la pagina de contactanos");
+=======
+
+
+if (!nombrePagina.includes("contacto")) {
+
+    body.insertAdjacentHTML("beforeend", footerElement);
+    // console.log("Estas en la pagina principal");
+}
+if (nombrePagina.includes("contacto")) {
+    body.insertAdjacentHTML("beforeend", footerContacto);
+    // console.log("Estas en la pagina de contactanos");
+>>>>>>> main
 }
 
-body.insertAdjacentHTML("beforeend", footerElement);
 body.insertAdjacentHTML("afterbegin", headerElement);
 
 // TODO > ================= FUNCIONES =================
@@ -144,4 +182,10 @@ function loadFooter(pageName) {
   `;
 }
 
+<<<<<<< HEAD
 function obtenerEnlaces(pageName) {}
+=======
+function obtenerEnlaces(pageName) {
+
+}
+>>>>>>> main
