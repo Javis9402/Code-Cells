@@ -117,7 +117,21 @@ document.addEventListener("click", (event) => {
 
 });
 
-
+/**
+ * Función para lanzar confeti en la posición del mouse al hacer clic.
+ * 
+ * @description
+ * Esta función crea elementos de confeti en la posición del mouse al hacer clic en la página.
+ * Cada confeti tiene un movimiento aleatorio, rotación y color.
+ * Después de 1.2 segundos, los elementos de confeti se eliminan automáticamente.
+ *  
+ * @param {number} x - La posición horizontal del mouse al hacer clic.
+ * @param {number} y - La posición vertical del mouse al hacer clic.
+ * 
+ * @example
+ * document.addEventListener("click", (event) => {
+ *     lanzarConfeti(event.clientX, event.clientY);
+ */
 function lanzarConfeti(x, y) {
 
     const cantidadConfeti = 20;
