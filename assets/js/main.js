@@ -1,18 +1,25 @@
+import { normalizeActualPageName } from "./utils.js";
+
 /* ==========================================
    Java Scrip 
    General - NavBar, resposivo, fotter
    ========================================== */
+const nombrePagina = normalizeActualPageName(window.location.href);
+console.log(nombrePagina);
+console.log("============== ENLACES ==============");
 
 // ==========================================
 // PERSONAJES DEL CURSOR
 // ==========================================
+const prefixRoute = `${nombrePagina.includes("index") ? './assets' : '../assets'}`
+
 const personajes = [
-    "./assets/img/general/Cursor/ajolote.png",
-    "./assets/img/general/Cursor/capy.png",
-    "./assets/img/general/Cursor/champi.png",
-    "./assets/img/general/Cursor/erizo.png",
-    "./assets/img/general/Cursor/hongo.png",
-    "./assets/img/general/Cursor/celula.jpg"
+    `${prefixRoute}/img/general/Cursor/ajolote.png`,
+    `${prefixRoute}/img/general/Cursor/capy.png`,
+    `${prefixRoute}/img/general/Cursor/champi.png`,
+    `${prefixRoute}/img/general/Cursor/erizo.png`,
+    `${prefixRoute}/img/general/Cursor/hongo.png`,
+    `$./assets/img/general/Cursor/celula.jpg`
 ];
 
 let personajeActual = 0;
