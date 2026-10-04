@@ -2,30 +2,7 @@
 <html lang="en">
 
 <head>
-  <!--TODO  FUENTES -->
-
-  <!-- TODO Nunito -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yuyu+Short&display=swap"
-    rel="stylesheet">
-
-  <!-- TODO MONTSERRAT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
-  <!-- TODO ONEST -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100..900&display=swap"
-    rel="stylesheet">
-
-  <!--! FIN  FUENTES -->
+ 
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,28 +14,10 @@
 
   <link rel="stylesheet" href="./assets/css/styles.css" />
   <link rel="stylesheet" href="./assets/css/global.css">
+  <link rel="stylesheet" href="./assets/css/contactanos.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="./assets/img/logo/logoInstarama(ficticio)SF.png"
-          alt="logo de la red social" height="120px" width="190px" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="./pages/acercaDe.html">Acerca de</a>
-          <a class="nav-link" href="./pages/feed.html">Inicio</a>
-          <a class="nav-link" href="./index.html">Proyecto</a>
-          <a class="nav-link" href="./index.html">Equipo</a>
-          <a class="nav-link" href="./pages/contacto.html">Contacto</a>
-        </div>
-      </div>
-    </div>
-  </nav>
 
   <header class="hero-header">
     <h1>NUESTRO PROYECTO</h1>
@@ -335,6 +294,12 @@
       </div>
     </div>
 
+    <header class="hero-header">
+      <h1>NUESTRO EQUIPO</h1>
+    </header>
+
+    <br>
+
     <div class="container text-center mb-4" id="descripcion-cards-contenedor">
       <div class="row g-3 align-items-start contenedor-cards-participantes">
         <div class="col-12 col-md-6 col-lg-4">
@@ -390,9 +355,9 @@
             <img src="./assets/img/landing/CristianMejia.png" class="card-img-top" alt="CristianMejia" />
             <div class="card-body">
               <p class="card-text">
-                Soy Cristian me apasiona la tecnologia he adquirido un gusto por el desarrollo
-                web y tambien me gusta la biodiversidad, Variedad de vida en la Tierra en todas sus formas, incluyendo la diversidad de especies de plantas, animales, hongos y microorganismos,
-                 la variabilidad genética dentro de ellas y los ecosistemas que habitan.
+                Soy Cristian, Desarrollador web en constante aprendizaje  Fascinado por cómo la tecnología puede proteger 
+                la biodiversidad y ayudarnos a entender mejor nuestro entorno. Construyendo proyectos con impacto 
+                positivo para la naturaleza y sociedad.
               </p>
             </div>
           </div>
@@ -482,13 +447,15 @@
     </div>
   </div>
   <!--Cierre contenedor-->
-  <footer class="text-center mt-5 py-4">
+  
+  <!-- Inicia <footer> -->
+  <!-- <footer class="text-center mt-5 py-4">
     <div class="container">
       <div class="mb-3">
-        <a href="#" class="text-light text-decoration-none mx-2 small">Inicio</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Proyecto</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Equipo</a>
-        <a href="#" class="text-light text-decoration-none mx-2 small">Contacto</a>
+        <a href="./pages/feed.html" class="text-light text-decoration-none mx-2 small">Inicio</a>
+        <a href="./index.html" class="text-light text-decoration-none mx-2 small">Proyecto</a>
+        <a href="./index.html" class="text-light text-decoration-none mx-2 small">Equipo</a>
+        <a href="./pages/contacto.html" class="text-light text-decoration-none mx-2 small">Contacto</a>
       </div>
       <p class="mb-1 text-light fw-semibold">
         "Conocer la naturaleza es el primer paso para cuidarla." 🌿
@@ -497,13 +464,15 @@
         © 2026 — InstaRama. All rights reserved.
       </p>
     </div>
-  </footer>
+  </footer> -->
+  <!-- termina <footer> -->
 
   <!--Todo ZONA de Sripts  -->
   <script src="./assets/js/main.js" type="module"> </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+    <script src="assets/js/render.js" type="module"></script>
 </body>
-
+g
 </html>

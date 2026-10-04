@@ -1,0 +1,22 @@
+.fondo-responsivo {
+    background-image: url(../img/publicacion/hojas-verdes-cayendo.png);
+
+    /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
+    background-size: cover;
+
+    /*Centra la imagen horizontalmente pero alinea el inicio de la iamgen con el inicio del contenedor*/
+    background-position: center top;
+    /*background-position: center top;*/
+
+    /*Evita que la imagen se repita como mosaico*/
+    background-repeat: no-repeat;
+
+    /*Color de fondo por si la imagen no carga*/
+    background-color: #EDF1D6;
+
+    /*Mantiene el fondo fijo*/
+    /*background-attachment: fixed;*/
+
+    /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
+    min-height: 100vh;
+}

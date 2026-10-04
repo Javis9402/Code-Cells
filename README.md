@@ -28,15 +28,14 @@
         │   │   ├── publicacion.js       # CRUD de posts (guardar imagen, editar, eliminar con modal)
         │   │   └── contacto.js          # Validación del formulario de contacto
         │   │
-        │   ├── img/                     # Imágenes del proyecto
-        │   │   ├── logo/                # Logotipo, isotipo, favicon
-        │   │   ├── landing/             # Banners y visuales de la bienvenida
-        │   │   ├── team/                # Fotos del equipo para "Acerca de"
-        │   │   └── placeholders/        # Imágenes de prueba para fauna/flora en el feed
-        │   │
-        │   └── docs/                    # En lugar de carpetas sueltas como "desarrollo"
-        │       ├── backlog.md           # Tareas pendientes, historias de usuario
-        │       └── wireframes/          # Diagramas o bocetos si los tienen
+        │   └── img/                     # Imágenes del proyecto
+        │       ├── general/
+        │       │    └── logo/           # Logotipo, isotipo, favicon
+        │       ├── landing/             # Banners y visuales de la bienvenida
+        │       ├── team/                # Fotos del equipo
+        │       ├── placeholders/        # Imágenes de prueba para fauna/flora en el feed
+        │       └──              # Recusos generales para todas las paginas
+        │   
 
 # GIT
 #### Notas para los commits
@@ -48,4 +47,4 @@
 * test: tests
 * Chore: Mantenimiento o Configuracion
 
-### UN buen commit ayuda a entender que cambio y porque
+### Un buen commit ayuda a entender que cambio y porque
