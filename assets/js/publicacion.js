@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
    const contenedorSubCategoria = document.getElementById('contenedorSubCategoria');
    const inputTitulo = document.getElementById('inputTitulo');
    const tituloPublicado = document.getElementById('tituloPublicado')
-   const textarea = document.getElementById('floatingTextarea');git
+   const textarea = document.getElementById('floatingTextarea');
 
    // Variables alertas
    const alertaExito = document.getElementById('alertaExito');
@@ -163,25 +163,23 @@ document.addEventListener('DOMContentLoaded', function () {
                alertaCategoria.classList.remove('d-none');
                alertaCategoria.classList.add('d-flex', 'show');
             }
+            else if (!tieneTitulo) {
+               // Alerta morada: Falta titulo
+               alertaTitulo.classList.remove('d-none');
+               alertaTitulo.classList.add('d-flex', 'show');
+            }
             else if (!tieneTexto) {
                // Alerta amarilla: Falta descripción
                alertaAdvertencia.classList.remove('d-none');
                alertaAdvertencia.classList.add('d-flex', 'show');
             }
-
-               // Alerta morada: Falta titulo
-            else if (!tieneTitulo) {
-               alertaTitulo.classList.remove('d-none');
-               alertaTitulo.classList.add('d-flex', 'show');
-            }
-
-
             else {
                // Lógica de éxito
                if (contenedorFormulario && contenedorPublicacionTerminada && imagenPublicada && textoPublicado && insigniaCategoria) {
                   // Inserta la imagen y texto de la publicación
                   imagenPublicada.src = imagenPreview.src;
                   textoPublicado.textContent = textarea.value;
+                  tituloPublicado.textContent = inputTitulo.value;
 
                   // Si eligió Animalia se mostrará con la subcategoría
                   if (selectCategoria.value === 'Animalia') {

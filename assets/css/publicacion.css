@@ -20,3 +20,14 @@
     /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
     min-height: 100vh;
 }
+
+/* Alert purple */
+.alert-purple{
+    --bs-alert-bg: #f3e8ff;
+    --bs-alert-color: #581c87;
+    --bs-alert-border-color: 1px solid #d8b4fe;
+}
+
+.alert-purple svg{
+    fill: #581c87;
+}
