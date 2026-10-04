@@ -14,13 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
    const contenedorSubCategoria = document.getElementById('contenedorSubCategoria');
    const inputTitulo = document.getElementById('inputTitulo');
    const tituloPublicado = document.getElementById('tituloPublicado')
-   const textarea = document.getElementById('floatingTextarea');
+   const textarea = document.getElementById('floatingTextarea');git
 
    // Variables alertas
    const alertaExito = document.getElementById('alertaExito');
    const alertaAdvertencia = document.getElementById('alertaAdvertencia');
    const alertaError = document.getElementById('alertaError');
    const alertaCategoria = document.getElementById('alertaCategoria');
+   const alertaTitulo = document.getElementById('alertaTitulo');
 
    // Variables publicación terminada
    const contenedorFormulario = document.getElementById('contenedorFormulario');
@@ -55,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (alertaAdvertencia) { alertaAdvertencia.classList.add('d-none'); alertaAdvertencia.classList.remove('d-flex', 'show'); }
       if (alertaError) { alertaError.classList.add('d-none'); alertaError.classList.remove('d-flex', 'show'); }
       if (alertaCategoria) { alertaCategoria.classList.add('d-none'); alertaCategoria.classList.remove('d-flex', 'show') }
+      if (alertaTitulo) { alertaTitulo.classList.add('d-none'); alertaTitulo.classList.remove('d-flex', 'show'); }
    }
-
    // Lectura del usuario
    let userLogged = localStorage.getItem('usuarioActual');
    if (!userLogged) {
@@ -138,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Lee datos del usuario
             const tieneArchivo = inputArchivo.value !== '';
             const tieneTexto = textarea.value.trim() !== '';
+            const tieneTitulo = inputTitulo.value.trim() !== '';
             const tieneCategoria = selectCategoria.value != '';
 
             // Si requiere subcategoria y se eligió
@@ -168,7 +170,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
                // Alerta morada: Falta titulo
-
+            else if (!tieneTitulo) {
+               alertaTitulo.classList.remove('d-none');
+               alertaTitulo.classList.add('d-flex', 'show');
+            }
 
 
             else {

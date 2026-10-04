@@ -143,6 +143,12 @@
               />
             </symbol>
           </svg>
+          <!-- Icono - Bicho (Alerta Morada) -->
+<symbol id="bicho-icon" viewBox="0 0 16 16">
+  <path d="M8 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+  <path d="M4.5 7.5A2.5 2.5 0 0 1 7 5h2a2.5 2.5 0 0 1 2.5 2.5v1.882a2.5 2.5 0 0 1-1.382 2.236l-1.618.81v2.072a.5.5 0 0 1-1 0v-2.072l-1.618-.81A2.5 2.5 0 0 1 4.5 9.382V7.5z"/>
+  <path d="M2.5 6a.5.5 0 0 1 .5.5v1.8a1.5 1.5 0 0 1-.44 1.06L1.146 10.78a.5.5 0 0 1-.707-.707l1.414-1.414A.5.5 0 0 0 2 8.3V6.5a.5.5 0 0 1 .5-.5zm11 0a.5.5 0 0 1 .5.5v1.8a.5.5 0 0 0 .146.354l1.414 1.414a.5.5 0 0 1-.707.707l-1.414-1.414A1.5 1.5 0 0 1 13 8.3V6.5a.5.5 0 0 1 .5-.5z"/>
+</symbol> 
 
           <!--! Card principal -->
           <div class="card p-4 shadow-sm" style="max-width: 500px; width: 100%">
@@ -243,6 +249,30 @@
             </div>
 
             <!--todo Alerta de Titulo-->
+<div
+  id="alertaTitulo"
+  class="alert alert-purple align-items-center alert-dismissible fade d-none mb-4"
+  role="alert"
+>
+  <svg
+    class="alert-icon me-2 flex-shrink-0"
+    width="24"
+    height="24"
+    role="img"
+    aria-label="Warning:"
+  >
+    <use href="#bicho-icon" />
+  </svg>
+  <div class="alert-content">
+    <div>¡Espera! No has agregado un título.</div>
+  </div>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
 
             <!--! Inicio de formulario -->
             <div id="contenedorFormulario">
