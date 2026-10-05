@@ -1,0 +1,247 @@
+:root {
+    /*Fuentes*/
+    --fuente-montserrat: "Montserrat Alternates", sans-serif;
+    --fuente-onest: "Onest", sans-serif;
+    --fuente--nunito: "Nunito", sans-serif;
+}
+
+p {
+    font-family: var(--fuente--nunito);
+}
+
+h1 {
+    font-family: var(--fuente-montserrat);
+}
+
+h3,
+h5 {
+    font-family: var(--fuente-onest);
+}
+
+/** Estilos de fondo */
+.aboutUs-bg {
+    background-color: #F9FBF2;
+}
+
+.green-light-color {
+    color: #609966;
+}
+
+.green-dark-color {
+    color: #40513B;
+}
+
+/*todo: Navbar personalizada */
+.logo {
+    width: 150px;
+    height: 80px;
+    object-fit: contain;
+    /*
+    object-fit controla la manera que se adapta la imagen dentro de un espacio
+    sin deformarse
+  */
+}
+
+#navbar-aboutUs {
+    background-color: #F9FBF2;
+    padding: 15px 20px;
+    /* border-radius: 10px; */
+}
+
+.green-shadow {
+    box-shadow: 0 4px 6px #60996662;
+}
+
+#navbar-aboutUs #navbarNavAltMarkup a:hover {
+    color: #5c9664;
+    text-shadow: 0 0 10px #5c9664,
+        0 0 10px rgba(95, 150, 100, 0.6);
+}
+
+form.border {
+    background-color: #fff;
+}
+
+.btn-iniciar {
+    padding: 10px 40px !important;
+    background-color: #255f38f5;
+    color: #F9FBF2 !important;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-out,
+        transform 0.3s ease-out,
+        box-shadow 0.3s ease-out;
+}
+
+.btn-nav {
+    /*se cambio el nombre de */
+    padding: 10px;
+    color: #40513B;
+    border-bottom: 2px solid transparent;
+    /*border-radius: 6px;*/
+    transition: border-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-nav:hover {
+    border-color: #40513B;
+    transform: translateY(-1.5px);
+    text-decoration: none;
+
+    color: #5c9664;
+    text-shadow: 0 0 10px #5c9664,
+        0 0 10px rgba(95, 150, 100, 0.6);
+    /* -webkit-text-stroke: 0.6px #5c9664; */
+}
+
+/*      RESPONSIVE NAV       */
+@media (max-width: 991.98px) {
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logo {
+        width: 120px;
+        height: 65px;
+    }
+
+    .btn-nav {
+        padding: 8px 5px;
+    }
+
+    .btn-iniciar {
+        display: inline-block;
+        padding: 8px 30px !important;
+        margin-top: 10px;
+    }
+
+    .navbar-collapse .navbar-nav:last-child {
+        align-items: center;
+    }
+
+}
+
+/*! Fin: Navbar personalizada */
+
+
+/* Iconos */
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background-color: #EDF1D6;
+    border: 1px solid #c8d8b4;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.img-icon-circle {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+}
+
+.icon-cam-share {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+}
+
+.icon-lamp-learn {
+    width: 120%;
+    height: 120%;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+}
+
+
+/* Cards hallazgos */
+.card-hallazgos {
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.img-card {
+    height: 400px;
+    object-fit: cover;
+}
+
+
+/* Botones para unirse */
+.btn-unete {
+    background-color: #5c9664;
+    color: white;
+    border: 2px solid transparent;
+    min-width: 200px;
+    transition: all 0.1s ease;
+}
+
+.btn-unete:hover {
+    background-color: #4a7a51;
+    color: white;
+    border: #405742;
+    border-color: #40513B;
+}
+
+.btn-unete:active
+.btn-unete:focus {
+    background-color: #ffffff !important;
+    color: #5c9664 !important;
+    border: 2px solid transparent !important;
+    text-shadow: 
+    0 0 10px rgba(92, 150, 100, 0.5);
+    box-shadow: none !important;
+}
+
+
+/* Botón registrado*/
+.btn-instarama-borde {
+    background-color: transparent;
+    color: #405742;
+}
+
+.btn-instarama-solido:hover {
+    background-color: #eef3de;
+    color: #405742;
+}
+
+
+/* Contenedor flotante*/
+.contenedor-flotante {
+    animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.delay-1 {
+    animation-delay: 0s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.8s;
+}
+
+.delay-4 {
+    animation-delay: 1.2s;
+}
