@@ -45,33 +45,34 @@
     <!--Inicia main-->
     <main class="flex-grow-1 py-5">
         <div class="container">
-            <div class="row g-5 align-items-center">
+        
+            <!--<div class="row g-5 align-items-center">row-->
 
                 <!-- TODO > PARTE IZQUIERDA -->
-                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                <div class="contenedor">
 
                     <!-- TODO > PARTE IZQUIERDA SUPERIOR -->
                     <h1 class="text-center">¡Contáctanos!</h1>
-                    <p class="text-center p-2">La biodiversidad está llena de historias por descubrir, y queremos conocer las tuyas. Si tienes alguna duda, sugerencia o comentario sobre InstaRama, escríbenos. Cada mensaje es una oportunidad para aprender y mejorar juntos.</p>
+                    <p class="p-2">La biodiversidad está llena de historias por descubrir, y queremos conocer las tuyas. Si tienes alguna duda, sugerencia o comentario sobre InstaRama, escríbenos. Cada mensaje es una oportunidad para aprender y mejorar juntos.</p>
 
                     <!-- ! FIN > PARTE IZQUIERDA SUPERIOR -->
 
                     <!-- TODO > PARTE IZQUIERDA INFERIOR -->
-                    <form id="contactForm" class="border p-4 p-lg-5 mt-3">
+                    <form id="contactForm" class="border p-4 p-lg-3 mt-3">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Escribe tu nombre">
                             <div class="invalid-feedback" id="nameError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo</label>
-                            <input type="email" name="email" id="email" class="form-control">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
                             <div class="invalid-feedback" id="emailError"></div>
                         </div>
                         <div class="mb-3">
                             <label for="messageType" class="form-label">Tipo de mensaje</label>
                             <select class="form-select" id="messageType" aria-label="Default select example">
-                                <option selected value="">----------SELECCIONE UNA OPCIÓN----------</option>
+                                <option selected value="">Seleccione una opción</option>
                                 <option value="1">Felicitaciones</option>
                                 <option value="2">Error</option>
                                 <option value="3">Queja</option>
@@ -81,25 +82,25 @@
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Mensaje</label>
-                            <textarea name="message" id="message" class="form-control" aria-label="With textarea"></textarea>
+                            <textarea name="message" id="message" class="form-control" aria-label="With textarea" placeholder="Escribe tu mensaje..."></textarea>
                             <div class="invalid-feedback" id="messageError"></div>
                         </div>
 
                         <button id="send-info" type="submit"
-                            class="btn btn-primary w-75 d-block mx-auto">Enviar</button>
+                            class="btn btn-form w-100">Enviar</button>
                     </form>
                     <!-- ! FIN > PARTE IZQUIERDA INFERIOR -->
                 </div>
                 <!-- ! FIN > PARTE IZQUIERDA -->
 
-                <!-- TODO > PARTE DERECHA -->
-                <div class="col-12 col-lg-6 order-1 order-lg-2">
+                <!-- TODO > PARTE DERECHA
+               <div class="col-12 col-lg-6 order-1 order-lg-2">
                     <img src="../assets/img/conocenos/pexels-ahrphotography-38411863.jpg" alt=""
                         class="img-fluid rounded object-fit-cover w-100">
-                </div>
+                </div>-->
                 <!-- ! FIN > PARTE DERECHA -->
 
-            </div>
+            <!--</div>row-->
         </div>
     </main>
     <!--Termina main-->
