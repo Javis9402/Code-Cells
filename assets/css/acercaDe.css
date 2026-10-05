@@ -183,30 +183,41 @@ form.border {
 .btn-unete:hover {
     background-color: #4a7a51;
     color: white;
-    border: #405742;
-    border-color: #40513B;
+    border-color: #2d5a34;
 }
 
-.btn-unete:active
-.btn-unete:focus {
+.btn-unete:active {
     background-color: #ffffff !important;
     color: #5c9664 !important;
-    border: 2px solid transparent !important;
-    text-shadow: 
-    0 0 10px rgba(92, 150, 100, 0.5);
+    border: 2px solid #5c9664 !important;
+    text-shadow: 0 0 10px rgba(92, 150, 100, 0.5);
     box-shadow: none !important;
 }
 
 
-/* Botón registrado*/
-.btn-instarama-borde {
+/* Botón ya tiene cuenta*/
+.btn-cuenta {
     background-color: transparent;
-    color: #405742;
+    color: #5c9664;
+    border: 2px solid #5c9664;
+    min-width: 200px;
+    transition: all 0.2s ease;
 }
 
-.btn-instarama-solido:hover {
-    background-color: #eef3de;
-    color: #405742;
+.btn-cuenta:hover {
+    background-color: transparent;
+    color: #5c9664;
+    text-shadow:
+    0 0 8px rgba(92, 150, 100, 0.8),
+    0 0 15px rgba(92, 150, 100, 0.4);
+}
+
+.btn-cuenta:active{
+    background-color: #5c9664!important;
+    color: #ffffff!important;
+    border: 2px solid #5c9664 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
 }
 
 
