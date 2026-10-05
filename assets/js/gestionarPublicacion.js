@@ -32,7 +32,7 @@ const publicacionBase = {
 
 const publicaciones = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 13; i++) {
     publicaciones.push({
         ...publicacionBase,
         id: i + 1,
@@ -56,8 +56,8 @@ for (let i = 0; i < publicaciones.length; i++) {
         </div>
         <div class="col text-truncate pe-3 fw-semibold fila-titulo">${publicacion.titulo}</div>
         <div class="col-auto d-flex gap-2 pe-3">
-            <button type="button" class="btn btn-sm btn-outline-primary btn-editar" title="Modificar" aria-label="Modificar publicación">${ICONO_EDITAR}</button>
-            <button type="button" class="btn btn-sm btn-outline-danger btn-eliminar" title="Eliminar" aria-label="Eliminar publicación">${ICONO_ELIMINAR}</button>
+            <button type="button" class="btn btn-sm btn-outline-verde btn-editar" title="Modificar" aria-label="Modificar publicación">${ICONO_EDITAR}</button>
+            <button type="button" class="btn btn-sm btn-outline-oscuro btn-eliminar" title="Eliminar" aria-label="Eliminar publicación">${ICONO_ELIMINAR}</button>
         </div>
         <div class="col-auto text-end small text-muted">${publicacion.fecha}</div>
     `;
@@ -132,7 +132,7 @@ lista.addEventListener("click", (e) => {
         publicaciones.splice(indice, 1);
         fila.remove();
         actualizarContador();
-        actualizarSeleccion(); 
+        actualizarSeleccion();
         return;
     }
 
