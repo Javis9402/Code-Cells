@@ -4,8 +4,8 @@
 // ==========================================
 
 const usuarioPrueba = {
-    username: "fernanda",
-    password: "123456"
+    username: "Javier Morales",
+    password: "123456789"
 };
 
 
