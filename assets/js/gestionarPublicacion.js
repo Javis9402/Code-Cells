@@ -12,7 +12,7 @@ const ICONO_ELIMINAR = `
 
 // ===== Datos ficticios =====
 const publicacionBase = {
-    usuario: "Jairo Cortés",
+    usuario: localStorage.getItem("usuarioActivo"),
     titulo: "Las abejas y la polinización",
     descripcion: "Las abejas son polinizadoras clave para muchos de los cultivos que consumimos. Sin ellas, la producción de frutas y verduras bajaría muchísimo.",
     imagen: "https://picsum.photos/id/1080/800/800",

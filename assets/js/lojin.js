@@ -308,6 +308,8 @@ if (loginForm) {
                 username
             );
 
+            localStorage.setItem("nombreUsuario", username);
+
 
             // ==========================================
             // REDIRECCIÓN AL FEED
