@@ -14,7 +14,7 @@ const usuarioPrueba = {
 // ==========================================
 
 let usuarios =
-    JSON.parse(localStorage.getItem("usuarios")) || [];
+    JSON.parse(localStorage.getItem("usuariosInstarama")) || JSON.parse(localStorage.getItem("usuarios")) || [];
 
 
 // ==========================================
