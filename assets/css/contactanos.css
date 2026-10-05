@@ -1,20 +1,96 @@
+:root {
+  /*fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
+  /*colores*/
+  --verde-oscuro: #40513b;
+  --verde-medio: #609966;
+  --verde-claro: #9dc08b;
+  --verde-suave: #edf1d6;
+  --blanco-calido: #f9fbf2;
+  --blanco: #ffffff;
+}
+
+body {
+  background-color: var(--blanco-calido);
+}
+
+.contenedor {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+
+h1 {
+  font-family: var(--fuente-montserrat);
+  font-weight: 700;
+  color: var(--verde-medio);
+  margin-bottom: 15px;
+}
+
+.contenedor>p {
+  font-family: var(--fuente--nunito);
+  color: var(--verde-oscuro);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.btn-form {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: var(--fuente-onest);
+  font-weight: 600;
+}
+
+.btn-form:hover {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+}
+
+form.border {
+  background-color: var(--blanco);
+  border: 1px solid var(--verde-claro) !important;
+  border-radius: 15px;
+  padding: 30px !important;
+  box-shadow: 0 4px 12px rgba(64, 81, 59, 0.12);
+}
+
+.form-label {
+  font-family: var(--fuente-onest);
+  font-weight: 600;
+  color: var(--verde-oscuro);
+}
+
+.form-control,
+.form-select {
+  font-family: var(--fuente-onest);
+  border: 1px solid var(--verde-claro);
+  border-radius: 8px;
+  color: var(--verde-oscuro);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--verde-medio);
+  box-shadow: 0 0 0 3px rgba(157, 192, 139, 0.25);
+}
+
+
 /** Estilos para la Navbar */
-.logo{
+.logo {
   width: 150px;
   height: 80px;
-  object-fit: contain; 
+  object-fit: contain;
   /*
     object-fit controla la manera que se adapta la imagen dentro de un espacio
     sin deformarse
   */
-}
-
-main{
-    background: linear-gradient(to bottom, #a3b8a0ae 50%, transparent 50%);
-}
-
-form.border {
-    background-color: #fff;
 }
 
 .navbar {
@@ -23,28 +99,29 @@ form.border {
   /* border-radius: 10px; */
 }
 
-nav #navbarNavAltMarkup a:hover{
+nav #navbarNavAltMarkup a:hover {
   color: #FFFFFF;
 }
 
-.btn-iniciar{
+.btn-iniciar {
   padding: 10px 40px !important;
   background-color: #255f38f5;
   color: #F9FBF2 !important;
   border-radius: 30px;
   text-decoration: none;
-  transition: background-color 0.3s ease-out, 
-              transform 0.3s ease-out, 
-              box-shadow 0.3s ease-out;
+  transition: background-color 0.3s ease-out,
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
 }
 
-.btn-iniciar:hover{
+.btn-iniciar:hover {
   background-color: #1c4a2c;
   transform: scale(1.05);
   box-shadow: 0 6px 14px #40513b3a;
 }
 
-.btn-nav{ /*se cambio el nombre de */
+.btn-nav {
+  /*se cambio el nombre de */
   padding: 10px;
   color: #40513B;
   border-bottom: 2px solid transparent;
@@ -52,7 +129,7 @@ nav #navbarNavAltMarkup a:hover{
   transition: border-color 0.25s ease, transform 0.15s ease;
 }
 
-.btn-nav:hover{
+.btn-nav:hover {
   color: #40513B;
   border-color: #40513B;
   transform: translateY(-1.5px);
@@ -62,53 +139,53 @@ nav #navbarNavAltMarkup a:hover{
 /*      RESPONSIVE NAV       */
 @media (max-width: 991.98px) {
 
-    .navbar {
-        padding: 10px 15px;
-    }
+  .navbar {
+    padding: 10px 15px;
+  }
 
-    .logo {
-        width: 120px;
-        height: 65px;
-    }
+  .logo {
+    width: 120px;
+    height: 65px;
+  }
 
-    .btn-nav {
-        padding: 8px 5px;
-    }
+  .btn-nav {
+    padding: 8px 5px;
+  }
 
-    .btn-iniciar {
-        display: inline-block;
-        padding: 8px 30px !important;
-        margin-top: 10px;
-    }
+  .btn-iniciar {
+    display: inline-block;
+    padding: 8px 30px !important;
+    margin-top: 10px;
+  }
 
-    .navbar-collapse .navbar-nav:last-child {
-        align-items: center;
-    }
+  .navbar-collapse .navbar-nav:last-child {
+    align-items: center;
+  }
 
 }
 /** terminan estilos para la Navbar */
 
 /*estilos footer*/
-.footer{
+.footer {
   background-color: #a3b8a0;
   color: #40513B;
 }
 
-.footer-links{
+.footer-links {
   border-bottom: 1px solid #40513b4e;
 }
-.footer-links a{
+
+.footer-links a {
   color: #40513B;
   font-size: 1rem;
   transition: opacity 0.2s ease;
 }
 
-.footer-links a:hover{
+.footer-links a:hover {
   opacity: 0.7;
 }
 
-.footer p:last-child{
+.footer p:last-child {
   opacity: 0.75;
 }
 /*estilos footer*/
-
