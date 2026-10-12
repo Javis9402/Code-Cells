@@ -1,8 +1,8 @@
 .fondo-responsivo {
-    background-image: url(../img/publicacion/hojas-verdes-cayendo.png);
+    background-image: url('../img/publicacion/hojasverdes3.jpg');
 
     /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
-    background-size: cover;
+    background-size: 100%;
 
     /*Centra la imagen horizontalmente pero alinea el inicio de la iamgen con el inicio del contenedor*/
     background-position: center top;
@@ -20,6 +20,11 @@
     /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
     min-height: 100vh;
 }
+/* Enfoque más iluminado y brillante en la página de publicación */
+#formularioPublicacion .form-control:focus,
+#formularioPublicacion .form-select:focus {
+  border-color: #76d97b; /* Un verde más vivo y claro */
+  box-shadow: 0 0 0 0.3rem rgba(118, 217, 123, 0.45); /* Un resplandor más amplio y brillante */
 
 /* Alert purple */
 .alert-purple{

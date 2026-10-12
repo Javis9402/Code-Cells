@@ -129,6 +129,173 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
+            <!--todo Alerta de Titulo-->
+<div
+  id="alertaTitulo"
+  class="alert alert-purple align-items-center alert-dismissible fade d-none mb-4"
+  role="alert"
+>
+  <svg
+    class="alert-icon me-2 flex-shrink-0"
+    width="24"
+    height="24"
+    role="img"
+    aria-label="Warning:"
+  >
+    <use href="#bicho-icon" />
+  </svg>
+  <div class="alert-content">
+    <div>¡Espera! No has agregado un título.</div>
+  </div>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+
+            <!--! Inicio de formulario -->
+            <div id="contenedorFormulario">
+              <form
+                id="formularioPublicacion"
+                novalidate enctype="multipart/form-data">
+                <!-- novalidate: Desactiva la alerta del navegador -->
+
+                <!--* Input de archivo -->
+                <div class="mb-3">
+                  <label
+                    for="formFile"
+                    class="form-label fw-semibold d-flex align-items-center"
+                  >
+                    <!--<i class="bi bi-camera-fill me-2"></i>-->
+                    <img
+                      src="../assets/img/publicacion/cam-icon.png"
+                      alt="Cámara"
+                      style="width: 44px; height: 32px"
+                    />
+                    Sube tu descubrimiento
+                  </label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="formFile"
+                    accept="image/*,video/*"
+                    required
+                  />
+                </div>
+
+                <!--* Vista previa de imagen-->
+                <figure
+                  id="vistaPrevia"
+                  class="figure text-center d-block my-3"
+                >
+                  <!--Imagen predeterminada-->
+                  <img
+                    id="imagenPreview"
+                    src="../assets/img/publicacion/imagenPredeterminada.png"
+                    class="figure-img img-fluid rounded mx-auto d-block shadow border border-2 border-secondary"
+                    alt="Vista previa predeterminada"
+                  />
+                  <!--style="max-width: 100%; height: auto;"-->
+                  <figcaption class="figure-caption text-center mt-2">
+                    Vista previa de tu publicación
+                  </figcaption>
+                </figure>
+
+                <!--? Clasificación (Menú desplegable) -->
+                <div class="mb-4">
+                  <label for="selectCategoria" class="form-label fw-semibold"
+                    >Tipo de descubrimiento</label
+                  >
+                  <select class="form-select shadow-sm" id="selectCategoria" required>
+                    <option value="" selected disabled>
+                      Selecciona una categoría...
+                    </option>
+                    <option value="Monera">🧫 Reino Monera</option>
+                    <option value="Protista">🦠 Reino Protista</option>
+                    <option value="Fungi">🍄 Reino Fungi</option>
+                    <option value="Plantae">🌿 Reino Plantae</option>
+                    <option value="Animalia">🐾 Reino Animalia</option>
+                    <option value="Sin Clasificar">
+                      ℹ️ Desconozco la clasificación
+                    </option>
+                  </select>
+                </div>
+
+                <!--? Sub menú desplegable: Animalia -->
+                <div class="mb-4 d-none" id="contenedorSubCategoria">
+                  <label for="selectSubCategoria" class="form-label fw-semibold"
+                    >Clasificación de Animalia</label
+                  >
+                  <select class="form-select shadow-sm" id="selectSubCategoria">
+                    <option value="" selected disabled>
+                      ¿Es vertebrado o invertebrado?
+                    </option>
+                    <option value="Vertebrado">🦴 Vertebrado</option>
+                    <option value="Invertebrado">🐛 Invertebrado</option>
+                  </select>
+                </div>
+
+                <!--* Titulo de la publicación -->
+                <div class="mb-3">
+                  <label for="inputTitulo" class="form-label fw-semibold"
+                    >Titulo del hallazgo</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control shadow-sm"
+                    id="inputTitulo"
+                    placeholder="Ej. Extraño hongo brillante"
+                    required
+                  />
+                </div>
+
+                <!--* Área de descripción-->
+                <div class="mb-4">
+                  <!-- form-floating -->
+                  <textarea
+                    class="form-control shadow-sm"
+                    placeholder="Descripción de tu hallazgo..."
+                    id="floatingTextarea"
+                    style="height: 100px"
+                    required
+                  ></textarea>
+                  <!--<label for="floatingTextarea"></label>-->
+                </div>
+
+                <!--* Botones de acción-->
+                <div class="d-flex gap-3 gap-3 justify-content-center mt-4">
+                  <!--Botón para Publicar-->
+                  <button class="btn btn-success w-50" type="submit">
+                    Publicar
+                  </button>
+                  <!--Botón para Cancelar-->
+                  <button
+                    class="btn btn-outline-success w-50"
+                    type="button"
+                    id="btnCancelarPrincipal"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!--! Fin del formulario-->
+
+            <!--? Publicación terminada (Oculto) -->
+            <div id="contenedorPublicacionTerminada" class="d-none">
+              <div class="card border-0 shadow-none">
+                <!-- Encabezado del post -->
+                <div
+                  class="bg-secondary rounded-circle d-flex justify-content-center align-items-center me-2"
+                  style="width: 40px; height: 40px"
+                >
+                  <i class="bi bi-person-fill fs-5"></i>
+                </div>
+                <span class="fw-bold" id="nombreUsuarioEncabezado"
+                  >Explorador_Bótanico</span
+                >
           <!--todo Alerta Descripción -->
           <div id="alertaAdvertencia" class="alert alert-warning align-items-center alert-dismissible fade d-none mb-4"
             role="alert">
