@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
    const contenedorSubCategoria = document.getElementById('contenedorSubCategoria');
    const inputTitulo = document.getElementById('inputTitulo');
    const tituloPublicado = document.getElementById('tituloPublicado')
-   const textarea = document.getElementById('floatingTextarea');git
+   const textarea = document.getElementById('floatingTextarea');
 
    // Variables alertas
    const alertaExito = document.getElementById('alertaExito');
