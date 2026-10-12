@@ -177,7 +177,7 @@ filtroReino.addEventListener("change", () => {
 
   if (!idReino) {
     filtroCategoria.disabled = true;
-    limpiarPublicaciones();
+    mostrarPublicaciones(publicaciones); // Muestra de nuevo las publicaciones.
     mensajeFiltro.textContent =
       "Selecciona un reino para descubrir sus publicaciones.";
     return;

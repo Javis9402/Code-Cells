@@ -1,0 +1,65 @@
+:root {
+    --verde-oscuro: #40513B;
+    --verde: #609966;
+    --verde-claro: #9DC08B;
+    --verde-palido: #EDF1D6;
+    --crema: #F9FBF2;
+}
+
+/* Botón relleno verde: Guardar cambios, Comentar */
+.btn-verde {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--verde);
+    --bs-btn-border-color: var(--verde);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--verde-oscuro);
+    --bs-btn-hover-border-color: var(--verde-oscuro);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--verde-oscuro);
+    --bs-btn-active-border-color: var(--verde-oscuro);
+}
+
+/* Botón contorno verde: Editar */
+.btn-outline-verde {
+    --bs-btn-color: var(--verde);
+    --bs-btn-border-color: var(--verde);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--verde);
+    --bs-btn-hover-border-color: var(--verde);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--verde-oscuro);
+    --bs-btn-active-border-color: var(--verde-oscuro);
+}
+
+/* Botón contorno oscuro: Eliminar, Eliminar seleccionadas, Cancelar */
+.btn-outline-oscuro {
+    --bs-btn-color: var(--verde-oscuro);
+    --bs-btn-border-color: var(--verde-oscuro);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--verde-oscuro);
+    --bs-btn-hover-border-color: var(--verde-oscuro);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--verde-oscuro);
+    --bs-btn-active-border-color: var(--verde-oscuro);
+}
+
+/* Checkboxes */
+.form-check-input:checked,
+.form-check-input:indeterminate {
+    background-color: var(--verde);
+    border-color: var(--verde);
+}
+
+.form-check-input:focus {
+    border-color: var(--verde-claro);
+    box-shadow: 0 0 0 0.25rem rgba(96, 153, 102, 0.25);
+}
+
+/* Filas */
+.publicacion-fila:hover {
+    background-color: var(--crema);
+}
+
+.publicacion-fila.seleccionada {
+    background-color: var(--verde-palido);
+}
