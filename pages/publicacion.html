@@ -317,7 +317,7 @@
                   <img
                     id="imagenPreview"
                     src="../assets/img/publicacion/imagenPredeterminada.png"
-                    class="figure-img img-fluid rounded mx-auto d-block shadow-sm"
+                    class="figure-img img-fluid rounded mx-auto d-block shadow border border-2 border-secondary"
                     alt="Vista previa predeterminada"
                   />
                   <!--style="max-width: 100%; height: auto;"-->
@@ -331,7 +331,7 @@
                   <label for="selectCategoria" class="form-label fw-semibold"
                     >Tipo de descubrimiento</label
                   >
-                  <select class="form-select" id="selectCategoria" required>
+                  <select class="form-select shadow-sm" id="selectCategoria" required>
                     <option value="" selected disabled>
                       Selecciona una categoría...
                     </option>
@@ -351,7 +351,7 @@
                   <label for="selectSubCategoria" class="form-label fw-semibold"
                     >Clasificación de Animalia</label
                   >
-                  <select class="form-select" id="selectSubCategoria">
+                  <select class="form-select shadow-sm" id="selectSubCategoria">
                     <option value="" selected disabled>
                       ¿Es vertebrado o invertebrado?
                     </option>
@@ -367,7 +367,7 @@
                   >
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control shadow-sm"
                     id="inputTitulo"
                     placeholder="Ej. Extraño hongo brillante"
                     required
@@ -378,7 +378,7 @@
                 <div class="mb-4">
                   <!-- form-floating -->
                   <textarea
-                    class="form-control"
+                    class="form-control shadow-sm"
                     placeholder="Descripción de tu hallazgo..."
                     id="floatingTextarea"
                     style="height: 100px"
@@ -390,12 +390,12 @@
                 <!--* Botones de acción-->
                 <div class="d-flex gap-3 gap-3 justify-content-center mt-4">
                   <!--Botón para Publicar-->
-                  <button class="btn btn-primary w-50" type="submit">
+                  <button class="btn btn-success w-50" type="submit">
                     Publicar
                   </button>
                   <!--Botón para Cancelar-->
                   <button
-                    class="btn btn-outline-secondary w-50"
+                    class="btn btn-outline-success w-50"
                     type="button"
                     id="btnCancelarPrincipal"
                   >
