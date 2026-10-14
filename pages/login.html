@@ -1,82 +1,151 @@
 <!doctype html>
 <html lang="es">
-
-<head>
-    <!--TODO  CDN de Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- TODO Google Fonts: Istok Web -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap" rel="stylesheet" />
-    <!-- TODO Nuestro archivo CSS personalizado -->
-    <link rel="stylesheet" defer href="../assets/css/contactanos.css" />
-    <link rel="stylesheet" href="../assets/css/registro.css" />
-
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar Sesión InstaRama</title>
-</head>
 
-<body>
+    <!-- TODO: Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
+    <!--TODO:  Google Fonts: Onest -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- TODO Contenedor principal: Ocupa el resto de la pantalla y centra el contenido -->
-    <div class="container main-content d-flex justify-content-center align-items-center">
-        <!-- Fila principal: Divide la pantalla en dos columnas -->
-        <div class="row w-100 justify-content-center align-items-center">
-            <!-- TODO COLUMNA IZQUIERDA: Logo y Nombre -->
+    <!-- TODO: CSS personalizado -->
+    <link rel="stylesheet" href="../assets/css/login.css" />
+  </head>
 
+  <body>
+    <!-- HEADER-->
+    <header class="header-instarama"></header>
 
-            <!-- TODO COLUMNA DERECHA: Formulario de Registro -->
-            <div class="col-md-5">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      <!-- LOGO instarama-->
+      <div class="logo-container">
+        <a class="logo-link">
+          <img
+            src="../assets/img/logo/Logo contexto.svg"
+            alt="Logo de InstaRama"
+            class="logo-img"
+          />
+        </a>
+      </div>
 
-                <div class="col-md-6 text-center mb-5 mb-md-0 w-100 fs-1">
-                    <!--  TODO Enlace al Feed con el Logo -->
-                    <a href="../index.html" class="d-block mb-3 logo-link">
-                        <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama"
-                            class="img-fluid logo-img w-25" />
-                    </a>
-                </div>
+      <!-- TODO: TARJETA DE LOGIN -->
+      <div class="login-card">
+        <h2 class="form-title mb-4">Inicio de Sesión</h2>
 
-                <h2 class="mb-4 form-title">Inicio de Sesión</h2>
-
-                <form id="loginForm" action="#" novalidate>
-                    <!-- Campo: Nombre de usuario -->
-                    <div class="mb-3">
-                        <label for="username" class="form-label fs-4">Nombre de usuario.</label>
-                        <input type="text" class="form-control" id="username" required />
-                        <div id="usernameError" class="text-danger small mt-1"></div>
-                    </div>
-
-                    <!-- Campo: Contraseña -->
-                    <div class="mb-3">
-                        <label for="password" class="form-label fs-4">Contraseña.</label>
-                        <input type="password" class="form-control" id="password" required />
-                        <div id="passwordError" class="text-danger small mt-1"></div>
-                    </div>
-
-                    <!-- Error general de login -->
-                    <div id="loginError" class="alert alert-danger d-none mb-3" role="alert"></div>
-
-                    <div class="mb-4">
-                        <a class="form-check-label" href="#">¿Olvidaste tu contraseña?</a>
-                    </div>
-
-                    <!-- Botón de envío -->
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-lg custom-btn fs-4">
-                            Ingresar
-                        </button>
-                    </div>
-                </form>
+        <form id="loginForm" action="" novalidate>
+          <!-- Campo: Correo -->
+          <div class="mb-3">
+            <div class="input-group-custom">
+              <img
+                src="../assets/img/icons/icon-email.svg"
+                alt="Email"
+                class="input-icon"
+              />
+              <input
+                type="email"
+                class="form-control custom-input"
+                id="email"
+                placeholder="Ingresa tu correo electrónico"
+                required
+              />
             </div>
-        </div>
-    </div>
-    <!-- TODO CDN de Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/lojin.js"></script>
-    <script src="../assets/js/render.js" type="module"></script>
-</body>
+            <div id="emailError" class="text-danger small mt-1"></div>
+          </div>
 
+          <!-- Campo: Contraseña -->
+          <div class="mb-3">
+            <div class="input-group-custom">
+              <img
+                src="../assets/img/icons/icon-password.svg"
+                alt="Password"
+                class="input-icon"
+              />
+              <input
+                type="password"
+                class="form-control custom-input"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+                required
+              />
+              <button
+                type="button"
+                class="toggle-password"
+                id="togglePassword"
+                aria-label="Mostrar u ocultar contraseña"
+              >
+                <img
+                  src="../assets/img/icons/ojo-cerrado.svg"
+                  alt="Mostrar contraseña"
+                  id="toggleIcon"
+                  class="toggle-icon"
+                />
+              </button>
+            </div>
+            <div id="passwordError" class="text-danger small mt-1"></div>
+          </div>
+
+          <!-- TODO:  Error general-->
+          <div id="loginError" class="d-none mb-3" role="alert"></div>
+
+          <!-- ¿Olvidaste tu contraseña? -->
+          <div class="mb-4 text-start">
+            <a class="forgot-link" href="#">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Botón Ingresar -->
+          <div class="d-grid gap-2 mb-3">
+            <button type="submit" class="btn custom-btn">Ingresar</button>
+          </div>
+
+          <!-- ¿No tienes cuenta? -->
+          <p class="register-text text-center mb-0">
+            ¿No tienes cuenta?,
+            <a href="#" id="registerLink" class="register-link"
+              >regístrate ahora</a
+            >
+          </p>
+        </form>
+      </div>
+
+      <!-- TODO: Regresar a la página principal -->
+      <div class="back-container">
+        <a href="../index.html" class="back-link">
+          <img
+            src="../assets/img/icons/icon-arrow.svg"
+            alt="Arrow"
+            class="back-icon"
+          />
+          Regresar a la página principal
+        </a>
+      </div>
+    </main>
+
+    <!-- TODO: Decoración: Hongos-->
+    <img
+      src="../assets/img/icons/hongo-izquierda.svg"
+      alt=""
+      class="hongo hongo-izquierda"
+    />
+    <img
+      src="../assets/img/icons/hongo-derecha.svg"
+      alt=""
+      class="hongo hongo-derecha"
+    />
+
+    <!-- TODO: Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/login.js"></script>
+  </body>
 </html>
