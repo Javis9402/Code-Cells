@@ -24,7 +24,7 @@ body {
 }
 
 body {
-  background-color: var(--color-fondo);
+  background-color: var(--ir-fondo);
   font-family: "Onest", sans-serif;
   color: var(--color-negro);
   display: flex;
@@ -37,7 +37,7 @@ body {
    HEADER 
    ========================================= */
 .header-instarama {
-  background-color: var(--color-verde-2);
+  background-color: var(--ir-verde-claro);
   width: 100%;
   height: 70px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -236,7 +236,7 @@ input[type="password"]#password::placeholder {
    ========================================= */
 .custom-btn {
   font-family: "Onest", sans-serif;
-  background-color: rgba(96, 153, 102, 0.63);
+  background-color: var(--ir-verde);
   color: var(--color-blanco);
   border: none;
   border-radius: 15px;
@@ -249,13 +249,13 @@ input[type="password"]#password::placeholder {
 }
 
 .custom-btn:hover {
-  background-color: var(--color-verde-1);
+  background-color: var(--ir-verde-oscuro);
   color: var(--color-blanco);
   transform: scale(1.02);
 }
 
 .custom-btn:active {
-  background-color: var(--color-verde-2);
+  background-color: var(--ir-verde-oscuro);
 }
 
 /* =========================================

@@ -20,7 +20,7 @@ body {
 }
 
 body {
-  background-color: var(--color-fondo);
+  background-color: var(--ir-fondo);
   font-family: "Istok Web", sans-serif;
   color: var(--color-negro);
   margin: 0;
@@ -31,7 +31,7 @@ body {
 }
 
 .header-instarama {
-  background-color: var(--color-verde-3);
+  background-color: var(--ir-verde-claro);
   color: var(--color-blanco);
   width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -115,7 +115,7 @@ body {
    BOTÓN PERSONALIZADO (Crear mi cuenta)
    ========================================= */
 .custom-btn {
-  background-color: var(--color-verde-1);
+  background-color: var(--ir-verde);
   color: var(--color-blanco);
   border: none;
   border-radius: 10px;
@@ -128,13 +128,13 @@ body {
 }
 
 .custom-btn:hover {
-  background-color: var(--color-verde-2);
+  background-color: var(--ir-verde-oscuro);
   color: var(--color-blanco);
   transform: scale(1.02);
 }
 
 .custom-btn:active {
-  background-color: var(--color-verde-3);
+  background-color: var(--ir-verde-oscuro);
 }
 
 /* =========================================
