@@ -22,7 +22,6 @@ body {
   padding: 0 20px;
 }
 
-
 h1 {
   font-family: var(--fuente-montserrat);
   font-weight: 700;
@@ -30,7 +29,7 @@ h1 {
   margin-bottom: 15px;
 }
 
-.contenedor>p {
+.contenedor > p {
   font-family: var(--fuente--nunito);
   color: var(--verde-oscuro);
   text-align: center;
@@ -49,8 +48,8 @@ h1 {
 }
 
 .btn-form:hover {
-    background-color: var(--verde-oscuro);
-    color: var(--blanco);
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
 }
 
 form.border {
@@ -81,7 +80,6 @@ form.border {
   box-shadow: 0 0 0 3px rgba(157, 192, 139, 0.25);
 }
 
-
 /** Estilos para la Navbar */
 .logo {
   width: 150px;
@@ -94,28 +92,29 @@ form.border {
 }
 
 .navbar {
-  background-color: #a3b8a0;
+  background-color: var(--ir-verde-claro);
   padding: 15px 20px;
   /* border-radius: 10px; */
 }
 
 nav #navbarNavAltMarkup a:hover {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .btn-iniciar {
   padding: 10px 40px !important;
-  background-color: #255f38f5;
-  color: #F9FBF2 !important;
+  background-color: var(--ir-verde-oscuro);
+  color: var(--ir-blanco) !important;
   border-radius: 30px;
   text-decoration: none;
-  transition: background-color 0.3s ease-out,
+  transition:
+    background-color 0.3s ease-out,
     transform 0.3s ease-out,
     box-shadow 0.3s ease-out;
 }
 
 .btn-iniciar:hover {
-  background-color: #1c4a2c;
+  background-color: var(--ir-verde);
   transform: scale(1.05);
   box-shadow: 0 6px 14px #40513b3a;
 }
@@ -123,22 +122,23 @@ nav #navbarNavAltMarkup a:hover {
 .btn-nav {
   /*se cambio el nombre de */
   padding: 10px;
-  color: #40513B;
+  color: #40513b;
   border-bottom: 2px solid transparent;
   /*border-radius: 6px;*/
-  transition: border-color 0.25s ease, transform 0.15s ease;
+  transition:
+    border-color 0.25s ease,
+    transform 0.15s ease;
 }
 
 .btn-nav:hover {
-  color: #40513B;
-  border-color: #40513B;
+  color: #40513b;
+  border-color: #40513b;
   transform: translateY(-1.5px);
   text-decoration: none;
 }
 
 /*      RESPONSIVE NAV       */
 @media (max-width: 991.98px) {
-
   .navbar {
     padding: 10px 15px;
   }
@@ -161,22 +161,21 @@ nav #navbarNavAltMarkup a:hover {
   .navbar-collapse .navbar-nav:last-child {
     align-items: center;
   }
-
 }
 /** terminan estilos para la Navbar */
 
 /*estilos footer*/
 .footer {
-  background-color: #a3b8a0;
-  color: #40513B;
+  background-color: var(--ir-verde-oscuro);
+  color: var(--ir-crema);
 }
 
 .footer-links {
-  border-bottom: 1px solid #40513b4e;
+  border-bottom: 1px solid rgba(237, 241, 214, 0.3);
 }
 
 .footer-links a {
-  color: #40513B;
+  color: var(--ir-crema);
   font-size: 1rem;
   transition: opacity 0.2s ease;
 }

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reinos Biológicos | InstaRama</title>
+    <link rel="stylesheet" href="../assets/css/clasificacion.css">
+</head>
+<body>
+    <!-- HERO -->
+    <header class="hero-reinos">
+        <div class="hero-contenido">
+            <p class="hero-etiqueta">Aprende sobre biodiversidad</p>
+            <h1>Aprende a identificar los 5 reinos biológicos</h1>
+            <p class="hero-descripcion">Observa las características de los seres vivos y descubre a qué reino pertenece cada organismo.</p>
+            <div class="hero-botones">
+                <a href="#identificar" class="btn btn-principal">Aprender a identificar</a>
+                <a href="#reinos" class="btn btn-secundario">Explorar reinos</a>
+            </div>
+        </div>
+        <div class="hero-imagen">
+            <img src="../assets/img/clasificacion/reino.png" alt="Los cinco reinos biológicos" class="imagen-ampliable" tabindex="0">
+        </div>
+    </header>
+    <main>
+        <!-- SECCIÓN 1: CARACTERÍSTICAS PARA IDENTIFICAR UN SER VIVO -->
+        <section class="seccion-identificar" id="identificar">
+            <div class="titulo-seccion">
+                <span class="subtitulo-seccion">Aprende a identificar</span>
+                <h2>¿Cómo saber a qué reino pertenece?</h2>
+                <p>Primero observa algunas características básicas del organismo.</p>
+            </div>
+            <div class="contenedor-pasos">
+                <article class="paso">
+                    <div class="paso-imagen">
+                        <img src="../assets/img/clasificacion/1C.png" alt="Comparación entre organismo unicelular y pluricelular" class="imagen-ampliable" tabindex="0">
+                    </div>
+                    <div class="paso-contenido">
+                        <span class="numero-paso">1</span>
+                        <h3>Número de células</h3>
+                        <p>¿El organismo es unicelular o pluricelular?</p>
+                    </div>
+                </article>
+                <article class="paso">
+                    <div class="paso-imagen">
+                        <img src="../assets/img/clasificacion/1D.png" alt="Comparación entre célula procariota y célula eucariota" class="imagen-ampliable" tabindex="0">
+                    </div>
+                    <div class="paso-contenido">
+                        <span class="numero-paso">2</span>
+                        <h3>Tipo de célula</h3>
+                        <p>¿Tiene núcleo definido o carece de núcleo?</p>
+                    </div>
+                </article>
+                <article class="paso">
+                    <div class="paso-imagen">
+                        <img src="../assets/img/clasificacion/1E.png" alt="Formas de alimentación de los organismos" class="imagen-ampliable" tabindex="0">
+                    </div>
+                    <div class="paso-contenido">
+                        <span class="numero-paso">3</span>
+                        <h3>Alimentación</h3>
+                        <p>¿Produce su alimento, lo ingiere o absorbe nutrientes?</p>
+                    </div>
+                </article>
+                <article class="paso">
+                    <div class="paso-imagen">
+                        <img src="../assets/img/clasificacion/1F.png" alt="Movilidad, estructura y reproducción de los organismos" class="imagen-ampliable" tabindex="0">
+                    </div>
+                    <div class="paso-contenido">
+                        <span class="numero-paso">4</span>
+                        <h3>Otras características</h3>
+                        <p>Observa su movilidad, estructura y forma de reproducción.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- SECCIÓN 2: ACTIVIDAD INTERACTIVA -->
+        <section class="seccion-actividad" id="actividad">
+            <div class="titulo-seccion">
+                <span class="subtitulo-seccion">Ahora te toca a ti</span>
+                <h2>¿Qué quieres hacer?</h2>
+                <p>Identifica un organismo que observaste o pon a prueba lo que aprendiste sobre los cinco reinos.</p>
+            </div>
+            <div class="selector-modo" id="selectorModo">
+                <button type="button" class="tarjeta-modo tarjeta-modo-descubrir" id="btnDescubrir">
+                    <span class="modo-icono" aria-hidden="true">🔍</span>
+                    <span class="modo-texto">
+                        <strong>Descubrir un reino</strong>
+                        <small>Responde algunas preguntas sobre el ser vivo que observaste.</small>
+                    </span>
+                    <span class="modo-flecha" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="tarjeta-modo tarjeta-modo-practicar" id="btnPracticar">
+                    <span class="modo-icono" aria-hidden="true">✓</span>
+                    <span class="modo-texto">
+                        <strong>Practicar lo aprendido</strong>
+                        <small>Responde preguntas y descubre cuánto aprendiste.</small>
+                    </span>
+                    <span class="modo-flecha" aria-hidden="true">→</span>
+                </button>
+            </div>
+            <div class="panel-actividad" id="panelActividad">
+                <div class="actividad-encabezado">
+                    <div>
+                        <span class="actividad-etiqueta">Actividad interactiva</span>
+                        <h3 id="actividadTitulo">Descubre el reino</h3>
+                        <p id="actividadDescripcion">Responde según las características del organismo.</p>
+                    </div>
+                    <button type="button" class="btn-cerrar-actividad" id="btnReiniciar" aria-label="Volver al menú de actividades">×</button>
+                </div>
+                <div class="progreso-actividad">
+                    <div class="progreso-informacion">
+                        <span>Tu progreso</span>
+                        <span id="progresoTexto">1 de 5</span>
+                    </div>
+                    <div class="progreso-fondo" aria-hidden="true">
+                        <div class="progreso-barra" id="barraProgreso"></div>
+                    </div>
+                </div>
+                <div class="contenido-actividad">
+                    <div class="pregunta-contenedor" id="preguntaContenedor"></div>
+                    <div class="opciones-contenedor" id="opcionesContenedor"></div>
+                    <div class="resultado-actividad" id="resultadoActividad"></div>
+                </div>
+                <div class="actividad-navegacion">
+                    <button type="button" class="btn-anterior-actividad" id="btnAnterior">← Volver</button>
+                </div>
+            </div>
+        </section>
+        <!-- SECCIÓN 3: LOS CINCO REINOS / CONÓCELOS -->
+        <section class="seccion-reinos" id="reinos">
+            <div class="titulo-seccion">
+                <span class="subtitulo-seccion">Clasificación</span>
+                <h2>Conoce los cinco reinos</h2>
+                <p>Ahora compara las características anteriores con cada reino biológico.</p>
+            </div>
+            <div class="contenedor-cards-reinos">
+                <article class="card-reino card-monera">
+                    <img src="../assets/img/clasificacion/microbios.png" alt="Reino Monera" class="imagen-ampliable" tabindex="0">
+                    <div class="card-contenido">
+                        <span class="numero-reino">01</span>
+                        <h3>Monera</h3>
+                        <p>Organismos unicelulares con células procariotas y sin núcleo definido.</p>
+                        <a href="#monera">Conocer más</a>
+                    </div>
+                </article>
+                <article class="card-reino card-protista">
+                    <img src="../assets/img/clasificacion/bacteria.png" alt="Reino Protista" class="imagen-ampliable" tabindex="0">
+                    <div class="card-contenido">
+                        <span class="numero-reino">02</span>
+                        <h3>Protista</h3>
+                        <p>Organismos eucariotas, principalmente unicelulares.</p>
+                        <a href="#protista">Conocer más</a>
+                    </div>
+                </article>
+                <article class="card-reino card-fungi">
+                    <img src="../assets/img/clasificacion/hongo.png" alt="Reino Fungi" class="imagen-ampliable" tabindex="0">
+                    <div class="card-contenido">
+                        <span class="numero-reino">03</span>
+                        <h3>Fungi</h3>
+                        <p>Hongos, mohos y levaduras que obtienen nutrientes por absorción.</p>
+                        <a href="#fungi">Conocer más</a>
+                    </div>
+                </article>
+                <article class="card-reino card-plantae">
+                    <img src="../assets/img/clasificacion/1p.png" alt="Reino Plantae" class="imagen-ampliable" tabindex="0">
+                    <div class="card-contenido">
+                        <span class="numero-reino">04</span>
+                        <h3>Plantae</h3>
+                        <p>Organismos multicelulares capaces de producir su propio alimento.</p>
+                        <a href="#plantae">Conocer más</a>
+                    </div>
+                </article>
+                <article class="card-reino card-animalia">
+                    <img src="../assets/img/clasificacion/animalD.png" alt="Reino Animalia" class="imagen-ampliable" tabindex="0">
+                    <div class="card-contenido">
+                        <span class="numero-reino">05</span>
+                        <h3>Animalia</h3>
+                        <p>Organismos multicelulares que obtienen alimento de otros seres vivos.</p>
+                        <a href="#animalia">Conocer más</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- SECCIÓN 4: DATOS RÁPIDOS -->
+        <section class="seccion-datos-rapidos">
+            <div class="titulo-seccion">
+                <span class="subtitulo-seccion">Datos rápidos</span>
+                <h2>Compara los cinco reinos</h2>
+                <p>Pasa el cursor sobre cada tarjeta para descubrir sus características principales.</p>
+            </div>
+            <div class="contenedor-flip-cards">
+                <article class="flip-card">
+                    <div class="flip-card-interior">
+                        <div class="flip-card-frente">
+                            <img src="../assets/img/clasificacion/1m.png" alt="Reino Monera">
+                            <h3>Monera</h3>
+                        </div>
+                        <div class="flip-card-reverso">
+                            <h3>Monera</h3>
+                            <ul>
+                                <li>Procariota</li>
+                                <li>Unicelular</li>
+                                <li>Ejemplo: bacterias</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="flip-card">
+                    <div class="flip-card-interior">
+                        <div class="flip-card-frente">
+                            <img src="../assets/img/clasificacion/1pr.png" alt="Reino Protista">
+                            <h3>Protista</h3>
+                        </div>
+                        <div class="flip-card-reverso">
+                            <h3>Protista</h3>
+                            <ul>
+                                <li>Eucariota</li>
+                                <li>Muchos son unicelulares</li>
+                                <li>Ejemplo: amiba</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="flip-card">
+                    <div class="flip-card-interior">
+                        <div class="flip-card-frente">
+                            <img src="../assets/img/clasificacion/1h.png" alt="Reino Fungi">
+                            <h3>Fungi</h3>
+                        </div>
+                        <div class="flip-card-reverso">
+                            <h3>Fungi</h3>
+                            <ul>
+                                <li>Eucariota</li>
+                                <li>Heterótrofo por absorción</li>
+                                <li>Ejemplo: champiñón</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="flip-card">
+                    <div class="flip-card-interior">
+                        <div class="flip-card-frente">
+                            <img src="../assets/img/clasificacion/planta.png" alt="Reino Plantae">
+                            <h3>Plantae</h3>
+                        </div>
+                        <div class="flip-card-reverso">
+                            <h3>Plantae</h3>
+                            <ul>
+                                <li>Eucariota</li>
+                                <li>Multicelular</li>
+                                <li>Principalmente autótrofo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <article class="flip-card">
+                    <div class="flip-card-interior">
+                        <div class="flip-card-frente">
+                            <img src="../assets/img/clasificacion/animales.png" alt="Reino Animalia">
+                            <h3>Animalia</h3>
+                        </div>
+                        <div class="flip-card-reverso">
+                            <h3>Animalia</h3>
+                            <ul>
+                                <li>Eucariota</li>
+                                <li>Multicelular</li>
+                                <li>Heterótrofo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- SECCIÓN 5: INFORMACIÓN DETALLADA -->
+        <section class="seccion-detalle">
+            <div class="titulo-seccion">
+                <span class="subtitulo-seccion">Aprende más</span>
+                <h2>Características de cada reino</h2>
+                <p>Abre cada sección para conocer sus características y ejemplos.</p>
+            </div>
+            <div class="acordeon-reinos">
+                <details class="detalle-reino" id="monera">
+                    <summary>Reino Monera</summary>
+                    <div class="contenido-reino">
+                        <div class="reino-imagen">
+                            <img src="../assets/img/clasificacion/monera.png" alt="Ejemplo del reino Monera" class="imagen-ampliable" tabindex="0">
+                        </div>
+                        <div class="reino-informacion">
+                            <h3>Reino Monera</h3>
+                            <p>Agrupa organismos unicelulares con células procariotas.</p>
+                            <ul>
+                                <li><strong>Tipo de célula:</strong> Procariota</li>
+                                <li><strong>Organización:</strong> Unicelular</li>
+                                <li><strong>Alimentación:</strong> Puede variar según el organismo</li>
+                                <li><strong>Reproducción:</strong> Principalmente asexual</li>
+                                <li><strong>Ejemplos:</strong> Bacterias y cianobacterias</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+                <details class="detalle-reino" id="protista">
+                    <summary>Reino Protista</summary>
+                    <div class="contenido-reino">
+                        <div class="reino-imagen">
+                            <img src="../assets/img/clasificacion/protista.png" alt="Ejemplo del reino Protista" class="imagen-ampliable" tabindex="0">
+                        </div>
+                        <div class="reino-informacion">
+                            <h3>Reino Protista</h3>
+                            <p>Incluye organismos eucariotas muy diversos.</p>
+                            <ul>
+                                <li><strong>Tipo de célula:</strong> Eucariota</li>
+                                <li><strong>Organización:</strong> Principalmente unicelular</li>
+                                <li><strong>Alimentación:</strong> Autótrofa o heterótrofa</li>
+                                <li><strong>Ejemplos:</strong> Protozoarios y algas microscópicas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+                <details class="detalle-reino" id="fungi">
+                    <summary>Reino Fungi</summary>
+                    <div class="contenido-reino">
+                        <div class="reino-imagen">
+                            <img src="../assets/img/clasificacion/fungi.png" alt="Ejemplo del reino Fungi" class="imagen-ampliable" tabindex="0">
+                        </div>
+                        <div class="reino-informacion">
+                            <h3>Reino Fungi</h3>
+                            <p>Incluye hongos que obtienen nutrientes mediante absorción.</p>
+                            <ul>
+                                <li><strong>Tipo de célula:</strong> Eucariota</li>
+                                <li><strong>Alimentación:</strong> Heterótrofa por absorción</li>
+                                <li><strong>Pared celular:</strong> Contiene quitina</li>
+                                <li><strong>Ejemplos:</strong> Hongos, mohos y levaduras</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+                <details class="detalle-reino" id="plantae">
+                    <summary>Reino Plantae</summary>
+                    <div class="contenido-reino">
+                        <div class="reino-imagen">
+                            <img src="../assets/img/clasificacion/plantas.png" alt="Ejemplo del reino Plantae" class="imagen-ampliable" tabindex="0">
+                        </div>
+                        <div class="reino-informacion">
+                            <h3>Reino Plantae</h3>
+                            <p>Agrupa organismos vegetales multicelulares.</p>
+                            <ul>
+                                <li><strong>Tipo de célula:</strong> Eucariota</li>
+                                <li><strong>Organización:</strong> Multicelular</li>
+                                <li><strong>Alimentación:</strong> Principalmente autótrofa</li>
+                                <li><strong>Ejemplos:</strong> Musgos, helechos, gimnospermas y angiospermas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+                <details class="detalle-reino" id="animalia">
+                    <summary>Reino Animalia</summary>
+                    <div class="contenido-reino">
+                        <div class="reino-imagen">
+                            <img src="../assets/img/clasificacion/animal.png" alt="Ejemplo del reino Animalia" class="imagen-ampliable" tabindex="0">
+                        </div>
+                        <div class="reino-informacion">
+                            <h3>Reino Animalia</h3>
+                            <p>Agrupa organismos multicelulares que obtienen nutrientes de otros organismos.</p>
+                            <ul>
+                                <li><strong>Tipo de célula:</strong> Eucariota</li>
+                                <li><strong>Organización:</strong> Multicelular</li>
+                                <li><strong>Alimentación:</strong> Heterótrofa</li>
+                                <li><strong>Vertebrados:</strong> Mamíferos, aves, reptiles, anfibios y peces</li>
+                                <li><strong>Invertebrados:</strong> Insectos, arácnidos, crustáceos, moluscos y otros</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+    <!-- VISOR PARA AMPLIAR IMÁGENES -->
+    <div class="visor-imagen" id="visorImagen" aria-hidden="true">
+        <button class="visor-cerrar" id="cerrarVisor" type="button" aria-label="Cerrar imagen">×</button>
+        <div class="visor-contenido">
+            <img id="imagenGrande" src="" alt="">
+            <p id="tituloImagen"></p>
+        </div>
+    </div>
+    <footer class="footer-reinos">
+        <p>InstaRama · Aprende, observa y comparte biodiversidad.</p>
+    </footer>
+    <!-- JAVASCRIPT DEL VISOR DE IMÁGENES -->
+    <script>
+        const imagenesAmpliables = document.querySelectorAll(".imagen-ampliable");
+        const visor = document.getElementById("visorImagen");
+        const imagenGrande = document.getElementById("imagenGrande");
+        const tituloImagen = document.getElementById("tituloImagen");
+        const cerrarVisor = document.getElementById("cerrarVisor");
+        function abrirImagen(imagen) {
+            imagenGrande.src = imagen.src;
+            imagenGrande.alt = imagen.alt;
+            tituloImagen.textContent = imagen.alt;
+            visor.classList.add("activo");
+            visor.setAttribute("aria-hidden", "false");
+            document.body.classList.add("visor-abierto");
+        }
+        function cerrarImagen() {
+            visor.classList.remove("activo");
+            visor.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("visor-abierto");
+            imagenGrande.src = "";
+        }
+        imagenesAmpliables.forEach((imagen) => {
+            imagen.addEventListener("click", () => abrirImagen(imagen));
+            imagen.addEventListener("keydown", (evento) => {
+                if (evento.key === "Enter" || evento.key === " ") {
+                    evento.preventDefault();
+                    abrirImagen(imagen);
+                }
+            });
+        });
+        cerrarVisor.addEventListener("click", cerrarImagen);
+        visor.addEventListener("click", (evento) => {
+            if (evento.target === visor) {
+                cerrarImagen();
+            }
+        });
+        document.addEventListener("keydown", (evento) => {
+            if (evento.key === "Escape" && visor.classList.contains("activo")) {
+                cerrarImagen();
+            }
+        });
+    </script>
+    <!-- JAVASCRIPT DEL CUESTIONARIO DE REINOS -->
+    <script src="../assets/js/reinos.js"></script>
+</body>
+</html>

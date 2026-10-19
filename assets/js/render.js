@@ -1,112 +1,48 @@
 //TODO > JS enfocado en renderizar elementos generales en todos los HTML
 
 import { normalizeActualPageName } from "./utils.js";
+import {
+    header_index, footer_index,
+    header_acercaDe, footer_acercaDe,
+    header_gestionarPublicaciones,
+    header_publicacion,
+    header_login,
+    header_registro,
+    header_feed
+} from "./plantillasLayout.js";
 
 const body = document.querySelector("body");
 const head = document.querySelector("head");
 
-const nombrePagina = normalizeActualPageName(window.location.href);
-console.log(nombrePagina);
+const nombrePagina = normalizeActualPageName(window.location.pathname) || "index";
 
-const isPagContacto = nombrePagina.includes("contacto");
+// Raíz del proyecto calculada a partir de la ubicación de este archivo (assets/js/render.js),
+// así los enlaces funcionan igual desde index.html que desde /pages/*.html
+const ROOT = new URL("../../", import.meta.url);
+const ruta = (path) => new URL(path, ROOT).href;
 
 const paginas = {
-    acercaDe: "../pages/acercaDe.html",
-    contacto: "../pages/contacto.html",
-    feed: "../pages/feed.html", // --> inicio
-    login: "../pages/login.html",
-    objetos: "../pages/objetos.html",
-    publicacion: "../pages/publicacion.html",
-    registro: "../pages/registro.html",
-    index: "../index.html"
+    acercaDe: ruta("pages/acercaDe.html"),
+    contacto: ruta("pages/contacto.html"),
+    feed: ruta("pages/feed.html"), // --> inicio
+    login: ruta("pages/login.html"),
+    objetos: ruta("pages/objetos.html"),
+    proyecto: ruta("pages/proyecto.html"),
+    publicacion: ruta("pages/publicacion.html"),
+    registro: ruta("pages/registro.html"),
+    index: ruta("index.html")
 };
 
-// const paginas = {
-//     acercaDe : "../pages/acercaDe.html",
-//     inicio : "../pages/feed.html",
-//     proyecto : "../index.html",
-//     equipo : "../index.html",
-//     contacto : "../pages/contacto.html"
-// // }
+const logo = ruta("assets/img/logo/logoInstarama(ficticio)SF.png");
 
-// console.log("============== ENLACES ==============");
-// for(const enlace in enlaces){
-//     console.log(enlaces[enlace]);
-// }
-// console.log("============== FIN ENLACES ==============");
-
-
-
-const headerElement = `
-    <nav class="navbar navbar-expand-lg bg">
-        <div class="container-fluid">
-        <!--Logo-->
-        <a class="navbar-brand" href="../pages/feed.html">
-            <img src="/assets/img/logo/logoInstarama(ficticio)SF.png" alt="logo de la red social" class="logo" />
-        </a>
-        <!--Logo-->
-        <!--Botón responsive-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!--Botón responsive-->
-        <!--Navegación-->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav mx-auto gap-2 gap-lg-4">
-                <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
-                <a class="nav-link btn-nav" href="../pages/feed.html">Inicio</a>
-                <a class="nav-link btn-nav" href="../index.html">Proyecto</a>
-                <a class="nav-link btn-nav" href="../index.html">Equipo</a>
-                <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
-            </div>
-            <div class="navbar-nav ms-lg-3 gap-3">
-                <a href="${isPagContacto ? '..' : '.'}/pages/login.html" class="btn-iniciar">Iniciar sesión</a>
-                <a href="${isPagContacto ? '..' : '.'}/pages/registro.html" class="btn-iniciar">Registrate</a>
-            </div>
-        </div>
-        <!--Navegación-->
-        </div>
-    </nav>
-  `
-
-const footerElement = `
-    <footer class="text-center mt-5 py-4">
-    <div class="container">
-        <div class="mb-3">
-            <a href="./pages/feed.html" class="text-light text-decoration-none mx-2 small">Inicio</a>
-            <a href="./index.html" class="text-light text-decoration-none mx-2 small">Proyecto</a>
-            <a href="./index.html" class="text-light text-decoration-none mx-2 small">Equipo</a>
-            <a href="./pages/contacto.html" class="text-light text-decoration-none mx-2 small">Contacto</a>
-        </div>
-        <p class="mb-1 text-light fw-semibold">
-            "Conocer la naturaleza es el primer paso para cuidarla." 🌿
-        </p>
-        <p class="mb-0 small text-light opacity-75">
-            © 2026 — InstaRama. All rights reserved.
-        </p>
-        </div>
-    </footer>
-`
-
-const footerContacto = `
-    <footer class="footer text-center mt-2 py-4">
-        <div class="container px-3">
-            <div class="footer-links d-flex justify-content-center flex-wrap gap-3 pb-3 mb-3">
-                <a href="./feed.html" class="text-decoration-none">Inicio</a>
-                <a href="../index.html" class="text-decoration-none">Proyecto</a>
-                <a href="../index.html" class="text-decoration-none">Equipo</a>
-                <a href="./contacto.html" class="text-decoration-none">Contacto</a>
-            </div>
-            <p class="mb-2">
-                "Conocer la naturaleza es el primer paso para cuidarla." 🌿
-            </p>
-            <p class="mb-0 small">
-                © 2026 — InstaRama. All rights reserved.
-            </p>
-        </div>
-    </footer>
-`
+// Enlaces que aparecen en el header y en el footer
+const enlacesNav = [
+    { texto: "Acerca de", href: paginas.acercaDe, pagina: "acercaDe" },
+    { texto: "Inicio", href: paginas.feed, pagina: "feed" },
+    { texto: "Proyecto", href: paginas.proyecto, pagina: "proyecto" },
+    { texto: "Equipo", href: paginas.index, pagina: "index" },
+    { texto: "Contacto", href: paginas.contacto, pagina: "contacto" }
+];
 
 const styles = `
     <!--TODO  FUENTES -->
@@ -132,51 +68,87 @@ const styles = `
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100..900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/contactanos.css" />
+    <link rel="stylesheet" href="${ruta("assets/css/contactanos.css")}" />
 
     <!--! FIN  FUENTES -->
-`
+`;
 
+// TODO > ================= CONFIGURACIÓN POR PÁGINA =================
+// header / footer: HTML a insertar (null = la página no lleva ese elemento)
+// headerDespuesDe: selector del elemento tras el cual va el header (por defecto, al inicio del body)
 
-// TODO > Funcion para renderizar contacto
+const layouts = {
+    index: { header: header_index, footer: footer_index },
+    acercaDe: { header: header_acercaDe, footer: footer_acercaDe },
+    gestionarPublicaciones: { header: header_gestionarPublicaciones, footer: null },
+    publicacion: { header: header_publicacion, footer: null },
+    login: { header: header_login, footer: null },
+    registro: { header: header_registro, footer: null },
+    feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
+    objetos: { header: null, footer: null },
+    contacto: { header: headerTemplate(), footer: footerContactoTemplate() }
+};
 
-if (!nombrePagina.includes("contacto")) {
-    console.log("Estas en la pagina principal");
-    body.insertAdjacentHTML("beforeend", footerElement);
-    // console.log("Estas en la pagina principal");
-}
+const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };
 
-if (nombrePagina.includes("contacto")) {
-    body.insertAdjacentHTML("beforeend", footerContacto);
-    // console.log("Estas en la pagina de contactanos");
-}
-
-// TODO > Funcion para renderizar header
-body.insertAdjacentHTML("afterbegin", headerElement);
-
-// TODO > Funcion para renderizar tipografias y estilos
-// head.insertAdjacentHTML("afterbegin", styles);
-
-// TODO > Funcion para renderizar dark o light mode
-// head.insertAdjacentHTML("beforeend", dark o light mode);
+// TODO > ================= RENDER =================
+const layout = layouts[nombrePagina] ?? layoutGeneral;
+renderHeader(layout);
+renderFooter(layout);
 
 
 // TODO > ================= FUNCIONES =================
 
+// TODO > ================= PLANTILLAS GENERALES =================
+// Se usan en contacto, proyecto y cualquier página sin plantilla propia
 
+function headerTemplate() {
+    const links = enlacesNav
+        .map(({ texto, href }) => `
+                <a class="nav-link btn-nav" href="${href}">${texto}</a>`)
+        .join("");
 
-function loadFooter(pageName) {
+    return `
+    <nav class="navbar navbar-expand-lg bg">
+        <div class="container-fluid">
+        <!--Logo-->
+        <a class="navbar-brand" href="${paginas.feed}">
+            <img src="${logo}" alt="logo de la red social" class="logo" />
+        </a>
+        <!--Logo-->
+        <!--Botón responsive-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--Botón responsive-->
+        <!--Navegación-->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mx-auto gap-2 gap-lg-4">${links}
+            </div>
+            <div class="navbar-nav ms-lg-3 gap-3">
+                <a href="${paginas.login}" class="btn-iniciar">Iniciar sesión</a>
+                <a href="${paginas.registro}" class="btn-iniciar">Registrate</a>
+            </div>
+        </div>
+        <!--Navegación-->
+        </div>
+    </nav>
+  `;
+}
 
-    obtenerEnlaces(pageName);
+// Footer general (todas las páginas excepto contacto)
+function footerTemplate() {
+    const links = enlacesNav
+        .filter(({ pagina }) => pagina !== "acercaDe")
+        .map(({ texto, href }) => `
+            <a href="${href}" class="text-light text-decoration-none mx-2 small">${texto}</a>`)
+        .join("");
 
-    const footerElement = `
+    return `
     <footer class="text-center mt-5 py-4">
-        <div class="container">
-        <div class="mb-3">
-            <a href="./pages/feed.html" class="text-light text-decoration-none mx-2 small">Inicio</a>
-            <a href="./index.html" class="text-light text-decoration-none mx-2 small">Proyecto</a>
-            <a href="./index.html" class="text-light text-decoration-none mx-2 small">Equipo</a>
-            <a href="./pages/contacto.html" class="text-light text-decoration-none mx-2 small">Contacto</a>
+    <div class="container">
+        <div class="mb-3">${links}
         </div>
         <p class="mb-1 text-light fw-semibold">
             "Conocer la naturaleza es el primer paso para cuidarla." 🌿
@@ -186,9 +158,60 @@ function loadFooter(pageName) {
         </p>
         </div>
     </footer>
-  `;
+`;
 }
 
-function obtenerEnlaces(pageName) {
+// Footer con el estilo de la página de contacto (usa la clase .footer de contactanos.css)
+function footerContactoTemplate() {
+    const links = enlacesNav
+        .filter(({ pagina }) => pagina !== "acercaDe")
+        .map(({ texto, href }) => `
+                <a href="${href}" class="text-decoration-none">${texto}</a>`)
+        .join("");
 
+    return `
+    <footer class="footer text-center mt-2 py-4">
+        <div class="container px-3">
+            <div class="footer-links d-flex justify-content-center flex-wrap gap-3 pb-3 mb-3">${links}
+            </div>
+            <p class="mb-2">
+                "Conocer la naturaleza es el primer paso para cuidarla." 🌿
+            </p>
+            <p class="mb-0 small">
+                © 2026 — InstaRama. All rights reserved.
+            </p>
+        </div>
+    </footer>
+`;
 }
+
+function renderHeader({ header, headerDespuesDe }) {
+    if (!header) return;
+
+    const referencia = headerDespuesDe && body.querySelector(headerDespuesDe);
+    if (referencia) {
+        referencia.insertAdjacentHTML("afterend", header);
+    } else {
+        body.insertAdjacentHTML("afterbegin", header);
+    }
+}
+
+function renderFooter({ footer }) {
+    if (!footer) return;
+
+    // Si la página tiene <script> al final del body, el footer se coloca antes de ellos
+    const primerScript = body.querySelector(":scope > script");
+    if (primerScript) {
+        primerScript.insertAdjacentHTML("beforebegin", footer);
+    } else {
+        body.insertAdjacentHTML("beforeend", footer);
+    }
+}
+
+// TODO > Funcion para renderizar tipografias y estilos
+// function renderStyles() {
+//     head.insertAdjacentHTML("afterbegin", styles);
+// }
+
+// TODO > Funcion para renderizar dark o light mode
+// head.insertAdjacentHTML("beforeend", dark o light mode);
