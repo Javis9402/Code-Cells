@@ -1,65 +1,634 @@
+/* Paleta oficial: solo se usan estos 8 colores */
 :root {
-    --verde-oscuro: #40513B;
-    --verde: #609966;
-    --verde-claro: #9DC08B;
-    --verde-palido: #EDF1D6;
-    --crema: #F9FBF2;
+    --verde-noche: #18230F;
+    --verde-bosque: #27391C;
+    --verde-musgo: #3A4D39;
+    --verde-pino: #255F38;
+    --verde-esmeralda: #1F7D53;
+    --salvia: #A3B8A0;
+    --salvia-oscuro: #8C9F8A;
+    --crema: #F5F5F0;
+}
+
+/* Variables de Bootstrap con la paleta, solo dentro del contenido y los modales */
+.fondo-responsivo,
+#modalEditar,
+#modalEliminar,
+#modal-publicacion {
+    --bs-body-bg: var(--crema);
+    --bs-body-color: var(--verde-musgo);
+    --bs-emphasis-color: var(--verde-noche);
+    --bs-secondary-color: var(--salvia-oscuro);
+    --bs-secondary-bg: var(--salvia);
+    --bs-tertiary-bg: var(--salvia);
+    --bs-border-color: var(--salvia);
+    --bs-box-shadow-sm: 0 0.125rem 0.25rem var(--salvia);
+    --bs-form-invalid-color: var(--verde-noche);
+    --bs-form-invalid-border-color: var(--verde-noche);
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2318230F'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+    --bs-btn-close-opacity: 1;
+    --bs-btn-close-hover-opacity: 1;
+    --bs-btn-close-focus-shadow: 0 0 0 0.25rem var(--salvia);
+    color: var(--verde-musgo);
+}
+
+/* Fondo por si la imagen no carga */
+.fondo-responsivo {
+    background-color: var(--crema);
+}
+
+/* ===== Cuaderno de campo ===== */
+.cuaderno {
+    background-color: var(--crema);
+    border: 1px solid var(--salvia);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem var(--verde-noche);
+    padding: 2rem;
+    font-family: "Nunito", system-ui, sans-serif;
+}
+
+.cuaderno-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cuaderno-etiqueta {
+    margin: 0 0 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--verde-esmeralda);
+}
+
+.cuaderno-titulo {
+    margin: 0;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--verde-noche);
+}
+
+.cuaderno-subtitulo {
+    margin: 0.25rem 0 0;
+    color: var(--verde-musgo);
+}
+
+/* Resumen */
+.cuaderno-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin: 0 0 1.5rem;
+}
+
+.cuaderno-resumen li {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--salvia);
+    border-radius: 1rem;
+    color: var(--verde-musgo);
+    font-size: 0.9rem;
+}
+
+.cuaderno-resumen strong {
+    display: block;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    color: var(--verde-esmeralda);
+}
+
+/* Herramientas: filtros, búsqueda y vista */
+.cuaderno-herramientas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.filtros-reino {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.filtro-reino {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--salvia);
+    border-radius: 999px;
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+    font-weight: 600;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.filtro-reino:hover {
+    background-color: var(--salvia);
+    color: var(--verde-noche);
+}
+
+.filtro-reino[aria-pressed="true"] {
+    background-color: var(--verde-pino);
+    border-color: var(--verde-pino);
+    color: var(--crema);
+}
+
+.filtro-reino:focus-visible {
+    outline: 3px solid var(--salvia-oscuro);
+    outline-offset: 2px;
+}
+
+.filtro-contador {
+    min-width: 1.5rem;
+    padding: 0 0.4rem;
+    border-radius: 999px;
+    background-color: var(--salvia);
+    color: var(--verde-noche);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.filtro-reino[aria-pressed="true"] .filtro-contador {
+    background-color: var(--crema);
+    color: var(--verde-pino);
+}
+
+.herramientas-fila {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.buscador {
+    position: relative;
+    flex: 1;
+    margin: 0;
+}
+
+.buscador i {
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    transform: translateY(-50%);
+    color: var(--salvia-oscuro);
+    pointer-events: none;
+}
+
+.fondo-responsivo .buscador .form-control {
+    padding-left: 2.4rem;
+    border-radius: 999px;
+    border-color: var(--salvia);
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+}
+
+.fondo-responsivo .buscador .form-control:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+.vista-selector .btn.active {
+    --bs-btn-active-bg: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+}
+
+/* Barra de selección */
+.barra-seleccion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--salvia);
+    color: var(--salvia-oscuro);
+    font-size: 0.9rem;
+}
+
+.barra-seleccion .form-check-label {
+    color: var(--verde-musgo);
+}
+
+/* ===== Tarjetas de hallazgo ===== */
+.lista-hallazgos.vista-cuadricula {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.lista-hallazgos.vista-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hallazgo-tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--salvia);
+    border-radius: 1rem;
+    background-color: var(--crema);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.hallazgo-tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: var(--salvia-oscuro);
+    box-shadow: 0 0.5rem 1rem var(--salvia);
+}
+
+.hallazgo.seleccionada .hallazgo-tarjeta {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 2px var(--verde-esmeralda);
+}
+
+.hallazgo-media {
+    position: relative;
+    flex-shrink: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--verde-noche);
+}
+
+/* La imagen llena el marco sin importar su tamaño original */
+.hallazgo-imagen {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hallazgo-reino {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background-color: var(--verde-noche);
+    color: var(--crema);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.hallazgo-media .check-publicacion {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin: 0;
+    cursor: pointer;
+}
+
+.hallazgo-cuerpo {
+    flex: 1;
+    padding: 0.9rem 1rem 0.5rem;
+}
+
+.hallazgo-titulo {
+    margin: 0 0 0.25rem;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--verde-noche);
+}
+
+.hallazgo-especie {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    color: var(--verde-musgo);
+}
+
+.hallazgo-especie em {
+    color: var(--verde-pino);
+    font-weight: 600;
+}
+
+.etiqueta-identificar {
+    display: inline-block;
+    padding: 0 0.5rem;
+    border: 1px dashed var(--salvia-oscuro);
+    border-radius: 999px;
+    color: var(--verde-musgo);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.hallazgo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--salvia-oscuro);
+}
+
+.hallazgo-meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.hallazgo-acciones {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 1rem;
+}
+
+.hallazgo-acciones .btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+/* Vista de lista: miniatura a la izquierda */
+.vista-lista .hallazgo-tarjeta {
+    flex-direction: row;
+    align-items: center;
+}
+
+.vista-lista .hallazgo-tarjeta:hover {
+    transform: none;
+}
+
+.vista-lista .hallazgo-media {
+    width: 120px;
+    flex-shrink: 0;
+    align-self: stretch;
+    aspect-ratio: auto;
+    min-height: 90px;
+}
+
+.vista-lista .hallazgo-reino {
+    left: 0.4rem;
+    bottom: 0.4rem;
+    font-size: 0.7rem;
+}
+
+.vista-lista .hallazgo-cuerpo {
+    padding: 0.75rem 1rem;
+}
+
+.vista-lista .hallazgo-acciones {
+    flex-direction: column;
+    padding: 0.75rem 1rem;
+}
+
+/* Estado vacío */
+.estado-vacio {
+    padding: 3rem 1rem;
+    border: 2px dashed var(--salvia);
+    border-radius: 1rem;
+    text-align: center;
+    color: var(--verde-musgo);
+}
+
+.estado-vacio > i {
+    font-size: 2.5rem;
+    color: var(--salvia-oscuro);
+}
+
+.estado-vacio-titulo {
+    margin: 0.75rem 0 0.25rem;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--verde-noche);
+}
+
+.estado-vacio-texto {
+    margin-bottom: 1.25rem;
+}
+
+/* Celular */
+@media (max-width: 575.98px) {
+    .fondo-responsivo > .cuaderno {
+        width: calc(100% - 32px);
+        padding: 1.25rem 1rem;
+        border-radius: 1rem;
+    }
+
+    .cuaderno-encabezado .btn {
+        width: 100%;
+    }
+
+    .cuaderno-resumen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vista-lista .hallazgo-media {
+        width: 88px;
+    }
+
+    .vista-lista .hallazgo-reino {
+        display: none;
+    }
+
+    .vista-lista .hallazgo-acciones .btn span {
+        display: none;
+    }
 }
 
 /* Botón relleno verde: Guardar cambios, Comentar */
-.btn-verde {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: var(--verde);
-    --bs-btn-border-color: var(--verde);
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--verde-oscuro);
-    --bs-btn-hover-border-color: var(--verde-oscuro);
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: var(--verde-oscuro);
-    --bs-btn-active-border-color: var(--verde-oscuro);
+.btn-verde,
+#modal-publicacion .btn-success {
+    --bs-btn-color: var(--crema);
+    --bs-btn-bg: var(--verde-pino);
+    --bs-btn-border-color: var(--verde-pino);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-bosque);
+    --bs-btn-hover-border-color: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Botón relleno oscuro: Sí, eliminar */
+.btn-oscuro {
+    --bs-btn-color: var(--crema);
+    --bs-btn-bg: var(--verde-bosque);
+    --bs-btn-border-color: var(--verde-bosque);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-noche);
+    --bs-btn-hover-border-color: var(--verde-noche);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
 }
 
 /* Botón contorno verde: Editar */
 .btn-outline-verde {
-    --bs-btn-color: var(--verde);
-    --bs-btn-border-color: var(--verde);
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--verde);
-    --bs-btn-hover-border-color: var(--verde);
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: var(--verde-oscuro);
-    --bs-btn-active-border-color: var(--verde-oscuro);
+    --bs-btn-color: var(--verde-esmeralda);
+    --bs-btn-border-color: var(--verde-esmeralda);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-esmeralda);
+    --bs-btn-hover-border-color: var(--verde-esmeralda);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-pino);
+    --bs-btn-active-border-color: var(--verde-pino);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
 }
 
 /* Botón contorno oscuro: Eliminar, Eliminar seleccionadas, Cancelar */
 .btn-outline-oscuro {
-    --bs-btn-color: var(--verde-oscuro);
-    --bs-btn-border-color: var(--verde-oscuro);
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--verde-oscuro);
-    --bs-btn-hover-border-color: var(--verde-oscuro);
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: var(--verde-oscuro);
-    --bs-btn-active-border-color: var(--verde-oscuro);
+    --bs-btn-color: var(--verde-bosque);
+    --bs-btn-border-color: var(--verde-bosque);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-bosque);
+    --bs-btn-hover-border-color: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
 }
 
 /* Checkboxes */
-.form-check-input:checked,
-.form-check-input:indeterminate {
-    background-color: var(--verde);
-    border-color: var(--verde);
-}
-
-.form-check-input:focus {
-    border-color: var(--verde-claro);
-    box-shadow: 0 0 0 0.25rem rgba(96, 153, 102, 0.25);
-}
-
-/* Filas */
-.publicacion-fila:hover {
+.fondo-responsivo .form-check-input {
     background-color: var(--crema);
+    border-color: var(--salvia-oscuro);
 }
 
-.publicacion-fila.seleccionada {
-    background-color: var(--verde-palido);
+.fondo-responsivo .form-check-input:checked,
+.fondo-responsivo .form-check-input:indeterminate {
+    background-color: var(--verde-esmeralda);
+    border-color: var(--verde-esmeralda);
+}
+
+.fondo-responsivo .form-check-input:checked[type="checkbox"] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23F5F5F0' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.fondo-responsivo .form-check-input[type="checkbox"]:indeterminate {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23F5F5F0' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+.fondo-responsivo .form-check-input:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Inputs, selects y textarea de los modales */
+#modalEditar .form-control,
+#modalEditar .form-select,
+#modal-publicacion .form-control {
+    background-color: var(--crema);
+    border-color: var(--salvia);
+    color: var(--verde-musgo);
+}
+
+#modalEditar .form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%233A4D39' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+#modalEditar .form-control:focus,
+#modalEditar .form-select:focus,
+#modal-publicacion .form-control:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+#modalEditar .form-control::placeholder,
+#modal-publicacion .form-control::placeholder {
+    color: var(--salvia-oscuro);
+}
+
+/* Validación: sin el ícono rojo de Bootstrap */
+#modalEditar .form-control.is-invalid {
+    background-image: none;
+    padding-right: 0.75rem;
+}
+
+#modalEditar .form-select.is-invalid {
+    --bs-form-select-bg-icon: none;
+}
+
+#modalEditar .form-control.is-invalid:focus,
+#modalEditar .form-select.is-invalid:focus {
+    border-color: var(--verde-noche);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+#modalEditar .invalid-feedback {
+    font-weight: 600;
+}
+
+/* Modales: fondo, títulos y textos */
+#modalEditar .modal-content,
+#modalEliminar .modal-content {
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+}
+
+#modalEditar .modal-title,
+#modalEditar .form-label,
+#modalEliminar .modal-title {
+    color: var(--verde-noche);
+}
+
+#modalEditar .figure-caption {
+    color: var(--salvia-oscuro);
+}
+
+/* Fondo oscuro detrás de los modales */
+.modal-backdrop {
+    --bs-backdrop-bg: var(--verde-noche);
+}
+
+/* Ventana flotante de la publicación */
+#modal-publicacion .modal-content {
+    background: var(--crema);
+    color: var(--verde-musgo);
+    box-shadow: 0 1.5rem 3rem var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-close {
+    background-color: var(--crema);
+    opacity: 1;
+}
+
+#modal-publicacion .ir-modal-media {
+    background: var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-titulo,
+#modal-publicacion .ir-modal-subtitulo {
+    color: var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-autor,
+#modal-publicacion .ir-modal-datos dt,
+#modal-publicacion .sin-comentarios {
+    color: var(--salvia-oscuro);
+}
+
+#modal-publicacion .ir-modal-datos dd {
+    color: var(--verde-musgo);
+}
+
+#modal-publicacion .ir-comentario {
+    background: var(--crema);
+    border: 1px solid var(--salvia);
+    color: var(--verde-musgo);
+}
+
+#modal-publicacion .ir-comentario strong {
+    color: var(--verde-esmeralda);
 }

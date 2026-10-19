@@ -30,7 +30,7 @@
     <!--?Inicio página publicación-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Publicación</title>
+    <title>Mis hallazgos | InstaRama</title>
     <!-- CSS Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
@@ -46,27 +46,102 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!--? Contenedor de fondo -->
-    <div class="fondo-responsivo flex-grow-1 d-flex justify-content-center">
-        <div class="bg-white rounded-4 shadow-sm w-75 overflow-hidden align-self-start">
-            <div class="bg-white rounded-4 shadow-sm contenedor-publicacion overflow-hidden">
+    <div class="fondo-responsivo flex-grow-1 py-4 py-md-5">
+        <main class="cuaderno container">
 
-                <!-- Barra superior -->
-                <div class="d-flex align-items-center gap-3 px-3 py-2 border-bottom">
-                    <input class="form-check-input m-0" type="checkbox" id="seleccionar-todas"
-                        aria-label="Seleccionar todas" />
-                    <button type="button" class="btn btn-sm btn-outline-danger d-none" id="btn-eliminar-seleccionadas">
-                        Eliminar seleccionadas
-                    </button>
-                    <span class="ms-auto text-muted small" id="contador-publicaciones"></span>
+            <!--* Encabezado: cuaderno de campo -->
+            <header class="cuaderno-encabezado">
+                <div>
+                    <p class="cuaderno-etiqueta"><i class="bi bi-journal-bookmark-fill me-1"></i>Cuaderno de campo</p>
+                    <h1 class="cuaderno-titulo">Mis hallazgos</h1>
+                    <p class="cuaderno-subtitulo">Revisa, corrige y organiza lo que has observado en tu entorno.</p>
                 </div>
+                <a href="./publicacion.html" class="btn btn-verde">
+                    <i class="bi bi-camera-fill me-2"></i>Nuevo hallazgo
+                </a>
+            </header>
 
-                <!-- Lista de notificaciones -->
-                <ul class="list-unstyled m-0" id="lista-publicaciones"></ul>
+            <!--* Resumen -->
+            <ul class="cuaderno-resumen list-unstyled">
+                <li><strong id="resumen-hallazgos">0</strong> hallazgos</li>
+                <li><strong id="resumen-reinos">0</strong> de 5 reinos explorados</li>
+                <li><strong id="resumen-por-identificar">0</strong> por identificar</li>
+                <li><strong id="resumen-comentarios">0</strong> comentarios recibidos</li>
+            </ul>
 
-                </ul>
+            <!--* Filtros, búsqueda y vista -->
+            <section class="cuaderno-herramientas" aria-label="Filtrar hallazgos">
+                <div class="filtros-reino" id="filtros-reino" role="group" aria-label="Filtrar por reino"></div>
+
+                <div class="herramientas-fila">
+                    <label class="buscador" for="buscar-hallazgo">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input type="search" class="form-control" id="buscar-hallazgo"
+                            placeholder="Buscar por título, especie o lugar" />
+                    </label>
+                    <div class="btn-group vista-selector" role="group" aria-label="Tipo de vista">
+                        <button type="button" class="btn btn-outline-oscuro" data-vista="cuadricula" title="Cuadrícula"
+                            aria-label="Ver en cuadrícula"><i class="bi bi-grid-3x2-gap-fill"></i></button>
+                        <button type="button" class="btn btn-outline-oscuro" data-vista="lista" title="Lista"
+                            aria-label="Ver en lista"><i class="bi bi-list-ul"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!--* Barra de selección -->
+            <div class="barra-seleccion">
+                <div class="form-check m-0">
+                    <input class="form-check-input" type="checkbox" id="seleccionar-todas" />
+                    <label class="form-check-label" for="seleccionar-todas">Seleccionar todo</label>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-oscuro d-none" id="btn-eliminar-seleccionadas">
+                    Eliminar seleccionadas
+                </button>
+                <span class="ms-auto" id="contador-publicaciones"></span>
             </div>
-        </div>
+
+            <!--* Lista de hallazgos (la llena gestionarPublicacion.js) -->
+            <ul class="lista-hallazgos vista-cuadricula list-unstyled m-0" id="lista-publicaciones"></ul>
+
+            <!--* Estado vacío -->
+            <div class="estado-vacio d-none" id="estado-vacio">
+                <i class="bi bi-binoculars" aria-hidden="true"></i>
+                <p class="estado-vacio-titulo" id="estado-vacio-titulo">Aún no hay hallazgos aquí</p>
+                <p class="estado-vacio-texto" id="estado-vacio-texto">Sal a observar y comparte lo que encuentres.</p>
+                <a href="./publicacion.html" class="btn btn-verde">Publicar un hallazgo</a>
+            </div>
+        </main>
     </div>
+
+    <!--* Plantilla de cada hallazgo -->
+    <template id="plantilla-hallazgo">
+        <li class="hallazgo">
+            <article class="hallazgo-tarjeta">
+                <div class="hallazgo-media">
+                    <img class="hallazgo-imagen" src="" alt="" loading="lazy" />
+                    <span class="hallazgo-reino"></span>
+                    <input class="form-check-input check-publicacion" type="checkbox" />
+                </div>
+                <div class="hallazgo-cuerpo">
+                    <h2 class="hallazgo-titulo fila-titulo"></h2>
+                    <p class="hallazgo-especie"></p>
+                    <ul class="hallazgo-meta list-unstyled">
+                        <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="hallazgo-lugar"></span></li>
+                        <li><i class="bi bi-calendar3" aria-hidden="true"></i><span class="hallazgo-fecha"></span></li>
+                        <li><i class="bi bi-chat" aria-hidden="true"></i><span class="hallazgo-comentarios"></span></li>
+                    </ul>
+                </div>
+                <div class="hallazgo-acciones">
+                    <button type="button" class="btn btn-sm btn-outline-verde btn-editar">
+                        <i class="bi bi-pencil" aria-hidden="true"></i><span>Editar</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-oscuro btn-eliminar">
+                        <i class="bi bi-trash3" aria-hidden="true"></i><span>Eliminar</span>
+                    </button>
+                </div>
+            </article>
+        </li>
+    </template>
     <!--? Fin del contenedor de fondo -->
 
     <!--TODO : Modal para editar publicación -->
@@ -147,6 +222,26 @@
         </div>
     </div>
     <!--TODO : FIN DE Modal para editar publicación -->
+
+    <!--TODO : Modal de confirmación para eliminar -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="tituloModalEliminar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="tituloModalEliminar">¿Eliminar publicación?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body" id="mensajeEliminar"></div>
+
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-oscuro" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-oscuro fw-bold" id="btnConfirmarEliminar">Sí, eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--TODO : FIN DE Modal de confirmación para eliminar -->
 
     <!-- VENTANA FLOTANTE DE LA PUBLICACIÓN -->
     <div class="modal fade ir-modal" id="modal-publicacion" tabindex="-1" aria-labelledby="modal-titulo"
