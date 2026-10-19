@@ -32,6 +32,11 @@
 
   /* --- Espaciados fluidos --- */
   --padding-seccion: clamp(40px, 8vw, 80px);
+
+  /*Fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente-nunito: "Nunito", sans-serif;
 }
 
 /* TODO: configuración general */
@@ -63,7 +68,7 @@ body {
    * ========================================= */
 
 .navbar-custom .nav-link {
-  color: var(--color-negro);
+  color: var(--color-verde-3);
   font-size: 16px;
   font-weight: 400;
   padding-bottom: 5px;
@@ -86,10 +91,32 @@ body {
    BOTONES HEADER (Iniciar Sesión / Registrarse)
    ========================================= */
 
-.btn-iniciar,
+.btn-iniciar{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400; /* Bold */
+  font-size: 16px;
+  background-color: transparent;
+  color: var(--color-verde-3);
+  padding: 10px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--color-verde-borde);
+}
+
+.btn-iniciar:hover {
+  background-color: var(--color-fondo);
+  color: var(--color-verde-3);
+  /*transform: translateY(-2px);*/
+  border-color: var(--color-fondo);
+  /*box-shadow: var(--sombra-hover);*/
+}
+
+
 .btn-registrar {
   display: inline-block;
-  padding: 10px 40px;
+  padding: 10px 30px;
   border-radius: 50px;
   text-decoration: none;
   font-family: "Inter", sans-serif;
@@ -102,18 +129,11 @@ body {
   border: 2px solid transparent;
 }
 
-.btn-iniciar:hover {
-  background-color: var(--ir-verde);
-  color: var(--color-blanco);
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-hover);
-}
-
 .btn-registrar:hover {
   background-color: var(--ir-verde);
   color: var(--color-blanco);
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-hover);
+  /*transform: translateY(-2px);*/
+  /*box-shadow: var(--sombra-hover);*/
 }
 
 /* =========================================
@@ -136,7 +156,8 @@ body {
 
 /* Título Principal */
 .hero-title {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 600; /* SemiBold */
   font-size: clamp(2rem, 6vw, 3.5rem);
   color: var(--color-blanco);
@@ -152,8 +173,9 @@ body {
 
 /* Párrafo descriptivo */
 .hero-text {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700; /* Bold */
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
+  font-weight: 400; /* Bold */
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   color: var(--color-blanco);
   margin-bottom: 30px;
@@ -163,7 +185,8 @@ body {
 
 /* --- Botón Explorar --- */
 .btn-hero-explorar {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700; /* Bold */
   background-color: var(--color-verde-1);
   color: var(--color-blanco);
@@ -192,7 +215,8 @@ body {
 
 /* --- Botón Conocer Proyecto --- */
 .btn-hero-proyecto {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700; /* Bold */
   background-color: transparent;
   color: var(--color-texto-claro);
@@ -222,7 +246,8 @@ body {
 
 /* --- Textos de la izquierda --- */
 .descubrimiento-titulo {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700;
   font-size: clamp(1.4rem, 3vw, 1.8rem);
   color: var(--color-verde-3);
@@ -231,7 +256,8 @@ body {
 }
 
 .descubrimiento-texto {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-nunito);
   font-weight: 600;
   font-size: 1rem;
   color: var(--color-verde-3);
@@ -312,7 +338,8 @@ body {
 
 /* --- Título Principal --- */
 .cuidemos-titulo {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700;
   font-size: clamp(1.4rem, 3vw, 1.8rem);
   color: var(--color-verde-3);
@@ -407,7 +434,8 @@ body {
 
 /* Texto debajo del círculo */
 .texto-paso {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-nunito);
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--color-verde-3);
@@ -457,15 +485,17 @@ body {
 }
 
 .cta-titulo {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700;
   font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-  color: var(--color-negro);
+  color: var(--color-verde-3);
   margin-bottom: 15px;
 }
 
 .cta-texto {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-nunito);
   font-weight: 400;
   font-size: 1rem;
   color: var(--color-negro);
@@ -474,10 +504,12 @@ body {
 
 /* --- Botones de esta sección --- */
 .btn-cta {
-  font-family: "Open Sans", sans-serif;
+  /*font-family: "Open Sans", sans-serif;*/
+  font-family: var(--fuente-onest);
   font-weight: 700;
   background-color: var(--color-verde-navbar);
-  color: var(--color-negro);
+  color: var(--color-blanco);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   padding: 12px 35px;
   border-radius: 50px;
   text-decoration: none;
