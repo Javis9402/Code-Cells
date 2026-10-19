@@ -1,0 +1,63 @@
+ <!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Identificador de Reinos | InstaRama</title>
+  <!--TODO FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700;800&family=Nunito:wght@400;700&family=Onest:wght@400;700;800&display=swap" rel="stylesheet" />
+  <!--TODO BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!--? CSS IDENTIFICADOR DE REINOS -->
+  <link rel="stylesheet" href="../assets/css/identificacion-reinos.css" />
+</head>
+<body>
+  <!--? CONTENEDOR PRINCIPAL -->
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8 col-xl-6">
+        <!--? PRESENTACIÓN -->
+        <div class="text-center mb-4">
+          <h1 class="fw-bold">Identifica tu descubrimiento</h1>
+          <p class="text-secondary">Escribe el nombre de un organismo y descubre rápidamente a cuál de los cinco reinos pertenece.</p>
+        </div>
+        <!--? IDENTIFICACIÓN RÁPIDA DEL REINO -->
+        <aside class="identificador-reino">
+          <div class="identificador-encabezado">
+            <span class="identificador-icono">🔍</span>
+            <div>
+              <h6>¿No sabes a qué reino pertenece?</h6>
+              <p>Escribe el nombre del organismo y te ayudamos a identificarlo.</p>
+            </div>
+          </div>
+          <div class="identificador-buscador">
+            <input type="text" id="inputBuscarReino" class="form-control" placeholder="Ej. salmonella, micelio, mariposa, cactus..." autocomplete="off" />
+          </div>
+          <div id="resultadoReino" class="resultado-reino d-none" aria-live="polite">
+            <img id="imagenReinoDetectado" src="../assets/img/publicacion/imagenPredeterminada.png" alt="Ejemplo del reino identificado" class="resultado-reino-imagen" />
+            <div class="resultado-reino-info">
+              <span class="resultado-reino-etiqueta">Resultado probable</span>
+              <strong id="nombreReinoDetectado">Reino</strong>
+              <p id="descripcionReinoDetectado"></p>
+            </div>
+          </div>
+          <div class="identificador-ayuda">
+            <span>¿No encuentras tu organismo?</span>
+            <a href="clasificacion.html#actividad">Descúbrelo con preguntas →</a>
+          </div>
+        </aside>
+        <!--? FIN IDENTIFICACIÓN RÁPIDA DEL REINO -->
+        <!--? EJEMPLOS PARA PROBAR -->
+        <div class="mt-4 text-center">
+          <p class="mb-2 fw-semibold">Prueba escribiendo:</p>
+          <small class="text-secondary">salmonella · micelio · mariposa · cactus · amiba · hongo</small>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--? JAVASCRIPT IDENTIFICADOR DE REINOS -->
+  <script src="../assets/js/identificacion-reinos.js"></script>
+</body>
+</html>
