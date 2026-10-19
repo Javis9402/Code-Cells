@@ -4,8 +4,8 @@
 // ==========================================
 
 const usuarioPrueba = {
-    username: "fernanda",
-    password: "123456"
+    username: "Javier Morales",
+    password: "123456789"
 };
 
 
@@ -14,7 +14,7 @@ const usuarioPrueba = {
 // ==========================================
 
 let usuarios =
-    JSON.parse(localStorage.getItem("usuarios")) || [];
+    JSON.parse(localStorage.getItem("usuariosInstarama")) || JSON.parse(localStorage.getItem("usuarios")) || [];
 
 
 // ==========================================
@@ -307,6 +307,8 @@ if (loginForm) {
                 "usuarioActivo",
                 username
             );
+
+            localStorage.setItem("nombreUsuario", username);
 
 
             // ==========================================

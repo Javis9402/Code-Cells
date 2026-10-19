@@ -22,8 +22,8 @@ ${message}`;
 
 const formulario = document.querySelector("form");
 
-formulario.addEventListener("submit", (event) => {
-    event.preventDefault();
+// formulario.addEventListener("submit", (event) => {
+//     event.preventDefault();
 
-    sendFormByEmail(formulario);
-});
+//     sendFormByEmail(formulario);
+// });

@@ -24,4 +24,14 @@
 #formularioPublicacion .form-select:focus {
   border-color: #76d97b; /* Un verde más vivo y claro */
   box-shadow: 0 0 0 0.3rem rgba(118, 217, 123, 0.45); /* Un resplandor más amplio y brillante */
+
+/* Alert purple */
+.alert-purple{
+    --bs-alert-bg: #f3e8ff;
+    --bs-alert-color: #581c87;
+    --bs-alert-border-color: 1px solid #d8b4fe;
+}
+
+.alert-purple svg{
+    fill: #581c87;
 }

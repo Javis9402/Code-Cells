@@ -1,0 +1,866 @@
+/* * =========================================
+   *           VARIABLES DE COLOR
+   * ========================================= */
+:root {
+  /* --- Fondos --- */
+  --color-fondo: #f9fbf2;
+  --color-fondo-tarjeta: #ffffff;
+
+  /* --- Verdes principales --- */
+  --color-verde-navbar: #9dc08b;
+  --color-verde-1: #93c17c;
+  --color-verde-1-hover: #7da869;
+  --color-verde-2: #255f38;
+  --color-verde-2-hover: #1a4227;
+  --color-verde-3: #40513b;
+  --color-verde-borde: #4a5c40;
+
+  /* --- Neutros --- */
+  --color-blanco: #ffffff;
+  --color-negro: #1a1a1a;
+  --color-texto-claro: #f9fbf2;
+
+  /* --- Sombras y transparencias --- */
+  --sombra-suave: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --sombra-media: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --sombra-fuerte: 0 15px 25px rgba(0, 0, 0, 0.15);
+  --sombra-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --sombra-hover-fuerte: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --overlay-hero: rgba(0, 0, 0, 0.3);
+  --onda-color: rgba(157, 192, 139, 0.4);
+  --onda-color-transparente: rgba(157, 192, 139, 0);
+
+  /* --- Espaciados fluidos --- */
+  --padding-seccion: clamp(40px, 8vw, 80px);
+}
+
+/* TODO: configuración general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* * =========================================
+   *  2. Estilos de la Navbar (Fondo Verde).
+   * ========================================= */
+.navbar-custom {
+  background-color: var(--color-verde-navbar);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: var(--sombra-suave);
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+/* * =========================================
+   * ENLACES CENTRALES (Inicio, Acerca de, etc.)
+   * ========================================= */
+
+.navbar-custom .nav-link {
+  color: var(--color-negro);
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 5px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+  color: var(--color-blanco);
+  border-bottom: 3px solid var(--color-verde-borde);
+}
+
+.navbar-custom .nav-link.active {
+  color: var(--color-blanco);
+  font-weight: 600;
+  border-bottom: 3px solid var(--color-verde-borde);
+}
+
+/* =========================================
+   BOTONES HEADER (Iniciar Sesión / Registrarse)
+   ========================================= */
+
+.btn-iniciar,
+.btn-registrar {
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: var(--color-verde-2);
+  color: var(--color-texto-claro);
+  border: 2px solid transparent;
+}
+
+.btn-iniciar:hover {
+  background-color: var(--color-verde-2-hover);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+}
+
+.btn-registrar:hover {
+  background-color: var(--color-verde-2-hover);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+}
+
+/* =========================================
+   NUEVA SECCIÓN HERO (PORTADA)
+   ========================================= */
+
+.hero-section {
+  /* Imagen de fondo (puedes reemplazarla por una local) */
+  background-image:
+    linear-gradient(var(--overlay-hero), var(--overlay-hero)),
+    url("/assets/img/conocenos/imagen-conocenos-DM.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 85vh; /* Altura casi completa de pantalla */
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+}
+
+/* Título Principal */
+.hero-title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600; /* SemiBold */
+  font-size: clamp(
+    2rem,
+    6vw,
+    3.5rem
+  ); 
+  color: var(--color-blanco);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Palabra resaltada en verde */
+.hero-title .text-highlight {
+  color: var(--color-verde-1);
+}
+
+/* Párrafo descriptivo */
+.hero-text {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700; /* Bold */
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--color-blanco);
+  margin-bottom: 30px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* --- Botón Explorar --- */
+.btn-hero-explorar {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700; /* Bold */
+  background-color: var(--color-verde-1);
+  color: var(--color-blanco);
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-verde-1);
+}
+
+.btn-hero-explorar:hover {
+  background-color: var(--color-verde-1-hover);
+  border-color: var(--color-verde-1-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover-fuerte);
+}
+
+/* Flecha dentro del botón */
+.btn-hero-explorar .arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* --- Botón Conocer Proyecto --- */
+.btn-hero-proyecto {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700; /* Bold */
+  background-color: transparent;
+  color: var(--color-texto-claro);
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-texto-claro);
+}
+
+.btn-hero-proyecto:hover {
+  background-color: var(--color-texto-claro);
+  color: var(--color-negro);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover-fuerte);
+}
+
+/* =========================================
+   NUEVA SECCIÓN: DESCUBRIMIENTO (SOLUCIÓN FINAL)
+   ========================================= */
+
+.seccion-descubrimiento {
+  background-color: var(--color-fondo);
+  padding: 60px 0;
+}
+
+/* --- Textos de la izquierda --- */
+.descubrimiento-titulo {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: var(--color-verde-3);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.descubrimiento-texto {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-verde-3);
+  line-height: 1.6;
+}
+
+/* --- Tarjetas de las imágenes --- */
+.tarjeta-especie {
+  background-color: var(--color-fondo-tarjeta);
+  border-radius: 50px;
+  overflow: hidden; /* Clave para recortar la imagen */
+  box-shadow: var(--sombra-media);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-especie:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.img-especie {
+
+  width: calc(100% + 20px);
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  margin: -10px 0 0 -10px;
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Contenedor de texto debajo de la imagen */
+.tarjeta-info {
+  padding: 15px 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-verde-3);
+  line-height: 1.4;
+  text-align: left;
+  background-color: var(--color-fondo-tarjeta);
+}
+
+/* =========================================
+   AJUSTES DE POSICIÓN Y SEPARACIÓN
+   ========================================= */
+
+/* --- Separación entre el texto y las imágenes --- */
+.seccion-descubrimiento .col-lg-4 {
+  padding-right: 80px;
+}
+
+/* --- Empujar las imágenes a la derecha --- */
+.seccion-descubrimiento .col-lg-8 {
+  /* Empuja todo el bloque hacia la derecha */
+  margin-left: auto;
+}
+
+/* --- Separación entre las tarjetas --- */
+.seccion-descubrimiento .row.g-3 {
+  --bs-gutter-x: 2rem; /* Aumenta la separación horizontal entre tarjetas */
+  --bs-gutter-y: 1rem; /* Mantiene la separación vertical */
+}
+
+/* =========================================
+   NUEVA SECCIÓN: CUIDEMOS JUNTOS (FINAL)
+   ========================================= */
+
+.seccion-cuidemos {
+  background-color: var(--color-fondo);
+  padding: 80px 0;
+}
+
+/* --- Título Principal --- */
+.cuidemos-titulo {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  color: var(--color-verde-3);
+  line-height: 1.3;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   IMAGEN CON CÍRCULO GIRATORIO SVG (IZQUIERDA)
+   ========================================= */
+
+.contenedor-imagen-giratoria {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto !important;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+/* --- Círculo completo (Estático, sin animación) --- */
+.circulo-completo {
+  position: absolute;
+  top: 0;
+  left: -40px;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  margin: 0 !important;
+}
+
+
+.imagen-selfie {
+  position: absolute;
+  top: 15%; 
+  left: 0;
+  width: 70%;
+  height: auto;
+  border-radius: 30px;
+  z-index: 5;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  margin: 0 !important;
+}
+
+/* Animación de giro */
+@keyframes girarReloj {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   PASOS (ICONOS CON CÍRCULOS)
+   ========================================= */
+
+
+.seccion-cuidemos .row.mt-5 {
+  --bs-gutter-x: 0; 
+  --bs-gutter-y: 1rem;
+}
+
+.contenedor-paso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10px; 
+}
+
+/* --- Círculo que contiene el ícono --- */
+.circulo-paso {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid var(--color-verde-navbar);
+  background-color: var(--color-fondo-tarjeta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  animation: ondaLenta 3s ease-in-out infinite;
+}
+
+/* Icono dentro del círculo */
+.icono-paso {
+  width: 35px;
+  height: auto;
+}
+
+/* Texto debajo del círculo */
+.texto-paso {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-verde-3);
+  line-height: 1.3;
+  margin: 0;
+  text-align: center;
+  max-width: 120px;
+}
+
+/* =========================================
+   ANIMACIONES
+   ========================================= */
+
+@keyframes ondaLenta {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 0 0 0 var(--onda-color);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: 0 0 0 12px var(--onda-color-transparente);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 0 0 0 var(--onda-color-transparente);
+  }
+}
+
+/* Delays para las olas */
+.contenedor-paso:nth-child(1) .circulo-paso {
+  animation-delay: 0s;
+}
+.contenedor-paso:nth-child(2) .circulo-paso {
+  animation-delay: 0.4s;
+}
+.contenedor-paso:nth-child(3) .circulo-paso {
+  animation-delay: 0.8s;
+}
+
+/* =========================================
+   SECCIÓN FINAL: DESCUBRE / ÚNETE (CTA)
+   ========================================= */
+
+.seccion-final-cta {
+  background-color: var(--color-fondo);
+  padding: 80px 0;
+}
+
+.cta-titulo {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700; 
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  color: var(--color-negro);
+  margin-bottom: 15px;
+}
+
+.cta-texto {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-negro);
+  margin-bottom: 25px;
+}
+
+/* --- Botones de esta sección --- */
+.btn-cta {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  background-color: var(--color-verde-navbar);
+  color: var(--color-negro);
+  padding: 12px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: 2px solid var(--color-verde-navbar);
+  align-self: center;
+}
+
+.btn-cta:hover {
+  background-color: var(--color-verde-1-hover);
+  border-color: var(--color-verde-1-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer-custom {
+  background-color: var(--color-verde-navbar); 
+  padding: 20px 0;
+}
+
+.footer-frase {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-negro); 
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-negro);
+  margin: 0;
+}
+
+/* =========================================
+   =========================================
+   RESPONSIVIDAD
+   =========================================
+   ========================================= */
+
+/* =========================================
+   TABLETS GRANDES / LAPTOPS PEQUEÑAS (≤ 1199px)
+   ========================================= */
+@media (max-width: 1199.98px) {
+  .seccion-descubrimiento .col-lg-4 {
+    padding-right: 40px;
+  }
+
+  /* Reducir padding de secciones grandes */
+  .seccion-cuidemos,
+  .seccion-final-cta {
+    padding: 60px 0;
+  }
+
+  .footer-custom {
+    padding: 20px 0;
+  }
+}
+
+/* =========================================
+   TABLETS (≤ 991.98px)
+   ========================================= */
+@media (max-width: 991.98px) {
+  /* --- NAVBAR --- */
+  .navbar-custom {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .logo-img {
+    height: 50px;
+  }
+
+  .navbar-nav.mx-auto {
+    margin: 15px 0 !important;
+    gap: 0.5rem !important;
+  }
+
+  .navbar-custom .nav-link {
+    padding: 8px 0;
+    font-size: 15px;
+  }
+
+  /* Botones del header a ancho completo en móvil */
+  .navbar-nav.gap-3 {
+    gap: 0.5rem !important;
+    margin-top: 10px;
+  }
+
+  .btn-iniciar,
+  .btn-registrar {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  /* --- HERO --- */
+  .hero-section {
+    min-height: 70vh;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-section .d-flex {
+    justify-content: center;
+  }
+
+  /* --- DESCUBRIMIENTO --- */
+  .seccion-descubrimiento {
+    padding: 50px 0;
+  }
+
+  .seccion-descubrimiento .col-lg-4 {
+    padding-right: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .seccion-descubrimiento .col-lg-8 {
+    margin-left: 0;
+  }
+
+  /* --- CUIDEMOS --- */
+  .seccion-cuidemos {
+    padding: 50px 0;
+  }
+
+  .contenedor-imagen-giratoria {
+    margin: 0 auto 40px auto !important;
+    max-width: 380px;
+  }
+
+  .circulo-completo {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .imagen-selfie {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+  }
+
+  .cuidemos-titulo {
+    margin-bottom: 30px;
+  }
+
+  /* --- CTA FINAL --- */
+  .seccion-final-cta {
+    padding: 50px 0;
+  }
+
+  .seccion-final-cta .col-md-6 {
+    margin-bottom: 40px;
+  }
+
+  .seccion-final-cta .col-md-6:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer-custom {
+    padding: 20px 0;
+  }
+}
+
+/* =========================================
+   MÓVILES GRANDES (≤ 767.98px)
+   ========================================= */
+@media (max-width: 767.98px) {
+  /* --- HERO --- */
+  .hero-section {
+    min-height: 60vh;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    line-height: 1.25;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .hero-text br {
+    display: none; 
+  }
+
+  /* Botones del hero a ancho completo apilados */
+  .hero-section .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-hero-explorar,
+  .btn-hero-proyecto {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* --- DESCUBRIMIENTO --- */
+  .tarjeta-especie {
+    border-radius: 30px; 
+  }
+
+  .img-especie {
+    height: 180px;
+  }
+
+  .tarjeta-info {
+    text-align: center;
+  }
+
+  /* --- CUIDEMOS --- */
+  .contenedor-imagen-giratoria {
+    max-width: 320px;
+  }
+
+  .circulo-completo {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .imagen-selfie {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+  }
+
+  .circulo-paso {
+    width: 65px;
+    height: 65px;
+  }
+
+  .icono-paso {
+    width: 30px;
+  }
+
+  .texto-paso {
+    font-size: 0.85rem;
+    max-width: 100px;
+  }
+
+  /* --- CTA FINAL --- */
+  .cta-texto br {
+    display: none; 
+  }
+
+  /* --- FOOTER --- */
+  .footer-custom {
+    padding: 20px 0;
+  }
+
+  .footer-frase {
+    font-size: 1rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================================
+   MÓVILES PEQUEÑOS (≤ 575.98px)
+   ========================================= */
+@media (max-width: 575.98px) {
+  /* --- NAVBAR --- */
+  .logo-img {
+    height: 42px;
+  }
+
+  .navbar-custom .nav-link {
+    font-size: 14px;
+  }
+
+  /* --- HERO --- */
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-text {
+    font-size: 0.9rem;
+  }
+
+  .btn-hero-explorar,
+  .btn-hero-proyecto {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* --- DESCUBRIMIENTO --- */
+  .descubrimiento-titulo {
+    font-size: 1.3rem;
+  }
+
+  .img-especie {
+    height: 160px;
+  }
+
+  /* --- CUIDEMOS --- */
+  .contenedor-imagen-giratoria {
+    max-width: 260px;
+  }
+
+  .circulo-completo {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .imagen-selfie {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72%;
+  }
+
+  .circulo-paso {
+    width: 55px;
+    height: 55px;
+  }
+
+  .icono-paso {
+    width: 26px;
+  }
+
+  .texto-paso {
+    font-size: 0.8rem;
+    max-width: 90px;
+  }
+
+  /* --- CTA FINAL --- */
+  .btn-cta {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* --- FOOTER --- */
+  .footer-custom {
+    padding: 20px 0; 
+  }
+
+  .footer-frase {
+    font-size: 0.95rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================
+   PANTALLAS MUY GRANDES (≥ 1400px)
+   ========================================= */
+@media (min-width: 1400px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .hero-text {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    max-width: 1280px;
+  }
+}
