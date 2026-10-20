@@ -1,6 +1,7 @@
 import { ensureLoggedIn } from "./utils.js";
 import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
 import { getPosts } from "./Services/PostService.js";
+import { crearReporte } from "./Services/ReportService.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend
 const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
@@ -11,6 +12,7 @@ let publicaciones = [];
 function adaptarPost(post) {
   return {
     id: post.id,
+    userId: post.userId,
     usuario: post.userName,
     titulo: post.title,
     descripcion: post.description,
@@ -42,7 +44,8 @@ function mostrarPublicaciones(listaPublicaciones) {
 let publicacionActiva = null;
 let contadorActivo = null;
 
-function pintarComentario(texto, autor) {
+// id y userId vienen del backend; sin id (o si es tuyo) el comentario no se puede reportar
+function pintarComentario({ texto, autor, id, userId }) {
   const lista = document.getElementById("modal-comentarios");
   const vacio = lista.querySelector(".sin-comentarios");
   if (vacio) vacio.remove();
@@ -54,6 +57,20 @@ function pintarComentario(texto, autor) {
   const contenido = document.createElement("span");
   contenido.textContent = texto;
   comentario.append(quien, contenido);
+
+  if (id && userId !== USER_ID_PRUEBA) {
+    const bandera = document.createElement("button");
+    bandera.type = "button";
+    bandera.className = "ir-reportar-comentario";
+    bandera.textContent = "🚩";
+    bandera.dataset.comentarioId = id;
+    bandera.dataset.autor = autor;
+    bandera.title = `Reportar comentario de ${autor}`;
+    bandera.setAttribute("aria-label", `Reportar comentario de ${autor}`);
+    marcarSiYaSeReporto(bandera, "COMMENT", id);
+    comentario.append(bandera);
+  }
+
   lista.appendChild(comentario);
   lista.scrollTop = lista.scrollHeight;
 }
@@ -77,10 +94,12 @@ async function cargarComentarios(publicacion, contador) {
     lista.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
     // El backend regresa { id, message, userId, userName }
     publicacion.comentarios = comentarios.map((comentario) => ({
+      id: comentario.id,
+      userId: comentario.userId,
       texto: comentario.message,
       autor: comentario.userName || "Usuario",
     }));
-    publicacion.comentarios.forEach(({ texto, autor }) => pintarComentario(texto, autor));
+    publicacion.comentarios.forEach(pintarComentario);
     contador.textContent = publicacion.comentarios.length;
   } catch (error) {
     if (publicacionActiva !== publicacion) return;
@@ -125,6 +144,12 @@ function abrirDetalle(publicacion, contador) {
     dl.appendChild(caja);
   });
 
+  // No se puede reportar una publicación propia
+  cerrarReporte();
+  const btnReportar = document.getElementById("modal-reportar");
+  btnReportar.classList.toggle("d-none", publicacion.userId === USER_ID_PRUEBA);
+  marcarSiYaSeReporto(btnReportar, "POST", publicacion.id);
+
   cargarComentarios(publicacion, contador);
 
   document.getElementById("modal-input").value = "";
@@ -152,11 +177,97 @@ async function enviarComentario() {
   }
 
   const autor = nuevo?.userName || localStorage.getItem("nombreUsuario") || "Tú";
-  publicacion.comentarios.push({ texto, autor });
-  if (publicacionActiva === publicacion) pintarComentario(texto, autor);
+  // Es tuyo: se guarda con tu userId para que no salga la banderita de reportar
+  const comentario = { id: nuevo?.id, userId: USER_ID_PRUEBA, texto, autor };
+  publicacion.comentarios.push(comentario);
+  if (publicacionActiva === publicacion) pintarComentario(comentario);
   contador.textContent = publicacion.comentarios.length;
   input.value = "";
 }
+
+// ---------- REPORTAR ----------
+const panelReporte = document.getElementById("reporte-panel");
+const tituloReporte = document.getElementById("reporte-titulo");
+const motivoReporte = document.getElementById("reporte-motivo");
+const btnEnviarReporte = document.getElementById("reporte-enviar");
+const avisoReporte = document.getElementById("reporte-aviso");
+
+// Lo que se está reportando: { entityType: "POST" | "COMMENT", entityId, boton }
+let objetivoReporte = null;
+// Lo ya reportado en esta visita, para no mandar el mismo reporte dos veces
+const reportados = new Set();
+const claveReporte = (entityType, entityId) => `${entityType}-${entityId}`;
+
+function marcarSiYaSeReporto(boton, entityType, entityId) {
+  const yaReportado = reportados.has(claveReporte(entityType, entityId));
+  boton.disabled = yaReportado;
+  if (entityType === "POST") boton.textContent = yaReportado ? "🚩 Reportado" : "🚩 Reportar";
+}
+
+function abrirReporte(entityType, entityId, boton, titulo) {
+  objetivoReporte = { entityType, entityId, boton };
+  tituloReporte.textContent = titulo;
+  motivoReporte.value = "";
+  motivoReporte.classList.remove("is-invalid");
+  avisoReporte.textContent = "";
+  btnEnviarReporte.disabled = false;
+  panelReporte.classList.remove("d-none");
+  motivoReporte.focus();
+}
+
+function cerrarReporte() {
+  objetivoReporte = null;
+  panelReporte.classList.add("d-none");
+}
+
+document.getElementById("modal-reportar").addEventListener("click", (e) => {
+  if (!publicacionActiva) return;
+  abrirReporte("POST", publicacionActiva.id, e.currentTarget, "Reportar publicación");
+});
+
+// Las banderitas de los comentarios se crean al pintar, por eso un solo listener en la lista
+document.getElementById("modal-comentarios").addEventListener("click", (e) => {
+  const bandera = e.target.closest(".ir-reportar-comentario");
+  if (!bandera) return;
+  abrirReporte("COMMENT", Number(bandera.dataset.comentarioId), bandera,
+    `Reportar comentario de ${bandera.dataset.autor}`);
+});
+
+document.getElementById("reporte-cancelar").addEventListener("click", cerrarReporte);
+
+panelReporte.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!objetivoReporte) return;
+
+  const motivo = motivoReporte.value;
+  if (!motivo) {
+    motivoReporte.classList.add("is-invalid");
+    avisoReporte.textContent = "Elige un motivo para el reporte.";
+    return;
+  }
+
+  const objetivo = objetivoReporte;
+  btnEnviarReporte.disabled = true;
+  try {
+    await crearReporte(USER_ID_PRUEBA, {
+      entityType: objetivo.entityType,
+      entityId: objetivo.entityId,
+      type: motivo,
+    });
+  } catch (error) {
+    avisoReporte.textContent = `No se pudo enviar el reporte: ${error.message}`;
+    btnEnviarReporte.disabled = false;
+    return;
+  }
+
+  reportados.add(claveReporte(objetivo.entityType, objetivo.entityId));
+  marcarSiYaSeReporto(objetivo.boton, objetivo.entityType, objetivo.entityId);
+  avisoReporte.textContent = "Gracias, revisaremos tu reporte. 🌿";
+  // Se cierra solo después de que se alcance a leer el mensaje
+  setTimeout(() => {
+    if (objetivoReporte === objetivo) cerrarReporte();
+  }, 2000);
+});
 
 document
   .getElementById("modal-comentar")

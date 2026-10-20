@@ -167,8 +167,16 @@ function adaptarPost(post) {
 }
 
 async function cargarPublicaciones() {
-    const posts = await getPostsByUserId(USER_ID_PRUEBA);
-    publicaciones = (posts ?? []).map(adaptarPost);
+    try {
+        const posts = await getPostsByUserId(USER_ID_PRUEBA);
+        publicaciones = posts.map(adaptarPost);
+    } catch (error) {
+        // La página se pinta vacía y avisa arriba de la lista
+        publicaciones = [];
+        const aviso = document.getElementById("aviso-publicaciones");
+        aviso.textContent = `No se pudieron cargar tus hallazgos: ${error.message}`;
+        aviso.classList.remove("d-none");
+    }
 }
 
 // ===== Utilidades =====

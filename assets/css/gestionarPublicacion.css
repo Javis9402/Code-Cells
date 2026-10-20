@@ -709,6 +709,24 @@
     --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
 }
 
+/* Avisos (errores y confirmaciones) con la paleta, en lugar de los colores de Bootstrap.
+   Se distinguen por la franja de la izquierda; en modo oscuro las variables ya cambian solas. */
+.aviso-cuaderno {
+    --bs-alert-bg: var(--crema);
+    --bs-alert-color: var(--verde-noche);
+    --bs-alert-border-color: var(--salvia);
+    border-left: 0.35rem solid var(--verde-bosque);
+    font-weight: 600;
+}
+
+.aviso-cuaderno--exito {
+    border-left-color: var(--verde-esmeralda);
+}
+
+.aviso-cuaderno--info {
+    border-left-color: var(--salvia-oscuro);
+}
+
 /* Checkboxes */
 .fondo-responsivo .form-check-input {
     background-color: var(--crema);

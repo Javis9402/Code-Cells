@@ -841,3 +841,87 @@ body.feed-layout .ir-modal-titulo {
   background-position: center;
   background-attachment: fixed;
 }
+
+/* ===== Reportar publicaciones y comentarios (feed) ===== */
+/* Solo colores de la paleta (--ir-*) */
+.ir-modal-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ir-reportar,
+.ir-reportar-comentario {
+  border: 0;
+  background: none;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.5rem;
+  color: var(--ir-verde-oscuro);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.ir-reportar:hover,
+.ir-reportar:focus-visible,
+.ir-reportar-comentario:hover,
+.ir-reportar-comentario:focus-visible {
+  background: var(--ir-verde-claro);
+}
+
+.ir-reportar:disabled,
+.ir-reportar-comentario:disabled {
+  opacity: 0.6;
+  cursor: default;
+  background: none;
+}
+
+/* El comentario deja un hueco a la derecha para la banderita */
+.ir-comentario {
+  position: relative;
+}
+
+.ir-reportar-comentario {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+}
+
+.ir-comentario:has(.ir-reportar-comentario) {
+  padding-right: 2.25rem;
+}
+
+.ir-reporte {
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border: 1px dashed var(--ir-verde);
+  border-radius: 0.75rem;
+  background: var(--ir-fondo);
+  color: var(--ir-verde-oscuro);
+}
+
+.ir-reporte .form-select.is-invalid {
+  border-color: var(--ir-verde-oscuro);
+  --bs-form-select-bg-icon: none;
+}
+
+.ir-reporte .form-select:focus {
+  border-color: var(--ir-verde);
+  box-shadow: 0 0 0 0.25rem var(--ir-crema);
+}
+
+.ir-reporte-titulo {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ir-reporte-aviso {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ir-reporte-aviso:empty {
+  display: none;
+}

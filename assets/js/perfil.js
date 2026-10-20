@@ -45,9 +45,10 @@ function pintarUsuario(usuario) {
     inputCorreo.value = usuario.email;
 }
 
+// tipo: "error", "exito" o "info" (estilos de la paleta en gestionarPublicacion.css)
 function mostrarAvisoForm(texto, tipo) {
     avisoForm.textContent = texto;
-    avisoForm.className = `alert alert-${tipo} mt-3 mb-0`;
+    avisoForm.className = `alert aviso-cuaderno aviso-cuaderno--${tipo} mt-3 mb-0`;
 }
 
 async function cargarPerfil() {
@@ -61,9 +62,13 @@ async function cargarPerfil() {
         return;
     }
 
-    // getPostsByUserId regresa undefined si falla; en ese caso se queda el guion
-    const posts = await getPostsByUserId(USER_ID);
-    if (Array.isArray(posts)) resumenPublicaciones.textContent = posts.length;
+    // Si falla contar los hallazgos se queda el guion; el resto del perfil sí funciona
+    try {
+        const posts = await getPostsByUserId(USER_ID);
+        resumenPublicaciones.textContent = posts.length;
+    } catch (error) {
+        console.warn("No se pudieron contar los hallazgos:", error.message);
+    }
 }
 
 // ===== Guardar cambios =====
@@ -97,7 +102,7 @@ form.addEventListener("submit", async (e) => {
     if (password) cambios.password = password;
 
     if (Object.keys(cambios).length === 0) {
-        mostrarAvisoForm("No hay cambios que guardar.", "secondary");
+        mostrarAvisoForm("No hay cambios que guardar.", "info");
         return;
     }
 
@@ -105,7 +110,7 @@ form.addEventListener("submit", async (e) => {
     try {
         pintarUsuario(await actualizarUsuario(USER_ID, cambios));
     } catch (error) {
-        mostrarAvisoForm(`No se pudieron guardar los cambios: ${error.message}`, "danger");
+        mostrarAvisoForm(`No se pudieron guardar los cambios: ${error.message}`, "error");
         return;
     } finally {
         btnGuardar.disabled = false;
@@ -117,7 +122,7 @@ form.addEventListener("submit", async (e) => {
 
     inputPassword.value = "";
     inputConfirmar.value = "";
-    mostrarAvisoForm("¡Listo! Tus datos se guardaron.", "success");
+    mostrarAvisoForm("¡Listo! Tus datos se guardaron.", "exito");
 });
 
 // Al corregir un campo se quita su marca de error

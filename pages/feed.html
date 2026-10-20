@@ -329,9 +329,33 @@
               <img id="modal-imagen" src="" alt="" />
             </div>
             <div class="col-md-6 ir-modal-info">
-              <p class="ir-modal-autor">
-                Publicado por <strong id="modal-usuario"></strong>
-              </p>
+              <div class="ir-modal-encabezado">
+                <p class="ir-modal-autor">
+                  Publicado por <strong id="modal-usuario"></strong>
+                </p>
+                <!-- Solo se muestra si la publicación no es tuya -->
+                <button type="button" class="ir-reportar" id="modal-reportar" title="Reportar publicación">
+                  🚩 Reportar
+                </button>
+              </div>
+
+              <!-- Panel para elegir el motivo del reporte (publicación o comentario) -->
+              <form class="ir-reporte d-none" id="reporte-panel" novalidate>
+                <p class="ir-reporte-titulo" id="reporte-titulo">Reportar publicación</p>
+                <select class="form-select form-select-sm" id="reporte-motivo" aria-label="Motivo del reporte">
+                  <option value="">Elige un motivo...</option>
+                  <option>Spam</option>
+                  <option>Contenido inapropiado</option>
+                  <option>Información falsa</option>
+                  <option>Acoso u ofensas</option>
+                  <option>Otro</option>
+                </select>
+                <div class="d-flex gap-2 mt-2">
+                  <button type="submit" class="btn btn-sm btn-success" id="reporte-enviar">Enviar reporte</button>
+                  <button type="button" class="btn btn-sm btn-outline-success" id="reporte-cancelar">Cancelar</button>
+                </div>
+                <p class="ir-reporte-aviso" id="reporte-aviso" role="status"></p>
+              </form>
               <h2 id="modal-titulo" class="ir-modal-titulo"></h2>
               <p id="modal-descripcion"></p>
               <dl id="modal-datos" class="ir-modal-datos"></dl>
