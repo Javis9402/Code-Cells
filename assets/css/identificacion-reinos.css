@@ -3,105 +3,143 @@
    ========================================================= */
 .identificador-reino {
   width: 100%;
-  margin-bottom: 1.5rem;
-  padding: 1.2rem;
+  max-width: 500px;
+  flex: 0 1 500px;
+  margin: 0;
+  padding: 1.5rem;
+  align-self: flex-start;
   border: 1px solid #C8D9C0;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   background: linear-gradient(145deg, #F8FBF5, #EDF1D6);
+  box-shadow: 0 8px 22px rgba(64, 81, 59, 0.08);
 }
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
 .identificador-encabezado {
   display: flex;
   align-items: flex-start;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
 }
 .identificador-icono {
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 3.2rem;
+  height: 3.2rem;
   display: grid;
   place-items: center;
   flex-shrink: 0;
   border-radius: 50%;
   background-color: #9DC08B;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 .identificador-encabezado h6 {
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.3rem;
   color: #40513B;
   font-family: "Montserrat Alternates", sans-serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 .identificador-encabezado p {
   margin: 0;
   color: #61705A;
   font-family: "Nunito", sans-serif;
-  font-size: 0.88rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+.identificador-buscador {
+  width: 100%;
 }
 .identificador-buscador .form-control {
-  min-height: 2.8rem;
+  width: 100%;
+  min-height: 3.3rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #9DC08B;
-  border-radius: 0.65rem;
+  border-radius: 0.8rem;
+  background-color: #FFFFFF;
+  color: #40513B;
   font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.identificador-buscador .form-control::placeholder {
+  color: #8A9684;
 }
 .identificador-buscador .form-control:focus {
   border-color: #609966;
+  outline: none;
   box-shadow: 0 0 0 0.2rem rgba(96, 153, 102, 0.14);
 }
+/* =========================================================
+   RESULTADO DEL REINO
+   ========================================================= */
 .resultado-reino {
   display: grid;
-  grid-template-columns: 5.5rem 1fr;
+  grid-template-columns: 8rem 1fr;
   align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
+  gap: 1.25rem;
+  margin-top: 1.2rem;
+  padding: 1.2rem;
   border: 1px solid rgba(96, 153, 102, 0.3);
-  border-radius: 0.9rem;
+  border-radius: 1rem;
   background-color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(64, 81, 59, 0.07);
 }
 .resultado-reino-imagen {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 8rem;
+  height: 8rem;
+  display: block;
   object-fit: cover;
-  border-radius: 0.8rem;
+  object-position: center;
+  border: 2px solid #DCE8D5;
+  border-radius: 1rem;
   background-color: #F4F7F1;
+  box-shadow: 0 4px 12px rgba(64, 81, 59, 0.1);
 }
 .resultado-reino-info {
   min-width: 0;
 }
 .resultado-reino-etiqueta {
   display: block;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.3rem;
   color: #609966;
   font-family: "Onest", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03rem;
   text-transform: uppercase;
 }
 .resultado-reino-info strong {
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.45rem;
   color: #40513B;
   font-family: "Montserrat Alternates", sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 .resultado-reino-info p {
   margin: 0;
   color: #61705A;
   font-family: "Nunito", sans-serif;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.5;
 }
+/* =========================================================
+   AYUDA Y ENLACE
+   ========================================================= */
 .identificador-ayuda {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.4rem;
-  margin-top: 0.8rem;
+  gap: 0.6rem;
+  margin-top: 1rem;
   font-family: "Nunito", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 .identificador-ayuda span {
   color: #61705A;
@@ -110,43 +148,11 @@
   color: #609966;
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.25s ease;
 }
 .identificador-ayuda a:hover {
   color: #40513B;
   text-decoration: underline;
-}
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width: 36rem) {
-  .identificador-reino {
-    padding: 1rem;
-  }
-  .resultado-reino {
-    grid-template-columns: 4.5rem 1fr;
-    gap: 0.8rem;
-    padding: 0.8rem;
-  }
-  .resultado-reino-imagen {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
-  .identificador-ayuda {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-@media (max-width: 24rem) {
-  .resultado-reino {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .resultado-reino-imagen {
-    margin-inline: auto;
-  }
-  .identificador-encabezado {
-    flex-direction: column;
-  }
 }
 /* =========================================================
    POSICIÓN DEL IDENTIFICADOR JUNTO AL FORMULARIO
@@ -155,17 +161,88 @@
   align-items: flex-start;
   gap: 1.5rem;
 }
-.identificador-reino {
-  width: 100%;
-  max-width: 420px;
-  flex: 0 1 420px;
-  margin: 0;
-  align-self: flex-start;
-}
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
 @media (max-width: 992px) {
   .identificador-reino {
-    max-width: 500px;
+    max-width: 560px;
     flex-basis: 100%;
     margin-top: 1.5rem;
+  }
+}
+/* =========================================================
+   RESPONSIVE - CELULAR
+   ========================================================= */
+@media (max-width: 36rem) {
+  .identificador-reino {
+    max-width: 100%;
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+  .identificador-encabezado {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .identificador-icono {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.3rem;
+  }
+  .identificador-encabezado h6 {
+    font-size: 1.05rem;
+  }
+  .identificador-encabezado p {
+    font-size: 0.9rem;
+  }
+  .identificador-buscador .form-control {
+    min-height: 3rem;
+    font-size: 0.95rem;
+  }
+  .resultado-reino {
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .resultado-reino-imagen {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+  .resultado-reino-info strong {
+    font-size: 1.2rem;
+  }
+  .resultado-reino-info p {
+    font-size: 0.9rem;
+  }
+  .resultado-reino-etiqueta {
+    font-size: 0.75rem;
+  }
+  .identificador-ayuda {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.85rem;
+  }
+}
+/* =========================================================
+   RESPONSIVE - CELULAR PEQUEÑO
+   ========================================================= */
+@media (max-width: 24rem) {
+  .identificador-reino {
+    padding: 1rem;
+  }
+  .identificador-encabezado {
+    flex-direction: column;
+  }
+  .resultado-reino {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .resultado-reino-imagen {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-inline: auto;
+  }
+  .resultado-reino-info strong {
+    font-size: 1.3rem;
   }
 }
