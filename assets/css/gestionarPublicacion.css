@@ -81,7 +81,7 @@
 /* Resumen */
 .cuaderno-resumen {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
     gap: 0.75rem;
     margin: 0 0 1.5rem;
 }
@@ -170,6 +170,7 @@
 .buscador {
     position: relative;
     flex: 1;
+    min-width: 0;
     margin: 0;
 }
 
@@ -220,7 +221,7 @@
 /* ===== Tarjetas de hallazgo ===== */
 .lista-hallazgos.vista-cuadricula {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
     gap: 1.25rem;
 }
 
@@ -341,6 +342,20 @@
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    white-space: nowrap;
+}
+
+/* El lugar sí puede bajar de renglón para no salirse de la tarjeta */
+.hallazgo-meta li:first-child {
+    white-space: normal;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Espacio fijo para el número de comentarios */
+.hallazgo-comentarios {
+    display: inline-block;
+    min-width: 2ch;
 }
 
 .hallazgo-acciones {
@@ -382,6 +397,8 @@
 }
 
 .vista-lista .hallazgo-cuerpo {
+    flex: 1;
+    min-width: 0;
     padding: 0.75rem 1rem;
 }
 
@@ -416,6 +433,53 @@
     margin-bottom: 1.25rem;
 }
 
+/* ===== Responsivo ===== */
+
+/* Red de seguridad: nada debe crear scroll horizontal en la página */
+.fondo-responsivo {
+    overflow-x: clip;
+}
+
+/* Textos escritos por usuarios: palabras o enlaces largos no se salen */
+.cuaderno-titulo,
+.hallazgo-titulo,
+.hallazgo-especie,
+#modal-publicacion .ir-modal-titulo,
+#modal-descripcion,
+#modal-publicacion .ir-comentario,
+#mensajeEliminar {
+    overflow-wrap: anywhere;
+}
+
+/* Filtros: scroll horizontal dentro de su fila, con encaje suave */
+.filtros-reino {
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: var(--salvia) transparent;
+}
+
+.filtro-reino {
+    scroll-snap-align: start;
+}
+
+/* La tarjeta solo se eleva en dispositivos con mouse */
+@media (hover: none) {
+    .hallazgo-tarjeta:hover {
+        transform: none;
+    }
+}
+
+/* Tablet */
+@media (max-width: 991.98px) {
+    .cuaderno {
+        padding: 1.5rem;
+    }
+
+    #modal-publicacion .ir-modal-info {
+        padding: 1.5rem;
+    }
+}
+
 /* Celular */
 @media (max-width: 575.98px) {
     .fondo-responsivo > .cuaderno {
@@ -424,16 +488,22 @@
         border-radius: 1rem;
     }
 
-    .cuaderno-encabezado .btn {
-        width: 100%;
-    }
-
     .cuaderno-resumen {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
     }
 
-    .vista-lista .hallazgo-media {
-        width: 88px;
+    .cuaderno-resumen li {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .cuaderno-resumen strong {
+        font-size: 1.4rem;
+    }
+
+    .lista-hallazgos.vista-cuadricula {
+        gap: 1rem;
     }
 
     .vista-lista .hallazgo-reino {
@@ -442,6 +512,51 @@
 
     .vista-lista .hallazgo-acciones .btn span {
         display: none;
+    }
+
+    /* Ventana de detalle */
+    #modal-publicacion .ir-modal-media {
+        position: relative;
+        min-height: 0;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+    }
+
+    #modal-publicacion .ir-modal-media img {
+        position: absolute;
+        inset: 0;
+    }
+
+    #modal-publicacion .ir-modal-info {
+        padding: 1.25rem 1rem;
+    }
+
+    #modal-publicacion .ir-modal-titulo {
+        font-size: 1.3rem;
+    }
+
+    #modal-publicacion .ir-modal-comentarios {
+        height: 140px;
+    }
+}
+
+/* Celulares muy angostos (Galaxy Fold, etc.) */
+@media (max-width: 359.98px) {
+    .fondo-responsivo > .cuaderno {
+        width: calc(100% - 16px);
+        padding: 1rem 0.75rem;
+    }
+
+    #modal-publicacion .ir-modal-datos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #modalEditar .d-flex.gap-3 {
+        flex-direction: column;
+    }
+
+    #modalEditar .d-flex.gap-3 .btn {
+        width: 100% !important;
     }
 }
 
@@ -619,8 +734,21 @@
     color: var(--salvia-oscuro);
 }
 
+#modal-publicacion .ir-modal-datos div {
+    background: var(--crema);
+    border: 1px solid var(--salvia);
+}
+
 #modal-publicacion .ir-modal-datos dd {
     color: var(--verde-musgo);
+}
+
+/* Altura fija: comentar no cambia el tamaño de la ventana, solo hace scroll */
+#modal-publicacion .ir-modal-comentarios {
+    height: 170px;
+    max-height: none;
+    overflow-y: auto;
+    flex-shrink: 0;
 }
 
 #modal-publicacion .ir-comentario {
@@ -631,4 +759,367 @@
 
 #modal-publicacion .ir-comentario strong {
     color: var(--verde-esmeralda);
+}
+
+/* =====================================================
+   MODO OSCURO
+   Base: #40513B #609966 #9DC08B #EDF1D6 #F9FBF2 #FFFFFF
+   Las superficies son #40513B oscurecido y mezclado con
+   #609966, para tener niveles de profundidad.
+   Se activa con data-tema="oscuro" en <html>
+   ===================================================== */
+:root[data-tema="oscuro"] {
+    color-scheme: dark;
+
+    /* Niveles de superficie: cuanto más arriba, más claro */
+    --oscuro-fondo: #161C15;     /* página e inputs */
+    --oscuro-panel: #20291E;     /* panel del cuaderno */
+    --oscuro-tarjeta: #283225;   /* tarjetas y modales */
+    --oscuro-elevado: #303D2C;   /* hover y elementos encima */
+    --oscuro-borde: #476B49;     /* #40513B mezclado con #609966 */
+
+    /* Mismas variables del modo claro, con colores para oscuro */
+    --crema: var(--oscuro-panel);
+    --verde-noche: #F9FBF2;      /* títulos */
+    --verde-musgo: #EDF1D6;      /* texto general, sin blanco puro */
+    --verde-bosque: #EDF1D6;     /* botones de contorno */
+    --verde-pino: #9DC08B;       /* botón principal y filtro activo */
+    --verde-esmeralda: #9DC08B;  /* acentos */
+    --salvia: var(--oscuro-borde);
+    --salvia-oscuro: #9DC08B;    /* texto secundario */
+}
+
+/* Cambio de tema suave */
+.cuaderno,
+.hallazgo-tarjeta,
+.filtro-reino,
+.cuaderno-resumen li,
+.fondo-responsivo .form-control {
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cuaderno,
+    .hallazgo-tarjeta,
+    .filtro-reino,
+    .cuaderno-resumen li,
+    .fondo-responsivo .form-control {
+        transition: none;
+    }
+}
+
+/* Fondo de hojas atenuado para que no compita con el contenido */
+:root[data-tema="oscuro"] .fondo-responsivo {
+    background-color: var(--oscuro-fondo);
+    background-image:
+        linear-gradient(rgba(22, 28, 21, 0.88), rgba(22, 28, 21, 0.88)),
+        url("../img/publicacion/hojasverdes3.jpg");
+}
+
+/* Panel */
+:root[data-tema="oscuro"] .cuaderno {
+    border-color: var(--oscuro-elevado);
+    box-shadow: 0 1rem 2.5rem rgba(10, 13, 9, 0.6);
+}
+
+/* Resumen y filtros */
+:root[data-tema="oscuro"] .cuaderno-resumen li {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .filtro-reino {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .filtro-reino:hover {
+    background-color: var(--oscuro-elevado);
+    color: #F9FBF2;
+}
+
+:root[data-tema="oscuro"] .filtro-contador {
+    background-color: var(--oscuro-elevado);
+    color: #EDF1D6;
+}
+
+:root[data-tema="oscuro"] .filtro-reino[aria-pressed="true"] {
+    background-color: #9DC08B;
+    border-color: #9DC08B;
+    color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .filtro-reino[aria-pressed="true"] .filtro-contador {
+    background-color: var(--oscuro-fondo);
+    color: #9DC08B;
+}
+
+/* Inputs hundidos un nivel */
+:root[data-tema="oscuro"] .fondo-responsivo .buscador .form-control,
+:root[data-tema="oscuro"] #modalEditar .form-control,
+:root[data-tema="oscuro"] #modalEditar .form-select,
+:root[data-tema="oscuro"] #modal-publicacion .form-control {
+    background-color: var(--oscuro-fondo);
+}
+
+/* Botón principal: texto oscuro sobre verde claro */
+:root[data-tema="oscuro"] .btn-verde,
+:root[data-tema="oscuro"] #modal-publicacion .btn-success {
+    --bs-btn-color: var(--oscuro-fondo);
+    --bs-btn-hover-color: var(--oscuro-fondo);
+    --bs-btn-hover-bg: #EDF1D6;
+    --bs-btn-hover-border-color: #EDF1D6;
+    --bs-btn-active-color: var(--oscuro-fondo);
+    --bs-btn-active-bg: #F9FBF2;
+    --bs-btn-active-border-color: #F9FBF2;
+}
+
+:root[data-tema="oscuro"] .btn-outline-oscuro,
+:root[data-tema="oscuro"] .btn-outline-verde,
+:root[data-tema="oscuro"] .btn-oscuro {
+    --bs-btn-hover-color: var(--oscuro-fondo);
+    --bs-btn-active-color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .btn-oscuro {
+    --bs-btn-color: var(--oscuro-fondo);
+    --bs-btn-bg: #EDF1D6;
+    --bs-btn-border-color: #EDF1D6;
+    --bs-btn-hover-bg: #F9FBF2;
+    --bs-btn-hover-border-color: #F9FBF2;
+    --bs-btn-active-bg: #FFFFFF;
+    --bs-btn-active-border-color: #FFFFFF;
+}
+
+/* Tarjetas un nivel arriba del panel */
+:root[data-tema="oscuro"] .hallazgo-tarjeta {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .hallazgo-tarjeta:hover {
+    background-color: var(--oscuro-elevado);
+    border-color: var(--oscuro-borde);
+    box-shadow: 0 0.75rem 1.5rem rgba(10, 13, 9, 0.5);
+}
+
+:root[data-tema="oscuro"] .hallazgo.seleccionada .hallazgo-tarjeta {
+    border-color: #9DC08B;
+    box-shadow: 0 0 0 2px #9DC08B;
+}
+
+/* Fotos un poco atenuadas; recuperan su brillo al pasar el mouse */
+:root[data-tema="oscuro"] .hallazgo-media,
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-media {
+    background-color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .hallazgo-imagen {
+    filter: brightness(0.88);
+    transition: filter 0.2s;
+}
+
+:root[data-tema="oscuro"] .hallazgo-tarjeta:hover .hallazgo-imagen {
+    filter: none;
+}
+
+:root[data-tema="oscuro"] .hallazgo-reino {
+    background-color: rgba(22, 28, 21, 0.85);
+    color: #EDF1D6;
+}
+
+/* Modales: un nivel arriba del fondo */
+:root[data-tema="oscuro"] #modalEditar .modal-content,
+:root[data-tema="oscuro"] #modalEliminar .modal-content,
+:root[data-tema="oscuro"] #modal-publicacion .modal-content {
+    background-color: var(--oscuro-tarjeta);
+    border: 1px solid var(--oscuro-elevado);
+    box-shadow: 0 1.5rem 3rem rgba(10, 13, 9, 0.7);
+}
+
+:root[data-tema="oscuro"] #modal-publicacion .ir-comentario,
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-datos div {
+    background-color: var(--oscuro-panel);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-close {
+    background-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .modal-backdrop {
+    --bs-backdrop-bg: #161C15;
+    --bs-backdrop-opacity: 0.8;
+}
+
+/* Íconos dibujados con color fijo */
+:root[data-tema="oscuro"] .fondo-responsivo,
+:root[data-tema="oscuro"] #modalEditar,
+:root[data-tema="oscuro"] #modalEliminar,
+:root[data-tema="oscuro"] #modal-publicacion {
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23EDF1D6'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] #modalEditar .form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23EDF1D6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] .fondo-responsivo .form-check-input:checked[type="checkbox"] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23161C15' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] .fondo-responsivo .form-check-input[type="checkbox"]:indeterminate {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23161C15' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+/* Foco visible en oscuro */
+:root[data-tema="oscuro"] .fondo-responsivo .btn:focus-visible,
+:root[data-tema="oscuro"] .filtro-reino:focus-visible {
+    outline: 2px solid #9DC08B;
+    outline-offset: 2px;
+}
+
+/* Botón para cambiar de tema */
+.cuaderno-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+
+/* =====================================================
+   DISPOSICIÓN EN CELULAR (menos de 576px)
+   ===================================================== */
+@media (max-width: 575.98px) {
+    /* Encabezado: título con botón de tema al lado, "Nuevo hallazgo" abajo */
+    .cuaderno-encabezado {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .cuaderno-acciones {
+        display: contents;
+    }
+
+    #btn-tema {
+        grid-column: 2;
+        grid-row: 1;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #btn-tema i {
+        margin: 0 !important;
+    }
+
+    #btn-tema span {
+        display: none;
+    }
+
+    .cuaderno-acciones .btn-verde {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .cuaderno-etiqueta {
+        font-size: 0.75rem;
+    }
+
+    .cuaderno-titulo {
+        font-size: 1.6rem;
+    }
+
+    .cuaderno-subtitulo {
+        font-size: 0.95rem;
+    }
+
+    /* Resumen compacto: número y texto en un renglón */
+    .cuaderno-resumen {
+        margin-bottom: 1rem;
+    }
+
+    .cuaderno-resumen li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+        padding: 0.55rem 0.7rem;
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+
+    .cuaderno-resumen strong {
+        display: inline;
+        font-size: 1.2rem;
+    }
+
+    /* Filtros en varias filas: nada queda cortado en el borde */
+    .filtros-reino {
+        flex-wrap: wrap;
+        overflow: visible;
+        gap: 0.4rem;
+    }
+
+    .filtro-reino {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    /* Vista de lista: foto a la izquierda, texto y botones a la derecha */
+    .vista-lista .hallazgo-tarjeta {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        grid-template-areas:
+            "media cuerpo"
+            "media acciones";
+        align-items: stretch;
+    }
+
+    .vista-lista .hallazgo-media {
+        grid-area: media;
+        width: auto;
+        min-height: 0;
+    }
+
+    .vista-lista .hallazgo-cuerpo {
+        grid-area: cuerpo;
+        padding: 0.6rem 0.75rem 0;
+    }
+
+    .vista-lista .hallazgo-titulo {
+        font-size: 0.95rem;
+    }
+
+    .vista-lista .hallazgo-especie {
+        margin-bottom: 0.3rem;
+        font-size: 0.82rem;
+    }
+
+    .vista-lista .hallazgo-meta {
+        font-size: 0.75rem;
+    }
+
+    .vista-lista .hallazgo-acciones {
+        grid-area: acciones;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0.4rem 0.6rem 0.6rem;
+    }
+
+    .vista-lista .hallazgo-acciones .btn {
+        flex: 0 0 auto;
+    }
+
+    /* Modales a pantalla completa */
+    #modal-publicacion .modal-content,
+    #modalEditar .modal-content {
+        border-radius: 0;
+        border: 0;
+    }
 }

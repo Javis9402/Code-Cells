@@ -292,7 +292,11 @@ function crearTarjeta(publicacion) {
 
     nodo.querySelector(".hallazgo-lugar").textContent = publicacion.ubicacion || "Sin ubicación";
     nodo.querySelector(".hallazgo-fecha").textContent = formatearFecha(publicacion.fecha);
-    nodo.querySelector(".hallazgo-comentarios").textContent = textoComentarios(publicacion.comentarios.length);
+    // Solo el número, para que el texto no crezca y la tarjeta conserve su tamaño
+    const comentarios = nodo.querySelector(".hallazgo-comentarios");
+    comentarios.textContent = publicacion.comentarios.length;
+    comentarios.parentElement.title = textoComentarios(publicacion.comentarios.length);
+    comentarios.parentElement.setAttribute("aria-label", textoComentarios(publicacion.comentarios.length));
 
     nodo.querySelector(".btn-editar").setAttribute("aria-label", `Editar «${publicacion.titulo}»`);
     nodo.querySelector(".btn-eliminar").setAttribute("aria-label", `Eliminar «${publicacion.titulo}»`);
@@ -465,6 +469,10 @@ function agregarComentario() {
 
     publicacionActual.comentarios.push({ usuario: "Tú", texto });
     renderizarComentarios(publicacionActual.comentarios);
+
+    // Bajar hasta el comentario nuevo dentro de la caja de comentarios
+    const contenedor = document.getElementById("modal-comentarios");
+    contenedor.scrollTop = contenedor.scrollHeight;
     inputComentario.value = "";
     renderizar();
 }
@@ -617,6 +625,34 @@ btnEliminarSeleccionadas.addEventListener("click", () => {
         () => eliminar([...seleccionados])
     );
 });
+
+// ===== Modo oscuro =====
+// El tema inicial lo aplica el script del <head>; aquí solo se cambia y se guarda
+const btnTema = document.getElementById("btn-tema");
+
+function temaActual() {
+    return document.documentElement.dataset.tema === "oscuro" ? "oscuro" : "claro";
+}
+
+function pintarBotonTema() {
+    const oscuro = temaActual() === "oscuro";
+    btnTema.setAttribute("aria-pressed", String(oscuro));
+    btnTema.querySelector("i").className = `bi ${oscuro ? "bi-sun-fill" : "bi-moon-stars-fill"} me-2`;
+    btnTema.querySelector("span").textContent = oscuro ? "Modo claro" : "Modo oscuro";
+    const accion = oscuro ? "Activar modo claro" : "Activar modo oscuro";
+    btnTema.setAttribute("aria-label", accion);
+    btnTema.title = accion;
+}
+
+btnTema.addEventListener("click", () => {
+    const nuevo = temaActual() === "oscuro" ? "claro" : "oscuro";
+    if (nuevo === "oscuro") document.documentElement.dataset.tema = "oscuro";
+    else delete document.documentElement.dataset.tema;
+    guardarPreferencia("temaInstaRama", nuevo);
+    pintarBotonTema();
+});
+
+pintarBotonTema();
 
 // ===== Inicio =====
 aplicarVista();
