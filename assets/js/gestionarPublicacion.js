@@ -1,81 +1,350 @@
-// ===== Íconos SVG =====
-const ICONO_EDITAR = `
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-</svg>`;
-
-const ICONO_ELIMINAR = `
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-</svg>`;
-
-// ===== Datos ficticios =====
-const publicacionBase = {
-    usuario: localStorage.getItem("usuarioActivo"),
-    titulo: "Las abejas y la polinización",
-    descripcion: "Las abejas son polinizadoras clave para muchos de los cultivos que consumimos. Sin ellas, la producción de frutas y verduras bajaría muchísimo.",
-    imagen: "https://picsum.photos/id/1080/800/800",
-    fecha: "5 oct",
-    categoria: "Animalia",
-    subcategoria: "Invertebrado",
-    datos: {
-        Categoría: "Insectos",
-        Ubicación: "Ciudad de México",
-        Especie: "Apis mellifera",
-    },
-    comentarios: [
-        { usuario: "Ana López", texto: "¡Qué buen dato!" },
-        { usuario: "Carlos Ruiz", texto: "No sabía que eran tan importantes." },
-    ],
+// ===== Reinos =====
+const REINOS = {
+    Monera: "🧫",
+    Protista: "🦠",
+    Fungi: "🍄",
+    Plantae: "🌿",
+    Animalia: "🐾",
+    "Sin Clasificar": "❔",
 };
 
-const publicaciones = [];
+const REINOS_BIOLOGICOS = ["Monera", "Protista", "Fungi", "Plantae", "Animalia"];
 
-for (let i = 0; i < 13; i++) {
-    publicaciones.push({
-        ...publicacionBase,
-        id: i + 1,
-        comentarios: [...publicacionBase.comentarios], // copia propia para cada publicación
+function nombreReino(reino) {
+    return reino === "Sin Clasificar" ? "Sin clasificar" : reino;
+}
+
+// ===== Datos ficticios =====
+const IMG = "../assets/img/objetos/";
+const usuario = localStorage.getItem("usuarioActivo") || "Explorador_Botánico";
+
+const publicaciones = [
+    {
+        titulo: "Hongos copa sobre un tronco",
+        descripcion: "Encontré varios hongos en forma de copa creciendo sobre un tronco caído y húmedo. Tenían un color rosado muy intenso.",
+        imagen: IMG + "Hongo.jpg",
+        fecha: "2026-10-14",
+        reino: "Fungi",
+        grupo: "Hongos macroscópicos",
+        especie: "Cookeina sp.",
+        ubicacion: "Los Tuxtlas, Veracruz",
+    },
+    {
+        titulo: "Gorrión acicalándose entre flores",
+        descripcion: "Un pajarito pequeño se estaba acomodando las plumas sobre unas flores amarillas. ¿Alguien sabe qué especie es?",
+        imagen: IMG + "ave.jpg",
+        fecha: "2026-10-11",
+        reino: "Animalia",
+        subcategoria: "Vertebrado",
+        grupo: "Aves",
+        especie: "",
+        ubicacion: "Ajusco, Ciudad de México",
+    },
+    {
+        titulo: "Ajolote en el canal",
+        descripcion: "Vimos un ajolote cerca de la orilla durante un recorrido por los canales. Es una especie endémica y en peligro.",
+        imagen: IMG + "ajolote.jpg",
+        fecha: "2026-10-08",
+        reino: "Animalia",
+        subcategoria: "Vertebrado",
+        grupo: "Anfibios",
+        especie: "Ambystoma mexicanum",
+        ubicacion: "Xochimilco, Ciudad de México",
+    },
+    {
+        titulo: "Sargazo flotando en el mar",
+        descripcion: "Al bucear vimos grandes masas de sargazo. Tiene unas bolitas que le ayudan a flotar.",
+        imagen: IMG + "protista.jpg",
+        fecha: "2026-10-03",
+        reino: "Protista",
+        grupo: "Algas",
+        especie: "Sargassum sp.",
+        ubicacion: "Mahahual, Quintana Roo",
+    },
+    {
+        titulo: "Pochote con espinas en el tronco",
+        descripcion: "Árbol con el tronco lleno de espinas cónicas. En temporada seca tira las hojas.",
+        imagen: IMG + "pochote.jpg",
+        fecha: "2026-09-27",
+        reino: "Plantae",
+        grupo: "Angiospermas",
+        especie: "Ceiba aesculifolia",
+        ubicacion: "Tepoztlán, Morelos",
+    },
+    {
+        titulo: "Bacterias vistas al microscopio",
+        descripcion: "En la práctica de laboratorio observamos una muestra de bacterias agrupadas como racimos.",
+        imagen: IMG + "monera.jpg",
+        fecha: "2026-09-20",
+        reino: "Monera",
+        grupo: "Bacterias",
+        especie: "Staphylococcus aureus",
+        ubicacion: "Laboratorio escolar",
+    },
+    {
+        titulo: "Helechos en el bosque",
+        descripcion: "Una zona sombreada del bosque estaba cubierta de helechos muy grandes.",
+        imagen: IMG + "plantae.jpg",
+        fecha: "2026-09-14",
+        reino: "Plantae",
+        grupo: "Helechos / Pteridófitas",
+        especie: "",
+        ubicacion: "Desierto de los Leones, CDMX",
+    },
+    {
+        titulo: "Insecto visitando una flor",
+        descripcion: "Lo vi alimentándose en el jardín. Los polinizadores son clave para muchos cultivos.",
+        imagen: IMG + "insectos.jpg",
+        fecha: "2026-09-05",
+        reino: "Animalia",
+        subcategoria: "Invertebrado",
+        grupo: "Insectos",
+        especie: "",
+        ubicacion: "Coyoacán, Ciudad de México",
+    },
+    {
+        titulo: "Murciélago al atardecer",
+        descripcion: "Salió de una cueva justo cuando empezaba a oscurecer.",
+        imagen: IMG + "murcielago.jpg",
+        fecha: "2026-08-29",
+        reino: "Animalia",
+        subcategoria: "Vertebrado",
+        grupo: "Mamíferos",
+        especie: "",
+        ubicacion: "Grutas de Cacahuamilpa, Guerrero",
+    },
+    {
+        titulo: "Pino con piñas",
+        descripcion: "Pino alto con muchas piñas abiertas en las ramas.",
+        imagen: IMG + "pinus.jpg",
+        fecha: "2026-08-17",
+        reino: "Plantae",
+        grupo: "Gimnospermas",
+        especie: "Pinus sp.",
+        ubicacion: "Nevado de Toluca, Estado de México",
+    },
+].map((publicacion, i) => ({
+    id: i + 1,
+    usuario,
+    subcategoria: "",
+    comentarios: i % 3 === 2 ? [] : [
+        { usuario: "Ana López", texto: "¡Qué buen hallazgo!" },
+        { usuario: "Carlos Ruiz", texto: "¿Cuánto medía aproximadamente?" },
+    ].slice(0, (i % 3) + 1),
+    ...publicacion,
+}));
+
+// ===== Utilidades =====
+const formatoFecha = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", year: "numeric" });
+
+function formatearFecha(iso) {
+    return formatoFecha.format(new Date(iso + "T00:00:00"));
+}
+
+function textoComentarios(total) {
+    return total === 1 ? "1 comentario" : `${total} comentarios`;
+}
+
+function buscarPublicacion(id) {
+    return publicaciones.find((p) => p.id === id);
+}
+
+function leerPreferencia(clave, porDefecto) {
+    try {
+        return localStorage.getItem(clave) || porDefecto;
+    } catch {
+        return porDefecto;
+    }
+}
+
+function guardarPreferencia(clave, valor) {
+    try {
+        localStorage.setItem(clave, valor);
+    } catch {
+        // Sin almacenamiento: la vista solo dura esta visita
+    }
+}
+
+// ===== Estado de la vista =====
+const lista = document.getElementById("lista-publicaciones");
+const plantilla = document.getElementById("plantilla-hallazgo");
+const filtrosReino = document.getElementById("filtros-reino");
+const buscador = document.getElementById("buscar-hallazgo");
+const estadoVacio = document.getElementById("estado-vacio");
+const seleccionados = new Set();
+
+let filtroActual = "Todos";
+let vistaActual = leerPreferencia("vistaHallazgos", "cuadricula");
+
+function publicacionesVisibles() {
+    const texto = buscador.value.trim().toLowerCase();
+
+    return publicaciones
+        .filter((p) => filtroActual === "Todos" || p.reino === filtroActual)
+        .filter((p) => !texto || [p.titulo, p.especie, p.grupo, p.ubicacion]
+            .some((campo) => (campo || "").toLowerCase().includes(texto)))
+        .sort((a, b) => b.fecha.localeCompare(a.fecha));
+}
+
+// ===== Resumen =====
+function actualizarResumen() {
+    const reinosExplorados = new Set(
+        publicaciones.map((p) => p.reino).filter((r) => REINOS_BIOLOGICOS.includes(r))
+    );
+    const comentarios = publicaciones.reduce((total, p) => total + p.comentarios.length, 0);
+
+    document.getElementById("resumen-hallazgos").textContent = publicaciones.length;
+    document.getElementById("resumen-reinos").textContent = reinosExplorados.size;
+    document.getElementById("resumen-por-identificar").textContent = publicaciones.filter((p) => !p.especie).length;
+    document.getElementById("resumen-comentarios").textContent = comentarios;
+}
+
+// ===== Filtros por reino =====
+function renderizarFiltros() {
+    filtrosReino.innerHTML = "";
+
+    ["Todos", ...Object.keys(REINOS)].forEach((reino) => {
+        const total = reino === "Todos"
+            ? publicaciones.length
+            : publicaciones.filter((p) => p.reino === reino).length;
+
+        // "Sin clasificar" solo aparece si hay hallazgos así
+        if (reino === "Sin Clasificar" && total === 0) return;
+
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.className = "filtro-reino";
+        boton.dataset.reino = reino;
+        boton.setAttribute("aria-pressed", String(reino === filtroActual));
+        boton.textContent = reino === "Todos" ? "Todos" : `${REINOS[reino]} ${nombreReino(reino)}`;
+
+        const contador = document.createElement("span");
+        contador.className = "filtro-contador";
+        contador.textContent = total;
+        boton.appendChild(contador);
+
+        filtrosReino.appendChild(boton);
     });
 }
 
-// ===== Generar filas =====
-const lista = document.getElementById("lista-publicaciones");
+filtrosReino.addEventListener("click", (e) => {
+    const boton = e.target.closest(".filtro-reino");
+    if (!boton) return;
+    filtroActual = boton.dataset.reino;
+    renderizar();
+});
 
-for (let i = 0; i < publicaciones.length; i++) {
-    const publicacion = publicaciones[i];
+buscador.addEventListener("input", () => renderizar());
 
-    const li = document.createElement("li");
-    li.classList.add("publicacion-fila", "row", "g-0", "align-items-center");
-    li.dataset.id = publicacion.id;
+// ===== Vista cuadrícula / lista =====
+const botonesVista = document.querySelectorAll("[data-vista]");
 
-    li.innerHTML = `
-        <div class="col-auto pe-3">
-            <input class="form-check-input m-0 check-publicacion" type="checkbox" aria-label="Seleccionar publicación" />
-        </div>
-        <div class="col text-truncate pe-3 fw-semibold fila-titulo">${publicacion.titulo}</div>
-        <div class="col-auto d-flex gap-2 pe-3">
-            <button type="button" class="btn btn-sm btn-outline-verde btn-editar" title="Modificar" aria-label="Modificar publicación">${ICONO_EDITAR}</button>
-            <button type="button" class="btn btn-sm btn-outline-oscuro btn-eliminar" title="Eliminar" aria-label="Eliminar publicación">${ICONO_ELIMINAR}</button>
-        </div>
-        <div class="col-auto text-end small text-muted">${publicacion.fecha}</div>
-    `;
+function aplicarVista() {
+    lista.classList.toggle("vista-cuadricula", vistaActual === "cuadricula");
+    lista.classList.toggle("vista-lista", vistaActual === "lista");
+    botonesVista.forEach((boton) => {
+        const activa = boton.dataset.vista === vistaActual;
+        boton.classList.toggle("active", activa);
+        boton.setAttribute("aria-pressed", String(activa));
+    });
+}
 
-    lista.appendChild(li);
+botonesVista.forEach((boton) => {
+    boton.addEventListener("click", () => {
+        vistaActual = boton.dataset.vista;
+        guardarPreferencia("vistaHallazgos", vistaActual);
+        aplicarVista();
+    });
+});
+
+// ===== Generar tarjetas =====
+function crearTarjeta(publicacion) {
+    const nodo = plantilla.content.firstElementChild.cloneNode(true);
+    nodo.dataset.id = publicacion.id;
+
+    const imagen = nodo.querySelector(".hallazgo-imagen");
+    imagen.src = publicacion.imagen;
+    imagen.alt = publicacion.titulo;
+
+    nodo.querySelector(".hallazgo-reino").textContent =
+        `${REINOS[publicacion.reino] || ""} ${nombreReino(publicacion.reino)}`;
+
+    const check = nodo.querySelector(".check-publicacion");
+    check.checked = seleccionados.has(publicacion.id);
+    check.setAttribute("aria-label", `Seleccionar «${publicacion.titulo}»`);
+    nodo.classList.toggle("seleccionada", check.checked);
+
+    nodo.querySelector(".hallazgo-titulo").textContent = publicacion.titulo;
+
+    // Especie identificada en cursiva o etiqueta "Por identificar"
+    const especie = nodo.querySelector(".hallazgo-especie");
+    if (publicacion.especie) {
+        const nombre = document.createElement("em");
+        nombre.textContent = publicacion.especie;
+        especie.append(nombre);
+    } else {
+        const etiqueta = document.createElement("span");
+        etiqueta.className = "etiqueta-identificar";
+        etiqueta.textContent = "Por identificar";
+        especie.append(etiqueta);
+    }
+    if (publicacion.grupo) especie.append(` · ${publicacion.grupo}`);
+
+    nodo.querySelector(".hallazgo-lugar").textContent = publicacion.ubicacion || "Sin ubicación";
+    nodo.querySelector(".hallazgo-fecha").textContent = formatearFecha(publicacion.fecha);
+    // Solo el número, para que el texto no crezca y la tarjeta conserve su tamaño
+    const comentarios = nodo.querySelector(".hallazgo-comentarios");
+    comentarios.textContent = publicacion.comentarios.length;
+    comentarios.parentElement.title = textoComentarios(publicacion.comentarios.length);
+    comentarios.parentElement.setAttribute("aria-label", textoComentarios(publicacion.comentarios.length));
+
+    nodo.querySelector(".btn-editar").setAttribute("aria-label", `Editar «${publicacion.titulo}»`);
+    nodo.querySelector(".btn-eliminar").setAttribute("aria-label", `Eliminar «${publicacion.titulo}»`);
+
+    return nodo;
+}
+
+function renderizar() {
+    const visibles = publicacionesVisibles();
+
+    // Solo se puede tener seleccionado lo que se está viendo
+    const idsVisibles = new Set(visibles.map((p) => p.id));
+    seleccionados.forEach((id) => {
+        if (!idsVisibles.has(id)) seleccionados.delete(id);
+    });
+
+    lista.replaceChildren(...visibles.map(crearTarjeta));
+
+    // Estado vacío según el motivo
+    const sinResultados = visibles.length === 0;
+    estadoVacio.classList.toggle("d-none", !sinResultados);
+    if (sinResultados) {
+        const hayBusqueda = buscador.value.trim() !== "";
+        document.getElementById("estado-vacio-titulo").textContent = publicaciones.length === 0
+            ? "Tu cuaderno de campo está vacío"
+            : hayBusqueda
+                ? "No encontramos hallazgos con esa búsqueda"
+                : `Aún no tienes hallazgos de ${nombreReino(filtroActual)}`;
+        document.getElementById("estado-vacio-texto").textContent = hayBusqueda
+            ? "Prueba con otro nombre, especie o lugar."
+            : "Sal a observar y comparte lo que encuentres.";
+    }
+
+    actualizarResumen();
+    renderizarFiltros();
+    actualizarContador(visibles.length);
+    actualizarSeleccion();
 }
 
 // ===== Contador =====
-// ===== Contador =====
-function actualizarContador() {
-    const total = lista.children.length;
-    document.getElementById("contador-publicaciones").textContent =
-        total > 0 ? `Se encontraron ${total} publicaciones` : "Sin publicaciones";
+function actualizarContador(visibles) {
+    const total = publicaciones.length;
+    document.getElementById("contador-publicaciones").textContent = visibles === total
+        ? `${total} ${total === 1 ? "hallazgo" : "hallazgos"}`
+        : `Mostrando ${visibles} de ${total}`;
 }
 
-actualizarContador();
-
-// ===== Modal =====
+// ===== Modal de detalle =====
 const modalElemento = document.getElementById("modal-publicacion");
 const modal = new bootstrap.Modal(modalElemento);
 let publicacionActual = null;
@@ -84,10 +353,19 @@ function renderizarComentarios(comentarios) {
     const contenedor = document.getElementById("modal-comentarios");
     contenedor.innerHTML = "";
 
+    if (comentarios.length === 0) {
+        const vacio = document.createElement("p");
+        vacio.className = "sin-comentarios";
+        vacio.textContent = "Todavía nadie comenta este hallazgo.";
+        contenedor.appendChild(vacio);
+        return;
+    }
+
     comentarios.forEach((comentario) => {
         const p = document.createElement("p");
+        p.classList.add("ir-comentario");
         const autor = document.createElement("strong");
-        autor.textContent = comentario.usuario + ": ";
+        autor.textContent = comentario.usuario;
         p.appendChild(autor);
         p.append(comentario.texto); // texto plano, no HTML
         contenedor.appendChild(p);
@@ -103,46 +381,84 @@ function abrirModal(publicacion) {
     document.getElementById("modal-titulo").textContent = publicacion.titulo;
     document.getElementById("modal-descripcion").textContent = publicacion.descripcion;
 
-    const datos = document.getElementById("modal-datos");
-    datos.innerHTML = "";
-    for (const [clave, valor] of Object.entries(publicacion.datos)) {
+    const datos = {
+        Reino: `${REINOS[publicacion.reino] || ""} ${nombreReino(publicacion.reino)}`,
+        Grupo: publicacion.grupo || publicacion.subcategoria || "—",
+        Especie: publicacion.especie || "Por identificar",
+        Ubicación: publicacion.ubicacion || "Sin ubicación",
+        Fecha: formatearFecha(publicacion.fecha),
+    };
+
+    const lista = document.getElementById("modal-datos");
+    lista.innerHTML = "";
+    for (const [clave, valor] of Object.entries(datos)) {
+        const grupo = document.createElement("div");
         const dt = document.createElement("dt");
         dt.textContent = clave;
         const dd = document.createElement("dd");
         dd.textContent = valor;
-        datos.append(dt, dd);
+        grupo.append(dt, dd);
+        lista.appendChild(grupo);
     }
 
     renderizarComentarios(publicacion.comentarios);
     modal.show();
 }
 
-// Un solo listener para toda la lista
+// Un solo listener para todas las tarjetas
 lista.addEventListener("click", (e) => {
     if (e.target.closest(".check-publicacion")) return; // el checkbox no abre el modal
 
-    const fila = e.target.closest(".publicacion-fila");
-    if (!fila) return;
+    const tarjeta = e.target.closest(".hallazgo");
+    if (!tarjeta) return;
 
-    const id = Number(fila.dataset.id);
-    const indice = publicaciones.findIndex((p) => p.id === id);
+    const publicacion = buscarPublicacion(Number(tarjeta.dataset.id));
+    if (!publicacion) return;
 
     if (e.target.closest(".btn-eliminar")) {
-        if (!confirm(`¿Eliminar "${publicaciones[indice].titulo}"?`)) return;
-        publicaciones.splice(indice, 1);
-        fila.remove();
-        actualizarContador();
-        actualizarSeleccion();
+        pedirConfirmacion(
+            "¿Eliminar hallazgo?",
+            `Se eliminará "${publicacion.titulo}". Esta acción no se puede deshacer.`,
+            () => eliminar([publicacion.id])
+        );
         return;
     }
 
     if (e.target.closest(".btn-editar")) {
-        abrirEditor(publicaciones[indice], fila);
+        abrirEditor(publicacion);
         return;
     }
 
-    abrirModal(publicaciones[indice]);
+    abrirModal(publicacion);
 });
+
+// ===== Confirmación para eliminar (en lugar de confirm) =====
+const modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
+const tituloModalEliminar = document.getElementById("tituloModalEliminar");
+const mensajeEliminar = document.getElementById("mensajeEliminar");
+let accionEliminar = null;
+
+function pedirConfirmacion(titulo, mensaje, accion) {
+    tituloModalEliminar.textContent = titulo;
+    mensajeEliminar.textContent = mensaje;
+    accionEliminar = accion;
+    modalEliminar.show();
+}
+
+document.getElementById("btnConfirmarEliminar").addEventListener("click", () => {
+    if (accionEliminar) accionEliminar();
+    accionEliminar = null;
+    modalEliminar.hide();
+});
+
+function eliminar(ids) {
+    ids.forEach((id) => {
+        const indice = publicaciones.findIndex((p) => p.id === id);
+        if (indice !== -1) publicaciones.splice(indice, 1);
+        seleccionados.delete(id);
+    });
+    renderizar();
+}
 
 // ===== Comentar =====
 const inputComentario = document.getElementById("modal-input");
@@ -153,7 +469,12 @@ function agregarComentario() {
 
     publicacionActual.comentarios.push({ usuario: "Tú", texto });
     renderizarComentarios(publicacionActual.comentarios);
+
+    // Bajar hasta el comentario nuevo dentro de la caja de comentarios
+    const contenedor = document.getElementById("modal-comentarios");
+    contenedor.scrollTop = contenedor.scrollHeight;
     inputComentario.value = "";
+    renderizar();
 }
 
 document.getElementById("modal-comentar").addEventListener("click", agregarComentario);
@@ -174,16 +495,14 @@ const editarTitulo = document.getElementById("editarTitulo");
 const editarDescripcion = document.getElementById("editarDescripcion");
 
 let publicacionEditando = null;
-let filaEditando = null;
 let nuevaImagen = null;
 
 function mostrarSubcategoria() {
     editarContenedorSub.classList.toggle("d-none", editarCategoria.value !== "Animalia");
 }
 
-function abrirEditor(publicacion, fila) {
+function abrirEditor(publicacion) {
     publicacionEditando = publicacion;
-    filaEditando = fila;
     nuevaImagen = null;
 
     // Limpiar validaciones y archivo anterior
@@ -192,7 +511,7 @@ function abrirEditor(publicacion, fila) {
 
     // Rellenar con los datos actuales
     editarPreview.src = publicacion.imagen;
-    editarCategoria.value = publicacion.categoria;
+    editarCategoria.value = publicacion.reino;
     editarSubCategoria.value = publicacion.subcategoria || "";
     editarTitulo.value = publicacion.titulo;
     editarDescripcion.value = publicacion.descripcion;
@@ -217,15 +536,15 @@ formEditar.addEventListener("submit", (e) => {
 
     const titulo = editarTitulo.value.trim();
     const descripcion = editarDescripcion.value.trim();
-    const categoria = editarCategoria.value;
+    const reino = editarCategoria.value;
     const subcategoria = editarSubCategoria.value;
 
     // Validación
     const errores = [
         [editarTitulo, !titulo],
         [editarDescripcion, !descripcion],
-        [editarCategoria, !categoria],
-        [editarSubCategoria, categoria === "Animalia" && !subcategoria],
+        [editarCategoria, !reino],
+        [editarSubCategoria, reino === "Animalia" && !subcategoria],
     ];
 
     let valido = true;
@@ -235,17 +554,19 @@ formEditar.addEventListener("submit", (e) => {
     });
     if (!valido) return;
 
-    // Actualizar el objeto
+    // Si cambia el reino o la subcategoría, el grupo anterior ya no aplica
+    const nuevaSub = reino === "Animalia" ? subcategoria : "";
+    if (reino !== publicacionEditando.reino || nuevaSub !== publicacionEditando.subcategoria) {
+        publicacionEditando.grupo = "";
+    }
+
     publicacionEditando.titulo = titulo;
     publicacionEditando.descripcion = descripcion;
-    publicacionEditando.categoria = categoria;
-    publicacionEditando.subcategoria = categoria === "Animalia" ? subcategoria : "";
-    publicacionEditando.datos = { ...publicacionEditando.datos, Categoría: categoria };
+    publicacionEditando.reino = reino;
+    publicacionEditando.subcategoria = nuevaSub;
     if (nuevaImagen) publicacionEditando.imagen = nuevaImagen;
 
-    // Actualizar la fila en la lista
-    filaEditando.querySelector(".fila-titulo").textContent = titulo;
-
+    renderizar();
     modalEditar.hide();
 });
 
@@ -254,55 +575,85 @@ formEditar.addEventListener("submit", (e) => {
 const checkTodas = document.getElementById("seleccionar-todas");
 const btnEliminarSeleccionadas = document.getElementById("btn-eliminar-seleccionadas");
 
-function obtenerSeleccionados() {
-    return [...lista.querySelectorAll(".check-publicacion:checked")];
-}
-
 function actualizarSeleccion() {
-    const todos = lista.querySelectorAll(".check-publicacion");
-    const seleccionados = obtenerSeleccionados();
+    const checks = [...lista.querySelectorAll(".check-publicacion")];
+    const marcados = checks.filter((check) => check.checked);
 
-    // Resaltar filas seleccionadas
-    todos.forEach((check) => {
-        check.closest(".publicacion-fila").classList.toggle("seleccionada", check.checked);
+    // Resaltar tarjetas seleccionadas
+    checks.forEach((check) => {
+        check.closest(".hallazgo").classList.toggle("seleccionada", check.checked);
     });
 
-    // Checkbox general: marcado, vacío o a medias
-    checkTodas.checked = todos.length > 0 && seleccionados.length === todos.length;
-    checkTodas.indeterminate = seleccionados.length > 0 && seleccionados.length < todos.length;
+    // Checkbox general: marcado, vacío o a medias (sobre lo que se ve)
+    checkTodas.checked = checks.length > 0 && marcados.length === checks.length;
+    checkTodas.indeterminate = marcados.length > 0 && marcados.length < checks.length;
+    checkTodas.disabled = checks.length === 0;
 
     // Botón de eliminar
-    btnEliminarSeleccionadas.classList.toggle("d-none", seleccionados.length === 0);
-    btnEliminarSeleccionadas.textContent = `Eliminar seleccionadas (${seleccionados.length})`;
+    btnEliminarSeleccionadas.classList.toggle("d-none", seleccionados.size === 0);
+    btnEliminarSeleccionadas.textContent = `Eliminar seleccionadas (${seleccionados.size})`;
 }
 
-// Al marcar o desmarcar un checkbox de fila
+// Al marcar o desmarcar un hallazgo
 lista.addEventListener("change", (e) => {
-    if (e.target.classList.contains("check-publicacion")) actualizarSeleccion();
+    if (!e.target.classList.contains("check-publicacion")) return;
+    const id = Number(e.target.closest(".hallazgo").dataset.id);
+    if (e.target.checked) seleccionados.add(id);
+    else seleccionados.delete(id);
+    actualizarSeleccion();
 });
 
-// Seleccionar o deseleccionar todas
+// Seleccionar o deseleccionar todos los visibles
 checkTodas.addEventListener("change", () => {
     lista.querySelectorAll(".check-publicacion").forEach((check) => {
         check.checked = checkTodas.checked;
+        const id = Number(check.closest(".hallazgo").dataset.id);
+        if (check.checked) seleccionados.add(id);
+        else seleccionados.delete(id);
     });
     actualizarSeleccion();
 });
 
 // Eliminar las seleccionadas
 btnEliminarSeleccionadas.addEventListener("click", () => {
-    const seleccionados = obtenerSeleccionados();
-    if (seleccionados.length === 0) return;
-    if (!confirm(`¿Eliminar ${seleccionados.length} publicación(es)?`)) return;
+    const total = seleccionados.size;
+    if (total === 0) return;
 
-    seleccionados.forEach((check) => {
-        const fila = check.closest(".publicacion-fila");
-        const id = Number(fila.dataset.id);
-        const indice = publicaciones.findIndex((p) => p.id === id);
-        if (indice !== -1) publicaciones.splice(indice, 1);
-        fila.remove();
-    });
-
-    actualizarContador();
-    actualizarSeleccion();
+    pedirConfirmacion(
+        "¿Eliminar hallazgos?",
+        `Se eliminarán ${total} ${total === 1 ? "hallazgo" : "hallazgos"}. Esta acción no se puede deshacer.`,
+        () => eliminar([...seleccionados])
+    );
 });
+
+// ===== Modo oscuro =====
+// El tema inicial lo aplica el script del <head>; aquí solo se cambia y se guarda
+const btnTema = document.getElementById("btn-tema");
+
+function temaActual() {
+    return document.documentElement.dataset.tema === "oscuro" ? "oscuro" : "claro";
+}
+
+function pintarBotonTema() {
+    const oscuro = temaActual() === "oscuro";
+    btnTema.setAttribute("aria-pressed", String(oscuro));
+    btnTema.querySelector("i").className = `bi ${oscuro ? "bi-sun-fill" : "bi-moon-stars-fill"} me-2`;
+    btnTema.querySelector("span").textContent = oscuro ? "Modo claro" : "Modo oscuro";
+    const accion = oscuro ? "Activar modo claro" : "Activar modo oscuro";
+    btnTema.setAttribute("aria-label", accion);
+    btnTema.title = accion;
+}
+
+btnTema.addEventListener("click", () => {
+    const nuevo = temaActual() === "oscuro" ? "claro" : "oscuro";
+    if (nuevo === "oscuro") document.documentElement.dataset.tema = "oscuro";
+    else delete document.documentElement.dataset.tema;
+    guardarPreferencia("temaInstaRama", nuevo);
+    pintarBotonTema();
+});
+
+pintarBotonTema();
+
+// ===== Inicio =====
+aplicarVista();
+renderizar();
