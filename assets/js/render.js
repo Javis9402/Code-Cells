@@ -79,6 +79,7 @@ const layouts = {
     index: { header: header_index, footer: footer_index },
     acercaDe: { header: header_acercaDe, footer: footer_acercaDe },
     gestionarPublicaciones: { header: header_gestionarPublicaciones, footer: null },
+    perfil: { header: header_gestionarPublicaciones, footer: null }, // mismo menú que las demás páginas con sesión
     publicacion: { header: header_publicacion, footer: null },
     login: { header: header_login, footer: null },
     registro: { header: header_registro, footer: null },

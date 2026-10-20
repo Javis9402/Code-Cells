@@ -3,51 +3,37 @@ const BASE_URL = "http://localhost:8080/api";
 
 //get all posts
 export const getPosts = async function () {
-    const repose = await fetch(`${BASE_URL}/posts`);
-    const data = await repose.json();
-    if (!repose.ok) throw new Error("Error en la peticion: " + repose.status);
-    return data;
+    const response = await fetch(`${BASE_URL}/posts`);
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 };
 
 //get post by id
+//Lanza el error para que la página pueda avisarle al usuario
 export const getpostById = async function (id) {
-    try {
-        const response = await fetch(`${BASE_URL}/posts/${id}`);
-        const data = await response.json();
-        return data;
-    }
-    catch (error) {
-        console.error("Error al obtener el post por ID: ", error.message);
-    }
+    const response = await fetch(`${BASE_URL}/posts/${id}`);
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 }
 
 //get all post by user id
+//Lanza el error para que la página pueda avisarle al usuario
 export const getPostsByUserId = async function (userId) {
-    try {
-        const response = await fetch(`${BASE_URL}/user/${userId}/posts`);
-        const data = await response.json();
-        return data;
-    }
-    catch (error) {
-        console.error("Error al obtener los posts por ID de usuario: ", error.message);
-    }
+    const response = await fetch(`${BASE_URL}/user/${userId}/posts`);
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 }
 
 //post a new post by user id
+//Lanza el error para que la página pueda avisarle al usuario
 export const createPost = async function (userId, postObject) {
-    try {
-        const response = await fetch(`${BASE_URL}/user/${userId}/posts`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postObject),
-        });
-        const data = await response.json();
-        console.log(`Post creado exitosamente: ${response.ok} , Post: ${data}`);
-        return data;
-    }
-    catch (error) {
-        console.error("Error al crear el post: ", error.message);
-    }
+    const response = await fetch(`${BASE_URL}/user/${userId}/posts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postObject),
+    });
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 }
 
 //Put post by id post

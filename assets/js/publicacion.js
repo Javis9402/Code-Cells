@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const alertaError = document.getElementById('alertaError');
     const alertaCategoria = document.getElementById('alertaCategoria');
     const alertaTitulo = document.getElementById('alertaTitulo');
+    // La alerta roja también se usa si falla guardar, así que guardamos su texto original
+    const TEXTO_FALTA_IMAGEN = alertaError?.querySelector('div').textContent;
 
     // Variables publicación terminada
     const contenedorFormulario = document.getElementById('contenedorFormulario');
@@ -170,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Validaciones
                 if (!tieneArchivo) {
                     // Alerta roja: Falta foto
+                    alertaError.querySelector('div').textContent = TEXTO_FALTA_IMAGEN;
                     alertaError.classList.remove('d-none');
                     alertaError.classList.add('d-flex', 'show');
                 }
@@ -195,6 +198,42 @@ document.addEventListener('DOMContentLoaded', function () {
                     alertaAdvertencia.classList.add('d-flex', 'show');
                 }
                 else {
+                    // Primero se guarda en el backend; solo si sale bien se muestra la publicación terminada
+                    const botonPublicar = formulario.querySelector('button[type="submit"]');
+                    botonPublicar.disabled = true;
+                    try {
+                        //Convertimos la imagen a un array de bytes
+                        const fotobase64 = await convertImageToBytes(inputArchivo)
+
+                        // Construcción del objeto JS
+                        const nuevaPublicacion = {
+                            // id: crypto.randomUUID(), // Genera un ID único
+                            usuario: userLogged, // ID del usuario (Fijo mientras terminan el login y registro de user para que sea dinamico)
+                            title: inputTitulo.value.trim(),
+                            imagen: {
+                                nombre: inputArchivo.files[0]?.name || null,
+                                tamano: inputArchivo.files[0]?.size || null,
+                                tipo: inputArchivo.files[0]?.type || null
+                            },
+                            photo: fotobase64, // Array de bytes de la imagen
+                            categoria: selectCategoria.value,
+                            subcategoria: selectSubCategoria.value || null,
+                            description: textarea.value.trim(),
+                            datetime: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
+                            comentarios: []
+                        };
+
+                        // Llamada a la función para guardar la publicación en el backend
+                        await createPost(USER_ID_PRUEBA, nuevaPublicacion);
+                    } catch (error) {
+                        // Alerta roja con el motivo; el formulario se queda como estaba para reintentar
+                        alertaError.querySelector('div').textContent = `No se pudo publicar tu hallazgo: ${error.message}`;
+                        alertaError.classList.remove('d-none');
+                        alertaError.classList.add('d-flex', 'show');
+                        botonPublicar.disabled = false;
+                        return;
+                    }
+
                     // Lógica de éxito
                     if (contenedorFormulario && contenedorPublicacionTerminada && imagenPublicada && textoPublicado && insigniaCategoria) {
                         // Inserta la imagen y texto de la publicación
@@ -218,39 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Alerta de éxito
                     alertaExito.classList.remove('d-none');
                     alertaExito.classList.add('d-flex', 'show');
-
-                    // Objeto JavaScript (JSON)
-
-                    //Convertimos la imagen a un array de bytes
-                    const fotobase64 = await convertImageToBytes(inputArchivo)
-
-                    // Construcción del objeto JS
-                    const nuevaPublicacion = {
-                        // id: crypto.randomUUID(), // Genera un ID único 
-                        usuario: userLogged, // ID del usuario (Fijo mientras terminan el login y registro de user para que sea dinamico)
-                        title: inputTitulo.value.trim(),
-                        imagen: {
-                            nombre: inputArchivo.files[0]?.name || null,
-                            tamano: inputArchivo.files[0]?.size || null,
-                            tipo: inputArchivo.files[0]?.type || null
-                        },
-                        photo: fotobase64, // Array de bytes de la imagen
-                        categoria: selectCategoria.value,
-                        subcategoria: selectSubCategoria.value || null,
-                        description: textarea.value.trim(),
-                        datetime: new Date().toISOString(), // Formato estándar "YYYY-MM-DDTHH:mm:ss.sssZ"
-                        comentarios: []
-                    };
-
-                    // Conversión a cadena  texto JSON
-                    const publicacionJSON = JSON.stringify(nuevaPublicacion, null, 2); // El '2' es formato mejorado para imprimir
-
-                    console.log("Objeto JSON listo:");
-                    console.log(publicacionJSON);
-
-                    // Llamada a la función para guardar la publicación en el backend
-                    createPost(USER_ID_PRUEBA, nuevaPublicacion);
-
 
                     // Limpia formulario automáticamente
                     formulario.reset();

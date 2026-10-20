@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Si no hay sesión, al login antes de pintar nada -->
+    <script>
+        if (localStorage.getItem("usuarioId") == null) {
+            window.location.replace("/pages/login.html");
+        }
+    </script>
+
+    <!--TODO  FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <!--! FIN  FUENTES -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi perfil | InstaRama</title>
+    <!-- CSS Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- CSS páginas (los mismos que Mis hallazgos, para que se vean iguales) -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/contactanos.css" />
+    <link rel="stylesheet" href="../assets/css/publicacion.css" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/gestionarPublicacion.css">
+    <link rel="stylesheet" href="../assets/css/perfil.css">
+    <!-- Aplica el tema guardado antes de pintar, para que no parpadee -->
+    <script>
+        (function () {
+            var tema = null;
+            try { tema = localStorage.getItem("temaInstaRama"); } catch (e) { }
+            if (!tema && window.matchMedia) {
+                tema = window.matchMedia("(prefers-color-scheme: dark)").matches ? "oscuro" : "claro";
+            }
+            if (tema === "oscuro") document.documentElement.dataset.tema = "oscuro";
+        })();
+    </script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!--? Contenedor de fondo -->
+    <div class="fondo-responsivo flex-grow-1 py-4 py-md-5">
+        <main class="cuaderno perfil container">
+
+            <!--* Encabezado -->
+            <div class="cuaderno-encabezado">
+                <div class="cuaderno-encabezado-texto">
+                    <p class="cuaderno-etiqueta"><i class="bi bi-person-badge-fill me-1"></i>Mi cuenta</p>
+                    <h1 class="cuaderno-titulo" id="perfil-nombre">Mi perfil</h1>
+                    <p class="cuaderno-subtitulo" id="perfil-correo">Cargando tus datos...</p>
+                </div>
+                <div class="cuaderno-acciones">
+                    <a href="./feed.html" class="btn btn-outline-oscuro">
+                        <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Volver al feed
+                    </a>
+                </div>
+            </div>
+
+            <!--* Resumen -->
+            <ul class="cuaderno-resumen list-unstyled">
+                <li><strong id="perfil-publicaciones">—</strong>Hallazgos publicados</li>
+                <li><strong id="perfil-rol">—</strong>Tipo de cuenta</li>
+            </ul>
+
+            <!--* Aviso general (errores al cargar o eliminar) -->
+            <div class="alert aviso-cuaderno d-none" role="alert" id="perfil-aviso"></div>
+
+            <!--* Editar datos -->
+            <section class="perfil-seccion" aria-labelledby="titulo-editar">
+                <h2 class="perfil-seccion-titulo" id="titulo-editar">Editar mis datos</h2>
+
+                <form id="perfil-form" class="perfil-form" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="perfil-input-nombre" class="form-label fw-semibold">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="perfil-input-nombre" maxlength="50"
+                                autocomplete="username" required />
+                            <div class="invalid-feedback">Escribe un nombre de máximo 50 caracteres.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="perfil-input-correo" class="form-label fw-semibold">Correo</label>
+                            <input type="email" class="form-control" id="perfil-input-correo" maxlength="100"
+                                autocomplete="email" required />
+                            <div class="invalid-feedback">Escribe un correo válido.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="perfil-input-password" class="form-label fw-semibold">Nueva contraseña</label>
+                            <input type="password" class="form-control" id="perfil-input-password"
+                                autocomplete="new-password" placeholder="Déjala vacía para no cambiarla" />
+                            <div class="invalid-feedback">Debe tener al menos 8 caracteres.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="perfil-input-confirmar" class="form-label fw-semibold">Confirmar contraseña</label>
+                            <input type="password" class="form-control" id="perfil-input-confirmar"
+                                autocomplete="new-password" />
+                            <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                        </div>
+                    </div>
+
+                    <div class="alert d-none mt-3 mb-0" role="status" id="perfil-form-aviso"></div>
+
+                    <div class="perfil-form-acciones">
+                        <button type="submit" class="btn btn-verde" id="perfil-guardar">
+                            <i class="bi bi-check2 me-2" aria-hidden="true"></i>Guardar cambios
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!--* Zona de peligro -->
+            <section class="perfil-seccion perfil-peligro" aria-labelledby="titulo-peligro">
+                <h2 class="perfil-seccion-titulo" id="titulo-peligro">Eliminar cuenta</h2>
+                <p class="mb-3">Se borrarán tu cuenta, tus hallazgos, tus comentarios y tus reportes. Esta acción no
+                    se puede deshacer.</p>
+                <button type="button" class="btn btn-outline-oscuro" data-bs-toggle="modal"
+                    data-bs-target="#modalEliminarCuenta">
+                    <i class="bi bi-trash3 me-2" aria-hidden="true"></i>Eliminar mi cuenta
+                </button>
+            </section>
+        </main>
+    </div>
+
+    <!--TODO : Modal de confirmación para eliminar la cuenta -->
+    <div class="modal fade" id="modalEliminarCuenta" tabindex="-1" aria-labelledby="tituloEliminarCuenta"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title fs-5 fw-bold" id="tituloEliminarCuenta">¿Eliminar tu cuenta?</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <p>Perderás todos tus hallazgos y comentarios. Para confirmar, escribe tu nombre de usuario:</p>
+                    <input type="text" class="form-control" id="eliminar-confirmacion" autocomplete="off"
+                        aria-label="Escribe tu nombre de usuario para confirmar" />
+                    <div class="alert aviso-cuaderno d-none mt-3 mb-0" role="alert" id="eliminar-aviso"></div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-oscuro" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-oscuro fw-bold" id="btn-eliminar-cuenta" disabled>
+                        <i class="bi bi-trash3 me-2" aria-hidden="true"></i>Sí, eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--TODO : FIN DE Modal de confirmación para eliminar la cuenta -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script type="module" src="../assets/js/perfil.js"></script>
+    <script src="../assets/js/render.js" type="module"></script>
+</body>
+
+</html>
