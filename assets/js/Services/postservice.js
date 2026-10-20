@@ -51,35 +51,25 @@ export const createPost = async function (userId, postObject) {
 }
 
 //Put post by id post
+//Lanza el error para que la página pueda avisarle al usuario
 export const updatePost = async function (postId, postObject) {
-    try {
-        const response = await fetch(`${BASE_URL}/posts/${postId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postObject),
-        });
-        const data = await response.json();
-        console.log(`Post actualizado exitosamente: ${response.ok} , Post: ${data}`);
-        return data;
-    }
-    catch (error) {
-        console.error("Error al actualizar el post: ", error.message);
-    }
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postObject),
+    });
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 }
 
 //Delete post by id post
+//Lanza el error para que la página pueda avisarle al usuario
 export const deletePost = async function (postId) {
-    try {
-        const response = await fetch(`${BASE_URL}/posts/${postId}`, {
-            method: "DELETE",
-        });
-        const data = await response.json();
-        console.log(`Post eliminado exitosamente: ${response.ok}`);
-        return data;
-    }
-    catch (error) {
-        console.error("Error al eliminar el post: ", error.message);
-    }
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
+        method: "DELETE",
+    });
+    if (!response.ok) throw new Error("Error en la peticion: " + response.status);
+    return response.json();
 }
 
 //Metodo para convertir la imagen a un array de bytes
