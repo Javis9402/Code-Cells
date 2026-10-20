@@ -298,35 +298,57 @@
           </div>
         </div>
 
-        <!--! Columna Derecha: Buscador Identificador de Reinos -->
-        <div class="col-12 col-lg-5 col-xl-4">
-          <div class="card p-4 shadow-sm h-100">
-            <!--? IDENTIFICACIÓN RÁPIDA DEL REINO -->
-            <aside class="identificador-reino mb-0">
-              <div class="identificador-encabezado">
-                <span class="identificador-icono">🔍</span>
-                <div>
-                  <h6>¿No sabes a qué reino pertenece?</h6>
-                  <p>Escribe el nombre del organismo y te ayudamos a identificarlo.</p>
-                </div>
-              </div>
-              <div class="identificador-buscador">
-                <input type="text" id="inputBuscarReino" class="form-control" placeholder="Ej. salmonella, micelio, mariposa, cactus..." autocomplete="off" />
-              </div>
-              <div id="resultadoReino" class="resultado-reino d-none" aria-live="polite">
-                <img id="imagenReinoDetectado" src="../assets/img/publicacion/imagenPredeterminada.png" alt="Ejemplo del reino identificado" class="resultado-reino-imagen" />
-                <div class="resultado-reino-info">
-                  <span class="resultado-reino-etiqueta">Resultado probable</span>
-                  <strong id="nombreReinoDetectado">Reino</strong>
-                  <p id="descripcionReinoDetectado"></p>
-                </div>
-              </div>
-              <div class="identificador-ayuda">
-                <span>¿No encuentras tu organismo?</span>
-                <a href="reinos.html">Descúbrelo con preguntas →</a>
-              </div>
-            </aside>
-            <!--? FIN IDENTIFICACIÓN RÁPIDA DEL REINO -->
+      <!--! Columna Derecha: Buscador Identificador de Reinos -->
+<div class="col-12 col-lg-5 col-xl-4">
+  <div class="card p-4 shadow-sm h-100">
+    <!--? IDENTIFICACIÓN RÁPIDA DEL REINO -->
+    <aside class="identificador-reino mb-0">
+      <div class="identificador-encabezado">
+        <span class="identificador-icono">🔍</span>
+        <div>
+          <h6>¿No sabes a qué reino pertenece?</h6>
+          <p>Escribe el nombre del organismo y te ayudamos a identificarlo.</p>
+        </div>
+      </div>
+      <!--? BUSCADOR DEL REINO -->
+      <div class="identificador-buscador">
+        <input type="text" id="inputBuscarReino" class="form-control" placeholder="Ej. salmonella, micelio, mariposa, cactus..." autocomplete="off" />
+      </div>
+      <!--? ESTADO INICIAL DEL IDENTIFICADOR -->
+      <div id="estadoInicialReino" class="estado-inicial-reino">
+        <div class="estado-inicial-icono">🌿</div>
+        <h6>Escribe un organismo</h6>
+        <p>Prueba con alguno de estos ejemplos:</p>
+        <div class="ejemplos-reinos">
+          <button type="button" class="ejemplo-reino" data-organismo="salmonella">🧫 Salmonella</button>
+          <button type="button" class="ejemplo-reino" data-organismo="amiba">🦠 Sargazo</button>
+          <button type="button" class="ejemplo-reino" data-organismo="micelio">🍄 Micelio</button>
+          <button type="button" class="ejemplo-reino" data-organismo="cactus">🌿 Cactus</button>
+          <button type="button" class="ejemplo-reino" data-organismo="mariposa">🐾 Mariposa</button>
+        </div>
+        <small>El resultado aparecerá aquí automáticamente.</small>
+      </div>
+      <!--? FIN ESTADO INICIAL DEL IDENTIFICADOR -->
+      <!--? RESULTADO DEL IDENTIFICADOR -->
+      <div id="resultadoReino" class="resultado-reino d-none" aria-live="polite">
+        <img id="imagenReinoDetectado" src="../assets/img/publicacion/imagenPredeterminada.png" alt="Ejemplo del reino identificado" class="resultado-reino-imagen" />
+        <div class="resultado-reino-info">
+          <span class="resultado-reino-etiqueta">Resultado probable</span>
+          <strong id="nombreReinoDetectado">Reino</strong>
+          <p id="descripcionReinoDetectado"></p>
+        </div>
+      </div>
+      <!--? FIN RESULTADO DEL IDENTIFICADOR -->
+      <!--? AYUDA DEL IDENTIFICADOR -->
+      <div class="identificador-ayuda">
+        <span>¿No encuentras tu organismo?</span>
+        <a href="reinos.html">Descúbrelo con preguntas →</a>
+      </div>
+    </aside>
+    <!--? FIN IDENTIFICACIÓN RÁPIDA DEL REINO -->
+  </div>
+</div>
+<!--! Fin Columna Derecha: Buscador Identificador de Reinos -->
           </div>
         </div>
 
