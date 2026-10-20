@@ -1,0 +1,171 @@
+/* =========================================================
+   IDENTIFICACIÓN RÁPIDA DE REINOS
+   ========================================================= */
+.identificador-reino {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  border: 1px solid #C8D9C0;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #F8FBF5, #EDF1D6);
+}
+.identificador-encabezado {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.identificador-icono {
+  width: 2.7rem;
+  height: 2.7rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #9DC08B;
+  font-size: 1.25rem;
+}
+.identificador-encabezado h6 {
+  margin: 0 0 0.2rem;
+  color: #40513B;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.identificador-encabezado p {
+  margin: 0;
+  color: #61705A;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.identificador-buscador .form-control {
+  min-height: 2.8rem;
+  border: 1px solid #9DC08B;
+  border-radius: 0.65rem;
+  font-family: "Nunito", sans-serif;
+}
+.identificador-buscador .form-control:focus {
+  border-color: #609966;
+  box-shadow: 0 0 0 0.2rem rgba(96, 153, 102, 0.14);
+}
+.resultado-reino {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(96, 153, 102, 0.3);
+  border-radius: 0.9rem;
+  background-color: #FFFFFF;
+}
+.resultado-reino-imagen {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  background-color: #F4F7F1;
+}
+.resultado-reino-info {
+  min-width: 0;
+}
+.resultado-reino-etiqueta {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: #609966;
+  font-family: "Onest", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.resultado-reino-info strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #40513B;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1.05rem;
+}
+.resultado-reino-info p {
+  margin: 0;
+  color: #61705A;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.identificador-ayuda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.8rem;
+}
+.identificador-ayuda span {
+  color: #61705A;
+}
+.identificador-ayuda a {
+  color: #609966;
+  font-weight: 700;
+  text-decoration: none;
+}
+.identificador-ayuda a:hover {
+  color: #40513B;
+  text-decoration: underline;
+}
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 36rem) {
+  .identificador-reino {
+    padding: 1rem;
+  }
+  .resultado-reino {
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+  .resultado-reino-imagen {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  .identificador-ayuda {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 24rem) {
+  .resultado-reino {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .resultado-reino-imagen {
+    margin-inline: auto;
+  }
+  .identificador-encabezado {
+    flex-direction: column;
+  }
+}
+/* =========================================================
+   POSICIÓN DEL IDENTIFICADOR JUNTO AL FORMULARIO
+   ========================================================= */
+.fondo-responsivo .row.justify-content-center {
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.identificador-reino {
+  width: 100%;
+  max-width: 420px;
+  flex: 0 1 420px;
+  margin: 0;
+  align-self: flex-start;
+}
+@media (max-width: 992px) {
+  .identificador-reino {
+    max-width: 500px;
+    flex-basis: 100%;
+    margin-top: 1.5rem;
+  }
+}

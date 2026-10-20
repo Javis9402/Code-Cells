@@ -1,0 +1,404 @@
+/* =========================================
+   VARIABLES DE COLOR
+   ========================================= */
+:root {
+  --color-fondo: #edf1d6;
+  --color-verde-1: #609966;
+  --color-verde-2: #40513b;
+  --color-verde-3: #27391c;
+  --color-blanco: #ffffff;
+  --color-negro: #000000;
+  --color-card: #f9fbf2;
+  --color-error: #dc3545;
+}
+
+/* =========================================
+   ESTILOS GENERALES (SIN SCROLL)
+   ========================================= */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--ir-fondo);
+  font-family: "Onest", sans-serif;
+  color: var(--color-negro);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+/* =========================================
+   HEADER 
+   ========================================= */
+.header-instarama {
+  background-color: var(--ir-verde-claro);
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  overflow: hidden;
+}
+
+/* =========================================
+   LOGO 
+   ========================================= */
+.logo-container {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.logo-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  width: 140px;
+}
+
+.logo-link:hover .logo-img {
+  filter: brightness(0.7);
+  transition: filter 0.3s ease;
+}
+
+/* =========================================
+   TARJETA DE LOGIN
+   ========================================= */
+.login-card {
+  background-color: var(--color-card);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 35px 35px 30px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* =========================================
+   TÍTULO INICIO SESION
+   ========================================= */
+.form-title {
+  font-family: "Onest", sans-serif;
+  color: var(--color-verde-2);
+  font-weight: 500;
+  text-align: left;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+/* =========================================
+   INPUTS PERSONALIZADOS
+   ========================================= */
+.input-group-custom {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  opacity: 0.63;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.custom-input {
+  font-family: "Onest", sans-serif;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 15px 13px 45px;
+  background-color: var(--color-blanco);
+  color: var(--color-verde-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition:
+    box-shadow 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Estado de error: borde rojo suave */
+.custom-input.input-error {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.4);
+}
+
+.custom-input::placeholder {
+  color: rgba(96, 153, 102, 0.63);
+  font-family: "Onest", sans-serif;
+}
+
+.custom-input:focus {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(64, 81, 59, 0.2);
+  color: var(--color-verde-1);
+}
+
+.custom-input:focus::placeholder {
+  color: rgba(96, 153, 102, 1);
+}
+
+/* =========================================
+   TOGGLE PASSWORD (OJO)
+   ========================================= */
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: opacity 0.3s ease;
+  opacity: 0.7;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+.toggle-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Ajustar padding-right del input de contraseña */
+#password {
+  padding-right: 45px;
+}
+
+/* =========================================
+   ESPACIADO ENTRE PUNTOS DE LA CONTRASEÑA
+   ========================================= */
+input[type="password"]#password {
+  letter-spacing: 6px;
+}
+
+input[type="password"]#password::placeholder {
+  letter-spacing: normal;
+}
+
+/* =========================================
+   ALERTA DE LOGIN 
+   ========================================= */
+#loginError {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--color-error);
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-family: "Onest", sans-serif;
+}
+
+/* =========================================
+   LINK: ¿OLVIDASTE TU CONTRASEÑA?
+   ========================================= */
+.forgot-link {
+  font-family: "Onest", sans-serif;
+  color: rgba(64, 81, 59, 0.63);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: var(--color-verde-2);
+}
+
+/* =========================================
+   BOTÓN INGRESAR
+   ========================================= */
+.custom-btn {
+  font-family: "Onest", sans-serif;
+  background-color: var(--ir-verde);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 15px;
+  padding: 16px 20px;
+  font-weight: 400;
+  font-size: 1.3rem;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.custom-btn:hover {
+  background-color: var(--ir-verde-oscuro);
+  color: var(--color-blanco);
+  transform: scale(1.02);
+}
+
+.custom-btn:active {
+  background-color: var(--ir-verde-oscuro);
+}
+
+/* =========================================
+   TEXTO: ¿NO TIENES CUENTA?
+   ========================================= */
+.register-text {
+  font-family: "Onest", sans-serif;
+  color: rgba(64, 81, 59, 0.63);
+  font-size: 0.95rem;
+}
+
+.register-link {
+  color: rgba(96, 153, 102, 0.63);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: var(--color-verde-1);
+}
+
+/* =========================================
+   REGRESAR A LA PÁGINA PRINCIPAL
+   ========================================= */
+.back-container {
+  width: 100%;
+  max-width: 480px;
+  margin-top: 10px;
+  padding: 0 35px;
+  text-align: left;
+}
+
+.back-link {
+  font-family: "Onest", sans-serif;
+  color: rgba(64, 81, 59, 0.63);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--color-verde-2);
+}
+
+.back-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.63;
+}
+
+/* =========================================
+   DECORACIÓN: HONGOS 
+   ========================================= */
+.hongo {
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  display: none;
+}
+
+.hongo-izquierda {
+  left: 0;
+  width: 220px;
+  height: auto;
+}
+
+.hongo-derecha {
+  right: 0;
+  width: 220px;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .hongo {
+    display: block;
+  }
+}
+
+/* =========================================
+   RESPONSIVIDAD
+   ========================================= */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 25px 20px;
+  }
+
+  .logo-img {
+    width: 110px;
+  }
+
+  .form-title {
+    font-size: 1.4rem;
+  }
+
+  .custom-btn {
+    font-size: 1.15rem;
+    padding: 14px 18px;
+  }
+
+  .back-container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .header-instarama {
+    height: 55px;
+  }
+
+  .main-content {
+    padding: 8px 15px;
+  }
+}
+
+@media (max-height: 700px) {
+  .logo-img {
+    width: 100px;
+  }
+
+  .login-card {
+    padding: 25px 30px;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .custom-input {
+    padding: 11px 15px 11px 45px;
+  }
+
+  .custom-btn {
+    padding: 13px 18px;
+    font-size: 1.15rem;
+  }
+
+  .back-container {
+    margin-top: 6px;
+  }
+}

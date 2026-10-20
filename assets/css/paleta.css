@@ -1,0 +1,29 @@
+/* Paleta oficial de InstaRama  */
+:root {
+  --ir-verde-oscuro: #40513b;
+  --ir-verde: #609966;
+  --ir-verde-claro: #9dc08b;
+  --ir-crema: #edf1d6;
+  --ir-fondo: #f9fbf2;
+  --ir-blanco: #ffffff;
+}
+
+/* Botones de Bootstrap con la paleta */
+.btn-success {
+  --bs-btn-bg: var(--ir-verde);
+  --bs-btn-border-color: var(--ir-verde);
+  --bs-btn-hover-bg: var(--ir-verde-oscuro);
+  --bs-btn-hover-border-color: var(--ir-verde-oscuro);
+  --bs-btn-active-bg: var(--ir-verde-oscuro);
+  --bs-btn-active-border-color: var(--ir-verde-oscuro);
+}
+
+.btn-outline-success {
+  --bs-btn-color: var(--ir-verde-oscuro);
+  --bs-btn-border-color: var(--ir-verde);
+  --bs-btn-hover-bg: var(--ir-verde);
+  --bs-btn-hover-border-color: var(--ir-verde);
+  --bs-btn-hover-color: var(--ir-blanco);
+  --bs-btn-active-bg: var(--ir-verde-oscuro);
+  --bs-btn-active-border-color: var(--ir-verde-oscuro);
+}
