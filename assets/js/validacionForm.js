@@ -1,3 +1,8 @@
+import { enviarContacto } from "./Services/ContactFormService.js";
+
+//ID de usuario fijo mientras el login no está conectado al backend
+const USER_ID_PRUEBA = 26;
+
 //seleccionamos los elementos del DOM
 const form = document.getElementById('contactForm');
 const namee = document.getElementById('name');
@@ -12,8 +17,11 @@ const emailError = document.getElementById('emailError');
 const messageTypeError = document.getElementById('messageTypeError');
 const messageError = document.getElementById('messageError');
 
+//div donde se muestra si se envió o el error del backend
+const formResult = document.getElementById('formResult');
 
-form.addEventListener('submit', function (evento) {
+
+form.addEventListener('submit', async function (evento) {
 
     //evitamos el comportamiento predeterminado
     evento.preventDefault();
@@ -30,6 +38,8 @@ form.addEventListener('submit', function (evento) {
     emailError.textContent = "";
     messageTypeError.textContent = "";
     messageError.textContent = "";
+    formResult.className = "mt-3";
+    formResult.textContent = "";
 
     //validar nombre
     const espresionNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -77,10 +87,27 @@ form.addEventListener('submit', function (evento) {
         message.classList.add("is-invalid");
         messageError.textContent = "El mensaje debe tener al menos 10 caracteres.";
         esValido = false;
+    } else if (message.value.trim().length > 250) {
+        message.classList.add("is-invalid");
+        messageError.textContent = "El mensaje no debe exceder los 250 caracteres.";
+        esValido = false;
     }
 
     //solo se envía si no hubo errores
     if (esValido) {
-        sendFormByEmail(form);
+        try {
+            await enviarContacto({
+                characterType: messageType.value,
+                message: message.value.trim(),
+                email: email.value.trim(),
+                userId: USER_ID_PRUEBA,
+            });
+            form.reset();
+            formResult.className = "mt-3 alert alert-success";
+            formResult.textContent = "¡Mensaje enviado! Gracias por contactarnos.";
+        } catch (e) {
+            formResult.className = "mt-3 alert alert-danger";
+            formResult.textContent = `No se pudo enviar el mensaje: ${e.message}`;
+        }
     }
 });
