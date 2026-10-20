@@ -28,3 +28,15 @@ export function ensureLoggedIn(userId) {
     window.location.href = "/pages/login.html"
     return null;
 }
+
+// Claves que guarda login.js al iniciar sesión
+const CLAVES_SESION = ["sesionActiva", "usuarioId", "usuarioActivo", "nombreUsuario", "usuarioRol"];
+
+/**
+ * Borra la sesión del localStorage y manda al inicio.
+ * Las preferencias (tema, vista) se conservan porque no son de la sesión.
+ */
+export function cerrarSesion() {
+    CLAVES_SESION.forEach((clave) => localStorage.removeItem(clave));
+    window.location.replace("/index.html");
+}
