@@ -1,6 +1,6 @@
 //TODO > JS enfocado en renderizar elementos generales en todos los HTML
 
-import { normalizeActualPageName } from "./utils.js";
+import { normalizeActualPageName, cerrarSesion } from "./utils.js";
 import {
     header_index, footer_index,
     header_acercaDe, footer_acercaDe,
@@ -37,11 +37,9 @@ const logo = ruta("assets/img/logo/logoInstarama(ficticio)SF.png");
 
 // Enlaces que aparecen en el header y en el footer
 const enlacesNav = [
+    { texto: "Inicio", href: paginas.index, pagina: "index" },
+    { texto: "Explorar", href: paginas.feed, pagina: "feed" },
     { texto: "Acerca de", href: paginas.acercaDe, pagina: "acercaDe" },
-    { texto: "Inicio", href: paginas.feed, pagina: "feed" },
-    { texto: "Proyecto", href: paginas.proyecto, pagina: "proyecto" },
-    { texto: "Equipo", href: paginas.index, pagina: "index" },
-    { texto: "Contacto", href: paginas.contacto, pagina: "contacto" }
 ];
 
 const styles = `
@@ -81,6 +79,7 @@ const layouts = {
     index: { header: header_index, footer: footer_index },
     acercaDe: { header: header_acercaDe, footer: footer_acercaDe },
     gestionarPublicaciones: { header: header_gestionarPublicaciones, footer: null },
+    perfil: { header: header_gestionarPublicaciones, footer: null }, // mismo menú que las demás páginas con sesión
     publicacion: { header: header_publicacion, footer: null },
     login: { header: header_login, footer: null },
     registro: { header: header_registro, footer: null },
@@ -96,6 +95,14 @@ const layout = layouts[nombrePagina] ?? layoutGeneral;
 renderHeader(layout);
 renderFooter(layout);
 
+// Cualquier enlace con data-cerrar-sesion borra la sesión antes de salir
+document.addEventListener("click", (e) => {
+    const enlace = e.target.closest("[data-cerrar-sesion]");
+    if (!enlace) return;
+    e.preventDefault();
+    cerrarSesion();
+});
+
 
 // TODO > ================= FUNCIONES =================
 
@@ -109,8 +116,8 @@ function headerTemplate() {
         .join("");
 
     return `
-    <nav class="navbar navbar-expand-lg bg">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg green-shadow navbar-custom">
+        <div class="container-fluid px-4 px-lg-5">
         <!--Logo-->
         <a class="navbar-brand" href="${paginas.feed}">
             <img src="${logo}" alt="logo de la red social" class="logo" />
@@ -124,11 +131,12 @@ function headerTemplate() {
         <!--Botón responsive-->
         <!--Navegación-->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav mx-auto gap-2 gap-lg-4">${links}
+            <div class="navbar-nav mx-auto gap-3 gap-lg-5">${links}
+                <a class="nav-link btn-nav fw-semibold" href="../pages/contacto.html">Contacto</a>
             </div>
             <div class="navbar-nav ms-lg-3 gap-3">
                 <a href="${paginas.login}" class="btn-iniciar">Iniciar sesión</a>
-                <a href="${paginas.registro}" class="btn-iniciar">Registrate</a>
+                <a href="${paginas.registro}" class="btn-registrar">Registrate</a>
             </div>
         </div>
         <!--Navegación-->

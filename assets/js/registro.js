@@ -1,6 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+// ==========================================
+// REGISTRO - Conexión con el Backend
+// ==========================================
+import { registerUser } from "./Services/AuthService.js";
+
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
-  const alertContainer = document.getElementById("alert-container");
+  if (!form) return;
 
   // TODO: --- MODAL SOLO PARA ÉXITO (BIENVENIDA) ---
   const modalHTML = `
@@ -11,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-0">
-            <!-- Icono Araña -->
             <img src="../assets/img/alerts/alerta-arana.svg" alt="Alerta" style="width: 80px; margin-bottom: 15px;">
             <h5 class="modal-title fw-bold mb-3">¡Bienvenido a Instarama!</h5>
             <p class="mb-4">Tu cuenta ha sido creada exitosamente.</p>
@@ -25,49 +29,83 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const modalElement = document.getElementById("modalExito");
   const modalInstance = new bootstrap.Modal(modalElement);
-  const btnModalContinuar = document.getElementById("btnModalContinuar");
 
-  //* FUNCION PARA REDIRIGIR A PAGINA DE LOGIN CUANDO SELECCIONE CONTINUAR
-  btnModalContinuar.onclick = function () {
+  // Al hacer clic en "Continuar", lo mandamos al login
+  document.getElementById("btnModalContinuar").onclick = () => {
     window.location.href = "login.html";
   };
 
-  // TODO: --- FUNCIÓN PARA MOSTRAR ALERTAS DE BOOTSTRAP ---
-  function mostrarAlertaBootstrap(mensaje, tipo = "danger") {
-    alertContainer.innerHTML = "";
-
-    const alertaHTML = `
-      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
-        ${mensaje}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    `;
-
-    alertContainer.innerHTML = alertaHTML;
-
-    //* Auto-cerrar después de 4 segundos
-    setTimeout(() => {
-      const alerta = alertContainer.querySelector(".alert");
-      if (alerta) {
-        alerta.classList.remove("show");
-        setTimeout(() => alerta.remove(), 300);
-      }
-    }, 4000);
-  }
-
-  // TODO: --- LÓGICA DEL FORMULARIO ---
-  form.addEventListener("submit", function (event) {
+  // ------------------------------------------
+  // Submit del formulario
+  // ------------------------------------------
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-    const terms = document.getElementById("terms").checked;
+    const terms = document.getElementById("terms")?.checked ?? true;
 
-    alertContainer.innerHTML = "";
+    const alertContainer = document.getElementById("alert-container");
 
-    //* 1. Campos vacíos
+    // Limpiar alertas previas
+    if (alertContainer) alertContainer.innerHTML = "";
+
+    // ==========================================
+    // FUNCIÓN AUXILIAR PARA MOSTRAR ALERTAS BOOTSTRAP
+    // ==========================================
+    function mostrarAlertaBootstrap(mensaje, tipo = "danger") {
+      if (!alertContainer) {
+        alert(mensaje); // Respaldo de emergencia
+        return;
+      }
+
+      // Limpiamos cualquier mensaje técnico o feo que venga por error
+      let mensajeLimpio = mensaje;
+      const msjMin = mensaje.toLowerCase();
+
+      // Traducimos errores técnicos a lenguaje humano
+      if (
+        msjMin.includes("400") ||
+        msjMin.includes("bad request") ||
+        msjMin.includes("inválidos")
+      ) {
+        mensajeLimpio =
+          "Los datos ingresados no son válidos. Por favor, revísalos.";
+      } else if (msjMin.includes("ya existe") || msjMin.includes("duplicado")) {
+        mensajeLimpio =
+          "Este correo electrónico ya está registrado. Intenta iniciar sesión.";
+      } else if (
+        msjMin.includes("failed to fetch") ||
+        msjMin.includes("networkerror")
+      ) {
+        mensajeLimpio =
+          "No se pudo conectar con el servidor. Verifica tu conexión a internet.";
+      }
+
+      alertContainer.innerHTML = `
+        <div class="alert alert-${tipo} alert-dismissible fade show shadow-sm" role="alert">
+          ${mensajeLimpio}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `;
+
+      // Auto-cerrar después de 4 segundos
+      setTimeout(() => {
+        const alerta = alertContainer.querySelector(".alert");
+        if (alerta) {
+          alerta.classList.remove("show");
+          setTimeout(() => alerta.remove(), 300);
+        }
+      }, 4000);
+    }
+
+    // ------------------------------------------
+    // Validaciones del Frontend
+    // ------------------------------------------
+
+    // 1. Campos vacíos
     if (!username || !email || !password || !confirmPassword) {
       mostrarAlertaBootstrap(
         "Por favor, complete todos los campos del formulario.",
@@ -76,35 +114,35 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    //* 2. Longitud de la contraseña (minimo 8 caracteres)
+    // 2. Longitud de la contraseña (mínimo 8 caracteres)
     if (password.length < 8) {
       mostrarAlertaBootstrap(
-        "La contraseña no puede tener menos de 8 caracteres.",
+        "La contraseña debe tener al menos 8 caracteres.",
         "danger",
       );
       return;
     }
 
-    //* 3. Correo inválido
+    // 3. Correo inválido
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
       mostrarAlertaBootstrap(
-        "Por favor, ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).",
+        "Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).",
         "warning",
       );
       return;
     }
 
-    //* 4. Contraseñas no coinciden
+    // 4. Contraseñas no coinciden
     if (password !== confirmPassword) {
       mostrarAlertaBootstrap(
-        "Las contraseñas ingresadas no son iguales. Intente nuevamente.",
+        "Las contraseñas ingresadas no coinciden.",
         "danger",
       );
       return;
     }
 
-    //* 5. Términos no aceptados
+    // 5. Términos no aceptados
     if (!terms) {
       mostrarAlertaBootstrap(
         "Debe aceptar los términos y condiciones para registrarse.",
@@ -113,40 +151,45 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // TODO: Crear objeto JSON
+    // ------------------------------------------
+    // Conexión al Backend
+    // ------------------------------------------
     const usuario = {
-      username: username,
+      name: username, // Java espera 'name'
       email: email,
       password: password,
-      fechaRegistro: new Date().toISOString(),
     };
 
-    let usuariosRegistrados =
-      JSON.parse(localStorage.getItem("usuariosInstarama")) || [];
+    try {
+      const data = await registerUser(usuario);
 
-    const usuarioExistente = usuariosRegistrados.find(
-      (u) => u.username === username || u.email === email,
-    );
+      if (!data) {
+        throw new Error("No se recibieron datos del servidor.");
+      }
 
-    // TODO: 6. Usuario ya registrado -> ALERTA BOOTSTRAP
-    if (usuarioExistente) {
-      mostrarAlertaBootstrap(
-        "El usuario al que estas ingresando ya esta registrado. Intente nuevamente.",
-        "danger",
-      );
-      return;
+      console.log("Usuario registrado con éxito:", data);
+
+      // Limpiamos el formulario y mostramos el modal de bienvenida
+      form.reset();
+      modalInstance.show();
+    } catch (error) {
+      console.error("Register error técnico:", error);
+
+      // TODO: Si el backend manda un mensaje que ya es legible (ej. "El email ya existe")
+      //  TODO: lo atrapamos. Si no, mandamos un genérico amigable.
+      let mensajeParaMostrar = error.message;
+
+      // TODO: Si el mensaje es puramente técnico (ej. solo dice "Error en el registro (400)")
+      // TODO: lo reemplazamos por uno bonito.
+      if (
+        mensajeParaMostrar.includes("(400)") ||
+        mensajeParaMostrar.includes("Error en el registro")
+      ) {
+        mensajeParaMostrar =
+          "No se pudo completar el registro. Verifica que los datos sean correctos o intenta con otro correo.";
+      }
+
+      mostrarAlertaBootstrap(mensajeParaMostrar, "danger");
     }
-
-    // TODO: Guardar nuevo usuario
-    usuariosRegistrados.push(usuario);
-    localStorage.setItem(
-      "usuariosInstarama",
-      JSON.stringify(usuariosRegistrados),
-    );
-
-    //* Éxito: Mostrar MODAL de bienvenida
-    modalInstance.show();
-
-    form.reset();
   });
 });

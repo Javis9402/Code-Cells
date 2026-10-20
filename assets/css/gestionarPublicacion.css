@@ -1,5 +1,76 @@
 /* Paleta oficial: solo se usan estos 8 colores */
 :root {
+    --verde-oscuro: #40513B;
+    --verde: #609966;
+    --verde-claro: #9DC08B;
+    --verde-palido: #EDF1D6;
+    --crema: #F9FBF2;
+    --blanco-calido: #f9fbf2;
+    --blanco: #ffffff;
+    --color-negro: #1a1a1a;
+    --color-texto-claro: #f9fbf2;
+
+    /* --- Verdes principales --- */
+    --color-verde-navbar: var(--verde-claro);
+    --color-verde-1: #93c17c;
+    --color-verde-1-hover: #7da869;
+    --color-verde-2: #255f38;
+    --color-verde-2-hover: #1a4227;
+    --color-verde-borde: #4a5c40;
+}
+
+/*todo: Navbar personalizada */
+.navbar-custom {
+    background-color: var(--color-verde-navbar);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: var(--sombra-suave);
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+
+/* * =========================================
+   * ENLACES CENTRALES (Inicio, Acerca de, etc.)
+   * ========================================= */
+
+.navbar-custom .nav-link {
+    color: var(--verde-oscuro);
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    /*padding: 8px 5px;*/
+    position: relative;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+
+.navbar-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    /* Empieza sin ancho */
+    height: 3px;
+    /* Grosor de la línea */
+    bottom: 0;
+    left: 50%;
+    background-color: var(--color-verde-borde);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+
+.navbar-custom .nav-link:hover {
+    color: var(--blanco);
+}
+
+/* Paleta del cuaderno de campo (el modo oscuro la sobrescribe más abajo) */
+:root {
     --verde-noche: #18230F;
     --verde-bosque: #27391C;
     --verde-musgo: #3A4D39;
@@ -560,6 +631,29 @@
     }
 }
 
+
+.navbar-custom .nav-link:hover::after {
+    width: 100%;
+    /* La línea crece hacia los lados */
+}
+
+
+.navbar-custom .nav-link.active {
+    color: var(--blanco);
+    font-weight: 700;
+}
+
+
+.navbar-custom .nav-link.active::after {
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-blanco);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+    /* Leve efecto de luz/Glow */
+}
+
+
+
 /* Botón relleno verde: Guardar cambios, Comentar */
 .btn-verde,
 #modal-publicacion .btn-success {
@@ -613,6 +707,24 @@
     --bs-btn-active-bg: var(--verde-noche);
     --bs-btn-active-border-color: var(--verde-noche);
     --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Avisos (errores y confirmaciones) con la paleta, en lugar de los colores de Bootstrap.
+   Se distinguen por la franja de la izquierda; en modo oscuro las variables ya cambian solas. */
+.aviso-cuaderno {
+    --bs-alert-bg: var(--crema);
+    --bs-alert-color: var(--verde-noche);
+    --bs-alert-border-color: var(--salvia);
+    border-left: 0.35rem solid var(--verde-bosque);
+    font-weight: 600;
+}
+
+.aviso-cuaderno--exito {
+    border-left-color: var(--verde-esmeralda);
+}
+
+.aviso-cuaderno--info {
+    border-left-color: var(--salvia-oscuro);
 }
 
 /* Checkboxes */
@@ -1023,7 +1135,8 @@
         display: none;
     }
 
-    .cuaderno-acciones .btn-verde {
+    .cuaderno-acciones .btn-verde,
+    #btn-volver-feed {
         grid-column: 1 / -1;
         width: 100%;
     }
@@ -1121,5 +1234,305 @@
     #modalEditar .modal-content {
         border-radius: 0;
         border: 0;
+    }
+}
+
+/* =====================================================
+   EFECTOS DEL MODAL DE ELIMINAR
+   ===================================================== */
+#modalEliminar .modal-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+#modalEliminar .modal-footer .btn i {
+    transition: transform 0.2s;
+}
+
+/* Hover: ambos se elevan un poco */
+#modalEliminar .modal-footer .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0.4rem 0.9rem var(--salvia);
+}
+
+/* Al presionar se hunden */
+#modalEliminar .modal-footer .btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.96);
+    box-shadow: none;
+}
+
+/* Cancelar: la flecha se mueve hacia atrás */
+#modalEliminar .btn-cancelar-eliminar:hover i {
+    transform: translateX(-4px);
+}
+
+/* Sí, eliminar: el bote de basura se sacude */
+#modalEliminar .btn-confirmar-eliminar:hover:not(:disabled) .icono-basura {
+    animation: sacudir-basura 0.5s ease-in-out;
+}
+
+@keyframes sacudir-basura {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-14deg); }
+    40% { transform: rotate(12deg); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(5deg); }
+}
+
+/* Al confirmar: pulso del botón y la tapa del bote se abre */
+#modalEliminar .btn-confirmar-eliminar.confirmando {
+    --bs-btn-disabled-color: var(--bs-btn-color);
+    --bs-btn-disabled-bg: var(--bs-btn-bg);
+    --bs-btn-disabled-border-color: var(--bs-btn-border-color);
+    opacity: 1;
+    animation: pulso-confirmar 0.35s ease-out;
+}
+
+#modalEliminar .btn-confirmar-eliminar.confirmando .icono-basura {
+    animation: abrir-basura 0.35s ease-out forwards;
+}
+
+@keyframes pulso-confirmar {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 var(--salvia); }
+    40% { transform: scale(1.06); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0.75rem transparent; }
+}
+
+@keyframes abrir-basura {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-3px) rotate(-20deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+/* Tarjeta eliminada: la foto se seca; el movimiento lo calcula el JS */
+.hallazgo.saliendo {
+    pointer-events: none;
+}
+
+.hallazgo.saliendo .hallazgo-imagen {
+    filter: sepia(0.85) saturate(0.7) brightness(0.9);
+    transition: filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hojas sueltas: encima de todo, no las recorta la tarjeta */
+.capa-hojas {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hoja-caida {
+    --hoja-vena: var(--crema);
+    position: absolute;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.hoja-caida svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hoja-tono-0 { color: var(--verde-pino); }
+.hoja-tono-1 { color: var(--verde-esmeralda); }
+.hoja-tono-2 { color: var(--salvia-oscuro); }
+
+@media (prefers-reduced-motion: reduce) {
+    #modalEliminar .modal-footer .btn,
+    #modalEliminar .modal-footer .btn i {
+        transition: none;
+    }
+
+    #modalEliminar .modal-footer .btn:hover:not(:disabled),
+    #modalEliminar .btn-cancelar-eliminar:hover i {
+        transform: none;
+    }
+
+    #modalEliminar .btn-confirmar-eliminar:hover .icono-basura,
+    #modalEliminar .btn-confirmar-eliminar.confirmando,
+    #modalEliminar .btn-confirmar-eliminar.confirmando .icono-basura {
+        animation: none;
+    }
+
+    .hallazgo.saliendo .hallazgo-imagen {
+        transition: none;
+    }
+}
+
+/* =====================================================
+   PERSONAJE DEL MODAL DE ELIMINAR (Champi)
+   ===================================================== */
+#modalEliminar .modal-body {
+    text-align: center;
+}
+
+.personaje-eliminar {
+    /* Colores del personaje (modo claro) */
+    --champi-sombrero: var(--verde-pino);
+    --champi-puntos: var(--crema);
+    --champi-tallo: var(--salvia);
+    --champi-rasgos: var(--verde-noche);
+    --champi-mejillas: var(--salvia-oscuro);
+    --champi-lagrima: var(--verde-esmeralda);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+:root[data-tema="oscuro"] .personaje-eliminar {
+    --champi-sombrero: #609966;
+    --champi-puntos: #EDF1D6;
+    --champi-tallo: #EDF1D6;
+    --champi-rasgos: #161C15;
+    --champi-mejillas: #9DC08B;
+    --champi-lagrima: #9DC08B;
+}
+
+.personaje-svg {
+    width: 110px;
+    height: 110px;
+    overflow: visible;
+}
+
+.personaje-sombra { fill: var(--champi-rasgos); opacity: 0.12; transform-origin: 60px 112px; }
+.personaje-tallo { fill: var(--champi-tallo); }
+.personaje-sombrero { fill: var(--champi-sombrero); }
+.personaje-punto { fill: var(--champi-puntos); }
+.rasgo { fill: var(--champi-rasgos); }
+.rasgo-linea { fill: none; stroke: var(--champi-rasgos); stroke-width: 3; stroke-linecap: round; }
+.mejilla { fill: var(--champi-mejillas); opacity: 0.8; }
+.lagrima { fill: var(--champi-lagrima); }
+
+/* Globo de diálogo */
+.personaje-dialogo {
+    position: relative;
+    margin: 0 0 0.6rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--salvia);
+    border-radius: 999px;
+    background-color: var(--crema);
+    color: var(--verde-noche);
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: transform 0.2s;
+}
+
+.personaje-dialogo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background-color: inherit;
+    border-right: 1px solid var(--salvia);
+    border-bottom: 1px solid var(--salvia);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.mensaje-eliminar {
+    margin: 0;
+}
+
+/* Solo se ve la cara del ánimo actual */
+.cara {
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+[data-animo="normal"] .cara-normal,
+[data-animo="feliz"] .cara-feliz,
+[data-animo="triste"] .cara-triste,
+[data-animo="adios"] .cara-triste {
+    opacity: 1;
+}
+
+/* Animaciones por ánimo */
+.personaje-cuerpo {
+    transform-box: view-box;
+    transform-origin: 60px 104px;
+}
+
+[data-animo="normal"] .personaje-cuerpo {
+    animation: champi-respirar 2.4s ease-in-out infinite;
+}
+
+[data-animo="feliz"] .personaje-cuerpo {
+    animation: champi-brincar 0.6s ease-in-out infinite;
+}
+
+[data-animo="feliz"] .personaje-sombra {
+    animation: champi-sombra-brinco 0.6s ease-in-out infinite;
+}
+
+[data-animo="triste"] .personaje-cuerpo {
+    animation: champi-temblar 0.3s linear infinite;
+}
+
+[data-animo="triste"] .lagrima {
+    animation: champi-lagrima 1.1s ease-in infinite;
+}
+
+[data-animo="adios"] .personaje-cuerpo {
+    animation: champi-hundirse 0.35s ease-in forwards;
+}
+
+[data-animo="feliz"] .personaje-dialogo {
+    transform: translateY(-3px) scale(1.04);
+}
+
+[data-animo="triste"] .personaje-dialogo {
+    transform: rotate(-2deg);
+}
+
+@keyframes champi-respirar {
+    0%, 100% { transform: scale(1, 1); }
+    50% { transform: scale(1.03, 0.97); }
+}
+
+@keyframes champi-brincar {
+    0%, 100% { transform: translateY(0) scale(1.04, 0.96); }
+    40% { transform: translateY(-14px) scale(0.97, 1.04); }
+    60% { transform: translateY(-14px) scale(0.97, 1.04); }
+}
+
+@keyframes champi-sombra-brinco {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.7); }
+}
+
+@keyframes champi-temblar {
+    0%, 100% { transform: translate(0, 3px) rotate(0); }
+    25% { transform: translate(-1.5px, 3px) rotate(-1.5deg); }
+    75% { transform: translate(1.5px, 3px) rotate(1.5deg); }
+}
+
+@keyframes champi-lagrima {
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(16px); opacity: 0; }
+}
+
+@keyframes champi-hundirse {
+    0% { transform: translateY(3px) scale(1); opacity: 1; }
+    100% { transform: translateY(26px) scale(0.6, 0.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .personaje-eliminar .personaje-cuerpo,
+    .personaje-eliminar .personaje-sombra,
+    .personaje-eliminar .lagrima {
+        animation: none !important;
+    }
+
+    .personaje-dialogo {
+        transition: none;
     }
 }

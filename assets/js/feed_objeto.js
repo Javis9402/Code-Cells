@@ -1,3 +1,33 @@
+import { ensureLoggedIn } from "./utils.js";
+import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
+import { getPosts } from "./Services/PostService.js";
+import { crearReporte } from "./Services/ReportService.js";
+
+// ID de usuario fijo mientras el login no está conectado al backend
+const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
+
+let publicaciones = [];
+
+// El backend regresa { id, title, photo, description, datetime, userId, userName }; las cards usan otra forma
+function adaptarPost(post) {
+  return {
+    id: post.id,
+    userId: post.userId,
+    usuario: post.userName,
+    titulo: post.title,
+    descripcion: post.description,
+    imagen: post.photo
+      ? `data:image/jpeg;base64,${post.photo}`
+      : "../assets/img/logo/Logo contexto.svg",
+    fecha_observacion: new Date(post.datetime).toISOString().slice(0, 10),
+    // El backend todavía no guarda reino, categoría ni los datos de la observación
+    id_reino: null,
+    id_categoria: null,
+    likes: 0,
+    comentarios: [],
+  };
+}
+
 function limpiarPublicaciones() {
   const lista = document.getElementById("lista-publicaciones");
   lista.innerHTML = "";
@@ -14,7 +44,8 @@ function mostrarPublicaciones(listaPublicaciones) {
 let publicacionActiva = null;
 let contadorActivo = null;
 
-function pintarComentario(texto, autor) {
+// id y userId vienen del backend; sin id (o si es tuyo) el comentario no se puede reportar
+function pintarComentario({ texto, autor, id, userId }) {
   const lista = document.getElementById("modal-comentarios");
   const vacio = lista.querySelector(".sin-comentarios");
   if (vacio) vacio.remove();
@@ -26,8 +57,55 @@ function pintarComentario(texto, autor) {
   const contenido = document.createElement("span");
   contenido.textContent = texto;
   comentario.append(quien, contenido);
+
+  if (id && userId !== USER_ID_PRUEBA) {
+    const bandera = document.createElement("button");
+    bandera.type = "button";
+    bandera.className = "ir-reportar-comentario";
+    bandera.textContent = "🚩";
+    bandera.dataset.comentarioId = id;
+    bandera.dataset.autor = autor;
+    bandera.title = `Reportar comentario de ${autor}`;
+    bandera.setAttribute("aria-label", `Reportar comentario de ${autor}`);
+    marcarSiYaSeReporto(bandera, "COMMENT", id);
+    comentario.append(bandera);
+  }
+
   lista.appendChild(comentario);
   lista.scrollTop = lista.scrollHeight;
+}
+
+function pintarAviso(texto) {
+  const lista = document.getElementById("modal-comentarios");
+  const aviso = document.createElement("p");
+  aviso.className = "sin-comentarios";
+  aviso.textContent = texto;
+  lista.appendChild(aviso);
+}
+
+// Trae los comentarios de la publicación desde el backend
+async function cargarComentarios(publicacion, contador) {
+  const lista = document.getElementById("modal-comentarios");
+  lista.innerHTML = `<p class="sin-comentarios">Cargando comentarios...</p>`;
+  try {
+    const comentarios = await obtenerComentariosPorPost(publicacion.id);
+    if (publicacionActiva !== publicacion) return; // se abrió otra publicación mientras cargaba
+
+    lista.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
+    // El backend regresa { id, message, userId, userName }
+    publicacion.comentarios = comentarios.map((comentario) => ({
+      id: comentario.id,
+      userId: comentario.userId,
+      texto: comentario.message,
+      autor: comentario.userName || "Usuario",
+    }));
+    publicacion.comentarios.forEach(pintarComentario);
+    contador.textContent = publicacion.comentarios.length;
+  } catch (error) {
+    if (publicacionActiva !== publicacion) return;
+    lista.innerHTML = "";
+    pintarAviso(`No se pudieron cargar los comentarios: ${error.message}`);
+  }
 }
 
 function abrirDetalle(publicacion, contador) {
@@ -66,11 +144,13 @@ function abrirDetalle(publicacion, contador) {
     dl.appendChild(caja);
   });
 
-  const listaComentarios = document.getElementById("modal-comentarios");
-  listaComentarios.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
-  publicacion.comentarios.forEach((texto) =>
-    pintarComentario(texto, "Usuario"),
-  );
+  // No se puede reportar una publicación propia
+  cerrarReporte();
+  const btnReportar = document.getElementById("modal-reportar");
+  btnReportar.classList.toggle("d-none", publicacion.userId === USER_ID_PRUEBA);
+  marcarSiYaSeReporto(btnReportar, "POST", publicacion.id);
+
+  cargarComentarios(publicacion, contador);
 
   document.getElementById("modal-input").value = "";
 
@@ -80,16 +160,114 @@ function abrirDetalle(publicacion, contador) {
   ).show();
 }
 
-function enviarComentario() {
+async function enviarComentario() {
   const input = document.getElementById("modal-input");
   const texto = input.value.trim();
   if (texto === "" || !publicacionActiva) return;
 
-  publicacionActiva.comentarios.push(texto);
-  pintarComentario(texto, "Tú");
-  contadorActivo.textContent = publicacionActiva.comentarios.length;
+  const publicacion = publicacionActiva;
+  const contador = contadorActivo;
+
+  let nuevo;
+  try {
+    nuevo = await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
+  } catch (error) {
+    pintarAviso(`No se pudo enviar el comentario: ${error.message}`);
+    return;
+  }
+
+  const autor = nuevo?.userName || localStorage.getItem("nombreUsuario") || "Tú";
+  // Es tuyo: se guarda con tu userId para que no salga la banderita de reportar
+  const comentario = { id: nuevo?.id, userId: USER_ID_PRUEBA, texto, autor };
+  publicacion.comentarios.push(comentario);
+  if (publicacionActiva === publicacion) pintarComentario(comentario);
+  contador.textContent = publicacion.comentarios.length;
   input.value = "";
 }
+
+// ---------- REPORTAR ----------
+const panelReporte = document.getElementById("reporte-panel");
+const tituloReporte = document.getElementById("reporte-titulo");
+const motivoReporte = document.getElementById("reporte-motivo");
+const btnEnviarReporte = document.getElementById("reporte-enviar");
+const avisoReporte = document.getElementById("reporte-aviso");
+
+// Lo que se está reportando: { entityType: "POST" | "COMMENT", entityId, boton }
+let objetivoReporte = null;
+// Lo ya reportado en esta visita, para no mandar el mismo reporte dos veces
+const reportados = new Set();
+const claveReporte = (entityType, entityId) => `${entityType}-${entityId}`;
+
+function marcarSiYaSeReporto(boton, entityType, entityId) {
+  const yaReportado = reportados.has(claveReporte(entityType, entityId));
+  boton.disabled = yaReportado;
+  if (entityType === "POST") boton.textContent = yaReportado ? "🚩 Reportado" : "🚩 Reportar";
+}
+
+function abrirReporte(entityType, entityId, boton, titulo) {
+  objetivoReporte = { entityType, entityId, boton };
+  tituloReporte.textContent = titulo;
+  motivoReporte.value = "";
+  motivoReporte.classList.remove("is-invalid");
+  avisoReporte.textContent = "";
+  btnEnviarReporte.disabled = false;
+  panelReporte.classList.remove("d-none");
+  motivoReporte.focus();
+}
+
+function cerrarReporte() {
+  objetivoReporte = null;
+  panelReporte.classList.add("d-none");
+}
+
+document.getElementById("modal-reportar").addEventListener("click", (e) => {
+  if (!publicacionActiva) return;
+  abrirReporte("POST", publicacionActiva.id, e.currentTarget, "Reportar publicación");
+});
+
+// Las banderitas de los comentarios se crean al pintar, por eso un solo listener en la lista
+document.getElementById("modal-comentarios").addEventListener("click", (e) => {
+  const bandera = e.target.closest(".ir-reportar-comentario");
+  if (!bandera) return;
+  abrirReporte("COMMENT", Number(bandera.dataset.comentarioId), bandera,
+    `Reportar comentario de ${bandera.dataset.autor}`);
+});
+
+document.getElementById("reporte-cancelar").addEventListener("click", cerrarReporte);
+
+panelReporte.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!objetivoReporte) return;
+
+  const motivo = motivoReporte.value;
+  if (!motivo) {
+    motivoReporte.classList.add("is-invalid");
+    avisoReporte.textContent = "Elige un motivo para el reporte.";
+    return;
+  }
+
+  const objetivo = objetivoReporte;
+  btnEnviarReporte.disabled = true;
+  try {
+    await crearReporte(USER_ID_PRUEBA, {
+      entityType: objetivo.entityType,
+      entityId: objetivo.entityId,
+      type: motivo,
+    });
+  } catch (error) {
+    avisoReporte.textContent = `No se pudo enviar el reporte: ${error.message}`;
+    btnEnviarReporte.disabled = false;
+    return;
+  }
+
+  reportados.add(claveReporte(objetivo.entityType, objetivo.entityId));
+  marcarSiYaSeReporto(objetivo.boton, objetivo.entityType, objetivo.entityId);
+  avisoReporte.textContent = "Gracias, revisaremos tu reporte. 🌿";
+  // Se cierra solo después de que se alcance a leer el mensaje
+  setTimeout(() => {
+    if (objetivoReporte === objetivo) cerrarReporte();
+  }, 2000);
+});
 
 document
   .getElementById("modal-comentar")
@@ -122,7 +300,7 @@ function addItem(publicacion) {
   columna.innerHTML = `
         <article class="ir-card shadow-sm">
             <div class="ir-card-media">
-                <img src="${publicacion.imagen}" alt="${publicacion.titulo}">
+                <img>
                 <div class="ir-card-actions">
                     ${checkHTML}
                     <button class="ir-icon-btn btn-like"
@@ -133,7 +311,7 @@ function addItem(publicacion) {
                 </div>
             </div>
             <div class="ir-card-footer">
-                <strong>${publicacion.usuario ?? "Usuario InstaRama"}</strong><br>
+                <strong class="card-usuario"></strong><br>
                 <button class="btn btn-link btn-sm p-0 btn-abrir-detalle"
                         type="button">
                     Comentarios (<span class="contador-comentarios">${publicacion.comentarios.length}</span>)
@@ -142,6 +320,12 @@ function addItem(publicacion) {
             </div>
         </article>
     `;
+  // Lo que escribió el usuario va con textContent/propiedades, no dentro del HTML
+  const imagen = columna.querySelector(".ir-card-media img");
+  imagen.src = publicacion.imagen;
+  imagen.alt = publicacion.titulo;
+  columna.querySelector(".card-usuario").textContent =
+    publicacion.usuario ?? "Usuario InstaRama";
   lista.appendChild(columna);
 
   // ABRIR VENTANA FLOTANTE
@@ -161,14 +345,22 @@ function addItem(publicacion) {
   });
 }
 
-// GENERAR TODAS LAS PUBLICACIONES
-publicaciones.forEach((publicacion) => {
-  addItem(publicacion);
-});
-
 const filtroReino = document.getElementById("filtro-reino");
 const filtroCategoria = document.getElementById("filtro-categoria");
 const mensajeFiltro = document.getElementById("mensaje-filtro");
+
+// GENERAR TODAS LAS PUBLICACIONES
+async function cargarPublicaciones() {
+  try {
+    const posts = await getPosts();
+    publicaciones = posts.map(adaptarPost);
+    mostrarPublicaciones(publicaciones);
+  } catch (error) {
+    mensajeFiltro.textContent = `No se pudieron cargar las publicaciones: ${error.message}`;
+  }
+}
+
+cargarPublicaciones();
 
 filtroReino.addEventListener("change", () => {
   const idReino = Number(filtroReino.value);
