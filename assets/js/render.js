@@ -7,7 +7,7 @@ import {
     header_gestionarPublicaciones,
     header_publicacion,
     header_login,
-    header_registro,
+    header_registrar,
     header_feed,
     header_contacto
 } from "./plantillasLayout.js";
@@ -84,7 +84,7 @@ const layouts = {
     perfil: { header: header_gestionarPublicaciones, footer: null }, // mismo menú que las demás páginas con sesión
     publicacion: { header: header_publicacion, footer: null },
     login: { header: header_login, footer: null },
-    registro: { header: header_registro, footer: null },
+    registro: { header: header_registrar, footer: footer_index },
     feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
     objetos: { header: null, footer: null },
     contacto: { header: header_contacto, footer: footerContactoTemplate() }

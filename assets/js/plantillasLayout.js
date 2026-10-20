@@ -317,3 +317,72 @@ export const header_contacto = `
     </div>
   </nav>
 `;
+
+
+// ===== pages/contacto.html =====
+export const header_registrar = `
+  <nav class="navbar navbar-expand-lg green-shadow navbar-custom">
+    <div class="container-fluid px-4 px-lg-5">
+
+      <!-- Logo -->
+      <a class="navbar-brand" href="./feed.html">
+        <img src="../assets/img/logo/Logo contexto.svg" alt="logo de la red social" class="logo" />
+      </a>
+
+      <!-- Botón responsive -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navegación -->
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                <!-- Enlaces centrales -->
+                <div class="navbar-nav mx-auto text-center gap-3 gap-lg-5">
+
+                    <a class="nav-link btn-nav" href="../index.html">
+                        Inicio
+                    </a>
+
+                    <a class="nav-link btn-nav" href="../pages/acercaDe.html">
+                        Acerca de
+                    </a>                    
+
+                    <a class="nav-link btn-nav" href="../pages/feed.html">
+                        Explorar
+                    </a>
+
+                    <a class="nav-link btn-nav" href="../pages/contacto.html" aria-current="page">
+                        Contacto
+                    </a>
+
+                </div>
+
+                <!-- Botones de sesión -->
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3 align-items-center">
+
+                    <li class="nav-item">
+                        <a class="btn-iniciar" href="../pages/login.html">
+                            Iniciar sesión
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <!--<a class="btn-registrar" href="../pages/registro.html">
+                            Registrarse
+                        </a>-->
+                    </li>
+
+                </ul>
+      </div>
+    </div>
+  </nav>
+`;
