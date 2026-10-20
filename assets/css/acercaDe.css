@@ -326,6 +326,22 @@ body {
   justify-content: center;
 }
 
+/*animación circulos valores*/
+.valor-flotante{
+  animation: flotar-valor 3s ease-in-out infinite;
+}
+
+@keyframes flotar-valor {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
 /*vista tablet*/
 @media (min-width: 768px) {
   .valor {
