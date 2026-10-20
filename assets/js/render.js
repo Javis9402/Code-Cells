@@ -1,6 +1,6 @@
 //TODO > JS enfocado en renderizar elementos generales en todos los HTML
 
-import { normalizeActualPageName } from "./utils.js";
+import { normalizeActualPageName, cerrarSesion } from "./utils.js";
 import {
     header_index, footer_index,
     header_acercaDe, footer_acercaDe,
@@ -93,6 +93,14 @@ const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };
 const layout = layouts[nombrePagina] ?? layoutGeneral;
 renderHeader(layout);
 renderFooter(layout);
+
+// Cualquier enlace con data-cerrar-sesion borra la sesión antes de salir
+document.addEventListener("click", (e) => {
+    const enlace = e.target.closest("[data-cerrar-sesion]");
+    if (!enlace) return;
+    e.preventDefault();
+    cerrarSesion();
+});
 
 
 // TODO > ================= FUNCIONES =================

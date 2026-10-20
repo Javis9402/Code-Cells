@@ -162,6 +162,7 @@ export const header_gestionarPublicaciones = `
                     <a class="nav-link btn-nav fw-semibold" href="./feed.html">Explorar</a>
                     <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
                     <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
+                    <a class="nav-link btn-nav" href="../index.html" data-cerrar-sesion>Cerrar sesión</a>
                 </div>
 
             </div>
@@ -194,6 +195,7 @@ export const header_publicacion = `
           <a class="nav-link btn-nav" href="../pages/feed.html">Explorar</a>
           <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
           <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
+          <a class="nav-link btn-nav" href="../index.html" data-cerrar-sesion>Cerrar sesión</a>
         </div>
       </div>
       <!--Navegación-->
@@ -240,6 +242,6 @@ export const header_feed = `
       </form>
       <a class="ir-topbar-link" href="./gestionarPublicaciones.html">Mis publicaciones</a>
       <a class="ir-topbar-link" href="#">Perfil</a>
-      <a class="ir-topbar-link" href="../index.html">Log out</a>
+      <a class="ir-topbar-link" href="../index.html" data-cerrar-sesion>Log out</a>
     </header>
 `;
