@@ -1,10 +1,30 @@
 import { ensureLoggedIn } from "./utils.js";
-
-// Servicio de comentarios (este archivo no es módulo, por eso se importa dinámicamente)
-const servicioComentarios = import("./Services/CommentService.js");
+import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
+import { getPosts } from "./Services/postservice.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend
 const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
+
+let publicaciones = [];
+
+// El backend regresa { id, title, photo, description, datetime, userId, userName }; las cards usan otra forma
+function adaptarPost(post) {
+  return {
+    id: post.id,
+    usuario: post.userName,
+    titulo: post.title,
+    descripcion: post.description,
+    imagen: post.photo
+      ? `data:image/jpeg;base64,${post.photo}`
+      : "../assets/img/logo/Logo contexto.svg",
+    fecha_observacion: new Date(post.datetime).toISOString().slice(0, 10),
+    // El backend todavía no guarda reino, categoría ni los datos de la observación
+    id_reino: null,
+    id_categoria: null,
+    likes: 0,
+    comentarios: [],
+  };
+}
 
 function limpiarPublicaciones() {
   const lista = document.getElementById("lista-publicaciones");
@@ -51,13 +71,16 @@ async function cargarComentarios(publicacion, contador) {
   const lista = document.getElementById("modal-comentarios");
   lista.innerHTML = `<p class="sin-comentarios">Cargando comentarios...</p>`;
   try {
-    const { obtenerComentariosPorPost } = await servicioComentarios;
     const comentarios = await obtenerComentariosPorPost(publicacion.id);
     if (publicacionActiva !== publicacion) return; // se abrió otra publicación mientras cargaba
 
     lista.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
-    publicacion.comentarios = comentarios.map((comentario) => comentario.message);
-    publicacion.comentarios.forEach((texto) => pintarComentario(texto, "Usuario"));
+    // El backend regresa { id, message, userId, userName }
+    publicacion.comentarios = comentarios.map((comentario) => ({
+      texto: comentario.message,
+      autor: comentario.userName || "Usuario",
+    }));
+    publicacion.comentarios.forEach(({ texto, autor }) => pintarComentario(texto, autor));
     contador.textContent = publicacion.comentarios.length;
   } catch (error) {
     if (publicacionActiva !== publicacion) return;
@@ -102,16 +125,7 @@ function abrirDetalle(publicacion, contador) {
     dl.appendChild(caja);
   });
 
-  const listaComentarios = document.getElementById("modal-comentarios");
-  listaComentarios.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
-  // Las publicaciones que vienen del backend tienen id; las de prueba no
-  if (publicacion.id) {
-    cargarComentarios(publicacion, contador);
-  } else {
-    publicacion.comentarios.forEach((texto) =>
-      pintarComentario(texto, "Usuario"),
-    );
-  }
+  cargarComentarios(publicacion, contador);
 
   document.getElementById("modal-input").value = "";
 
@@ -129,19 +143,17 @@ async function enviarComentario() {
   const publicacion = publicacionActiva;
   const contador = contadorActivo;
 
-  // Si la publicación viene del backend, guardamos el comentario allá
-  if (publicacion.id) {
-    try {
-      const { crearComentario } = await servicioComentarios;
-      await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
-    } catch (error) {
-      pintarAviso(`No se pudo enviar el comentario: ${error.message}`);
-      return;
-    }
+  let nuevo;
+  try {
+    nuevo = await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
+  } catch (error) {
+    pintarAviso(`No se pudo enviar el comentario: ${error.message}`);
+    return;
   }
 
-  publicacion.comentarios.push(texto);
-  if (publicacionActiva === publicacion) pintarComentario(texto, "Tú");
+  const autor = nuevo?.userName || localStorage.getItem("nombreUsuario") || "Tú";
+  publicacion.comentarios.push({ texto, autor });
+  if (publicacionActiva === publicacion) pintarComentario(texto, autor);
   contador.textContent = publicacion.comentarios.length;
   input.value = "";
 }
@@ -177,7 +189,7 @@ function addItem(publicacion) {
   columna.innerHTML = `
         <article class="ir-card shadow-sm">
             <div class="ir-card-media">
-                <img src="${publicacion.imagen}" alt="${publicacion.titulo}">
+                <img>
                 <div class="ir-card-actions">
                     ${checkHTML}
                     <button class="ir-icon-btn btn-like"
@@ -188,7 +200,7 @@ function addItem(publicacion) {
                 </div>
             </div>
             <div class="ir-card-footer">
-                <strong>${publicacion.usuario ?? "Usuario InstaRama"}</strong><br>
+                <strong class="card-usuario"></strong><br>
                 <button class="btn btn-link btn-sm p-0 btn-abrir-detalle"
                         type="button">
                     Comentarios (<span class="contador-comentarios">${publicacion.comentarios.length}</span>)
@@ -197,6 +209,12 @@ function addItem(publicacion) {
             </div>
         </article>
     `;
+  // Lo que escribió el usuario va con textContent/propiedades, no dentro del HTML
+  const imagen = columna.querySelector(".ir-card-media img");
+  imagen.src = publicacion.imagen;
+  imagen.alt = publicacion.titulo;
+  columna.querySelector(".card-usuario").textContent =
+    publicacion.usuario ?? "Usuario InstaRama";
   lista.appendChild(columna);
 
   // ABRIR VENTANA FLOTANTE
@@ -216,14 +234,22 @@ function addItem(publicacion) {
   });
 }
 
-// GENERAR TODAS LAS PUBLICACIONES
-publicaciones.forEach((publicacion) => {
-  addItem(publicacion);
-});
-
 const filtroReino = document.getElementById("filtro-reino");
 const filtroCategoria = document.getElementById("filtro-categoria");
 const mensajeFiltro = document.getElementById("mensaje-filtro");
+
+// GENERAR TODAS LAS PUBLICACIONES
+async function cargarPublicaciones() {
+  try {
+    const posts = await getPosts();
+    publicaciones = posts.map(adaptarPost);
+    mostrarPublicaciones(publicaciones);
+  } catch (error) {
+    mensajeFiltro.textContent = `No se pudieron cargar las publicaciones: ${error.message}`;
+  }
+}
+
+cargarPublicaciones();
 
 filtroReino.addEventListener("change", () => {
   const idReino = Number(filtroReino.value);
