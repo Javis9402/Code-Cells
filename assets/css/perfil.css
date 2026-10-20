@@ -1,0 +1,112 @@
+/* Página de perfil: usa la paleta y los botones de gestionarPublicacion.css.
+   Aquí solo van las secciones, el formulario y el modal propios de esta página. */
+
+/* Variables de Bootstrap con la paleta también en el modal de esta página */
+#modalEliminarCuenta {
+    --bs-body-bg: var(--crema);
+    --bs-body-color: var(--verde-musgo);
+    --bs-border-color: var(--salvia);
+    color: var(--verde-musgo);
+}
+
+/* El cuaderno del perfil no necesita ser tan ancho */
+.perfil {
+    max-width: 960px;
+}
+
+/* ===== Secciones ===== */
+.perfil-seccion {
+    padding: 1.5rem;
+    border: 1px solid var(--salvia);
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-seccion:last-child {
+    margin-bottom: 0;
+}
+
+.perfil-seccion-titulo {
+    margin: 0 0 1rem;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--verde-noche);
+}
+
+.perfil-peligro {
+    border-style: dashed;
+}
+
+/* ===== Formulario (mismo estilo que el modal de editar hallazgo) ===== */
+.perfil-form .form-label {
+    color: var(--verde-noche);
+}
+
+.perfil-form .form-control,
+#modalEliminarCuenta .form-control {
+    background-color: var(--crema);
+    border-color: var(--salvia);
+    color: var(--verde-musgo);
+}
+
+.perfil-form .form-control:focus,
+#modalEliminarCuenta .form-control:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+.perfil-form .form-control::placeholder {
+    color: var(--salvia-oscuro);
+}
+
+/* Validación: sin el ícono rojo de Bootstrap */
+.perfil-form .form-control.is-invalid {
+    background-image: none;
+    padding-right: 0.75rem;
+    border-color: var(--verde-noche);
+}
+
+.perfil-form .invalid-feedback {
+    font-weight: 600;
+    color: var(--verde-noche);
+}
+
+.perfil-form-acciones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.25rem;
+}
+
+/* ===== Modal de eliminar cuenta ===== */
+#modalEliminarCuenta .modal-content {
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+}
+
+#modalEliminarCuenta .modal-title {
+    color: var(--verde-noche);
+}
+
+/* ===== Modo oscuro ===== */
+:root[data-tema="oscuro"] .perfil-form .form-control,
+:root[data-tema="oscuro"] #modalEliminarCuenta .form-control {
+    background-color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] #modalEliminarCuenta .modal-content {
+    background-color: var(--oscuro-tarjeta);
+    border: 1px solid var(--oscuro-elevado);
+    box-shadow: 0 1.5rem 3rem rgba(10, 13, 9, 0.7);
+}
+
+/* ===== Celular ===== */
+@media (max-width: 575.98px) {
+    .perfil-seccion {
+        padding: 1rem;
+    }
+
+    .perfil-form-acciones .btn {
+        width: 100%;
+    }
+}
