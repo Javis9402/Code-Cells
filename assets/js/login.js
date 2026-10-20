@@ -1,7 +1,7 @@
 // ==========================================
 // LOGIN - Conexión con el Backend
 // ==========================================
-import { loginUser } from "../../services/auth.service.js";
+import { loginUser } from "./Services/auth.service.js";
 
 const loginForm = document.getElementById("loginForm");
 
