@@ -22,3 +22,9 @@ export function normalizeActualPageName(url) {
     const pageName = spiltNameAndExtension[0];
     return pageName;
 }
+
+export function ensureLoggedIn(userId) {
+    if (!(userId == null)) return Number(userId);
+    window.location.href = "/pages/login.html"
+    return null;
+}

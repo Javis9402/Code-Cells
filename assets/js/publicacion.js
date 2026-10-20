@@ -5,6 +5,9 @@
 
 import { createPost } from './Services/postservice.js';
 import { convertImageToBytes } from './Services/postservice.js';
+import { ensureLoggedIn } from "./utils.js";
+
+const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
 
 // Espera a que el HTML cargue completamente
 document.addEventListener('DOMContentLoaded', function () {
@@ -77,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Lectura del usuario
-    let userLogged = localStorage.getItem('usuarioActual');
+    let userLogged = localStorage.getItem('nombreUsuario');
     if (!userLogged) {
         userLogged = "Explorador_Bótanico";
     }
@@ -246,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(publicacionJSON);
 
                     // Llamada a la función para guardar la publicación en el backend
-                    createPost(1, nuevaPublicacion);
+                    createPost(USER_ID_PRUEBA, nuevaPublicacion);
 
 
                     // Limpia formulario automáticamente
