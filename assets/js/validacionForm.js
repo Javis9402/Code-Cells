@@ -1,7 +1,12 @@
 import { enviarContacto } from "./Services/ContactFormService.js";
+// import { ensureLoggedIn } from "./utils.js";
 
 //ID de usuario fijo mientras el login no está conectado al backend
+// const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
+
+//TODO > HARDCODEADO, YA QUE POR EL MOMENTO NO SE REQUIERE QUE EL USUARIO ESTE LOGUEADO PARA PODER ENVIAR EL FORMULARIO
 const USER_ID_PRUEBA = 26;
+
 
 //seleccionamos los elementos del DOM
 const form = document.getElementById('contactForm');

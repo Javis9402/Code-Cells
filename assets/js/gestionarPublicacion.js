@@ -1,7 +1,8 @@
 import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
+import { ensureLoggedIn } from "./utils.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend
-const USER_ID_PRUEBA = 26;
+const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
 
 // ===== Reinos =====
 const REINOS = {

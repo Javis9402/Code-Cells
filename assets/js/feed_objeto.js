@@ -1,8 +1,10 @@
+import { ensureLoggedIn } from "./utils.js";
+
 // Servicio de comentarios (este archivo no es módulo, por eso se importa dinámicamente)
 const servicioComentarios = import("./Services/CommentService.js");
 
 // ID de usuario fijo mientras el login no está conectado al backend
-const USER_ID_PRUEBA = 26;
+const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
 
 function limpiarPublicaciones() {
   const lista = document.getElementById("lista-publicaciones");
