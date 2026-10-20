@@ -8,7 +8,8 @@ import {
     header_publicacion,
     header_login,
     header_registro,
-    header_feed
+    header_feed,
+    header_contacto
 } from "./plantillasLayout.js";
 
 const body = document.querySelector("body");
@@ -40,6 +41,7 @@ const enlacesNav = [
     { texto: "Inicio", href: paginas.index, pagina: "index" },
     { texto: "Explorar", href: paginas.feed, pagina: "feed" },
     { texto: "Acerca de", href: paginas.acercaDe, pagina: "acercaDe" },
+    { texto: "contacto", href: paginas.contacto, pagina: "contato" },
 ];
 
 const styles = `
@@ -84,7 +86,7 @@ const layouts = {
     registro: { header: header_registro, footer: null },
     feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
     objetos: { header: null, footer: null },
-    contacto: { header: headerTemplate(), footer: footerContactoTemplate() }
+    contacto: { header: header_contacto, footer: footerContactoTemplate() }
 };
 
 const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };

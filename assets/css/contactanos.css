@@ -109,6 +109,7 @@ form.border {
    * ========================================= */
 
 .navbar-custom .nav-link {
+  font-family: Arial, sans-serif;
   color: var(--verde-oscuro);
   font-size: 16px;
   font-weight: 500;
