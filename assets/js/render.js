@@ -37,11 +37,9 @@ const logo = ruta("assets/img/logo/logoInstarama(ficticio)SF.png");
 
 // Enlaces que aparecen en el header y en el footer
 const enlacesNav = [
+    { texto: "Inicio", href: paginas.index, pagina: "index" },
+    { texto: "Explorar", href: paginas.feed, pagina: "feed" },
     { texto: "Acerca de", href: paginas.acercaDe, pagina: "acercaDe" },
-    { texto: "Inicio", href: paginas.feed, pagina: "feed" },
-    { texto: "Proyecto", href: paginas.proyecto, pagina: "proyecto" },
-    { texto: "Equipo", href: paginas.index, pagina: "index" },
-    { texto: "Contacto", href: paginas.contacto, pagina: "contacto" }
 ];
 
 const styles = `
@@ -109,8 +107,8 @@ function headerTemplate() {
         .join("");
 
     return `
-    <nav class="navbar navbar-expand-lg bg">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg green-shadow navbar-custom">
+        <div class="container-fluid px-4 px-lg-5">
         <!--Logo-->
         <a class="navbar-brand" href="${paginas.feed}">
             <img src="${logo}" alt="logo de la red social" class="logo" />
@@ -124,11 +122,12 @@ function headerTemplate() {
         <!--Botón responsive-->
         <!--Navegación-->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav mx-auto gap-2 gap-lg-4">${links}
+            <div class="navbar-nav mx-auto gap-3 gap-lg-5">${links}
+                <a class="nav-link btn-nav fw-semibold" href="../pages/contacto.html">Contacto</a>
             </div>
             <div class="navbar-nav ms-lg-3 gap-3">
                 <a href="${paginas.login}" class="btn-iniciar">Iniciar sesión</a>
-                <a href="${paginas.registro}" class="btn-iniciar">Registrate</a>
+                <a href="${paginas.registro}" class="btn-registrar">Registrate</a>
             </div>
         </div>
         <!--Navegación-->
