@@ -309,6 +309,12 @@ h5 {
   border: 1px solid var(--verde-claro);
   border-radius: 20px;
   box-shadow: 0 2px 3px rgba(157, 192, 139, 0.557);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-mision-vision:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(157, 192, 139, 0.2);
 }
 
 .tarjeta-mision-vision .card-body {
@@ -381,6 +387,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*animación circulos valores*/
+.valor-flotante {
+  animation: flotar-valor 3s ease-in-out infinite;
+}
+
+@keyframes flotar-valor {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 /*vista tablet*/
@@ -495,6 +518,7 @@ body {
 .final p:nth-of-type(2) {
   font-size: 1rem;
 }
+
 /*
 .btn-unirse {
     text-decoration: none;
@@ -537,4 +561,186 @@ footer {
 
 footer p {
   color: var(--blanco) !important;
+}
+
+/* Carrusel */
+.descubre-section {
+  margin-bottom: 25px;
+}
+
+.descubre-titulo {
+  font-family: var(--fuente-onest);
+  color: var(--ir-verde-oscuro);
+  /*font-size: clamp(1.8rem, 2.5vw, 2.5rem);*/
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.carrusel-destacado {
+  width: 100%;
+  min-width: 0;
+}
+
+.carrusel-ventana {
+  width: 100%;
+  overflow: hidden;
+  padding: 1.2rem 0 2rem;
+  touch-action: pan-y;
+}
+
+.carrusel-pista {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  will-change: transform;
+  transition: transform 0.65s ease;
+}
+
+/* Tarjetas */
+.tarjeta-destacada {
+  flex: 0 0 min(68%, 420px);
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 2.5rem;
+  background: var(--blanco);
+  box-shadow: 0 10px 20px rgba(40, 55, 35, 0.035);
+
+  opacity: 0.58;
+  transform: scale(0.84);
+
+  transition:
+    transform 0.65s ease,
+    opacity 0.65s ease,
+    box-shadow 0.65s ease;
+}
+
+/* Tarjeta protagonista */
+.tarjeta-destacada.activa {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 10px 20px rgba(157, 192, 139, 0.252);
+}
+
+/* Fotografías */
+.tarjeta-destacada img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Información */
+.tarjeta-contenido {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.tarjeta-etiqueta {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  margin-bottom: 0.65rem;
+  border-radius: 2rem;
+  background-color: var(--verde-suave);
+  color: var(--verde-medio);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tarjeta-contenido h3 {
+  font-family: var(--fuente-onest);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+}
+
+.tarjeta-contenido p {
+  font-family: var(--fuente--nunito);
+  margin: 0;
+  color: #657061;
+  font-size: 0.9rem;
+}
+
+/* Flechas y contador */
+.destacado-controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.destacado-contador {
+  color: #657061;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--fuente--nunito);
+}
+
+.destacado-flechas {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.destacado-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--verde-claro);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--verde-medio);
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.destacado-btn:hover {
+  background: var(--verde-medio);
+  color: var(--blanco);
+}
+
+.destacado-btn:focus-visible {
+  outline: 3px solid #8ba477;
+  outline-offset: 3px;
+}
+
+/* Tablet */
+@media (max-width: 991.98px) {
+  .tarjeta-destacada {
+    flex-basis: 70%;
+  }
+
+  .tarjeta-destacada img {
+    height: 280px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 575.98px) {
+  .tarjeta-destacada {
+    flex-basis: 84%;
+    border-radius: 2rem;
+  }
+
+  .tarjeta-destacada img {
+    height: 250px;
+  }
+
+  .tarjeta-contenido {
+    padding: 1rem 1.15rem 1.25rem;
+  }
+
+  .tarjeta-contenido h3 {
+    font-size: 1.05rem;
+  }
+}
+
+/* Preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+
+  .carrusel-pista,
+  .tarjeta-destacada,
+  .destacado-btn {
+    transition: none;
+  }
 }

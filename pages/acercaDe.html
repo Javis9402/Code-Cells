@@ -81,52 +81,101 @@
                 </div>
             </div> <!--! Fin: Sección iconos -->
 
-            <!--* Sección: Cards -->
-            <div class="row justify-content-center mb-5 g-4 px-2 px-md-0">
-                <!-- Card 1 -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card card-hallazgos h-100 border-0 shadow-sm">
-                        <img src="../assets/img/acercaDe/Bichito.jpeg" class="card-img-top img-card" alt="Bicho">
-                        <div class="card-body text-start">
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Especie:</p>
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Publicado por:</p>
-                        </div>
-                    </div>
-                </div> <!-- Fin: Card 1-->
+             <!--* Sección: Cards -->
+            <div class="descubre-section py-5">
+                <div class="container-fluid px-4 px-lg-5">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-12">
+                            <h2 class="descubre-titulo">¿Qué puedes encontrar?</h2>
+                        </div><!--* fin colum -->
+                        <div class="col-lg-12">
+                            <!-- Carrusel destacado -->
+                            <div class="carrusel-destacado" id="carruselDestacado">
+                                <div class="carrusel-ventana" id="ventanaDestacada" role="region" aria-label="Observaciones de la comunidad"
+                                    aria-roledescription="carrusel">
+                    
+                                    <div class="carrusel-pista" id="pistaDestacada">
+                    
+                                        <article class="tarjeta-destacada">
+                                            <img src="../assets/img/acercaDe/arania.JPG" alt="en una rama">
+                    
+                                            <div class="tarjeta-contenido">
+                                                <span class="tarjeta-etiqueta">Animalia</span>
+                                                <h3>Una araña de hermosos colores</h3>
+                                                <p>Publicado por Josué</p>
+                                            </div>
+                                        </article>
+                    
+                                        <article class="tarjeta-destacada">
+                                            <img src="../assets/img/acercaDe/Flor.jpeg" alt="Flor">
+                    
+                                            <div class="tarjeta-contenido">
+                                                <span class="tarjeta-etiqueta">Plantae</span>
+                                                <h3>Nunca habia visto una flor así</h3>
+                                                <p>Publicado por Devani</p>
+                                            </div>
+                                        </article>
+                    
+                                        <article class="tarjeta-destacada">
+                                            <img src="../assets/img/acercaDe/caracol.jpg" alt="Un caracolito">
+                    
+                                            <div class="tarjeta-contenido">
+                                                <span class="tarjeta-etiqueta">¿Lo conoces?</span>
+                                                <h3>Una especie por identificar</h3>
+                                                <p>Publicado por Adrian</p>
+                                            </div>
+                                        </article>
+                    
+                                        <article class="tarjeta-destacada">
+                                            <img src="../assets/img/acercaDe/mariposa2.JPG" alt="Una mariposa">
+                    
+                                            <div class="tarjeta-contenido">
+                                                <span class="tarjeta-etiqueta">Animalia</span>
+                                                <h3>La que encontré en mi jardín</h3>
+                                                <p>Publicado por Jairo</p>
+                                            </div>
+                                        </article>
+                    
+                                        <article class="tarjeta-destacada">
+                                            <img src="../assets/img/acercaDe/saltamontes.JPG" alt="Saltamontes">
+                    
+                                            <div class="tarjeta-contenido">
+                                                <span class="tarjeta-etiqueta">Animalia</span>
+                                                <h3>Lo vi hace poco</h3>
+                                                <p>Publicado por Rosario</p>
+                                            </div>
+                                        </article>
+                    
+                                    </div>
+                                </div>
+                    
+                                <!-- Navegación -->
+                                <div class="destacado-controles">
+                                    <span id="contadorDestacado" class="destacado-contador" aria-live="polite">
+                                        01 / 05
+                                    </span>
+                    
+                                    <div class="destacado-flechas">
+                                        <button type="button" id="anteriorDestacado" class="destacado-btn"
+                                            aria-label="Ver observación anterior">
+                                            ←
+                                        </button>
+                    
+                                        <button type="button" id="siguienteDestacado" class="destacado-btn"
+                                            aria-label="Ver observación siguiente">
+                                            →
+                                        </button>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                        </div><!--* fin colum -->
 
-                <!-- Card 2 -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card card-hallazgos h-100 border-0 shadow-sm">
-                        <img src="../assets/img/acercaDe/Flor.jpeg" class="card-img-top img-card" alt="Flor rosa">
-                        <div class="card-body text-start">
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Especie:</p>
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Publicado por:</p>
-                        </div>
-                    </div>
-                </div> <!-- Fin: Card 2 -->
-
-                <!-- Card 3 -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card card-hallazgos h-100 border-0 shadow-sm">
-                        <img src="../assets/img/acercaDe/caracol.jpg" class="card-img-top img-card" alt="Caracol">
-                        <div class="card-body text-start">
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Especie:</p>
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Publicado por:</p>
-                        </div>
-                    </div>
-                </div> <!-- Fin: Card 3 -->
-
-                <!-- Card 4 -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card card-hallazgos h-100 border-0 shadow-sm">
-                        <img src="../assets/img/acercaDe/Flores2.jpeg" class="card-img-top img-card" alt="Flores">
-                        <div class="card-body text-start">
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Especie:</p>
-                            <p class="mb-2 fw-semibold green-dark-color" style="font-size: 0.9rem;">Publicado por:</p>
-                        </div>
-                    </div>
-                </div> <!-- Fin: Card 4 -->
-            </div> <!--! Fin: Sección Cards -->
+                        
+                    </div><!-- fin row -->
+                </div><!-- fin contenedor -->
+            </div><!-- fin sección de carrusel -->
+            <!--! Fin: Sección Cards -->
 
             <!--* Sección: Descripción InstaRama -->
             <div class="row justify-content-center mb-5">
@@ -179,7 +228,7 @@
     <section class="py-4 mt-4"><!--Sección de Valores-->
             <div class="container-xl">
                 <div class="row align-items-center justify-content-center"><!--primera fila-->
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-12 text-center">
                         <h2 class="titulo-seccion mb-4">Nuestros valores</h2>
                         <p>Estos son los principios que nos guían y dan sentido a todo lo que hacemos.</p>
                     </div>
@@ -187,7 +236,7 @@
                 <div class="row align-items-center justify-content-center mt-3"><!--segunda fila-->
                     <div class="col-12 col-lg-11"><!--columna derecha-->
                         <div class="elementos-valores"><!--contenedor elemetos-->
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -197,7 +246,7 @@
                                 </div>
                                 <p class="valor-titulo">Curiosidad</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -207,7 +256,7 @@
                                 </div>
                                 <p class="valor-titulo">Respeto</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -217,7 +266,7 @@
                                 </div>
                                 <p class="valor-titulo">Colaboración</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -227,7 +276,7 @@
                                 </div>
                                 <p class="valor-titulo">Responsabilidad</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -237,7 +286,7 @@
                                 </div>
                                 <p class="valor-titulo">Aprendizaje</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -247,7 +296,7 @@
                                 </div>
                                 <p class="valor-titulo">Conservación</p>
                             </div>
-                            <div class="valor">
+                            <div class="valor valor-flotante">
                                 <div class="circulo">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"
                                         viewBox="0 0 640 640"><!--Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
@@ -468,6 +517,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+        <script src="../assets/js/carrusel.js"></script>
     <script src="../assets/js/render.js" type="module"></script>
 </body>
 
