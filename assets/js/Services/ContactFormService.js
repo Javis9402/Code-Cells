@@ -132,10 +132,3 @@ export async function eliminarContacto(id) {
   });
   return manejarRespuesta(response);
 }
-// ==========================================
-// OBTENER PERFIL DEL USUARIO POR ID
-// ==========================================
-export async function obtenerUsuarioPorId(id) {
-  const response = await fetch(`${API_URL}/users/${id}`);
-  return manejarRespuesta(response);
-}

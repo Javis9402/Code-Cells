@@ -1,7 +1,5 @@
-import {
-  enviarContacto,
-  obtenerUsuarioPorId,
-} from "./Services/ContactFormService.js";
+import { enviarContacto } from "./Services/ContactFormService.js";
+import { obtenerUsuarioPorId } from "./Services/UserService.js";
 
 // ID de usuario por defecto en caso de que no haya sesión iniciada
 const USER_ID_PRUEBA = 26;
