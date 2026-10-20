@@ -1,4 +1,5 @@
 import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
+import { getPostsByUserId, updatePost, deletePost, convertImageToBytes } from "./Services/postservice.js";
 import { ensureLoggedIn } from "./utils.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend
@@ -24,121 +25,151 @@ function nombreReino(reino) {
 const IMG = "../assets/img/objetos/";
 const usuario = localStorage.getItem("usuarioActivo") || "Explorador_Botánico";
 
-const publicaciones = [
-    {
-        titulo: "Hongos copa sobre un tronco",
-        descripcion: "Encontré varios hongos en forma de copa creciendo sobre un tronco caído y húmedo. Tenían un color rosado muy intenso.",
-        imagen: IMG + "Hongo.jpg",
-        fecha: "2026-10-14",
-        reino: "Fungi",
-        grupo: "Hongos macroscópicos",
-        especie: "Cookeina sp.",
-        ubicacion: "Los Tuxtlas, Veracruz",
-    },
-    {
-        titulo: "Gorrión acicalándose entre flores",
-        descripcion: "Un pajarito pequeño se estaba acomodando las plumas sobre unas flores amarillas. ¿Alguien sabe qué especie es?",
-        imagen: IMG + "ave.jpg",
-        fecha: "2026-10-11",
-        reino: "Animalia",
-        subcategoria: "Vertebrado",
-        grupo: "Aves",
+// const publicaciones = [
+    // {
+    //     titulo: "Hongos copa sobre un tronco",
+    //     descripcion: "Encontré varios hongos en forma de copa creciendo sobre un tronco caído y húmedo. Tenían un color rosado muy intenso.",
+    //     imagen: IMG + "Hongo.jpg",
+    //     fecha: "2026-10-14",
+    //     reino: "Fungi",
+    //     grupo: "Hongos macroscópicos",
+    //     especie: "Cookeina sp.",
+    //     ubicacion: "Los Tuxtlas, Veracruz",
+    // },
+    // {
+    //     titulo: "Gorrión acicalándose entre flores",
+    //     descripcion: "Un pajarito pequeño se estaba acomodando las plumas sobre unas flores amarillas. ¿Alguien sabe qué especie es?",
+    //     imagen: IMG + "ave.jpg",
+    //     fecha: "2026-10-11",
+    //     reino: "Animalia",
+    //     subcategoria: "Vertebrado",
+    //     grupo: "Aves",
+    //     especie: "",
+    //     ubicacion: "Ajusco, Ciudad de México",
+    // },
+    // {
+    //     titulo: "Ajolote en el canal",
+    //     descripcion: "Vimos un ajolote cerca de la orilla durante un recorrido por los canales. Es una especie endémica y en peligro.",
+    //     imagen: IMG + "ajolote.jpg",
+    //     fecha: "2026-10-08",
+    //     reino: "Animalia",
+    //     subcategoria: "Vertebrado",
+    //     grupo: "Anfibios",
+    //     especie: "Ambystoma mexicanum",
+    //     ubicacion: "Xochimilco, Ciudad de México",
+    // },
+    // {
+    //     titulo: "Sargazo flotando en el mar",
+    //     descripcion: "Al bucear vimos grandes masas de sargazo. Tiene unas bolitas que le ayudan a flotar.",
+    //     imagen: IMG + "protista.jpg",
+    //     fecha: "2026-10-03",
+    //     reino: "Protista",
+    //     grupo: "Algas",
+    //     especie: "Sargassum sp.",
+    //     ubicacion: "Mahahual, Quintana Roo",
+    // },
+    // {
+    //     titulo: "Pochote con espinas en el tronco",
+    //     descripcion: "Árbol con el tronco lleno de espinas cónicas. En temporada seca tira las hojas.",
+    //     imagen: IMG + "pochote.jpg",
+    //     fecha: "2026-09-27",
+    //     reino: "Plantae",
+    //     grupo: "Angiospermas",
+    //     especie: "Ceiba aesculifolia",
+    //     ubicacion: "Tepoztlán, Morelos",
+    // },
+    // {
+    //     titulo: "Bacterias vistas al microscopio",
+    //     descripcion: "En la práctica de laboratorio observamos una muestra de bacterias agrupadas como racimos.",
+    //     imagen: IMG + "monera.jpg",
+    //     fecha: "2026-09-20",
+    //     reino: "Monera",
+    //     grupo: "Bacterias",
+    //     especie: "Staphylococcus aureus",
+    //     ubicacion: "Laboratorio escolar",
+    // },
+    // {
+    //     titulo: "Helechos en el bosque",
+    //     descripcion: "Una zona sombreada del bosque estaba cubierta de helechos muy grandes.",
+    //     imagen: IMG + "plantae.jpg",
+    //     fecha: "2026-09-14",
+    //     reino: "Plantae",
+    //     grupo: "Helechos / Pteridófitas",
+    //     especie: "",
+    //     ubicacion: "Desierto de los Leones, CDMX",
+    // },
+    // {
+    //     titulo: "Insecto visitando una flor",
+    //     descripcion: "Lo vi alimentándose en el jardín. Los polinizadores son clave para muchos cultivos.",
+    //     imagen: IMG + "insectos.jpg",
+    //     fecha: "2026-09-05",
+    //     reino: "Animalia",
+    //     subcategoria: "Invertebrado",
+    //     grupo: "Insectos",
+    //     especie: "",
+    //     ubicacion: "Coyoacán, Ciudad de México",
+    // },
+    // {
+    //     titulo: "Murciélago al atardecer",
+    //     descripcion: "Salió de una cueva justo cuando empezaba a oscurecer.",
+    //     imagen: IMG + "murcielago.jpg",
+    //     fecha: "2026-08-29",
+    //     reino: "Animalia",
+    //     subcategoria: "Vertebrado",
+    //     grupo: "Mamíferos",
+    //     especie: "",
+    //     ubicacion: "Grutas de Cacahuamilpa, Guerrero",
+    // },
+    // {
+    //     titulo: "Pino con piñas",
+    //     descripcion: "Pino alto con muchas piñas abiertas en las ramas.",
+    //     imagen: IMG + "pinus.jpg",
+    //     fecha: "2026-08-17",
+    //     reino: "Plantae",
+    //     grupo: "Gimnospermas",
+    //     especie: "Pinus sp.",
+    //     ubicacion: "Nevado de Toluca, Estado de México",
+    // },
+
+
+
+
+// ].map((publicacion, i) => ({
+//     id: i + 1,
+//     usuario,
+//     subcategoria: "",
+//     comentarios: i % 3 === 2 ? [] : [
+//         { usuario: "Ana López", texto: "¡Qué buen hallazgo!" },
+//         { usuario: "Carlos Ruiz", texto: "¿Cuánto medía aproximadamente?" },
+//     ].slice(0, (i % 3) + 1),
+//     ...publicacion,
+// }));
+
+let publicaciones = [];
+
+// El backend regresa { id, title, photo, description, datetime }; la página pinta otra forma
+function adaptarPost(post) {
+    return {
+        id: post.id,
+        usuario,
+        titulo: post.title,
+        descripcion: post.description,
+        imagen: post.photo ? `data:image/jpeg;base64,${post.photo}` : "../assets/img/logo/Logo contexto.svg",
+        fecha: new Date(post.datetime).toISOString().slice(0, 10),
+        // El backend todavía no guarda reino, especie, grupo ni ubicación
+        reino: "Sin Clasificar",
+        subcategoria: "",
+        grupo: "",
         especie: "",
-        ubicacion: "Ajusco, Ciudad de México",
-    },
-    {
-        titulo: "Ajolote en el canal",
-        descripcion: "Vimos un ajolote cerca de la orilla durante un recorrido por los canales. Es una especie endémica y en peligro.",
-        imagen: IMG + "ajolote.jpg",
-        fecha: "2026-10-08",
-        reino: "Animalia",
-        subcategoria: "Vertebrado",
-        grupo: "Anfibios",
-        especie: "Ambystoma mexicanum",
-        ubicacion: "Xochimilco, Ciudad de México",
-    },
-    {
-        titulo: "Sargazo flotando en el mar",
-        descripcion: "Al bucear vimos grandes masas de sargazo. Tiene unas bolitas que le ayudan a flotar.",
-        imagen: IMG + "protista.jpg",
-        fecha: "2026-10-03",
-        reino: "Protista",
-        grupo: "Algas",
-        especie: "Sargassum sp.",
-        ubicacion: "Mahahual, Quintana Roo",
-    },
-    {
-        titulo: "Pochote con espinas en el tronco",
-        descripcion: "Árbol con el tronco lleno de espinas cónicas. En temporada seca tira las hojas.",
-        imagen: IMG + "pochote.jpg",
-        fecha: "2026-09-27",
-        reino: "Plantae",
-        grupo: "Angiospermas",
-        especie: "Ceiba aesculifolia",
-        ubicacion: "Tepoztlán, Morelos",
-    },
-    {
-        titulo: "Bacterias vistas al microscopio",
-        descripcion: "En la práctica de laboratorio observamos una muestra de bacterias agrupadas como racimos.",
-        imagen: IMG + "monera.jpg",
-        fecha: "2026-09-20",
-        reino: "Monera",
-        grupo: "Bacterias",
-        especie: "Staphylococcus aureus",
-        ubicacion: "Laboratorio escolar",
-    },
-    {
-        titulo: "Helechos en el bosque",
-        descripcion: "Una zona sombreada del bosque estaba cubierta de helechos muy grandes.",
-        imagen: IMG + "plantae.jpg",
-        fecha: "2026-09-14",
-        reino: "Plantae",
-        grupo: "Helechos / Pteridófitas",
-        especie: "",
-        ubicacion: "Desierto de los Leones, CDMX",
-    },
-    {
-        titulo: "Insecto visitando una flor",
-        descripcion: "Lo vi alimentándose en el jardín. Los polinizadores son clave para muchos cultivos.",
-        imagen: IMG + "insectos.jpg",
-        fecha: "2026-09-05",
-        reino: "Animalia",
-        subcategoria: "Invertebrado",
-        grupo: "Insectos",
-        especie: "",
-        ubicacion: "Coyoacán, Ciudad de México",
-    },
-    {
-        titulo: "Murciélago al atardecer",
-        descripcion: "Salió de una cueva justo cuando empezaba a oscurecer.",
-        imagen: IMG + "murcielago.jpg",
-        fecha: "2026-08-29",
-        reino: "Animalia",
-        subcategoria: "Vertebrado",
-        grupo: "Mamíferos",
-        especie: "",
-        ubicacion: "Grutas de Cacahuamilpa, Guerrero",
-    },
-    {
-        titulo: "Pino con piñas",
-        descripcion: "Pino alto con muchas piñas abiertas en las ramas.",
-        imagen: IMG + "pinus.jpg",
-        fecha: "2026-08-17",
-        reino: "Plantae",
-        grupo: "Gimnospermas",
-        especie: "Pinus sp.",
-        ubicacion: "Nevado de Toluca, Estado de México",
-    },
-].map((publicacion, i) => ({
-    id: i + 1,
-    usuario,
-    subcategoria: "",
-    comentarios: i % 3 === 2 ? [] : [
-        { usuario: "Ana López", texto: "¡Qué buen hallazgo!" },
-        { usuario: "Carlos Ruiz", texto: "¿Cuánto medía aproximadamente?" },
-    ].slice(0, (i % 3) + 1),
-    ...publicacion,
-}));
+        ubicacion: "",
+        comentarios: [],
+    };
+}
+
+async function cargarPublicaciones() {
+    const posts = await getPostsByUserId(USER_ID_PRUEBA);
+    publicaciones = (posts ?? []).map(adaptarPost);
+}
 
 // ===== Utilidades =====
 const formatoFecha = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", year: "numeric" });
@@ -394,9 +425,9 @@ async function cargarComentarios(publicacion) {
         const comentarios = await obtenerComentariosPorPost(publicacion.id);
         if (publicacionActual !== publicacion) return; // se abrió otra publicación mientras cargaba
 
-        // El backend regresa { id, message }; la página pinta { usuario, texto }
+        // El backend regresa { id, message, userId, userName }; la página pinta { usuario, texto }
         publicacion.comentarios = comentarios.map((comentario) => ({
-            usuario: "Usuario",
+            usuario: comentario.userName || "Usuario",
             texto: comentario.message,
         }));
         renderizarComentarios(publicacion.comentarios);
@@ -536,14 +567,31 @@ document.getElementById("modalEliminar").addEventListener("hidden.bs.modal", () 
     btnConfirmarEliminar.disabled = false;
 });
 
-function eliminar(ids) {
+const avisoPublicaciones = document.getElementById("aviso-publicaciones");
+
+// Primero se borra en el backend; solo se quitan de la página las que sí se borraron
+async function eliminar(idsPedidos) {
+    avisoPublicaciones.classList.add("d-none");
+
+    const resultados = await Promise.allSettled(idsPedidos.map((id) => deletePost(id)));
+    const ids = idsPedidos.filter((_, i) => resultados[i].status === "fulfilled");
+
+    const fallidas = idsPedidos.length - ids.length;
+    if (fallidas > 0) {
+        avisoPublicaciones.textContent = fallidas === 1
+            ? "No se pudo eliminar 1 hallazgo. Intenta de nuevo."
+            : `No se pudieron eliminar ${fallidas} hallazgos. Intenta de nuevo.`;
+        avisoPublicaciones.classList.remove("d-none");
+    }
+    if (ids.length === 0) return;
+
     const quitar = () => {
         ids.forEach((id) => {
             const indice = publicaciones.findIndex((p) => p.id === id);
             if (indice !== -1) publicaciones.splice(indice, 1);
             seleccionados.delete(id);
         });
-        renderizar();
+        renderizarDeslizando();
     };
 
     const tarjetas = ids
@@ -562,6 +610,36 @@ function eliminar(ids) {
         return caerTarjeta(tarjeta, i * 90).finished;
     });
     Promise.all(animaciones).then(quitar, quitar);
+}
+
+// Las tarjetas que quedan se deslizan a su nuevo lugar en vez de saltar (técnica FLIP):
+// se mide dónde estaban, se vuelve a pintar y se animan desde la posición vieja a la nueva
+function renderizarDeslizando() {
+    const antes = new Map();
+    lista.querySelectorAll(".hallazgo").forEach((tarjeta) => {
+        antes.set(tarjeta.dataset.id, tarjeta.getBoundingClientRect());
+    });
+
+    renderizar();
+    if (sinAnimaciones.matches) return;
+
+    let movidas = 0;
+    lista.querySelectorAll(".hallazgo").forEach((tarjeta) => {
+        const previo = antes.get(tarjeta.dataset.id);
+        if (!previo) return;
+
+        const ahora = tarjeta.getBoundingClientRect();
+        const dx = previo.left - ahora.left;
+        const dy = previo.top - ahora.top;
+        if (dx === 0 && dy === 0) return;
+
+        // Un pequeño escalonado para que se acomoden una tras otra, no todas de golpe
+        tarjeta.animate(
+            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }],
+            { duration: 550, delay: movidas * 40, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" }
+        );
+        movidas++;
+    });
 }
 
 // ===== Movimiento orgánico =====
@@ -684,14 +762,15 @@ async function agregarComentario() {
     if (!texto || !publicacionActual) return;
 
     const publicacion = publicacionActual;
+    let nuevo;
     try {
-        await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
+        nuevo = await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
     } catch (error) {
         mostrarAvisoComentarios(`No se pudo enviar el comentario: ${error.message}`, false);
         return;
     }
 
-    publicacion.comentarios.push({ usuario: "Tú", texto });
+    publicacion.comentarios.push({ usuario: nuevo?.userName || usuario, texto });
     if (publicacionActual !== publicacion) return;
     renderizarComentarios(publicacion.comentarios);
 
@@ -718,6 +797,8 @@ const editarSubCategoria = document.getElementById("editarSubCategoria");
 const editarContenedorSub = document.getElementById("editarContenedorSub");
 const editarTitulo = document.getElementById("editarTitulo");
 const editarDescripcion = document.getElementById("editarDescripcion");
+const editarError = document.getElementById("editarError");
+const btnGuardarEditar = document.getElementById("btnGuardarEditar");
 
 let publicacionEditando = null;
 let nuevaImagen = null;
@@ -732,6 +813,7 @@ function abrirEditor(publicacion) {
 
     // Limpiar validaciones y archivo anterior
     formEditar.querySelectorAll(".is-invalid").forEach((el) => el.classList.remove("is-invalid"));
+    editarError.classList.add("d-none");
     editarArchivo.value = "";
 
     // Rellenar con los datos actuales
@@ -756,7 +838,7 @@ editarArchivo.addEventListener("change", () => {
 editarCategoria.addEventListener("change", mostrarSubcategoria);
 
 // Guardar cambios
-formEditar.addEventListener("submit", (e) => {
+formEditar.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const titulo = editarTitulo.value.trim();
@@ -778,6 +860,21 @@ formEditar.addEventListener("submit", (e) => {
         if (hayError) valido = false;
     });
     if (!valido) return;
+
+    // Guardar en el backend (solo conoce título, descripción y foto)
+    const cambios = { title: titulo, description: descripcion };
+    btnGuardarEditar.disabled = true;
+    editarError.classList.add("d-none");
+    try {
+        if (editarArchivo.files.length > 0) cambios.photo = await convertImageToBytes(editarArchivo);
+        await updatePost(publicacionEditando.id, cambios);
+    } catch (error) {
+        editarError.textContent = `No se pudieron guardar los cambios: ${error.message}`;
+        editarError.classList.remove("d-none");
+        return;
+    } finally {
+        btnGuardarEditar.disabled = false;
+    }
 
     // Si cambia el reino o la subcategoría, el grupo anterior ya no aplica
     const nuevaSub = reino === "Animalia" ? subcategoria : "";
@@ -881,4 +978,5 @@ pintarBotonTema();
 
 // ===== Inicio =====
 aplicarVista();
+await cargarPublicaciones();
 renderizar();

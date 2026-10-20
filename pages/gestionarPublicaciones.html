@@ -68,6 +68,9 @@
                     <p class="cuaderno-subtitulo">Revisa, corrige y organiza lo que has observado en tu entorno.</p>
                 </div>
                 <div class="cuaderno-acciones">
+                    <a href="./feed.html" class="btn btn-outline-oscuro" id="btn-volver-feed">
+                        <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>Volver al feed
+                    </a>
                     <button type="button" class="btn btn-outline-oscuro" id="btn-tema" aria-pressed="false"
                         aria-label="Activar modo oscuro" title="Activar modo oscuro">
                         <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i><span>Modo oscuro</span>
@@ -116,6 +119,9 @@
                 </button>
                 <span class="ms-auto" id="contador-publicaciones"></span>
             </div>
+
+            <!--* Aviso cuando falla eliminar en el backend -->
+            <div class="alert alert-danger d-none" role="alert" id="aviso-publicaciones"></div>
 
             <!--* Lista de hallazgos (la llena gestionarPublicacion.js) -->
             <ul class="lista-hallazgos vista-cuadricula list-unstyled m-0" id="lista-publicaciones"></ul>
@@ -227,9 +233,12 @@
                             <div class="invalid-feedback">¡Aún no has comentado tu hallazgo!</div>
                         </div>
 
+                        <!--* Aviso cuando falla guardar en el backend -->
+                        <div class="alert alert-danger d-none" role="alert" id="editarError"></div>
+
                         <!--* Botones -->
                         <div class="d-flex gap-3 justify-content-center">
-                            <button class="btn btn-verde w-50" type="submit">Guardar cambios</button>
+                            <button class="btn btn-verde w-50" type="submit" id="btnGuardarEditar">Guardar cambios</button>
                             <button class="btn btn-outline-oscuro w-50" type="button"
                                 data-bs-dismiss="modal">Cancelar</button>
                         </div>
