@@ -67,6 +67,10 @@
 
 .navbar-custom .nav-link:hover {
     color: var(--blanco);
+}
+
+/* Paleta del cuaderno de campo (el modo oscuro la sobrescribe más abajo) */
+:root {
     --verde-noche: #18230F;
     --verde-bosque: #27391C;
     --verde-musgo: #3A4D39;
@@ -1113,7 +1117,8 @@
         display: none;
     }
 
-    .cuaderno-acciones .btn-verde {
+    .cuaderno-acciones .btn-verde,
+    #btn-volver-feed {
         grid-column: 1 / -1;
         width: 100%;
     }
