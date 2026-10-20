@@ -438,26 +438,207 @@ const tituloModalEliminar = document.getElementById("tituloModalEliminar");
 const mensajeEliminar = document.getElementById("mensajeEliminar");
 let accionEliminar = null;
 
+// ===== Personaje del modal de eliminar =====
+const personajeEliminar = document.getElementById("personajeEliminar");
+const personajeDialogo = document.getElementById("personajeDialogo");
+const DIALOGOS = {
+    normal: "¿Seguro?",
+    feliz: "¡Gracias por conservarlo!",
+    triste: "¡Nooo, era un buen hallazgo!",
+    adios: "Adiós…",
+};
+
+function cambiarAnimo(animo) {
+    // Ya confirmado: no vuelve a cambiar hasta que se cierre el modal
+    if (personajeEliminar.dataset.animo === "adios" && animo !== "normal") return;
+    personajeEliminar.dataset.animo = animo;
+    personajeDialogo.textContent = DIALOGOS[animo];
+}
+
+function reaccionarA(boton, animo) {
+    const activar = () => cambiarAnimo(animo);
+    const regresar = () => {
+        if (personajeEliminar.dataset.animo === animo) cambiarAnimo("normal");
+    };
+    boton.addEventListener("mouseenter", activar);
+    boton.addEventListener("focus", activar);
+    boton.addEventListener("mouseleave", regresar);
+    boton.addEventListener("blur", regresar);
+}
+
+reaccionarA(document.querySelector("#modalEliminar .btn-cancelar-eliminar"), "feliz");
+reaccionarA(document.getElementById("btnConfirmarEliminar"), "triste");
+
 function pedirConfirmacion(titulo, mensaje, accion) {
     tituloModalEliminar.textContent = titulo;
     mensajeEliminar.textContent = mensaje;
     accionEliminar = accion;
+    personajeEliminar.dataset.animo = "adios"; // permite el reinicio
+    cambiarAnimo("normal");
     modalEliminar.show();
 }
 
-document.getElementById("btnConfirmarEliminar").addEventListener("click", () => {
-    if (accionEliminar) accionEliminar();
+const btnConfirmarEliminar = document.getElementById("btnConfirmarEliminar");
+const sinAnimaciones = window.matchMedia("(prefers-reduced-motion: reduce)");
+let eliminacionConfirmada = false;
+
+// Al confirmar: el botón hace su animación, se cierra el modal y luego se elimina
+btnConfirmarEliminar.addEventListener("click", () => {
+    if (eliminacionConfirmada) return;
+    eliminacionConfirmada = true;
+    btnConfirmarEliminar.classList.add("confirmando");
+    btnConfirmarEliminar.disabled = true;
+    cambiarAnimo("adios");
+    setTimeout(() => modalEliminar.hide(), sinAnimaciones.matches ? 0 : 350);
+});
+
+// Se elimina cuando el modal ya se cerró, para que se vea salir a las tarjetas
+document.getElementById("modalEliminar").addEventListener("hidden.bs.modal", () => {
+    if (eliminacionConfirmada && accionEliminar) accionEliminar();
+    eliminacionConfirmada = false;
     accionEliminar = null;
-    modalEliminar.hide();
+    btnConfirmarEliminar.classList.remove("confirmando");
+    btnConfirmarEliminar.disabled = false;
 });
 
 function eliminar(ids) {
-    ids.forEach((id) => {
-        const indice = publicaciones.findIndex((p) => p.id === id);
-        if (indice !== -1) publicaciones.splice(indice, 1);
-        seleccionados.delete(id);
+    const quitar = () => {
+        ids.forEach((id) => {
+            const indice = publicaciones.findIndex((p) => p.id === id);
+            if (indice !== -1) publicaciones.splice(indice, 1);
+            seleccionados.delete(id);
+        });
+        renderizar();
+    };
+
+    const tarjetas = ids
+        .map((id) => lista.querySelector(`.hallazgo[data-id="${id}"]`))
+        .filter(Boolean);
+
+    if (sinAnimaciones.matches || tarjetas.length === 0) {
+        quitar();
+        return;
+    }
+
+    // Las tarjetas se secan y caen como hojas antes de quitarlas
+    const animaciones = tarjetas.map((tarjeta, i) => {
+        tarjeta.classList.add("saliendo");
+        soltarHojas(tarjeta);
+        return caerTarjeta(tarjeta, i * 90).finished;
     });
-    renderizar();
+    Promise.all(animaciones).then(quitar, quitar);
+}
+
+// ===== Movimiento orgánico =====
+const azar = (min, max) => min + Math.random() * (max - min);
+
+// La tarjeta se tambalea como si se desprendiera y luego cae meciéndose
+function caerTarjeta(tarjeta, retraso) {
+    const lado = Math.random() < 0.5 ? -1 : 1;
+    const duracion = azar(1250, 1450);
+    const pasos = 48;
+    const cuadros = [];
+
+    for (let i = 0; i <= pasos; i++) {
+        const t = i / pasos;
+
+        // 0–30%: se desprende con un tambaleo que se apaga
+        const desprender = Math.min(t / 0.3, 1);
+        const tambaleo = Math.sin(desprender * Math.PI * 2.5) * (1 - desprender) * 4 * lado;
+
+        // 30–100%: cae acelerando, con vaivén que se va calmando
+        const c = Math.max((t - 0.3) / 0.7, 0);
+        const y = c * c * 120;
+        const vaiven = Math.sin(c * Math.PI * 1.6) * 16 * lado * (1 - c * 0.4);
+        const giro = tambaleo + Math.cos(c * Math.PI * 1.6) * 6 * lado * c + c * 10 * lado;
+        const escala = 1 - c * 0.18;
+
+        cuadros.push({
+            transform: `translate(${vaiven.toFixed(2)}px, ${y.toFixed(2)}px) rotate(${giro.toFixed(2)}deg) scale(${escala.toFixed(3)})`,
+            opacity: t < 0.55 ? 1 : Math.max(1 - (t - 0.55) / 0.45, 0),
+        });
+    }
+
+    tarjeta.style.transformOrigin = `${lado < 0 ? 30 : 70}% 10%`;
+    return tarjeta.animate(cuadros, { duration: duracion, delay: retraso, easing: "linear", fill: "forwards" });
+}
+
+// Una hoja cae como en la vida real: péndulo, se voltea y la empuja el viento
+function caerHoja(hoja) {
+    const duracion = azar(1900, 2800);
+    const caida = azar(160, 300);
+    const viento = azar(-60, 60);
+    const amplitud = azar(18, 38);
+    const vaivenes = azar(1.6, 2.8);
+    const fase = azar(0, Math.PI * 2);
+    const volteos = azar(1.5, 3.5);
+    const giroBase = azar(-40, 40);
+    const brinco = azar(8, 22);
+    const pasos = 60;
+    const cuadros = [];
+
+    for (let i = 0; i <= pasos; i++) {
+        const t = i / pasos;
+        const angulo = t * Math.PI * 2 * vaivenes + fase;
+
+        // Pequeño brinco al soltarse, luego cae casi a velocidad constante
+        const salto = -brinco * Math.sin(Math.min(t / 0.18, 1) * Math.PI);
+        const y = caida * (0.25 * t + 0.75 * t * t) + salto;
+
+        // Vaivén de péndulo que crece un poco mientras cae
+        const x = viento * t + Math.sin(angulo) * amplitud * (0.5 + 0.5 * t);
+
+        // Se inclina hacia donde se mueve, y se voltea (cara y revés)
+        const inclinacion = giroBase + Math.cos(angulo) * 35;
+        const volteo = Math.cos(t * Math.PI * 2 * volteos + fase);
+        const escalaX = Math.sign(volteo || 1) * Math.max(Math.abs(volteo), 0.2);
+
+        let opacidad = 1;
+        if (t < 0.08) opacidad = t / 0.08;
+        else if (t > 0.7) opacidad = 1 - (t - 0.7) / 0.3;
+
+        cuadros.push({
+            transform: `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px) rotate(${inclinacion.toFixed(2)}deg) scaleX(${escalaX.toFixed(3)})`,
+            opacity: opacidad.toFixed(3),
+        });
+    }
+
+    return hoja.animate(cuadros, { duration: duracion, delay: azar(0, 600), easing: "linear", fill: "both" });
+}
+
+// ===== Hojas que caen de una tarjeta eliminada =====
+const HOJA_SVG = `
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C5 6 3 14 12 22C21 14 19 6 12 2Z" fill="currentColor"/>
+    <path d="M12 5V20" stroke="var(--hoja-vena)" stroke-width="1.2" stroke-linecap="round"/>
+</svg>`;
+
+function soltarHojas(tarjeta) {
+    const caja = tarjeta.getBoundingClientRect();
+    const capa = document.createElement("div");
+    capa.className = "capa-hojas";
+    capa.setAttribute("aria-hidden", "true");
+    document.body.appendChild(capa);
+
+    const cantidad = 12;
+    const caidas = [];
+    for (let i = 0; i < cantidad; i++) {
+        const hoja = document.createElement("span");
+        hoja.className = `hoja-caida hoja-tono-${i % 3}`;
+        hoja.innerHTML = HOJA_SVG;
+
+        // Salen de distintos puntos de la tarjeta, sobre todo de la foto
+        hoja.style.left = `${caja.left + azar(0.05, 0.95) * caja.width}px`;
+        hoja.style.top = `${caja.top + azar(0.05, 0.6) * caja.height}px`;
+        const tam = azar(16, 30);
+        hoja.style.width = `${tam}px`;
+        hoja.style.height = `${tam}px`;
+
+        capa.appendChild(hoja);
+        caidas.push(caerHoja(hoja).finished);
+    }
+
+    Promise.allSettled(caidas).then(() => capa.remove());
 }
 
 // ===== Comentar =====
