@@ -3,31 +3,223 @@
    ========================================= */
 :root {
   --color-fondo: #edf1d6;
-  --color-verde-1: #609966;
-  --color-verde-2: #40513b;
+  --color-verde-1: rgb(96, 153, 102);
+  --color-verde-2: rgb(64, 81, 59);
   --color-verde-3: #27391c;
   --color-blanco: #ffffff;
   --color-negro: #000000;
+  /*Fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
 }
 
 /* =========================================
    ESTILOS GENERALES
    ========================================= */
-html,
-body {
-  height: 100%;
-  overflow-x: hidden;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--ir-fondo);
-  font-family: "Istok Web", sans-serif;
-  color: var(--color-negro);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  font-family: var(--fuente--nunito);
+}
+
+
+/* =========================================
+   FONDO
+   ========================================= */
+
+.registro-page {
   min-height: 100vh;
+  background-image: url(/assets/img/registro/fondo_masi.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
+.registro-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(70, 70, 70, 0.215);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   TEXTO IZQUIERDO
+   ========================================= */
+.registro-info {
+  color: var(--color-blanco);
+  padding-bottom: 60px;
+  text-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+}
+
+.registro-info h1 {
+  font-family: var(--fuente-onest) !important;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-blanco);
+}
+
+.registro-info p {
+  font-family: var(--fuente--nunito) !important;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* =========================================
+   CARD DEL FORMULARIO
+   ========================================= */
+
+.registro-card {
+  width: 100%;
+  max-width: 580px;
+  padding: 45px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.808);
+  box-shadow: 0 20px 50px rgba(64, 81, 59, 0.176);
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo-registro {
+  width: 90px;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   TITULO
+   ========================================= */
+.form-title {
+  font-family: var(--fuente-montserrat);
+  text-align: center;
+  color: var(--color-verde-2);
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin-bottom: 6px;
+}
+
+.registro-login {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  font-family: var(--fuente--nunito);
+  color: var(--color-verde-2);
+}
+
+.registro-login a {
+  color: var(--color-verde-1);
+  text-decoration: none;
+  font-weight: 700;
+  text-shadow: 0 5px 10px rgba(64, 81, 59, 0.356);
+}
+
+/* =========================================
+   LABELS
+   ========================================= */
+.form-label {
+  font-family: var(--fuente--nunito);
+  font-size: 1rem;
+  color: var(--color-verde-2);
+  font-weight: 700;
+}
+
+/* =========================================
+   INPUTS
+   ========================================= */
+.form-control {
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--color-verde-1);
+  background: rgba(255, 255, 255, 0.612);
+}
+
+.form-control:focus {
+  border-color: var(--color-verde-1);
+  box-shadow: 0 0 0 .2rem rgba(96, 153, 102, 0.315);
+}
+
+/* =========================================
+   CHECKBOX
+   ========================================= */
+.form-check {
+  margin-bottom: 6px;
+}
+
+.form-check-label {
+  font-size: .85rem;
+  color: var(--color-verde-2);
+}
+
+.form-check-input:checked {
+  background: var(--color-verde-1);
+  border-color: var(--color-verde-1);
+}
+
+/* =========================================
+   BOTON
+   ========================================= */
+.custom-btn {
+  background-color: var(--color-verde-1);
+  border: none;
+  border-radius: 50px;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease
+}
+
+.custom-btn:hover {
+  background-color: var(--color-verde-2);
+  color: var(--color-blanco);
+}
+
+/* =========================================
+   RESPONSIVIDAD
+   ========================================= */
+@media(max-width:992px) {
+  .registro-info {
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  .registro-info h1 {
+    font-size: 3rem;
+  }
+
+  .registro-info p {
+    font-size: 1.2rem;
+  }
+
+  .registro-card {
+    margin-bottom: 40px;
+  }
+}
+
+@media(max-width:576px) {
+  .registro-card {
+    padding: 28px;
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+  }
 }
 
 .header-instarama {
@@ -53,125 +245,4 @@ body {
 .header-instarama .btn-iniciar {
   border-color: #000000;
   white-space: nowrap;
-}
-
-/* =========================================
-   CONTENEDOR PRINCIPAL
-   ========================================= */
-.main-content {
-  flex: 1;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* =========================================
-   LOGO Y EFECTO HOVER (LOGO DE INSTARAMA)
-   ========================================= */
-.logo-link {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.logo-img {
-  max-width: 100%;
-  height: auto;
-  width: 350px;
-}
-
-.logo-link:hover .logo-img {
-  filter: brightness(0.7);
-  transition: filter 0.3s ease;
-}
-
-/* =========================================
-   FORMULARIO
-   ========================================= */
-.form-title {
-  color: var(--color-verde-2);
-  font-weight: 700;
-  text-align: center;
-}
-
-.form-label {
-  color: var(--color-verde-2);
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.form-control {
-  border: 2px solid var(--color-verde-1);
-  border-radius: 10px;
-  padding: 10px 15px;
-  background-color: var(--color-blanco);
-  color: var(--color-negro);
-}
-
-.form-control:focus {
-  border-color: var(--color-verde-2);
-  box-shadow: 0 0 0 0.25rem rgba(96, 153, 102, 0.25);
-}
-
-/* =========================================
-   BOTÓN PERSONALIZADO (Crear mi cuenta)
-   ========================================= */
-.custom-btn {
-  background-color: var(--ir-verde);
-  color: var(--color-blanco);
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  font-weight: 700;
-  font-size: 1.2rem;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease;
-}
-
-.custom-btn:hover {
-  background-color: var(--ir-verde-oscuro);
-  color: var(--color-blanco);
-  transform: scale(1.02);
-}
-
-.custom-btn:active {
-  background-color: var(--ir-verde-oscuro);
-}
-
-/* =========================================
-   CHECKBOXES
-   ========================================= */
-.form-check-input:checked {
-  background-color: var(--color-verde-1);
-  border-color: var(--color-verde-1);
-}
-
-.form-check-label {
-  color: var(--color-verde-2);
-}
-
-/* =========================================
-   RESPONSIVIDAD
-   ========================================= */
-@media (max-width: 768px) {
-  .logo-img {
-    width: 250px;
-  }
-  .form-title {
-    font-size: 1.8rem;
-  }
-  .header-text {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .logo-img {
-    width: 200px;
-  }
-  .form-title {
-    font-size: 1.5rem;
-  }
-  .header-text {
-    font-size: 1rem;
-  }
 }
