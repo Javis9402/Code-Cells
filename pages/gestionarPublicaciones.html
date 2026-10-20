@@ -41,6 +41,17 @@
     <link rel="stylesheet" href="../assets/css/publicacion.css" />
     <link rel="stylesheet" href="../assets/css/global.css" />
     <link rel="stylesheet" href="../assets/css/gestionarPublicacion.css">
+    <!-- Aplica el tema guardado antes de pintar, para que no parpadee -->
+    <script>
+        (function () {
+            var tema = null;
+            try { tema = localStorage.getItem("temaInstaRama"); } catch (e) { }
+            if (!tema && window.matchMedia) {
+                tema = window.matchMedia("(prefers-color-scheme: dark)").matches ? "oscuro" : "claro";
+            }
+            if (tema === "oscuro") document.documentElement.dataset.tema = "oscuro";
+        })();
+    </script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -50,16 +61,22 @@
         <main class="cuaderno container">
 
             <!--* Encabezado: cuaderno de campo -->
-            <header class="cuaderno-encabezado">
-                <div>
+            <div class="cuaderno-encabezado">
+                <div class="cuaderno-encabezado-texto">
                     <p class="cuaderno-etiqueta"><i class="bi bi-journal-bookmark-fill me-1"></i>Cuaderno de campo</p>
                     <h1 class="cuaderno-titulo">Mis hallazgos</h1>
                     <p class="cuaderno-subtitulo">Revisa, corrige y organiza lo que has observado en tu entorno.</p>
                 </div>
-                <a href="./publicacion.html" class="btn btn-verde">
-                    <i class="bi bi-camera-fill me-2"></i>Nuevo hallazgo
-                </a>
-            </header>
+                <div class="cuaderno-acciones">
+                    <button type="button" class="btn btn-outline-oscuro" id="btn-tema" aria-pressed="false"
+                        aria-label="Activar modo oscuro" title="Activar modo oscuro">
+                        <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i><span>Modo oscuro</span>
+                    </button>
+                    <a href="./publicacion.html" class="btn btn-verde">
+                        <i class="bi bi-camera-fill me-2"></i>Nuevo hallazgo
+                    </a>
+                </div>
+            </div>
 
             <!--* Resumen -->
             <ul class="cuaderno-resumen list-unstyled">
@@ -77,7 +94,7 @@
                     <label class="buscador" for="buscar-hallazgo">
                         <i class="bi bi-search" aria-hidden="true"></i>
                         <input type="search" class="form-control" id="buscar-hallazgo"
-                            placeholder="Buscar por título, especie o lugar" />
+                            placeholder="Buscar hallazgos" aria-label="Buscar por título, especie o lugar" />
                     </label>
                     <div class="btn-group vista-selector" role="group" aria-label="Tipo de vista">
                         <button type="button" class="btn btn-outline-oscuro" data-vista="cuadricula" title="Cuadrícula"
@@ -146,7 +163,7 @@
 
     <!--TODO : Modal para editar publicación -->
     <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="tituloModalEditar" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable w-100">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
             <div class="modal-content">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold" id="tituloModalEditar">Editar publicación</h5>
@@ -232,11 +249,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
-                <div class="modal-body" id="mensajeEliminar"></div>
+                <div class="modal-body">
+                    <!--* Personaje: Champi, el hongo que reacciona a los botones -->
+                    <div class="personaje-eliminar" id="personajeEliminar" data-animo="normal" aria-hidden="true">
+                        <p class="personaje-dialogo" id="personajeDialogo">¿Seguro?</p>
+                        <svg class="personaje-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse class="personaje-sombra" cx="60" cy="112" rx="26" ry="4" />
+                            <g class="personaje-cuerpo">
+                                <!-- Tallo -->
+                                <rect class="personaje-tallo" x="36" y="48" width="48" height="56" rx="20" />
+                                <!-- Sombrero con manchas -->
+                                <path class="personaje-sombrero" d="M12 58 C12 18 108 18 108 58 C108 67 12 67 12 58 Z" />
+                                <circle class="personaje-punto" cx="36" cy="42" r="6" />
+                                <circle class="personaje-punto" cx="62" cy="31" r="7" />
+                                <circle class="personaje-punto" cx="87" cy="45" r="5" />
+
+                                <!-- Cara normal -->
+                                <g class="cara cara-normal">
+                                    <circle class="rasgo" cx="50" cy="76" r="4" />
+                                    <circle class="rasgo" cx="70" cy="76" r="4" />
+                                    <path class="rasgo-linea" d="M54 86 q6 5 12 0" />
+                                </g>
+
+                                <!-- Cara feliz -->
+                                <g class="cara cara-feliz">
+                                    <path class="rasgo-linea" d="M45 77 q5 -7 10 0" />
+                                    <path class="rasgo-linea" d="M65 77 q5 -7 10 0" />
+                                    <path class="rasgo" d="M50 84 q10 12 20 0 z" />
+                                    <ellipse class="mejilla" cx="42" cy="84" rx="4.5" ry="2.5" />
+                                    <ellipse class="mejilla" cx="78" cy="84" rx="4.5" ry="2.5" />
+                                </g>
+
+                                <!-- Cara triste -->
+                                <g class="cara cara-triste">
+                                    <path class="rasgo-linea" d="M43 71 l9 -4" />
+                                    <path class="rasgo-linea" d="M77 71 l-9 -4" />
+                                    <circle class="rasgo" cx="50" cy="78" r="3.5" />
+                                    <circle class="rasgo" cx="70" cy="78" r="3.5" />
+                                    <path class="rasgo-linea" d="M53 91 q7 -7 14 0" />
+                                    <path class="lagrima" d="M47 82 q-3.5 6 0 8 q3.5 -2 0 -8 z" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <p class="mensaje-eliminar" id="mensajeEliminar"></p>
+                </div>
 
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-outline-oscuro" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-oscuro fw-bold" id="btnConfirmarEliminar">Sí, eliminar</button>
+                    <button type="button" class="btn btn-outline-oscuro btn-cancelar-eliminar" data-bs-dismiss="modal">
+                        <i class="bi bi-arrow-left" aria-hidden="true"></i><span>Cancelar</span>
+                    </button>
+                    <button type="button" class="btn btn-oscuro fw-bold btn-confirmar-eliminar" id="btnConfirmarEliminar">
+                        <i class="bi bi-trash3 icono-basura" aria-hidden="true"></i><span>Sí, eliminar</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -246,7 +312,7 @@
     <!-- VENTANA FLOTANTE DE LA PUBLICACIÓN -->
     <div class="modal fade ir-modal" id="modal-publicacion" tabindex="-1" aria-labelledby="modal-titulo"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl modal-fullscreen-sm-down">
             <div class="modal-content">
                 <button type="button" class="btn-close ir-modal-close" data-bs-dismiss="modal"
                     aria-label="Cerrar"></button>
