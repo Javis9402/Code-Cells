@@ -61,6 +61,21 @@ document.addEventListener('DOMContentLoaded', function () {
         if (alertaCategoria) { alertaCategoria.classList.add('d-none'); alertaCategoria.classList.remove('d-flex', 'show') }
         if (alertaTitulo) { alertaTitulo.classList.add('d-none'); alertaTitulo.classList.remove('d-flex', 'show'); }
     }
+
+// Oculta las alertas, no las elimina
+    const botonesCerrarAlerta = document.querySelectorAll('.btn-cerrar-alerta');
+    botonesCerrarAlerta.forEach(boton => {
+        boton.addEventListener('click', function() {
+            // Encuentra a la alerta padre del botón que se hizo click
+            const alertaPadre = this.closest('.alert');
+            if (alertaPadre) {
+                // En lugar de destruirla, solo le agregamos la clase d-none
+                alertaPadre.classList.add('d-none');
+                alertaPadre.classList.remove('d-flex', 'show');
+            }
+        });
+    });
+
     // Lectura del usuario
     let userLogged = localStorage.getItem('usuarioActual');
     if (!userLogged) {
