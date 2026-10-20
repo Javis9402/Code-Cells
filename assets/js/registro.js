@@ -1,7 +1,7 @@
 // ==========================================
 // REGISTRO - Conexión con el Backend
 // ==========================================
-import { registerUser } from "../../services/auth.service.js";
+import { registerUser } from "./Services/auth.service.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
