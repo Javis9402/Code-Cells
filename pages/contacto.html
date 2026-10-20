@@ -100,10 +100,10 @@
                 aria-label="Default select example"
               >
                 <option selected value="">Seleccione una opción</option>
-                <option value="1">Felicitaciones</option>
-                <option value="2">Error</option>
-                <option value="3">Queja</option>
-                <option value="4">Sugerencia</option>
+                <option value="Felicidades">Felicitaciones</option>
+                <option value="Error">Error</option>
+                <option value="Queja">Queja</option>
+                <option value="Sugerencia">Sugerencia</option>
               </select>
               <div class="invalid-feedback" id="messageTypeError"></div>
             </div>
@@ -122,6 +122,8 @@
             <button id="send-info" type="submit" class="btn btn-form w-100">
               Enviar
             </button>
+            <!-- Aviso de enviado / error que regresa el backend -->
+            <div id="formResult" class="mt-3"></div>
           </form>
           <!-- ! FIN > PARTE IZQUIERDA INFERIOR -->
         </div>
@@ -164,8 +166,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="../assets/js/formulario-mandar-cor.js"></script>
-    <script src="/assets/js/validacionForm.js"></script>
+    <script src="/assets/js/validacionForm.js" type="module"></script>
     <script src="../assets/js/render.js" type="module"></script>
   </body>
 </html>
