@@ -1,3 +1,8 @@
+import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
+
+// ID de usuario fijo mientras el login no está conectado al backend
+const USER_ID_PRUEBA = 26;
+
 // ===== Reinos =====
 const REINOS = {
     Monera: "🧫",
@@ -372,6 +377,35 @@ function renderizarComentarios(comentarios) {
     });
 }
 
+function mostrarAvisoComentarios(texto, limpiar = true) {
+    const contenedor = document.getElementById("modal-comentarios");
+    if (limpiar) contenedor.innerHTML = "";
+    const aviso = document.createElement("p");
+    aviso.className = "sin-comentarios";
+    aviso.textContent = texto;
+    contenedor.appendChild(aviso);
+}
+
+// Trae los comentarios de la publicación desde el backend
+async function cargarComentarios(publicacion) {
+    mostrarAvisoComentarios("Cargando comentarios...");
+    try {
+        const comentarios = await obtenerComentariosPorPost(publicacion.id);
+        if (publicacionActual !== publicacion) return; // se abrió otra publicación mientras cargaba
+
+        // El backend regresa { id, message }; la página pinta { usuario, texto }
+        publicacion.comentarios = comentarios.map((comentario) => ({
+            usuario: "Usuario",
+            texto: comentario.message,
+        }));
+        renderizarComentarios(publicacion.comentarios);
+        renderizar(); // actualiza el contador de la tarjeta y el resumen
+    } catch (error) {
+        if (publicacionActual !== publicacion) return;
+        mostrarAvisoComentarios(`No se pudieron cargar los comentarios: ${error.message}`);
+    }
+}
+
 function abrirModal(publicacion) {
     publicacionActual = publicacion;
 
@@ -401,7 +435,7 @@ function abrirModal(publicacion) {
         lista.appendChild(grupo);
     }
 
-    renderizarComentarios(publicacion.comentarios);
+    cargarComentarios(publicacion);
     modal.show();
 }
 
@@ -644,12 +678,21 @@ function soltarHojas(tarjeta) {
 // ===== Comentar =====
 const inputComentario = document.getElementById("modal-input");
 
-function agregarComentario() {
+async function agregarComentario() {
     const texto = inputComentario.value.trim();
     if (!texto || !publicacionActual) return;
 
-    publicacionActual.comentarios.push({ usuario: "Tú", texto });
-    renderizarComentarios(publicacionActual.comentarios);
+    const publicacion = publicacionActual;
+    try {
+        await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
+    } catch (error) {
+        mostrarAvisoComentarios(`No se pudo enviar el comentario: ${error.message}`, false);
+        return;
+    }
+
+    publicacion.comentarios.push({ usuario: "Tú", texto });
+    if (publicacionActual !== publicacion) return;
+    renderizarComentarios(publicacion.comentarios);
 
     // Bajar hasta el comentario nuevo dentro de la caja de comentarios
     const contenedor = document.getElementById("modal-comentarios");
