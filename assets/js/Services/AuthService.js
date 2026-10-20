@@ -1,7 +1,7 @@
 /**
  * @file Servicio de Autenticación.
  * Se encarga de la comunicación entre el Frontend y los endpoints de Login y Registro del Backend.
- * @module auth.service
+ * @module AuthService
  */
 
 // ==========================================

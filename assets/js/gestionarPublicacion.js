@@ -1,5 +1,5 @@
 import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
-import { getPostsByUserId, updatePost, deletePost, convertImageToBytes } from "./Services/postservice.js";
+import { getPostsByUserId, updatePost, deletePost, convertImageToBytes } from "./Services/PostService.js";
 import { ensureLoggedIn } from "./utils.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend

@@ -1,6 +1,6 @@
 /**
  * @file Servicio para consumir los endpoints de usuarios del backend de InstaRama.
- * Login y registro están en `auth.service.js`; aquí va la gestión del perfil.
+ * Login y registro están en `AuthService.js`; aquí va la gestión del perfil.
  * @module UserService
  */
 
