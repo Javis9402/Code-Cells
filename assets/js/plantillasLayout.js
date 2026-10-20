@@ -111,13 +111,13 @@ export const header_acercaDe = `
             <ul class="navbar-nav mb-2 mb-lg-0 gap-3 align-items-center">
               <li class="nav-item">
                 <!-- Botón Iniciar Sesión -->
-                <a class="btn-iniciar" href="./pages/login.html"
+                <a class="btn-iniciar" href="../pages/login.html"
                 >Iniciar sesión</a
               >
               </li>
               <li class="nav-item">
                 <!-- Botón Registrarse -->
-                <a class="btn-registrar" href="./pages/registro.html"
+                <a class="btn-registrar" href="../pages/registro.html"
                 >Registrarse</a>
               </li>
             </ul>
