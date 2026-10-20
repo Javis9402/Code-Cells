@@ -1,140 +1,87 @@
 // ==========================================
-// USUARIO DE PRUEBA
+// LOGIN - Conexión con el Backend
 // ==========================================
-const usuarioPrueba = {
-  email: "javier@instarama.com",
-  username: "Javier Morales",
-  password: "123456789",
-};
+import { loginUser } from "../../services/auth.service.js";
 
-// ==========================================
-// OBTENER USUARIOS GUARDADOS
-// ==========================================
-let usuarios =
-  JSON.parse(localStorage.getItem("usuariosInstarama")) ||
-  JSON.parse(localStorage.getItem("usuarios")) ||
-  [];
-
-// ==========================================
-// AGREGAR USUARIO DE PRUEBA (SI NO EXISTE)
-// ==========================================
-const usuarioExiste = usuarios.some(
-  (usuario) => usuario.email === usuarioPrueba.email,
-);
-
-if (!usuarioExiste) {
-  usuarios.push(usuarioPrueba);
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-}
-
-// ==========================================
-// OBTENER FORMULARIOS
-// ==========================================
 const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
 
-// ==========================================
-// REGISTRO
-// ==========================================
-if (registerForm) {
-  registerForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const confirmPassword = document
-      .getElementById("confirmPassword")
-      .value.trim();
-
-    const registerError = document.getElementById("registerError");
-    const registerSuccess = document.getElementById("registerSuccess");
-
-    registerError.textContent = "";
-    registerSuccess.textContent = "";
-
-    // Validar campos vacíos
-    if (!username || !email || !password || !confirmPassword) {
-      registerError.textContent = "Todos los campos son obligatorios.";
-      return;
-    }
-
-    // Validar formato de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      registerError.textContent = "Ingresa un correo electrónico válido.";
-      return;
-    }
-
-    // Validar contraseñas
-    if (password !== confirmPassword) {
-      registerError.textContent = "Las contraseñas no coinciden.";
-      return;
-    }
-
-    // Obtener usuarios actualizados
-    usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    // Comprobar si el email ya existe
-    const emailExiste = usuarios.some((usuario) => usuario.email === email);
-    if (emailExiste) {
-      registerError.textContent = "El correo ya está registrado.";
-      return;
-    }
-
-    // Crear nuevo usuario
-    const nuevoUsuario = {
-      username: username,
-      email: email,
-      password: password,
-    };
-
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    registerSuccess.textContent =
-      "¡Registro exitoso! Ya puedes iniciar sesión.";
-    registerForm.reset();
-  });
-}
-
-// ==========================================
-// INICIO DE SESIÓN
-// ==========================================
 if (loginForm) {
-  loginForm.addEventListener("submit", (event) => {
+  loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Obtener datos del login
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
-
     const emailError = document.getElementById("emailError");
     const passwordError = document.getElementById("passwordError");
-    const loginError = document.getElementById("loginError");
+    const alertContainer = document.getElementById("alert-container");
 
-    // Limpiar mensajes y estados
-    emailError.textContent = "";
-    passwordError.textContent = "";
-    loginError.textContent = "";
-    loginError.classList.add("d-none");
-
-    emailInput.classList.remove("input-error");
-    passwordInput.classList.remove("input-error");
+    // Limpiar estados previos
+    if (emailError) emailError.textContent = "";
+    if (passwordError) passwordError.textContent = "";
+    if (alertContainer) alertContainer.innerHTML = "";
+    if (emailInput) emailInput.classList.remove("input-error");
+    if (passwordInput) passwordInput.classList.remove("input-error");
 
     // ==========================================
-    // VALIDACIONES
+    // FUNCIÓN AUXILIAR PARA MOSTRAR ALERTAS BOOTSTRAP
+    // ==========================================
+    function mostrarAlertaBootstrap(mensaje, tipo = "danger") {
+      if (!alertContainer) {
+        alert(mensaje); // Respaldo de emergencia
+        return;
+      }
+
+      // Limpiamos cualquier mensaje técnico o feo que venga por error
+      let mensajeLimpio = mensaje;
+      const msjMin = mensaje.toLowerCase();
+
+      if (
+        msjMin.includes("401") ||
+        msjMin.includes("unauthorized") ||
+        msjMin.includes("credenciales")
+      ) {
+        mensajeLimpio =
+          "El correo electrónico o la contraseña son incorrectos.";
+      } else if (
+        msjMin.includes("failed to fetch") ||
+        msjMin.includes("networkerror")
+      ) {
+        mensajeLimpio =
+          "No se pudo conectar con el servidor. Verifica tu conexión a internet.";
+      }
+
+      alertContainer.innerHTML = `
+        <div class="alert alert-${tipo} alert-dismissible fade show shadow-sm" role="alert">
+          ${mensajeLimpio}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      `;
+
+      // Auto-cerrar después de 4 segundos
+      setTimeout(() => {
+        const alerta = alertContainer.querySelector(".alert");
+        if (alerta) {
+          alerta.classList.remove("show");
+          setTimeout(() => alerta.remove(), 300);
+        }
+      }, 4000);
+    }
+
+    // ==========================================
+    // VALIDACIONES LOCALES (Frontend)
     // ==========================================
     const emailVacio = email === "";
     const passwordVacio = password === "";
 
     // Caso 1: ambos vacíos
     if (emailVacio && passwordVacio) {
-      loginError.textContent = "Correo y/o contraseña no válidos.";
-      loginError.classList.remove("d-none");
+      mostrarAlertaBootstrap(
+        "Por favor, ingresa tu correo y contraseña.",
+        "danger",
+      );
       emailInput.classList.add("input-error");
       passwordInput.classList.add("input-error");
       return;
@@ -163,32 +110,72 @@ if (loginForm) {
     }
 
     // ==========================================
-    // BUSCAR USUARIO
+    // CONEXIÓN AL BACKEND
     // ==========================================
-    const usuariosGuardados =
-      JSON.parse(localStorage.getItem("usuarios")) || [];
+    try {
+      const data = await loginUser({ email, password });
 
-    const usuarioEncontrado = usuariosGuardados.find(
-      (usuario) => usuario.email === email && usuario.password === password,
-    );
+      if (!data) {
+        throw new Error("Datos incorrectos");
+      }
 
-    // ==========================================
-    // LOGIN CORRECTO
-    // ==========================================
-    if (usuarioEncontrado) {
+      // Verificamos que el backend devolvió al usuario
+      if (!data.id && !data.email) {
+        console.error("Respuesta del servidor:", data);
+        throw new Error("Datos incorrectos");
+      }
+
+      // ==========================================
+      // LOGIN CORRECTO
+      // ==========================================
       localStorage.setItem("sesionActiva", "true");
-      localStorage.setItem("usuarioActivo", usuarioEncontrado.username);
-      localStorage.setItem("nombreUsuario", usuarioEncontrado.username);
+      localStorage.setItem("usuarioId", data.id);
+      localStorage.setItem("usuarioActivo", data.name);
+      localStorage.setItem("nombreUsuario", data.name);
 
-      window.location.href = "./feed.html";
-    } else {
+      if (data.role) {
+        localStorage.setItem("usuarioRol", data.role);
+      }
+
+      loginForm.reset();
+
+      // Mostrar alerta de éxito
+      mostrarAlertaBootstrap("Iniciando sesión...", "success");
+
+      // Redirigir al feed después de 1.5 segundos
+      setTimeout(() => {
+        window.location.href = "./feed.html";
+      }, 1500);
+    } catch (error) {
       // ==========================================
-      // LOGIN INCORRECTO
+      // MANEJO DE ERRORES AMIGABLE (Catch)
       // ==========================================
-      loginError.textContent = "Correo y/o contraseña no válidos.";
-      loginError.classList.remove("d-none");
-      emailInput.classList.add("input-error");
-      passwordInput.classList.add("input-error");
+      console.error("Login error técnico:", error);
+
+      // Por defecto, asumimos que los datos están mal
+      let mensajeParaMostrar =
+        "El correo electrónico o la contraseña son incorrectos.";
+
+      // Si el servidor está apagado o no hay red
+      if (
+        error.message.includes("Failed to fetch") ||
+        error.message.includes("ERR_CONNECTION_REFUSED")
+      ) {
+        mensajeParaMostrar =
+          "No hay conexión con el servidor. Inténtalo más tarde.";
+      }
+      // Si el error viene del backend con un mensaje que queremos mostrar traducido
+      else if (error.message.includes("desactivada")) {
+        mensajeParaMostrar =
+          "Tu cuenta se encuentra desactivada. Contacta a soporte.";
+      }
+
+      // Mostramos la alerta roja
+      mostrarAlertaBootstrap(mensajeParaMostrar, "danger");
+
+      // Marcamos los inputs en rojo
+      if (emailInput) emailInput.classList.add("input-error");
+      if (passwordInput) passwordInput.classList.add("input-error");
     }
   });
 }
@@ -204,16 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (togglePassword && toggleIcon && passwordInput) {
     togglePassword.addEventListener("click", () => {
       const esPassword = passwordInput.type === "password";
-
-      // Cambiar tipo de input
       passwordInput.type = esPassword ? "text" : "password";
-
-      // Cambiar icono
       toggleIcon.src = esPassword
         ? "../assets/img/icons/ojo-abierto.svg"
         : "../assets/img/icons/ojo-cerrado.svg";
-
-      // Cambiar alt
       toggleIcon.alt = esPassword ? "Ocultar contraseña" : "Mostrar contraseña";
     });
   }
