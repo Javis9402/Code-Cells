@@ -42,6 +42,61 @@ const enlacesNav = [
     { texto: "Acerca de", href: paginas.acercaDe, pagina: "acercaDe" },
 ];
 
+const styles = `
+    <!--TODO  FUENTES -->
+
+    <!-- TODO Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yuyu+Short&display=swap"
+        rel="stylesheet">
+
+    <!-- TODO MONTSERRAT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- TODO ONEST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="${ruta("assets/css/contactanos.css")}" />
+
+    <!--! FIN  FUENTES -->
+`;
+
+// TODO > ================= CONFIGURACIÓN POR PÁGINA =================
+// header / footer: HTML a insertar (null = la página no lleva ese elemento)
+// headerDespuesDe: selector del elemento tras el cual va el header (por defecto, al inicio del body)
+
+const layouts = {
+    index: { header: header_index, footer: footer_index },
+    acercaDe: { header: header_acercaDe, footer: footer_acercaDe },
+    gestionarPublicaciones: { header: header_gestionarPublicaciones, footer: null },
+    publicacion: { header: header_publicacion, footer: null },
+    login: { header: header_login, footer: null },
+    registro: { header: header_registro, footer: null },
+    feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
+    objetos: { header: null, footer: null },
+    contacto: { header: headerTemplate(), footer: footerContactoTemplate() }
+};
+
+const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };
+
+// TODO > ================= RENDER =================
+const layout = layouts[nombrePagina] ?? layoutGeneral;
+renderHeader(layout);
+renderFooter(layout);
+
+
+// TODO > ================= FUNCIONES =================
+
 // TODO > ================= PLANTILLAS GENERALES =================
 // Se usan en contacto, proyecto y cualquier página sin plantilla propia
 
@@ -129,59 +184,6 @@ function footerContactoTemplate() {
 `;
 }
 
-const styles = `
-    <!--TODO  FUENTES -->
-
-    <!-- TODO Nunito -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Yuyu+Short&display=swap"
-        rel="stylesheet">
-
-    <!-- TODO MONTSERRAT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- TODO ONEST -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Onest:wght@100..900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="${ruta("assets/css/contactanos.css")}" />
-
-    <!--! FIN  FUENTES -->
-`;
-
-
-// TODO > ================= FUNCIONES =================
-
-// TODO > ================= CONFIGURACIÓN POR PÁGINA =================
-// header / footer: HTML a insertar (null = la página no lleva ese elemento)
-// headerDespuesDe: selector del elemento tras el cual va el header (por defecto, al inicio del body)
-
-const layouts = {
-    index: { header: header_index, footer: footer_index },
-    acercaDe: { header: header_acercaDe, footer: footer_acercaDe },
-    gestionarPublicaciones: { header: header_gestionarPublicaciones, footer: null },
-    publicacion: { header: header_publicacion, footer: null },
-    login: { header: header_login, footer: null },
-    registro: { header: header_registro, footer: null },
-    feed: { header: header_feed, footer: null, headerDespuesDe: ".ir-sidebar" },
-    objetos: { header: null, footer: null },
-    contacto: { header: headerTemplate(), footer: footerContactoTemplate() }
-};
-
-const layoutGeneral = { header: headerTemplate(), footer: footerTemplate() };
-
-
-// TODO > ================= FUNCIONES =================
-
 function renderHeader({ header, headerDespuesDe }) {
     if (!header) return;
 
@@ -212,9 +214,3 @@ function renderFooter({ footer }) {
 
 // TODO > Funcion para renderizar dark o light mode
 // head.insertAdjacentHTML("beforeend", dark o light mode);
-
-
-// TODO > ================= RENDER =================
-const layout = layouts[nombrePagina] ?? layoutGeneral;
-renderHeader(layout);
-renderFooter(layout);

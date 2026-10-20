@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "coco": "Monera",
         /* PROTISTA */
         "amiba": "Protista",
+        "sargazo": "Protista",
+        "sargazos": "Protista",
         "ameba": "Protista",
         "amoeba": "Protista",
         "paramecio": "Protista",
@@ -204,9 +206,19 @@ document.addEventListener("DOMContentLoaded", () => {
         "absorción de nutrientes": "Fungi",
         "absorbe nutrientes": "Fungi",
         "Pseudohongos": "Fungi",
-
-
-
+        "manita muscaria": "Fungi",
+        "amanita muscaria": "Fungi",
+        "amanitas": "Fungi",
+        "amanita": "Fungi",
+        "penicillium": "Fungi",
+        "penicilliums": "Fungi",
+        "velo de novia": "Fungi",
+        "velo de novias": "Fungi",
+        "hongo de sombrero": "Fungi",
+        "hongos de sombrero": "Fungi",
+        "shitakate": "Fungi",
+        "shitakes": "Fungi",
+        "shiitake": "Fungi",
         /* PLANTAE */
         "planta": "Plantae",
         "plantas": "Plantae",
@@ -222,6 +234,129 @@ document.addEventListener("DOMContentLoaded", () => {
         "rosa": "Plantae",
         "girasol": "Plantae",
         "pasto": "Plantae",
+        "pasto": "Plantae",
+        "grama": "Plantae",
+        "hierba": "Plantae",
+        "arbusto": "Plantae",
+        "arbustos": "Plantae",
+        "flor": "Plantae",
+        "flores": "Plantae",
+        "fruto": "Plantae",
+        "frutos": "Plantae",
+        "semilla": "Plantae",
+        "semillas": "Plantae",
+        "raiz": "Plantae",
+        "raices": "Plantae",
+        "hoja": "Plantae",
+        "hojas": "Plantae",
+        "tallo": "Plantae",
+        "tallos": "Plantae",
+        "clorofila": "Plantae",
+        "fotosintesis": "Plantae",
+        "fotosíntesis": "Plantae",
+        "autotrofos": "Plantae",
+        "autotrofos": "Plantae",
+        "autotróficos": "Plantae",
+        "autotróficas": "Plantae",
+        "Dalia": "Plantae",
+        "Tulipan": "Plantae",
+        "Lirio": "Plantae",
+        "mimosa": "Plantae",
+        "jacaranda": "Plantae",
+        "jacarandas": "Plantae",
+        "palmera": "Plantae",
+        "palmeras": "Plantae",
+        "palmilla": "Plantae",
+        "palmillas": "Plantae",
+        "helechos": "Plantae",
+        "musgos": "Plantae",
+        "orquideas": "Plantae",
+        "rosas": "Plantae",
+        "girasoles": "Plantae",
+        "retoño": "Plantae",
+        "retoños": "Plantae",
+        "brote": "Plantae",
+        "brotes": "Plantae",
+        "semillero": "Plantae",
+        "semilleros": "Plantae",
+        "vasculares": "Plantae",
+        "Rhodophyta": "Plantae",
+        "Chlorophyta": "Plantae",
+        "Phaeophyceae": "Plantae",  
+        "Bryophyta": "Plantae",
+        "Marchantiophyta": "Plantae",
+        "Anthocerotophyta": "Plantae",  
+        "Equisetophyta": "Plantae",
+        "Lycopodiophyta": "Plantae",
+        "Polypodiophyta": "Plantae",    
+        "viridantas": "Plantae",
+        "Streptophyta": "Plantae",
+        "Charophyta": "Plantae",    
+        "Angiospermas": "Plantae",
+        "Gimnospermas": "Plantae",
+        "Pteridofitas": "Plantae",  
+        "xilema": "Plantae",
+        "floema": "Plantae",
+        "estomas": "Plantae",   
+        "lignina": "Plantae",
+        "cuticula": "Plantae",
+        "cutículas": "Plantae",
+        "pectina": "Plantae",
+        "pectinas": "Plantae",
+        "celulosa": "Plantae",
+        "centeno": "Plantae",
+        "trigo": "Plantae",
+        "maiz": "Plantae",
+        "arroz": "Plantae",
+        "soya": "Plantae",
+        "soja": "Plantae",
+        "frijol": "Plantae",
+        "frijoles": "Plantae",
+        "lenteja": "Plantae",
+        "lentejas": "Plantae",
+        "garbanzo": "Plantae",
+        "garbanzos": "Plantae", 
+        "acelga": "Plantae",
+        "acelgas": "Plantae",
+        "espinaca": "Plantae",  
+        "espinacas": "Plantae",
+        "lechuga": "Plantae",
+        "lechugas": "Plantae",  
+        "melisa": "Plantae",
+        "menta": "Plantae",
+        "romero": "Plantae",
+        "bromelia": "Plantae",
+        "magueyes": "Plantae",
+        "pithaya": "Plantae",
+        "pitahaya": "Plantae",
+        "pitahayas": "Plantae",
+        "nopalitos": "Plantae",
+        "ciclamen": "Plantae",
+        "begonia": "Plantae",
+        "petunia": "Plantae",
+        "echeveria": "Plantae",
+        "agave": "Plantae",
+        "gerbera": "Plantae",
+        "aster": "Plantae",
+        "crisantemo": "Plantae",
+        "crisantemos": "Plantae",
+        "diente de león": "Plantae",
+        "tronco de Brasil": "Plantae",
+        "cactus de Navidad": "Plantae",
+        "cactus de Pascua": "Plantae",  
+        "dalia": "Plantae",
+        "tulipan": "Plantae",
+        "lirio": "Plantae",
+        "azalea": "Plantae",
+        "hortensia": "Plantae",
+        "hortensias": "Plantae",
+        "jacinto": "Plantae",
+        "jacintos": "Plantae",
+        "clavel": "Plantae",
+        "arce": "Plantae",  
+        "coleos": "Plantae",
+        "lirio": "Plantae",
+        "bambu": "Plantae",
         /* ANIMALIA */
         "animal": "Animalia",
         "perro": "Animalia",
@@ -248,7 +383,78 @@ document.addEventListener("DOMContentLoaded", () => {
         "conejo": "Animalia",
         "aguila": "Animalia",
         "colibri": "Animalia",
-        "ave": "Animalia"
+        "ave": "Animalia",
+        "insecto": "Animalia",
+        "insectos": "Animalia",
+        "reptil": "Animalia",
+        "reptiles": "Animalia",
+        "anfibio": "Animalia",
+        "anfibios": "Animalia",
+        "mamifero": "Animalia",
+        "mamiferos": "Animalia",
+        "aves": "Animalia",
+        "pajaro": "Animalia",
+        "pajaros": "Animalia",
+        "viuda negra": "Animalia",
+        "araña viuda negra": "Animalia",
+        "arañas viuda negra": "Animalia",
+        "tarantula": "Animalia",
+        "tarantulas": "Animalia",
+        "iguana": "Animalia",
+        "mono": "Animalia",
+        "monos": "Animalia",
+        "delfin": "Animalia",
+        "delfines": "Animalia",
+        "ballena": "Animalia",
+        "ballenas": "Animalia",
+        "orca": "Animalia",
+        "orcas": "Animalia",
+        "tiburon martillo": "Animalia",
+        "tiburon martillos": "Animalia",
+        "tiburon blanco": "Animalia",
+        "tiburon blancos": "Animalia",
+        "ballena azul": "Animalia",
+        "ballenas azules": "Animalia",
+        "tiburon ballena": "Animalia",
+        "tiburon ballenas": "Animalia",
+        "capibara": "Animalia",
+        "capibaras": "Animalia",
+        "canguro": "Animalia",
+        "canguros": "Animalia",
+        "ornitorrinco": "Animalia",
+        "ornitorrincos": "Animalia",
+        "loro": "Animalia",
+        "loros": "Animalia",
+        "guacamaya": "Animalia",
+        "tortuga": "Animalia",
+        "tortugas": "Animalia",
+        "cocodrilo": "Animalia",
+        "cocodrilos": "Animalia",
+        "hipopotamo": "Animalia",
+        "hipopotamos": "Animalia",
+        "hamster": "Animalia",
+        "hamsters": "Animalia",
+        "raton": "Animalia",
+        "ratones": "Animalia",
+        "rata": "Animalia",
+        "ratas": "Animalia",    
+        "cucaracha": "Animalia",
+        "cucarachas": "Animalia",
+        "mariposas": "Animalia",
+        "abejas": "Animalia",
+        "hormigas": "Animalia",
+        "moscas": "Animalia",
+        "caballo": "Animalia",
+        "caballos": "Animalia",
+        "vaca": "Animalia",
+        "leon": "Animalia",
+        "leones": "Animalia",
+        "tigre": "Animalia",
+        "oso": "Animalia",
+        "zorro": "Animalia",
+        "jirafa": "Animalia",
+        "cascabel": "Animalia",
+
     };
     /* =====================================================
        QUITAR MAYÚSCULAS, ACENTOS Y ESPACIOS EXTRA
@@ -262,28 +468,74 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/[\u0300-\u036f]/g, "")
             .replace(/\s+/g, " ");
     }
+        /* =====================================================
+       CREAR DICCIONARIO NORMALIZADO
+       ===================================================== */
+
+    const organismosNormalizados = {};
+
+    Object.entries(organismos).forEach(([nombre, reino]) => {
+        organismosNormalizados[normalizarTexto(nombre)] = reino;
+    });
+
     /* =====================================================
        BUSCAR EL REINO
        ===================================================== */
-    function buscarReino(texto) {
-        const palabra = normalizarTexto(texto);
-        if (!palabra) {
+        function buscarReino(texto) {
+        const busqueda = normalizarTexto(texto);
+        if (!busqueda) {
             return null;
         }
-        /* Primero busca coincidencia exacta */
-        if (organismos[palabra]) {
-            return organismos[palabra];
+        /* Coincidencia exacta */
+        if (organismosNormalizados[busqueda]) {
+            return organismosNormalizados[busqueda];
         }
-        /* Después permite frases:
-           "encontre una mariposa" también funciona
+        /* Permite escribir frases:
+           "encontre una mariposa"
+           "vi un hongo"
         */
-        const coincidencia = Object.keys(organismos).find((organismo) => {
-            return palabra.includes(organismo);
+        const palabrasConocidas = Object.keys(organismosNormalizados)
+            .sort((a, b) => b.length - a.length);
+        const encontrada = palabrasConocidas.find((organismo) => {
+            const expresion = new RegExp(
+                `(^|\\s)${escaparExpresion(organismo)}(?=\\s|$|[.,;!?])`,
+                "i"
+            );
+            return expresion.test(busqueda);
         });
-        if (coincidencia) {
-            return organismos[coincidencia];
+        if (encontrada) {
+            return organismosNormalizados[encontrada];
         }
         return null;
+    }
+/* =====================================================
+       EVITAR PROBLEMAS CON EXPRESIONES REGULARES
+       ===================================================== */
+    function escaparExpresion(texto) {
+        return texto.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+/* =====================================================
+       MOSTRAR REINO EN PANTALLA
+       ===================================================== */
+    function mostrarReino(reino) {
+        const informacion = informacionReinos[reino];
+        if (!informacion) {
+            return;
+        }
+        resultadoReino.classList.remove("d-none");
+        nombreReino.textContent =
+            `${informacion.icono} Reino ${reino}`;
+        descripcionReino.textContent =
+            informacion.descripcion;
+        if (imagenReino) {
+            imagenReino.src = informacion.imagen;
+            imagenReino.alt = `Ejemplo del Reino ${reino}`;
+            imagenReino.onerror = () => {
+                imagenReino.src =
+                    "../assets/img/publicacion/imagenPredeterminada.png";
+            };
+        }
+        seleccionarCategoria(reino);
     }
     /* =====================================================
        SELECCIONAR AUTOMÁTICAMENTE EL REINO EN EL FORMULARIO
@@ -309,71 +561,72 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     /* =====================================================
-       MOSTRAR RESULTADO
+       SELECCIONAR AUTOMÁTICAMENTE
+       "TIPO DE DESCUBRIMIENTO"
        ===================================================== */
-    function mostrarReino(reino) {
-        const informacion = informacionReinos[reino];
-        if (!informacion) {
+    function seleccionarCategoria(reino) {
+        if (!selectCategoria) {
             return;
         }
-        resultadoReino.classList.remove("d-none");
-        nombreReino.textContent =
-            `${informacion.icono} Reino ${reino}`;
-        descripcionReino.textContent =
-            informacion.descripcion;
-        if (imagenReino) {
-            imagenReino.src = informacion.imagen;
-            imagenReino.alt = `Ejemplo visual del Reino ${reino}`;
+        const opcion = Array.from(selectCategoria.options)
+            .find((item) => item.value === reino);
+        if (!opcion) {
+            return;
         }
-        seleccionarCategoria(reino);
+        selectCategoria.value = reino;
+        selectCategoria.dispatchEvent(
+            new Event("change", {
+                bubbles: true
+            })
+        );
     }
     /* =====================================================
-       CUANDO NO ENCONTRAMOS LA PALABRA
+       PALABRA NO ENCONTRADA
        ===================================================== */
     function mostrarNoEncontrado() {
         resultadoReino.classList.remove("d-none");
         nombreReino.textContent =
-            "🔍 No estamos seguros todavía";
+            "🔍 Organismo no identificado";
         descripcionReino.textContent =
-            "No encontramos esa palabra. Puedes escribir otro organismo o usar el cuestionario para descubrir su reino.";
+            "No encontramos esa palabra. Prueba con otro nombre o utiliza el cuestionario de clasificación.";
         if (imagenReino) {
             imagenReino.src =
                 "../assets/img/publicacion/imagenPredeterminada.png";
             imagenReino.alt =
-                "Organismo sin clasificar";
+                "Organismo todavía no clasificado";
         }
     }
     /* =====================================================
        CASO ESPECIAL: VIRUS
-       Los virus no pertenecen a ninguno de los cinco reinos.
        ===================================================== */
     function esVirus(texto) {
         const palabra = normalizarTexto(texto);
         return (
             palabra === "virus" ||
-            palabra.includes(" virus") ||
-            palabra.includes("virus ")
+            palabra.startsWith("virus ") ||
+            palabra.endsWith(" virus") ||
+            palabra.includes(" virus ")
         );
     }
     function mostrarVirus() {
         resultadoReino.classList.remove("d-none");
         nombreReino.textContent =
-            "🧬 No pertenece a los cinco reinos";
+            "🧬 Fuera de los cinco reinos";
         descripcionReino.textContent =
-           "Los virus no se clasifican dentro de Monera, Protista, Fungi, Plantae o Animalia.";
+            "Los virus no se clasifican dentro de Monera, Protista, Fungi, Plantae o Animalia.";
         if (imagenReino) {
             imagenReino.src =
                 "../assets/img/publicacion/imagenPredeterminada.png";
             imagenReino.alt =
-                "Virus fuera de la clasificación de cinco reinos";
+                "Virus fuera de la clasificación de los cinco reinos";
         }
     }
     /* =====================================================
-       IDENTIFICAR AL ESCRIBIR
-       ==================================================== */
+       IDENTIFICAR AUTOMÁTICAMENTE MIENTRAS ESCRIBE
+       ===================================================== */
     inputBuscarReino.addEventListener("input", () => {
-        const texto = inputBuscarReino.value.trim();
-        if (texto === "") {
+        const texto = inputBuscarReino.value;
+        if (texto.trim() === "") {
             resultadoReino.classList.add("d-none");
             return;
         }
@@ -381,11 +634,16 @@ document.addEventListener("DOMContentLoaded", () => {
             mostrarVirus();
             return;
         }
-        const reino = buscarReino(texto);
-        if (reino) {
-            mostrarReino(reino);
-        } else if (texto.length >= 3) {
+        const reinoEncontrado = buscarReino(texto);
+        if (reinoEncontrado) {
+            mostrarReino(reinoEncontrado);
+            return;
+        }
+        if (texto.trim().length >= 3) {
             mostrarNoEncontrado();
+        } else {
+            resultadoReino.classList.add("d-none");
         }
     });
+    console.log("Identificador de reinos cargado correctamente.");
 });

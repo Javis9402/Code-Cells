@@ -1,3 +1,9 @@
+// Servicio de comentarios (este archivo no es módulo, por eso se importa dinámicamente)
+const servicioComentarios = import("./Services/CommentService.js");
+
+// ID de usuario fijo mientras el login no está conectado al backend
+const USER_ID_PRUEBA = 26;
+
 function limpiarPublicaciones() {
   const lista = document.getElementById("lista-publicaciones");
   lista.innerHTML = "";
@@ -28,6 +34,34 @@ function pintarComentario(texto, autor) {
   comentario.append(quien, contenido);
   lista.appendChild(comentario);
   lista.scrollTop = lista.scrollHeight;
+}
+
+function pintarAviso(texto) {
+  const lista = document.getElementById("modal-comentarios");
+  const aviso = document.createElement("p");
+  aviso.className = "sin-comentarios";
+  aviso.textContent = texto;
+  lista.appendChild(aviso);
+}
+
+// Trae los comentarios de la publicación desde el backend
+async function cargarComentarios(publicacion, contador) {
+  const lista = document.getElementById("modal-comentarios");
+  lista.innerHTML = `<p class="sin-comentarios">Cargando comentarios...</p>`;
+  try {
+    const { obtenerComentariosPorPost } = await servicioComentarios;
+    const comentarios = await obtenerComentariosPorPost(publicacion.id);
+    if (publicacionActiva !== publicacion) return; // se abrió otra publicación mientras cargaba
+
+    lista.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
+    publicacion.comentarios = comentarios.map((comentario) => comentario.message);
+    publicacion.comentarios.forEach((texto) => pintarComentario(texto, "Usuario"));
+    contador.textContent = publicacion.comentarios.length;
+  } catch (error) {
+    if (publicacionActiva !== publicacion) return;
+    lista.innerHTML = "";
+    pintarAviso(`No se pudieron cargar los comentarios: ${error.message}`);
+  }
 }
 
 function abrirDetalle(publicacion, contador) {
@@ -68,9 +102,14 @@ function abrirDetalle(publicacion, contador) {
 
   const listaComentarios = document.getElementById("modal-comentarios");
   listaComentarios.innerHTML = `<p class="sin-comentarios">Aún no hay comentarios. ¡Sé el primero en comentar!</p>`;
-  publicacion.comentarios.forEach((texto) =>
-    pintarComentario(texto, "Usuario"),
-  );
+  // Las publicaciones que vienen del backend tienen id; las de prueba no
+  if (publicacion.id) {
+    cargarComentarios(publicacion, contador);
+  } else {
+    publicacion.comentarios.forEach((texto) =>
+      pintarComentario(texto, "Usuario"),
+    );
+  }
 
   document.getElementById("modal-input").value = "";
 
@@ -80,14 +119,28 @@ function abrirDetalle(publicacion, contador) {
   ).show();
 }
 
-function enviarComentario() {
+async function enviarComentario() {
   const input = document.getElementById("modal-input");
   const texto = input.value.trim();
   if (texto === "" || !publicacionActiva) return;
 
-  publicacionActiva.comentarios.push(texto);
-  pintarComentario(texto, "Tú");
-  contadorActivo.textContent = publicacionActiva.comentarios.length;
+  const publicacion = publicacionActiva;
+  const contador = contadorActivo;
+
+  // Si la publicación viene del backend, guardamos el comentario allá
+  if (publicacion.id) {
+    try {
+      const { crearComentario } = await servicioComentarios;
+      await crearComentario(publicacion.id, USER_ID_PRUEBA, { message: texto });
+    } catch (error) {
+      pintarAviso(`No se pudo enviar el comentario: ${error.message}`);
+      return;
+    }
+  }
+
+  publicacion.comentarios.push(texto);
+  if (publicacionActiva === publicacion) pintarComentario(texto, "Tú");
+  contador.textContent = publicacion.comentarios.length;
   input.value = "";
 }
 

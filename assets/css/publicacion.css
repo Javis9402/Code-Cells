@@ -24,44 +24,42 @@
 
 
 .fondo-responsivo {
-  background-image: url("../img/publicacion/hojasverdes3.jpg");
+    background-image: url('../img/publicacion/hojasverdes3.jpg');
 
-  /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
-  background-size: 100%;
+    /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
+    background-size: cover;
 
-  /*Centra la imagen horizontalmente pero alinea el inicio de la iamgen con el inicio del contenedor*/
-  background-position: center top;
-  /*background-position: center top;*/
+    /*Centra la imagen horizontalmente pero alinea el inicio de la iamgen con el inicio del contenedor*/
+    background-position: center;
+    /*background-position: center*/
 
-  /*Evita que la imagen se repita como mosaico*/
-  background-repeat: no-repeat;
+    /*Evita que la imagen se repita como mosaico*/
+    background-repeat: no-repeat;
 
-  /*Color de fondo por si la imagen no carga*/
-  background-color: #edf1d6;
+    /*Color de fondo por si la imagen no carga*/
+    background-color: #EDF1D6;
+/* Mantiene el fondo fijo al hacer scroll */
+    background-attachment: fixed;
 
-  /*Mantiene el fondo fijo*/
-  /*background-attachment: fixed;*/
-
-  /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
-  min-height: 100vh;
+    /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
+    min-height: 100vh;
 }
 
 /* Enfoque más iluminado y brillante en la página de publicación */
 #formularioPublicacion .form-control:focus,
 #formularioPublicacion .form-select:focus {
   border-color: #76d97b; /* Un verde más vivo y claro */
-  box-shadow: 0 0 0 0.3rem rgba(118, 217, 123, 0.45);
-} /* Un resplandor más amplio y brillante */
-
+  box-shadow: 0 0 0 0.3rem rgba(118, 217, 123, 0.45); /* Un resplandor más amplio y brillante */
+}
 /* Alert purple */
-.alert-purple {
-  --bs-alert-bg: #f3e8ff;
-  --bs-alert-color: #581c87;
-  --bs-alert-border-color: 1px solid #d8b4fe;
+.alert-purple{
+    --bs-alert-bg: #f3e8ff;
+    --bs-alert-color: #581c87;
+    --bs-alert-border-color: 1px solid #d8b4fe;
 }
 
-.alert-purple svg {
-  fill: #581c87;
+.alert-purple svg{
+    fill: #581c87;
 }
 
 /*todo: Navbar personalizada */
