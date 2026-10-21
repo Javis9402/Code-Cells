@@ -349,13 +349,100 @@ const filtroReino = document.getElementById("filtro-reino");
 const filtroCategoria = document.getElementById("filtro-categoria");
 const mensajeFiltro = document.getElementById("mensaje-filtro");
 
+// ANIMACIÓN DE CARGA
+// Un girasol sigue al sol de día y duerme de noche mientras pasa el tiempo
+function mostrarCargando() {
+  const lista = document.getElementById("lista-publicaciones");
+  lista.setAttribute("aria-busy", "true");
+  lista.innerHTML = "";
+
+  // 12 pétalos repartidos alrededor de la cabeza
+  const petalosHTML = Array.from(
+    { length: 12 },
+    (_, i) =>
+      `<ellipse class="ir-girasol-petalo" cx="80" cy="57" rx="5" ry="9" transform="rotate(${i * 30} 80 74)" />`,
+  ).join("");
+
+  const columna = document.createElement("div");
+  columna.className = "col-12 ir-cargando";
+  columna.setAttribute("aria-hidden", "true");
+  columna.innerHTML = `
+      <svg class="ir-girasol" viewBox="0 0 160 160">
+          <circle class="ir-girasol-cielo" cx="80" cy="80" r="78" />
+          <g class="ir-girasol-estrellas">
+              <circle cx="32" cy="40" r="1.4" />
+              <circle cx="126" cy="36" r="1.4" />
+              <circle cx="52" cy="22" r="1.2" />
+              <circle cx="24" cy="96" r="1.2" />
+              <circle cx="136" cy="92" r="1.4" />
+          </g>
+          <g class="ir-girasol-orbita">
+              <g class="ir-girasol-sol">
+                  <line x1="80" y1="1" x2="80" y2="4" />
+                  <line x1="80" y1="24" x2="80" y2="27" />
+                  <line x1="67" y1="14" x2="70" y2="14" />
+                  <line x1="90" y1="14" x2="93" y2="14" />
+                  <line x1="71" y1="5" x2="73" y2="7" />
+                  <line x1="87" y1="21" x2="89" y2="23" />
+                  <line x1="71" y1="23" x2="73" y2="21" />
+                  <line x1="87" y1="7" x2="89" y2="5" />
+                  <circle cx="80" cy="14" r="7" />
+              </g>
+              <path class="ir-girasol-luna" d="M84 6 A8.5 8.5 0 1 0 84 22 A10 10 0 0 1 84 6 Z" />
+          </g>
+          <path class="ir-girasol-tallo" d="M80 88 C80 110 78 130 80 152" />
+          <path class="ir-girasol-hoja" d="M80 124 C70 124 62 118 60 110 C70 110 78 116 80 124 Z" />
+          <path class="ir-girasol-hoja" d="M80 136 C90 136 98 130 100 122 C90 122 82 128 80 136 Z" />
+          <g class="ir-girasol-cabeza">
+              ${petalosHTML}
+              <circle class="ir-girasol-centro" cx="80" cy="74" r="13" />
+              <g class="ir-girasol-cara">
+                  <g class="ir-girasol-ojos-abiertos">
+                      <circle cx="75.5" cy="72" r="1.8" />
+                      <circle cx="84.5" cy="72" r="1.8" />
+                  </g>
+                  <g class="ir-girasol-ojos-cerrados">
+                      <path d="M73.5 72 Q75.5 74.5 77.5 72" />
+                      <path d="M82.5 72 Q84.5 74.5 86.5 72" />
+                  </g>
+                  <path d="M76 78 Q80 81.5 84 78" />
+              </g>
+          </g>
+          <g>
+              <text class="ir-girasol-zzz" x="97" y="60">z</text>
+              <text class="ir-girasol-zzz" x="104" y="52">z</text>
+          </g>
+      </svg>
+      <p class="ir-cargando-texto">Esperando a que salga el sol...</p>
+  `;
+  lista.appendChild(columna);
+}
+
+function ocultarCargando() {
+  const lista = document.getElementById("lista-publicaciones");
+  lista.removeAttribute("aria-busy");
+  lista.querySelector(".ir-cargando")?.remove();
+}
+
+// Tiempo mínimo que se muestra la animación: un día completo del girasol (--ir-dia en styles.css)
+const DURACION_MINIMA_CARGA = 4000;
+const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // GENERAR TODAS LAS PUBLICACIONES
 async function cargarPublicaciones() {
+  const mensajeInicial = mensajeFiltro.textContent;
+  mensajeFiltro.textContent = "Cargando publicaciones...";
+  mostrarCargando();
+  const esperaMinima = esperar(DURACION_MINIMA_CARGA);
   try {
     const posts = await getPosts();
+    await esperaMinima;
     publicaciones = posts.map(adaptarPost);
+    ocultarCargando();
     mostrarPublicaciones(publicaciones);
+    mensajeFiltro.textContent = mensajeInicial;
   } catch (error) {
+    ocultarCargando();
     mensajeFiltro.textContent = `No se pudieron cargar las publicaciones: ${error.message}`;
   }
 }

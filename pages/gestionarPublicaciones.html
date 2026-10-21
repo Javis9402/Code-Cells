@@ -123,6 +123,38 @@
             <!--* Aviso cuando falla eliminar en el backend -->
             <div class="alert aviso-cuaderno d-none" role="alert" id="aviso-publicaciones"></div>
 
+            <!--* Animación de carga: una nutria sigue un rastro de puntitos (gestionarPublicacion.js la quita) -->
+            <div class="cargando-hallazgos" id="cargando-hallazgos" role="status">
+                <svg class="nutria-svg" viewBox="0 0 240 80" aria-hidden="true">
+                    <line class="nutria-suelo" x1="0" y1="66" x2="240" y2="66" />
+                    <g class="nutria-rastro">
+                        <circle cx="40" cy="47" r="3" style="--t: 0.48s" />
+                        <circle cx="70" cy="47" r="3" style="--t: 0.78s" />
+                        <circle cx="100" cy="47" r="3" style="--t: 1.08s" />
+                        <circle cx="130" cy="47" r="3" style="--t: 1.38s" />
+                        <circle cx="160" cy="47" r="3" style="--t: 1.68s" />
+                        <circle cx="190" cy="47" r="3" style="--t: 1.98s" />
+                        <circle cx="220" cy="47" r="3" style="--t: 2.28s" />
+                    </g>
+                    <g class="nutria">
+                        <g class="nutria-cuerpo">
+                            <path class="nutria-cola" d="M14 54 Q4 56 -4 63" />
+                            <ellipse class="nutria-pata nutria-pata--atras" cx="18" cy="61" rx="4" ry="3" />
+                            <ellipse class="nutria-pata nutria-pata--frente" cx="34" cy="61" rx="4" ry="3" />
+                            <ellipse class="nutria-piel" cx="26" cy="53" rx="17" ry="9" />
+                            <ellipse class="nutria-panza" cx="28" cy="57" rx="11" ry="4" />
+                            <circle class="nutria-piel" cx="38" cy="36" r="2.8" />
+                            <circle class="nutria-piel" cx="42" cy="44" r="9" />
+                            <ellipse class="nutria-panza" cx="48" cy="48" rx="5" ry="3.5" />
+                            <circle class="nutria-rasgo" cx="44" cy="41" r="1.4" />
+                            <circle class="nutria-rasgo" cx="52.5" cy="46.5" r="1.6" />
+                            <path class="nutria-bigote" d="M51 49 L57 48 M51 50 L57 51" />
+                        </g>
+                    </g>
+                </svg>
+                <p class="cargando-hallazgos-texto">Siguiendo el rastro de tus hallazgos...</p>
+            </div>
+
             <!--* Lista de hallazgos (la llena gestionarPublicacion.js) -->
             <ul class="lista-hallazgos vista-cuadricula list-unstyled m-0" id="lista-publicaciones"></ul>
 

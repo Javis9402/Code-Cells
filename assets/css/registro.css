@@ -246,3 +246,25 @@ body {
   border-color: #000000;
   white-space: nowrap;
 }
+/* =========================================
+   FOOTER
+   (render.js usa el footer de index, pero index.css no se carga aquí)
+   ========================================= */
+.footer-custom {
+  background-color: var(--ir-verde-oscuro);
+  padding: 20px 0;
+}
+
+.footer-frase {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ir-crema);
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  font-size: 1rem;
+  color: var(--ir-crema);
+  margin: 0;
+  opacity: 0.75;
+}
