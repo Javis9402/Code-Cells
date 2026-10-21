@@ -166,9 +166,15 @@ function adaptarPost(post) {
     };
 }
 
+// Tiempo mínimo de la animación de carga: una vuelta de la nutria (--nutria-vuelta en el CSS)
+const DURACION_MINIMA_CARGA = 3000;
+const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function cargarPublicaciones() {
+    const esperaMinima = esperar(DURACION_MINIMA_CARGA);
     try {
         const posts = await getPostsByUserId(USER_ID_PRUEBA);
+        await esperaMinima;
         publicaciones = posts.map(adaptarPost);
     } catch (error) {
         // La página se pinta vacía y avisa arriba de la lista
@@ -987,4 +993,5 @@ pintarBotonTema();
 // ===== Inicio =====
 aplicarVista();
 await cargarPublicaciones();
+document.getElementById("cargando-hallazgos").remove();
 renderizar();

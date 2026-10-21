@@ -1536,3 +1536,142 @@
         transition: none;
     }
 }
+
+/* =====================================================
+   ANIMACIÓN DE CARGA (una nutria sigue un rastro de puntitos)
+   La nutria cruza en --nutria-vuelta y se "come" cada puntito
+   al pasar; cada uno reaparece después, ya lejos de ella.
+   ===================================================== */
+.cargando-hallazgos {
+    /* Colores de la nutria (modo claro) */
+    --nutria-piel: var(--verde-pino);
+    --nutria-panza: var(--salvia);
+    --nutria-rasgos: var(--verde-noche);
+    --nutria-puntos: var(--verde-esmeralda);
+    --nutria-suelo: var(--salvia);
+    --nutria-vuelta: 3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2.5rem 1rem;
+    color: var(--verde-musgo);
+}
+
+:root[data-tema="oscuro"] .cargando-hallazgos {
+    --nutria-piel: #609966;
+    --nutria-panza: #EDF1D6;
+    --nutria-rasgos: #161C15;
+    --nutria-puntos: #9DC08B;
+}
+
+.nutria-svg {
+    width: 240px;
+    max-width: 100%;
+    height: auto;
+}
+
+.nutria-suelo {
+    stroke: var(--nutria-suelo);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 2 6;
+}
+
+.nutria-rastro circle {
+    fill: var(--nutria-puntos);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: nutria-comer var(--nutria-vuelta) linear infinite;
+    animation-delay: var(--t);
+}
+
+/* Cruza de izquierda a derecha; la nariz llega a cada puntito en su --t */
+.nutria {
+    animation: nutria-cruzar var(--nutria-vuelta) linear infinite;
+}
+
+.nutria-cuerpo {
+    animation: nutria-saltito 0.3s ease-in-out infinite alternate;
+}
+
+.nutria-piel,
+.nutria-pata {
+    fill: var(--nutria-piel);
+}
+
+.nutria-panza {
+    fill: var(--nutria-panza);
+}
+
+.nutria-rasgo {
+    fill: var(--nutria-rasgos);
+}
+
+.nutria-cola {
+    fill: none;
+    stroke: var(--nutria-piel);
+    stroke-width: 5;
+    stroke-linecap: round;
+    transform-box: view-box;
+    transform-origin: 14px 54px;
+    animation: nutria-cola 0.6s ease-in-out infinite alternate;
+}
+
+.nutria-bigote {
+    fill: none;
+    stroke: var(--nutria-rasgos);
+    stroke-width: 0.8;
+    stroke-linecap: round;
+}
+
+/* Las patas se mueven por turnos */
+.nutria-pata {
+    animation: nutria-paso 0.3s ease-in-out infinite alternate;
+}
+
+.nutria-pata--frente {
+    animation-direction: alternate-reverse;
+}
+
+.cargando-hallazgos-texto {
+    margin: 0;
+    font-weight: 600;
+}
+
+@keyframes nutria-cruzar {
+    from { transform: translateX(-60px); }
+    to { transform: translateX(240px); }
+}
+
+@keyframes nutria-saltito {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2px); }
+}
+
+@keyframes nutria-paso {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
+}
+
+@keyframes nutria-cola {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(10deg); }
+}
+
+@keyframes nutria-comer {
+    0% { transform: scale(1); opacity: 1; }
+    4%, 85% { transform: scale(0); opacity: 0; }
+    95%, 100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cargando-hallazgos * {
+        animation: none !important;
+    }
+
+    .nutria {
+        transform: translateX(80px);
+    }
+}

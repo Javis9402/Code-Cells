@@ -925,3 +925,294 @@ body.feed-layout .ir-modal-titulo {
 .ir-reporte-aviso:empty {
   display: none;
 }
+/* ===== Animación de carga del feed ===== */
+/* Un girasol sigue al sol de día y duerme de noche mientras pasa el tiempo */
+.ir-cargando {
+  --ir-dia: 4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1rem;
+  color: var(--ir-verde-oscuro);
+}
+
+/* Ocupa todo el ancho aunque la lista use row-cols de Bootstrap */
+.row > .ir-cargando {
+  width: 100%;
+}
+
+.ir-girasol {
+  width: 150px;
+  height: 150px;
+}
+
+/* El cielo cambia de día a noche */
+.ir-girasol-cielo {
+  fill: var(--ir-crema);
+  animation: ir-girasol-cielo var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-estrellas {
+  fill: var(--ir-crema);
+  opacity: 0;
+  animation: ir-girasol-noche var(--ir-dia) linear infinite;
+}
+
+/* Sol y luna giran alrededor de la cabeza del girasol */
+.ir-girasol-orbita {
+  transform-box: view-box;
+  transform-origin: 80px 74px;
+  animation: ir-girasol-orbitar var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-sol {
+  animation: ir-girasol-dia var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-sol circle {
+  fill: var(--ir-blanco);
+  stroke: var(--ir-verde);
+  stroke-width: 2;
+}
+
+.ir-girasol-sol line {
+  stroke: var(--ir-verde);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.ir-girasol-luna {
+  fill: var(--ir-crema);
+  opacity: 0;
+  animation: ir-girasol-noche var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-tallo {
+  fill: none;
+  stroke: var(--ir-verde);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.ir-girasol-hoja {
+  fill: var(--ir-verde);
+}
+
+/* La cabeza se inclina hacia el sol y se agacha al dormir */
+.ir-girasol-cabeza {
+  transform-box: view-box;
+  transform-origin: 80px 90px;
+  animation: ir-girasol-cabeza var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-petalo {
+  fill: var(--ir-verde-claro);
+  stroke: var(--ir-verde);
+  stroke-width: 1;
+}
+
+.ir-girasol-centro {
+  fill: var(--ir-verde-oscuro);
+}
+
+/* La cara mira hacia donde está el sol */
+.ir-girasol-cara {
+  fill: none;
+  stroke: var(--ir-crema);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  animation: ir-girasol-mirar var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-ojos-abiertos {
+  fill: var(--ir-crema);
+  stroke: none;
+  animation: ir-girasol-despierto var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-ojos-cerrados {
+  opacity: 0;
+  animation: ir-girasol-dormido var(--ir-dia) linear infinite;
+}
+
+.ir-girasol-zzz {
+  fill: var(--ir-crema);
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0;
+  animation: ir-girasol-zzz var(--ir-dia) ease-in-out infinite;
+}
+
+.ir-girasol-zzz:nth-child(2) {
+  font-size: 7px;
+  animation-delay: 0.25s;
+}
+
+.ir-cargando-texto {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* De 0% a 50% es de día (mitad superior), de 50% a 100% es de noche */
+@keyframes ir-girasol-orbitar {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes ir-girasol-cielo {
+  0%,
+  42% {
+    fill: var(--ir-crema);
+  }
+  55%,
+  90% {
+    fill: var(--ir-verde-oscuro);
+  }
+  100% {
+    fill: var(--ir-crema);
+  }
+}
+
+@keyframes ir-girasol-dia {
+  0%,
+  47% {
+    opacity: 1;
+  }
+  50%,
+  97% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ir-girasol-noche {
+  0%,
+  47% {
+    opacity: 0;
+  }
+  50%,
+  97% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sigue al sol de este a oeste; de noche se agacha y vuelve al este para esperarlo */
+@keyframes ir-girasol-cabeza {
+  0% {
+    transform: rotate(-18deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(18deg);
+  }
+  60%,
+  90% {
+    transform: translateY(3px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(-18deg);
+  }
+}
+
+@keyframes ir-girasol-mirar {
+  0% {
+    transform: translate(-3.5px, 0);
+  }
+  12.5% {
+    transform: translate(-2.5px, -2.5px);
+  }
+  25% {
+    transform: translate(0, -3.5px);
+  }
+  37.5% {
+    transform: translate(2.5px, -2.5px);
+  }
+  50% {
+    transform: translate(3.5px, 0);
+  }
+  60%,
+  90% {
+    transform: translate(0, 3px);
+  }
+  100% {
+    transform: translate(-3.5px, 0);
+  }
+}
+
+@keyframes ir-girasol-despierto {
+  0%,
+  48% {
+    opacity: 1;
+  }
+  53%,
+  94% {
+    opacity: 0;
+  }
+  99%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ir-girasol-dormido {
+  0%,
+  48% {
+    opacity: 0;
+  }
+  53%,
+  94% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ir-girasol-zzz {
+  0%,
+  58% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  70% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0;
+    transform: translate(4px, -10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(4px, -10px);
+  }
+}
+
+/* Sin movimiento para quien tiene las animaciones desactivadas: se queda de día */
+@media (prefers-reduced-motion: reduce) {
+  .ir-girasol *,
+  .ir-girasol-cielo,
+  .ir-girasol-orbita,
+  .ir-girasol-cabeza,
+  .ir-girasol-cara {
+    animation: none;
+  }
+  .ir-girasol-orbita {
+    transform: rotate(0deg);
+  }
+  .ir-girasol-cara {
+    transform: translate(0, -3.5px);
+  }
+}
