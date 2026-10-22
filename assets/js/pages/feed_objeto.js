@@ -1,7 +1,7 @@
-import { ensureLoggedIn } from "./utils.js";
-import { obtenerComentariosPorPost, crearComentario } from "./Services/CommentService.js";
-import { getPosts } from "./Services/PostService.js";
-import { crearReporte } from "./Services/ReportService.js";
+import { ensureLoggedIn } from "../core/utils.js";
+import { obtenerComentariosPorPost, crearComentario } from "../Services/CommentService.js";
+import { getPosts } from "../Services/PostService.js";
+import { crearReporte } from "../Services/ReportService.js";
 
 // ID de usuario fijo mientras el login no está conectado al backend
 const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));

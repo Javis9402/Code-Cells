@@ -1,6 +1,6 @@
-import { ensureLoggedIn, cerrarSesion } from "./utils.js";
-import { obtenerUsuarioPorId, actualizarUsuario, eliminarUsuario } from "./Services/UserService.js";
-import { getPostsByUserId } from "./Services/PostService.js";
+import { ensureLoggedIn, cerrarSesion } from "../core/utils.js";
+import { obtenerUsuarioPorId, actualizarUsuario, eliminarUsuario } from "../Services/UserService.js";
+import { getPostsByUserId } from "../Services/PostService.js";
 
 const USER_ID = ensureLoggedIn(localStorage.getItem("usuarioId"));
 

@@ -1,41 +1,78 @@
 # Code-Cells - InstaRama
 
+## Estructura del proyecto
 
-        ├── .gitignore
-        ├── README.md
-        ├── index.html                   # Página 1: Landing Page / Bienvenida
-        │
-        ├── pages/                       # Vistas secundarias organizadas
-        │   ├── login.html               # Página 2: Inicio de sesión
-        │   ├── registro.html            # Página 3: Registro de usuario
-        │   ├── feed.html                # Página 4: Inicio / Muro social
-        │   ├── contacto.html            # Página 5: Formulario de contacto
-        │   ├── acerca-de.html           # Página 6: Misión, visión y equipo
-        │   └── publicacion.html         # Página 7: Formulario de CRUD (Crear/Editar/Ver)
-        │
-        ├── assets/
-        │   ├── css/
-        │   │   ├── global.css           # Variables de color, fuentes, reset, estilos comunes
-        │   │   ├── landing.css          # Estilos específicos de index.html
-        │   │   ├── auth.css             # Estilos compartidos para login y registro
-        │   │   ├── feed.css             # Estilos de los posts, cards y feed
-        │   │   └── form.css             # Estilos para formularios (contacto y publicaciones)
-        │   │
-        │   ├── js/
-        │   │   ├── main.js              # Lógica compartida (navbar responsivo, footer, helpers)
-        │   │   ├── auth.js              # Validación de contraseñas, login, registro en LocalStorage
-        │   │   ├── feed.js              # Render de publicaciones, likes, comentarios
-        │   │   ├── publicacion.js       # CRUD de posts (guardar imagen, editar, eliminar con modal)
-        │   │   └── contacto.js          # Validación del formulario de contacto
-        │   │
-        │   └── img/                     # Imágenes del proyecto
-        │       ├── general/
-        │       │    └── logo/           # Logotipo, isotipo, favicon
-        │       ├── landing/             # Banners y visuales de la bienvenida
-        │       ├── team/                # Fotos del equipo
-        │       ├── placeholders/        # Imágenes de prueba para fauna/flora en el feed
-        │       └──              # Recusos generales para todas las paginas
-        │   
+```
+├── README.md
+├── index.html                          # Landing page / Bienvenida
+│
+├── pages/                              # Vistas secundarias
+│   ├── login.html                      # Inicio de sesión
+│   ├── registro.html                   # Registro de usuario
+│   ├── feed.html                       # Muro social
+│   ├── objetos.html                    # Feed de objetos / observaciones
+│   ├── publicacion.html                # Crear publicación
+│   ├── gestionarPublicaciones.html     # Editar / eliminar publicaciones propias
+│   ├── perfil.html                     # Perfil del usuario
+│   ├── reinos.html                     # Clasificación de los reinos
+│   ├── buscar-reino.html               # Identificación rápida de reinos
+│   ├── contacto.html                   # Formulario de contacto
+│   ├── acercaDe.html                   # Misión, visión y equipo
+│   ├── proyecto.html                   # Información del proyecto
+│   └── testRenderHeaderFooter.html     # Página de prueba del header/footer
+│
+├── assets/
+│   ├── css/
+│   │   ├── base/                       # Estilos compartidos por varias páginas
+│   │   │   ├── global.css              # Reset, fuentes y estilos comunes
+│   │   │   ├── paleta.css              # Paleta oficial de colores
+│   │   │   ├── styles.css              # Header, footer y layout general
+│   │   │   ├── contactanos.css         # Estilos del layout que inyecta render.js
+│   │   │   ├── alerts.css              # Alertas personalizadas
+│   │   │   └── form.css                # Formularios
+│   │   │
+│   │   └── pages/                      # Un archivo por página
+│   │       ├── index.css · landing.css
+│   │       ├── login.css · registro.css · auth.css
+│   │       ├── feed.css · objetos.css
+│   │       ├── publicacion.css · gestionarPublicacion.css · perfil.css
+│   │       ├── clasificacion.css · identificacion-reinos.css
+│   │       └── acercaDe.css
+│   │
+│   ├── js/
+│   │   ├── core/                       # Lógica compartida por todas las páginas
+│   │   │   ├── main.js                 # Cursor personalizado y comportamiento general
+│   │   │   ├── render.js               # Inyecta header, footer y estilos comunes
+│   │   │   ├── plantillasLayout.js     # Plantillas HTML del header/footer
+│   │   │   └── utils.js                # Helpers (sesión, nombre de página, etc.)
+│   │   │
+│   │   ├── pages/                      # Lógica específica de cada página
+│   │   │   ├── login.js · registro.js
+│   │   │   ├── feed_objeto.js · categorias.js · objetos_publicacion.js
+│   │   │   ├── publicacion.js · gestionarPublicacion.js · perfil.js
+│   │   │   ├── reinos.js · clasificacion.js · identificacion-reinos.js
+│   │   │   ├── validacionForm.js · formulario-mandar-cor.js
+│   │   │   └── carrusel.js
+│   │   │
+│   │   └── Services/                   # Llamadas a la API
+│   │       ├── AuthService.js · UserService.js
+│   │       ├── PostService.js · CommentService.js · ReportService.js
+│   │       └── KingdomService.js · ContactFormService.js
+│   │
+│   └── img/                            # Imágenes agrupadas por página o uso
+│       ├── general/                    # Recursos generales (Cursor/, etc.)
+│       ├── logo/                       # Logotipos
+│       ├── icons/                      # Íconos
+│       ├── mode-clear/ · mode-dark/    # Variantes de logo por tema
+│       ├── landing/                    # Fondo y fotos del equipo
+│       ├── acercaDe/ · conocenos/
+│       ├── clasificacion/ · objetos/
+│       ├── publicacion/ · registro/
+│       └── alerts/
+│
+└── utils/
+    └── alerts.js                       # Sistema de alertas
+```
 
 # GIT
 #### Notas para los commits

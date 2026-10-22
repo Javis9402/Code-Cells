@@ -3,9 +3,9 @@
    CRUD de POST - feed.html
    ========================================== */
 
-import { createPost } from './Services/PostService.js';
-import { convertImageToBytes } from './Services/PostService.js';
-import { ensureLoggedIn } from "./utils.js";
+import { createPost } from '../Services/PostService.js';
+import { convertImageToBytes } from '../Services/PostService.js';
+import { ensureLoggedIn } from "../core/utils.js";
 
 const USER_ID_PRUEBA = ensureLoggedIn(localStorage.getItem("usuarioId"));
 
