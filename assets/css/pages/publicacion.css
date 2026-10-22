@@ -1,0 +1,148 @@
+:root {
+  /*Fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
+  /*colores*/
+  --verde-oscuro: #40513b; /* --color-verde-3: #40513b;*/
+  --verde-medio: #609966;
+  --verde-claro: #9dc08b;
+  --verde-suave: #edf1d6;
+  --blanco-calido: #f9fbf2;
+  --blanco: #ffffff; /* --color-blanco: #ffffff;*/
+  --color-negro: #1a1a1a;
+  --color-texto-claro: #f9fbf2;
+
+/* --- Verdes principales --- */
+  --color-verde-navbar: var(--verde-claro);
+  --color-verde-1: #93c17c;
+  --color-verde-1-hover: #7da869;
+  --color-verde-2: #255f38;
+  --color-verde-2-hover: #1a4227;
+  --color-verde-borde: #4a5c40;
+}
+
+
+.fondo-responsivo {
+    background-image: url('../../img/publicacion/hojasverdes3.jpg');
+
+    /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
+    background-size: cover;
+
+    /*Centra la imagen horizontalmente pero alinea el inicio de la iamgen con el inicio del contenedor*/
+    background-position: center;
+    /*background-position: center*/
+
+    /*Evita que la imagen se repita como mosaico*/
+    background-repeat: no-repeat;
+
+    /*Color de fondo por si la imagen no carga*/
+    background-color: #EDF1D6;
+/* Mantiene el fondo fijo al hacer scroll */
+    background-attachment: fixed;
+
+    /*min-height fuerza al contenedor a tener una altura minima igual al de la ventana del dispositivo*/
+    min-height: 100vh;
+}
+
+/* Enfoque más iluminado y brillante en la página de publicación */
+#formularioPublicacion .form-control:focus,
+#formularioPublicacion .form-select:focus {
+  border-color: #76d97b; /* Un verde más vivo y claro */
+  box-shadow: 0 0 0 0.3rem rgba(118, 217, 123, 0.45); /* Un resplandor más amplio y brillante */
+}
+/* Alert purple */
+.alert-purple{
+    --bs-alert-bg: #f3e8ff;
+    --bs-alert-color: #581c87;
+    --bs-alert-border-color: 1px solid #d8b4fe;
+}
+
+.alert-purple svg{
+    fill: #581c87;
+}
+
+/*todo: Navbar personalizada */
+.navbar-custom {
+  background-color: var(--color-verde-navbar);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: var(--sombra-suave);
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+
+/* * =========================================
+   * ENLACES CENTRALES (Inicio, Acerca de, etc.)
+   * ========================================= */
+
+.navbar-custom .nav-link {
+  color: var(--verde-oscuro);
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  /*padding: 8px 5px;*/
+  position: relative;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+
+.navbar-custom .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%; /* Empieza sin ancho */
+  height: 3px; /* Grosor de la línea */
+  bottom: 0;
+  left: 50%;
+  background-color: var(--color-verde-borde);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+
+.navbar-custom .nav-link:hover {
+  color: var(--blanco);
+}
+
+
+.navbar-custom .nav-link:hover::after {
+  width: 100%; /* La línea crece hacia los lados */
+}
+
+
+.navbar-custom .nav-link.active {
+  color: var(--blanco);
+  font-weight: 700;
+}
+
+
+.navbar-custom .nav-link.active::after {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-blanco);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Leve efecto de luz/Glow */
+}
+
+
+@media (min-width: 992px) {
+  .navbar-custom {
+    position: relative; 
+  }
+  
+  .navbar-custom .navbar-nav.mx-auto {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content; 
+  }
+
+  .navbar-custom .navbar-collapse {
+    justify-content: flex-end; 
+  }
+}

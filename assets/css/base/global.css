@@ -1,0 +1,136 @@
+/* ==========================================
+   ESTILOS GENERALES
+   Todos los HTML
+   ========================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ==========================================
+   CURSOR DE PERSONAJE
+   ========================================== */
+
+/* Ocultar el cursor normal */
+
+body.cursor-personaje,
+body.cursor-personaje * {
+  cursor: none !important;
+}
+
+/* Contenedor del cursor: su esquina (0,0) es la punta de la flecha */
+
+#personaje-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+  z-index: 10000;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+#personaje-cursor.visible {
+  opacity: 1;
+}
+
+/* Flecha */
+
+#personaje-cursor .punta {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: 20px;
+  height: 24px;
+  z-index: 2;
+
+  transform-origin: 1px 1px;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.45));
+  transition: transform 0.15s ease;
+}
+
+#personaje-cursor .punta path {
+  fill: var(--ir-verde-oscuro, #40513b);
+  stroke: var(--ir-fondo, #f9fbf2);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  transition: fill 0.15s ease;
+}
+
+/* Personaje debajo de la flecha */
+
+#personaje-cursor img {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+
+  object-fit: contain;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.15s ease;
+}
+
+/* Sobre algo que se puede hacer clic: la punta cambia de color y crece */
+
+#personaje-cursor.sobre-clic .punta {
+  transform: scale(1.18);
+}
+
+#personaje-cursor.sobre-clic .punta path {
+  fill: var(--ir-verde-claro, #9dc08b);
+  stroke: var(--ir-verde-oscuro, #40513b);
+}
+
+#personaje-cursor.sobre-clic img {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+/* Al presionar */
+
+#personaje-cursor.presionado .punta {
+  transform: scale(0.85);
+}
+
+#personaje-cursor.presionado img {
+  transform: scale(0.9);
+}
+
+/* ==========================================
+   CONFETI
+   ========================================== */
+
+.confeti {
+  position: fixed;
+
+  pointer-events: none;
+
+  z-index: 9999;
+
+  animation: confeti 1.2s ease-out forwards;
+}
+
+/* Animación del confeti */
+
+@keyframes confeti {
+  0% {
+    opacity: 1;
+
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: translate(var(--movimiento-x), var(--movimiento-y))
+      rotate(var(--rotacion));
+  }
+}

@@ -1,0 +1,387 @@
+:root {
+  /*fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
+  /*colores*/
+  --verde-oscuro: #40513b;
+  --verde-medio: #609966;
+  --verde-claro: #9dc08b;
+  --verde-suave: #edf1d6;
+  --blanco-calido: #f9fbf2;
+  --blanco: #ffffff;
+  --color-texto-claro: #f9fbf2;
+
+  /* --- Verdes principales --- */
+  --color-verde-navbar: var(--verde-claro);
+  --color-verde-1: #93c17c;
+  --color-verde-1-hover: #7da869;
+  --color-verde-2: #255f38;
+  --color-verde-2-hover: #1a4227;
+  --color-verde-borde: #4a5c40;
+}
+
+body {
+  background-color: var(--blanco-calido);
+}
+
+.contenedor {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  font-family: var(--fuente-montserrat);
+  font-weight: 700;
+  color: var(--verde-medio);
+  margin-bottom: 15px;
+}
+
+.contenedor > p {
+  font-family: var(--fuente--nunito);
+  color: var(--verde-oscuro);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.btn-form {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: var(--fuente-onest);
+  font-weight: 600;
+}
+
+.btn-form:hover {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+form.border {
+  background-color: var(--blanco);
+  border: 1px solid var(--verde-claro) !important;
+  border-radius: 15px;
+  padding: 30px !important;
+  box-shadow: 0 4px 12px rgba(64, 81, 59, 0.12);
+}
+
+.form-label {
+  font-family: var(--fuente-onest);
+  font-weight: 600;
+  color: var(--verde-oscuro);
+}
+
+.form-control,
+.form-select {
+  font-family: var(--fuente-onest);
+  border: 1px solid var(--verde-claro);
+  border-radius: 8px;
+  color: var(--verde-oscuro);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--verde-medio);
+  box-shadow: 0 0 0 3px rgba(157, 192, 139, 0.25);
+}
+
+
+
+/*todo: Navbar personalizada */
+.navbar-custom {
+  background-color: var(--color-verde-navbar);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: var(--sombra-suave);
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+/* * =========================================
+   * ENLACES CENTRALES (Inicio, Acerca de, etc.)
+   * ========================================= */
+
+.navbar-custom .nav-link {
+  font-family: Arial, sans-serif;
+  color: var(--verde-oscuro);
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  /*padding: 8px 5px;*/
+  position: relative;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+
+.navbar-custom .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%; /* Empieza sin ancho */
+  height: 3px; /* Grosor de la línea */
+  bottom: 0;
+  left: 50%;
+  background-color: var(--color-verde-borde);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 5px;
+}
+
+
+.navbar-custom .nav-link:hover {
+  color: var(--blanco);
+}
+
+
+.navbar-custom .nav-link:hover::after {
+  width: 100%; /* La línea crece hacia los lados */
+}
+
+
+.navbar-custom .nav-link.active {
+  color: var(--blanco);
+  font-weight: 700;
+}
+
+
+.navbar-custom .nav-link.active::after {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-blanco);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Leve efecto de luz/Glow */
+}
+
+
+/* * =========================================
+   * BOTONES Inicair Sesión / Registrarse Navbar
+   * ========================================= */
+
+.btn-iniciar{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400; /* Bold */
+  font-size: 16px;
+  background-color: transparent;
+  color: var(--verde-oscuro);
+  padding: 10px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--color-verde-borde);
+}
+
+.btn-iniciar:hover {
+  background-color: var(--blanco-calido);
+  color: var(--verde-oscuro);
+  border-color: var(--blanco-calido);
+}
+
+
+.btn-registrar {
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: var(--verde-oscuro);
+  color: var(--color-texto-claro);
+  border: 2px solid transparent;
+}
+
+.btn-registrar:hover {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+  /*transform: translateY(-2px);*/
+  /*box-shadow: var(--sombra-hover);*/
+}
+
+@media (min-width: 992px) {
+  .navbar-custom {
+    position: relative; 
+  }
+  
+  .navbar-custom .navbar-nav.mx-auto {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content; 
+  }
+
+  .navbar-custom .navbar-collapse {
+    justify-content: flex-end; 
+  }
+}
+/** terminan estilos para la Navbar */
+
+/*estilos footer*/
+.footer {
+  background-color: var(--ir-verde-oscuro);
+  color: var(--ir-crema);
+}
+
+.footer-links {
+  border-bottom: 1px solid rgba(237, 241, 214, 0.3);
+}
+
+.footer-links a {
+  color: var(--ir-crema);
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.7;
+}
+
+.footer p:last-child {
+  opacity: 0.75;
+}
+/*estilos footer*/
+
+/* Distribución de la sección de contacto */
+.contacto-layout {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+/*imagen de catarina*/
+
+.catarina {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.catarina-izquierda {
+  position: static;
+}
+
+/* Prueba para visualizar la imagen derecha */
+.nutria-derecha {
+  display: flex !important;
+  flex: 1;
+  min-width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nutria {
+  display: block !important;
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =========================================
+   RESPONSIVIDAD DE CONTACTANOS
+   ========================================= */
+
+/* Tabletas y pantallas medianas */
+@media (max-width: 991.98px) {
+  .contacto-layout {
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .catarina,
+  .nutria {
+    max-width: 220px;
+  }
+
+  .contenedor {
+    max-width: 600px;
+  }
+
+  form.border {
+    padding: 20px !important;
+  }
+}
+
+/* Celulares */
+@media (max-width: 576px) {
+  .contacto-layout {
+    flex-direction: column;
+    gap: 20px;
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .contacto-ilustracion,
+  .nutria-derecha,
+  .contenedor {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+  }
+
+  .catarina,
+  .nutria {
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+  }
+
+  .contenedor {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  form.border {
+    padding: 20px !important;
+  }
+
+  .form-control,
+  .form-select {
+    width: 100%;
+  }
+
+  .btn-form {
+    width: 100%;
+  }
+}
+
+/* Celulares pequeños */
+@media (max-width: 380px) {
+  .contacto-layout {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .catarina,
+  .nutria {
+    max-width: 130px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  form.border {
+    padding: 15px !important;
+  }
+}

@@ -1,0 +1,98 @@
+/* =========================================
+   CONTENEDOR DE ALERTAS (Instarama)
+   ========================================= */
+
+#alert-container {
+  position: fixed;
+  top: 90px; /* debajo del header (70px + margen) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px; /* mismo ancho que la login-card */
+  padding: 0 15px;
+  z-index: 1055; /* por encima de la card y del header */
+  pointer-events: none; /* deja pasar clicks fuera de la alerta */
+}
+
+#alert-container > * {
+  pointer-events: auto; /* la alerta sí recibe clicks (botón cerrar) */
+}
+
+/* Alerta base Instarama */
+.instarama-alert {
+  font-family: "Onest", sans-serif;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(64, 81, 59, 0.18);
+  animation: slideDownAlert 0.35s ease;
+  margin: 0 0 10px 0;
+}
+
+/* Colores por tipo, respetando tu paleta */
+.instarama-alert.alert-success {
+  background-color: var(--color-verde-1, #609966);
+  color: var(--color-blanco, #ffffff);
+}
+
+.instarama-alert.alert-danger {
+  background-color: var(--color-error, #dc3545);
+  color: var(--color-blanco, #ffffff);
+}
+
+.instarama-alert.alert-warning {
+  background-color: #e8b931;
+  color: var(--color-verde-3, #27391c);
+}
+
+.instarama-alert.alert-info {
+  background-color: var(--color-verde-2, #40513b);
+  color: var(--color-blanco, #ffffff);
+}
+
+/* Botón de cerrar visible sobre fondos oscuros */
+.instarama-alert .btn-close {
+  filter: brightness(0) invert(1); /* lo pinta blanco */
+  opacity: 0.85;
+}
+
+.instarama-alert.alert-warning .btn-close {
+  filter: none;
+  opacity: 0.7;
+}
+
+/* Animación de entrada */
+@keyframes slideDownAlert {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   ALERTA DE LOGIN/REGISTRO INLINE
+   (debajo de los inputs, no flotante)
+   ========================================= */
+
+#loginError {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--color-error, #dc3545);
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  font-family: "Onest", sans-serif;
+}
+
+/* Cuando mostramos mensaje de éxito inline (ej: "Iniciando sesión...") */
+#loginError.alert-success {
+  background-color: rgba(96, 153, 102, 0.15) !important;
+  color: var(--color-verde-2, #40513b) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+}

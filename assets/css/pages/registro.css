@@ -1,0 +1,270 @@
+/* =========================================
+   VARIABLES DE COLOR
+   ========================================= */
+:root {
+  --color-fondo: #edf1d6;
+  --color-verde-1: rgb(96, 153, 102);
+  --color-verde-2: rgb(64, 81, 59);
+  --color-verde-3: #27391c;
+  --color-blanco: #ffffff;
+  --color-negro: #000000;
+  /*Fuentes*/
+  --fuente-montserrat: "Montserrat Alternates", sans-serif;
+  --fuente-onest: "Onest", sans-serif;
+  --fuente--nunito: "Nunito", sans-serif;
+}
+
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente--nunito);
+}
+
+
+/* =========================================
+   FONDO
+   ========================================= */
+
+.registro-page {
+  min-height: 100vh;
+  background-image: url(/assets/img/registro/fondo_masi.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
+.registro-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(70, 70, 70, 0.215);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   TEXTO IZQUIERDO
+   ========================================= */
+.registro-info {
+  color: var(--color-blanco);
+  padding-bottom: 60px;
+  text-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+}
+
+.registro-info h1 {
+  font-family: var(--fuente-onest) !important;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-blanco);
+}
+
+.registro-info p {
+  font-family: var(--fuente--nunito) !important;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* =========================================
+   CARD DEL FORMULARIO
+   ========================================= */
+
+.registro-card {
+  width: 100%;
+  max-width: 580px;
+  padding: 45px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.808);
+  box-shadow: 0 20px 50px rgba(64, 81, 59, 0.176);
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo-registro {
+  width: 90px;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   TITULO
+   ========================================= */
+.form-title {
+  font-family: var(--fuente-montserrat);
+  text-align: center;
+  color: var(--color-verde-2);
+  font-weight: 700;
+  font-size: 1.9rem;
+  margin-bottom: 6px;
+}
+
+.registro-login {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  font-family: var(--fuente--nunito);
+  color: var(--color-verde-2);
+}
+
+.registro-login a {
+  color: var(--color-verde-1);
+  text-decoration: none;
+  font-weight: 700;
+  text-shadow: 0 5px 10px rgba(64, 81, 59, 0.356);
+}
+
+/* =========================================
+   LABELS
+   ========================================= */
+.form-label {
+  font-family: var(--fuente--nunito);
+  font-size: 1rem;
+  color: var(--color-verde-2);
+  font-weight: 700;
+}
+
+/* =========================================
+   INPUTS
+   ========================================= */
+.form-control {
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--color-verde-1);
+  background: rgba(255, 255, 255, 0.612);
+}
+
+.form-control:focus {
+  border-color: var(--color-verde-1);
+  box-shadow: 0 0 0 .2rem rgba(96, 153, 102, 0.315);
+}
+
+/* =========================================
+   CHECKBOX
+   ========================================= */
+.form-check {
+  margin-bottom: 6px;
+}
+
+.form-check-label {
+  font-size: .85rem;
+  color: var(--color-verde-2);
+}
+
+.form-check-input:checked {
+  background: var(--color-verde-1);
+  border-color: var(--color-verde-1);
+}
+
+/* =========================================
+   BOTON
+   ========================================= */
+.custom-btn {
+  background-color: var(--color-verde-1);
+  border: none;
+  border-radius: 50px;
+  height: 50px;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease
+}
+
+.custom-btn:hover {
+  background-color: var(--color-verde-2);
+  color: var(--color-blanco);
+}
+
+/* =========================================
+   RESPONSIVIDAD
+   ========================================= */
+@media(max-width:992px) {
+  .registro-info {
+    text-align: center;
+    padding: 50px 0;
+  }
+
+  .registro-info h1 {
+    font-size: 3rem;
+  }
+
+  .registro-info p {
+    font-size: 1.2rem;
+  }
+
+  .registro-card {
+    margin-bottom: 40px;
+  }
+}
+
+@media(max-width:576px) {
+  .registro-card {
+    padding: 28px;
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+  }
+}
+
+.header-instarama {
+  background-color: var(--ir-verde-claro);
+  color: var(--color-blanco);
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.header-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-blanco);
+}
+
+.header-instarama .btn-iniciar {
+  border-color: #000000;
+  white-space: nowrap;
+}
+/* =========================================
+   FOOTER
+   (render.js usa el footer de index, pero index.css no se carga aquí)
+   ========================================= */
+.footer-custom {
+  background-color: var(--ir-verde-oscuro);
+  padding: 20px 0;
+}
+
+.footer-frase {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ir-crema);
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  font-size: 1rem;
+  color: var(--ir-crema);
+  margin: 0;
+  opacity: 0.75;
+}

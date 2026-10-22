@@ -1,0 +1,1677 @@
+/* Paleta oficial: solo se usan estos 8 colores */
+:root {
+    --verde-oscuro: #40513B;
+    --verde: #609966;
+    --verde-claro: #9DC08B;
+    --verde-palido: #EDF1D6;
+    --crema: #F9FBF2;
+    --blanco-calido: #f9fbf2;
+    --blanco: #ffffff;
+    --color-negro: #1a1a1a;
+    --color-texto-claro: #f9fbf2;
+
+    /* --- Verdes principales --- */
+    --color-verde-navbar: var(--verde-claro);
+    --color-verde-1: #93c17c;
+    --color-verde-1-hover: #7da869;
+    --color-verde-2: #255f38;
+    --color-verde-2-hover: #1a4227;
+    --color-verde-borde: #4a5c40;
+}
+
+/*todo: Navbar personalizada */
+.navbar-custom {
+    background-color: var(--color-verde-navbar);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: var(--sombra-suave);
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+
+/* * =========================================
+   * ENLACES CENTRALES (Inicio, Acerca de, etc.)
+   * ========================================= */
+
+.navbar-custom .nav-link {
+    color: var(--verde-oscuro);
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    /*padding: 8px 5px;*/
+    position: relative;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+
+.navbar-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    /* Empieza sin ancho */
+    height: 3px;
+    /* Grosor de la línea */
+    bottom: 0;
+    left: 50%;
+    background-color: var(--color-verde-borde);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+
+.navbar-custom .nav-link:hover {
+    color: var(--blanco);
+}
+
+/* Paleta del cuaderno de campo (el modo oscuro la sobrescribe más abajo) */
+:root {
+    --verde-noche: #18230F;
+    --verde-bosque: #27391C;
+    --verde-musgo: #3A4D39;
+    --verde-pino: #255F38;
+    --verde-esmeralda: #1F7D53;
+    --salvia: #A3B8A0;
+    --salvia-oscuro: #8C9F8A;
+    --crema: #F5F5F0;
+}
+
+/* Variables de Bootstrap con la paleta, solo dentro del contenido y los modales */
+.fondo-responsivo,
+#modalEditar,
+#modalEliminar,
+#modal-publicacion {
+    --bs-body-bg: var(--crema);
+    --bs-body-color: var(--verde-musgo);
+    --bs-emphasis-color: var(--verde-noche);
+    --bs-secondary-color: var(--salvia-oscuro);
+    --bs-secondary-bg: var(--salvia);
+    --bs-tertiary-bg: var(--salvia);
+    --bs-border-color: var(--salvia);
+    --bs-box-shadow-sm: 0 0.125rem 0.25rem var(--salvia);
+    --bs-form-invalid-color: var(--verde-noche);
+    --bs-form-invalid-border-color: var(--verde-noche);
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2318230F'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+    --bs-btn-close-opacity: 1;
+    --bs-btn-close-hover-opacity: 1;
+    --bs-btn-close-focus-shadow: 0 0 0 0.25rem var(--salvia);
+    color: var(--verde-musgo);
+}
+
+/* Fondo por si la imagen no carga */
+.fondo-responsivo {
+    background-color: var(--crema);
+}
+
+/* ===== Cuaderno de campo ===== */
+.cuaderno {
+    background-color: var(--crema);
+    border: 1px solid var(--salvia);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem var(--verde-noche);
+    padding: 2rem;
+    font-family: "Nunito", system-ui, sans-serif;
+}
+
+.cuaderno-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cuaderno-etiqueta {
+    margin: 0 0 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--verde-esmeralda);
+}
+
+.cuaderno-titulo {
+    margin: 0;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--verde-noche);
+}
+
+.cuaderno-subtitulo {
+    margin: 0.25rem 0 0;
+    color: var(--verde-musgo);
+}
+
+/* Resumen */
+.cuaderno-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+    gap: 0.75rem;
+    margin: 0 0 1.5rem;
+}
+
+.cuaderno-resumen li {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--salvia);
+    border-radius: 1rem;
+    color: var(--verde-musgo);
+    font-size: 0.9rem;
+}
+
+.cuaderno-resumen strong {
+    display: block;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    color: var(--verde-esmeralda);
+}
+
+/* Herramientas: filtros, búsqueda y vista */
+.cuaderno-herramientas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.filtros-reino {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
+.filtro-reino {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--salvia);
+    border-radius: 999px;
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+    font-weight: 600;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.filtro-reino:hover {
+    background-color: var(--salvia);
+    color: var(--verde-noche);
+}
+
+.filtro-reino[aria-pressed="true"] {
+    background-color: var(--verde-pino);
+    border-color: var(--verde-pino);
+    color: var(--crema);
+}
+
+.filtro-reino:focus-visible {
+    outline: 3px solid var(--salvia-oscuro);
+    outline-offset: 2px;
+}
+
+.filtro-contador {
+    min-width: 1.5rem;
+    padding: 0 0.4rem;
+    border-radius: 999px;
+    background-color: var(--salvia);
+    color: var(--verde-noche);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.filtro-reino[aria-pressed="true"] .filtro-contador {
+    background-color: var(--crema);
+    color: var(--verde-pino);
+}
+
+.herramientas-fila {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.buscador {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.buscador i {
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    transform: translateY(-50%);
+    color: var(--salvia-oscuro);
+    pointer-events: none;
+}
+
+.fondo-responsivo .buscador .form-control {
+    padding-left: 2.4rem;
+    border-radius: 999px;
+    border-color: var(--salvia);
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+}
+
+.fondo-responsivo .buscador .form-control:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+.vista-selector .btn.active {
+    --bs-btn-active-bg: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+}
+
+/* Barra de selección */
+.barra-seleccion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--salvia);
+    color: var(--salvia-oscuro);
+    font-size: 0.9rem;
+}
+
+.barra-seleccion .form-check-label {
+    color: var(--verde-musgo);
+}
+
+/* ===== Tarjetas de hallazgo ===== */
+.lista-hallazgos.vista-cuadricula {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 1.25rem;
+}
+
+.lista-hallazgos.vista-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hallazgo-tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--salvia);
+    border-radius: 1rem;
+    background-color: var(--crema);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.hallazgo-tarjeta:hover {
+    transform: translateY(-3px);
+    border-color: var(--salvia-oscuro);
+    box-shadow: 0 0.5rem 1rem var(--salvia);
+}
+
+.hallazgo.seleccionada .hallazgo-tarjeta {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 2px var(--verde-esmeralda);
+}
+
+.hallazgo-media {
+    position: relative;
+    flex-shrink: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--verde-noche);
+}
+
+/* La imagen llena el marco sin importar su tamaño original */
+.hallazgo-imagen {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hallazgo-reino {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background-color: var(--verde-noche);
+    color: var(--crema);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.hallazgo-media .check-publicacion {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    margin: 0;
+    cursor: pointer;
+}
+
+.hallazgo-cuerpo {
+    flex: 1;
+    padding: 0.9rem 1rem 0.5rem;
+}
+
+.hallazgo-titulo {
+    margin: 0 0 0.25rem;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--verde-noche);
+}
+
+.hallazgo-especie {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    color: var(--verde-musgo);
+}
+
+.hallazgo-especie em {
+    color: var(--verde-pino);
+    font-weight: 600;
+}
+
+.etiqueta-identificar {
+    display: inline-block;
+    padding: 0 0.5rem;
+    border: 1px dashed var(--salvia-oscuro);
+    border-radius: 999px;
+    color: var(--verde-musgo);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.hallazgo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--salvia-oscuro);
+}
+
+.hallazgo-meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+}
+
+/* El lugar sí puede bajar de renglón para no salirse de la tarjeta */
+.hallazgo-meta li:first-child {
+    white-space: normal;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Espacio fijo para el número de comentarios */
+.hallazgo-comentarios {
+    display: inline-block;
+    min-width: 2ch;
+}
+
+.hallazgo-acciones {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 1rem;
+}
+
+.hallazgo-acciones .btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+/* Vista de lista: miniatura a la izquierda */
+.vista-lista .hallazgo-tarjeta {
+    flex-direction: row;
+    align-items: center;
+}
+
+.vista-lista .hallazgo-tarjeta:hover {
+    transform: none;
+}
+
+.vista-lista .hallazgo-media {
+    width: 120px;
+    flex-shrink: 0;
+    align-self: stretch;
+    aspect-ratio: auto;
+    min-height: 90px;
+}
+
+.vista-lista .hallazgo-reino {
+    left: 0.4rem;
+    bottom: 0.4rem;
+    font-size: 0.7rem;
+}
+
+.vista-lista .hallazgo-cuerpo {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+}
+
+.vista-lista .hallazgo-acciones {
+    flex-direction: column;
+    padding: 0.75rem 1rem;
+}
+
+/* Estado vacío */
+.estado-vacio {
+    padding: 3rem 1rem;
+    border: 2px dashed var(--salvia);
+    border-radius: 1rem;
+    text-align: center;
+    color: var(--verde-musgo);
+}
+
+.estado-vacio > i {
+    font-size: 2.5rem;
+    color: var(--salvia-oscuro);
+}
+
+.estado-vacio-titulo {
+    margin: 0.75rem 0 0.25rem;
+    font-family: "Montserrat Alternates", "Nunito", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--verde-noche);
+}
+
+.estado-vacio-texto {
+    margin-bottom: 1.25rem;
+}
+
+/* ===== Responsivo ===== */
+
+/* Red de seguridad: nada debe crear scroll horizontal en la página */
+.fondo-responsivo {
+    overflow-x: clip;
+}
+
+/* Textos escritos por usuarios: palabras o enlaces largos no se salen */
+.cuaderno-titulo,
+.hallazgo-titulo,
+.hallazgo-especie,
+#modal-publicacion .ir-modal-titulo,
+#modal-descripcion,
+#modal-publicacion .ir-comentario,
+#mensajeEliminar {
+    overflow-wrap: anywhere;
+}
+
+/* Filtros: scroll horizontal dentro de su fila, con encaje suave */
+.filtros-reino {
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: var(--salvia) transparent;
+}
+
+.filtro-reino {
+    scroll-snap-align: start;
+}
+
+/* La tarjeta solo se eleva en dispositivos con mouse */
+@media (hover: none) {
+    .hallazgo-tarjeta:hover {
+        transform: none;
+    }
+}
+
+/* Tablet */
+@media (max-width: 991.98px) {
+    .cuaderno {
+        padding: 1.5rem;
+    }
+
+    #modal-publicacion .ir-modal-info {
+        padding: 1.5rem;
+    }
+}
+
+/* Celular */
+@media (max-width: 575.98px) {
+    .fondo-responsivo > .cuaderno {
+        width: calc(100% - 32px);
+        padding: 1.25rem 1rem;
+        border-radius: 1rem;
+    }
+
+    .cuaderno-resumen {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .cuaderno-resumen li {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.82rem;
+    }
+
+    .cuaderno-resumen strong {
+        font-size: 1.4rem;
+    }
+
+    .lista-hallazgos.vista-cuadricula {
+        gap: 1rem;
+    }
+
+    .vista-lista .hallazgo-reino {
+        display: none;
+    }
+
+    .vista-lista .hallazgo-acciones .btn span {
+        display: none;
+    }
+
+    /* Ventana de detalle */
+    #modal-publicacion .ir-modal-media {
+        position: relative;
+        min-height: 0;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+    }
+
+    #modal-publicacion .ir-modal-media img {
+        position: absolute;
+        inset: 0;
+    }
+
+    #modal-publicacion .ir-modal-info {
+        padding: 1.25rem 1rem;
+    }
+
+    #modal-publicacion .ir-modal-titulo {
+        font-size: 1.3rem;
+    }
+
+    #modal-publicacion .ir-modal-comentarios {
+        height: 140px;
+    }
+}
+
+/* Celulares muy angostos (Galaxy Fold, etc.) */
+@media (max-width: 359.98px) {
+    .fondo-responsivo > .cuaderno {
+        width: calc(100% - 16px);
+        padding: 1rem 0.75rem;
+    }
+
+    #modal-publicacion .ir-modal-datos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #modalEditar .d-flex.gap-3 {
+        flex-direction: column;
+    }
+
+    #modalEditar .d-flex.gap-3 .btn {
+        width: 100% !important;
+    }
+}
+
+
+.navbar-custom .nav-link:hover::after {
+    width: 100%;
+    /* La línea crece hacia los lados */
+}
+
+
+.navbar-custom .nav-link.active {
+    color: var(--blanco);
+    font-weight: 700;
+}
+
+
+.navbar-custom .nav-link.active::after {
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-blanco);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4);
+    /* Leve efecto de luz/Glow */
+}
+
+
+
+/* Botón relleno verde: Guardar cambios, Comentar */
+.btn-verde,
+#modal-publicacion .btn-success {
+    --bs-btn-color: var(--crema);
+    --bs-btn-bg: var(--verde-pino);
+    --bs-btn-border-color: var(--verde-pino);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-bosque);
+    --bs-btn-hover-border-color: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Botón relleno oscuro: Sí, eliminar */
+.btn-oscuro {
+    --bs-btn-color: var(--crema);
+    --bs-btn-bg: var(--verde-bosque);
+    --bs-btn-border-color: var(--verde-bosque);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-noche);
+    --bs-btn-hover-border-color: var(--verde-noche);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Botón contorno verde: Editar */
+.btn-outline-verde {
+    --bs-btn-color: var(--verde-esmeralda);
+    --bs-btn-border-color: var(--verde-esmeralda);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-esmeralda);
+    --bs-btn-hover-border-color: var(--verde-esmeralda);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-pino);
+    --bs-btn-active-border-color: var(--verde-pino);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Botón contorno oscuro: Eliminar, Eliminar seleccionadas, Cancelar */
+.btn-outline-oscuro {
+    --bs-btn-color: var(--verde-bosque);
+    --bs-btn-border-color: var(--verde-bosque);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: var(--verde-bosque);
+    --bs-btn-hover-border-color: var(--verde-bosque);
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: var(--verde-noche);
+    --bs-btn-active-border-color: var(--verde-noche);
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Avisos (errores y confirmaciones) con la paleta, en lugar de los colores de Bootstrap.
+   Se distinguen por la franja de la izquierda; en modo oscuro las variables ya cambian solas. */
+.aviso-cuaderno {
+    --bs-alert-bg: var(--crema);
+    --bs-alert-color: var(--verde-noche);
+    --bs-alert-border-color: var(--salvia);
+    border-left: 0.35rem solid var(--verde-bosque);
+    font-weight: 600;
+}
+
+.aviso-cuaderno--exito {
+    border-left-color: var(--verde-esmeralda);
+}
+
+.aviso-cuaderno--info {
+    border-left-color: var(--salvia-oscuro);
+}
+
+/* Checkboxes */
+.fondo-responsivo .form-check-input {
+    background-color: var(--crema);
+    border-color: var(--salvia-oscuro);
+}
+
+.fondo-responsivo .form-check-input:checked,
+.fondo-responsivo .form-check-input:indeterminate {
+    background-color: var(--verde-esmeralda);
+    border-color: var(--verde-esmeralda);
+}
+
+.fondo-responsivo .form-check-input:checked[type="checkbox"] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23F5F5F0' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.fondo-responsivo .form-check-input[type="checkbox"]:indeterminate {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23F5F5F0' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+.fondo-responsivo .form-check-input:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+/* Inputs, selects y textarea de los modales */
+#modalEditar .form-control,
+#modalEditar .form-select,
+#modal-publicacion .form-control {
+    background-color: var(--crema);
+    border-color: var(--salvia);
+    color: var(--verde-musgo);
+}
+
+#modalEditar .form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%233A4D39' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+#modalEditar .form-control:focus,
+#modalEditar .form-select:focus,
+#modal-publicacion .form-control:focus {
+    border-color: var(--verde-esmeralda);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+#modalEditar .form-control::placeholder,
+#modal-publicacion .form-control::placeholder {
+    color: var(--salvia-oscuro);
+}
+
+/* Validación: sin el ícono rojo de Bootstrap */
+#modalEditar .form-control.is-invalid {
+    background-image: none;
+    padding-right: 0.75rem;
+}
+
+#modalEditar .form-select.is-invalid {
+    --bs-form-select-bg-icon: none;
+}
+
+#modalEditar .form-control.is-invalid:focus,
+#modalEditar .form-select.is-invalid:focus {
+    border-color: var(--verde-noche);
+    box-shadow: 0 0 0 0.25rem var(--salvia);
+}
+
+#modalEditar .invalid-feedback {
+    font-weight: 600;
+}
+
+/* Modales: fondo, títulos y textos */
+#modalEditar .modal-content,
+#modalEliminar .modal-content {
+    background-color: var(--crema);
+    color: var(--verde-musgo);
+}
+
+#modalEditar .modal-title,
+#modalEditar .form-label,
+#modalEliminar .modal-title {
+    color: var(--verde-noche);
+}
+
+#modalEditar .figure-caption {
+    color: var(--salvia-oscuro);
+}
+
+/* Fondo oscuro detrás de los modales */
+.modal-backdrop {
+    --bs-backdrop-bg: var(--verde-noche);
+}
+
+/* Ventana flotante de la publicación */
+#modal-publicacion .modal-content {
+    background: var(--crema);
+    color: var(--verde-musgo);
+    box-shadow: 0 1.5rem 3rem var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-close {
+    background-color: var(--crema);
+    opacity: 1;
+}
+
+#modal-publicacion .ir-modal-media {
+    background: var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-titulo,
+#modal-publicacion .ir-modal-subtitulo {
+    color: var(--verde-noche);
+}
+
+#modal-publicacion .ir-modal-autor,
+#modal-publicacion .ir-modal-datos dt,
+#modal-publicacion .sin-comentarios {
+    color: var(--salvia-oscuro);
+}
+
+#modal-publicacion .ir-modal-datos div {
+    background: var(--crema);
+    border: 1px solid var(--salvia);
+}
+
+#modal-publicacion .ir-modal-datos dd {
+    color: var(--verde-musgo);
+}
+
+/* Altura fija: comentar no cambia el tamaño de la ventana, solo hace scroll */
+#modal-publicacion .ir-modal-comentarios {
+    height: 170px;
+    max-height: none;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+#modal-publicacion .ir-comentario {
+    background: var(--crema);
+    border: 1px solid var(--salvia);
+    color: var(--verde-musgo);
+}
+
+#modal-publicacion .ir-comentario strong {
+    color: var(--verde-esmeralda);
+}
+
+/* =====================================================
+   MODO OSCURO
+   Base: #40513B #609966 #9DC08B #EDF1D6 #F9FBF2 #FFFFFF
+   Las superficies son #40513B oscurecido y mezclado con
+   #609966, para tener niveles de profundidad.
+   Se activa con data-tema="oscuro" en <html>
+   ===================================================== */
+:root[data-tema="oscuro"] {
+    color-scheme: dark;
+
+    /* Niveles de superficie: cuanto más arriba, más claro */
+    --oscuro-fondo: #161C15;     /* página e inputs */
+    --oscuro-panel: #20291E;     /* panel del cuaderno */
+    --oscuro-tarjeta: #283225;   /* tarjetas y modales */
+    --oscuro-elevado: #303D2C;   /* hover y elementos encima */
+    --oscuro-borde: #476B49;     /* #40513B mezclado con #609966 */
+
+    /* Mismas variables del modo claro, con colores para oscuro */
+    --crema: var(--oscuro-panel);
+    --verde-noche: #F9FBF2;      /* títulos */
+    --verde-musgo: #EDF1D6;      /* texto general, sin blanco puro */
+    --verde-bosque: #EDF1D6;     /* botones de contorno */
+    --verde-pino: #9DC08B;       /* botón principal y filtro activo */
+    --verde-esmeralda: #9DC08B;  /* acentos */
+    --salvia: var(--oscuro-borde);
+    --salvia-oscuro: #9DC08B;    /* texto secundario */
+}
+
+/* Cambio de tema suave */
+.cuaderno,
+.hallazgo-tarjeta,
+.filtro-reino,
+.cuaderno-resumen li,
+.fondo-responsivo .form-control {
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cuaderno,
+    .hallazgo-tarjeta,
+    .filtro-reino,
+    .cuaderno-resumen li,
+    .fondo-responsivo .form-control {
+        transition: none;
+    }
+}
+
+/* Fondo de hojas atenuado para que no compita con el contenido */
+:root[data-tema="oscuro"] .fondo-responsivo {
+    background-color: var(--oscuro-fondo);
+    background-image:
+        linear-gradient(rgba(22, 28, 21, 0.88), rgba(22, 28, 21, 0.88)),
+        url("../../img/publicacion/hojasverdes3.jpg");
+}
+
+/* Panel */
+:root[data-tema="oscuro"] .cuaderno {
+    border-color: var(--oscuro-elevado);
+    box-shadow: 0 1rem 2.5rem rgba(10, 13, 9, 0.6);
+}
+
+/* Resumen y filtros */
+:root[data-tema="oscuro"] .cuaderno-resumen li {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .filtro-reino {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .filtro-reino:hover {
+    background-color: var(--oscuro-elevado);
+    color: #F9FBF2;
+}
+
+:root[data-tema="oscuro"] .filtro-contador {
+    background-color: var(--oscuro-elevado);
+    color: #EDF1D6;
+}
+
+:root[data-tema="oscuro"] .filtro-reino[aria-pressed="true"] {
+    background-color: #9DC08B;
+    border-color: #9DC08B;
+    color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .filtro-reino[aria-pressed="true"] .filtro-contador {
+    background-color: var(--oscuro-fondo);
+    color: #9DC08B;
+}
+
+/* Inputs hundidos un nivel */
+:root[data-tema="oscuro"] .fondo-responsivo .buscador .form-control,
+:root[data-tema="oscuro"] #modalEditar .form-control,
+:root[data-tema="oscuro"] #modalEditar .form-select,
+:root[data-tema="oscuro"] #modal-publicacion .form-control {
+    background-color: var(--oscuro-fondo);
+}
+
+/* Botón principal: texto oscuro sobre verde claro */
+:root[data-tema="oscuro"] .btn-verde,
+:root[data-tema="oscuro"] #modal-publicacion .btn-success {
+    --bs-btn-color: var(--oscuro-fondo);
+    --bs-btn-hover-color: var(--oscuro-fondo);
+    --bs-btn-hover-bg: #EDF1D6;
+    --bs-btn-hover-border-color: #EDF1D6;
+    --bs-btn-active-color: var(--oscuro-fondo);
+    --bs-btn-active-bg: #F9FBF2;
+    --bs-btn-active-border-color: #F9FBF2;
+}
+
+:root[data-tema="oscuro"] .btn-outline-oscuro,
+:root[data-tema="oscuro"] .btn-outline-verde,
+:root[data-tema="oscuro"] .btn-oscuro {
+    --bs-btn-hover-color: var(--oscuro-fondo);
+    --bs-btn-active-color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .btn-oscuro {
+    --bs-btn-color: var(--oscuro-fondo);
+    --bs-btn-bg: #EDF1D6;
+    --bs-btn-border-color: #EDF1D6;
+    --bs-btn-hover-bg: #F9FBF2;
+    --bs-btn-hover-border-color: #F9FBF2;
+    --bs-btn-active-bg: #FFFFFF;
+    --bs-btn-active-border-color: #FFFFFF;
+}
+
+/* Tarjetas un nivel arriba del panel */
+:root[data-tema="oscuro"] .hallazgo-tarjeta {
+    background-color: var(--oscuro-tarjeta);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .hallazgo-tarjeta:hover {
+    background-color: var(--oscuro-elevado);
+    border-color: var(--oscuro-borde);
+    box-shadow: 0 0.75rem 1.5rem rgba(10, 13, 9, 0.5);
+}
+
+:root[data-tema="oscuro"] .hallazgo.seleccionada .hallazgo-tarjeta {
+    border-color: #9DC08B;
+    box-shadow: 0 0 0 2px #9DC08B;
+}
+
+/* Fotos un poco atenuadas; recuperan su brillo al pasar el mouse */
+:root[data-tema="oscuro"] .hallazgo-media,
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-media {
+    background-color: var(--oscuro-fondo);
+}
+
+:root[data-tema="oscuro"] .hallazgo-imagen {
+    filter: brightness(0.88);
+    transition: filter 0.2s;
+}
+
+:root[data-tema="oscuro"] .hallazgo-tarjeta:hover .hallazgo-imagen {
+    filter: none;
+}
+
+:root[data-tema="oscuro"] .hallazgo-reino {
+    background-color: rgba(22, 28, 21, 0.85);
+    color: #EDF1D6;
+}
+
+/* Modales: un nivel arriba del fondo */
+:root[data-tema="oscuro"] #modalEditar .modal-content,
+:root[data-tema="oscuro"] #modalEliminar .modal-content,
+:root[data-tema="oscuro"] #modal-publicacion .modal-content {
+    background-color: var(--oscuro-tarjeta);
+    border: 1px solid var(--oscuro-elevado);
+    box-shadow: 0 1.5rem 3rem rgba(10, 13, 9, 0.7);
+}
+
+:root[data-tema="oscuro"] #modal-publicacion .ir-comentario,
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-datos div {
+    background-color: var(--oscuro-panel);
+    border-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] #modal-publicacion .ir-modal-close {
+    background-color: var(--oscuro-elevado);
+}
+
+:root[data-tema="oscuro"] .modal-backdrop {
+    --bs-backdrop-bg: #161C15;
+    --bs-backdrop-opacity: 0.8;
+}
+
+/* Íconos dibujados con color fijo */
+:root[data-tema="oscuro"] .fondo-responsivo,
+:root[data-tema="oscuro"] #modalEditar,
+:root[data-tema="oscuro"] #modalEliminar,
+:root[data-tema="oscuro"] #modal-publicacion {
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23EDF1D6'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] #modalEditar .form-select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23EDF1D6' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] .fondo-responsivo .form-check-input:checked[type="checkbox"] {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23161C15' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+:root[data-tema="oscuro"] .fondo-responsivo .form-check-input[type="checkbox"]:indeterminate {
+    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23161C15' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+/* Foco visible en oscuro */
+:root[data-tema="oscuro"] .fondo-responsivo .btn:focus-visible,
+:root[data-tema="oscuro"] .filtro-reino:focus-visible {
+    outline: 2px solid #9DC08B;
+    outline-offset: 2px;
+}
+
+/* Botón para cambiar de tema */
+.cuaderno-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+
+/* =====================================================
+   DISPOSICIÓN EN CELULAR (menos de 576px)
+   ===================================================== */
+@media (max-width: 575.98px) {
+    /* Encabezado: título con botón de tema al lado, "Nuevo hallazgo" abajo */
+    .cuaderno-encabezado {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .cuaderno-acciones {
+        display: contents;
+    }
+
+    #btn-tema {
+        grid-column: 2;
+        grid-row: 1;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #btn-tema i {
+        margin: 0 !important;
+    }
+
+    #btn-tema span {
+        display: none;
+    }
+
+    .cuaderno-acciones .btn-verde,
+    #btn-volver-feed {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .cuaderno-etiqueta {
+        font-size: 0.75rem;
+    }
+
+    .cuaderno-titulo {
+        font-size: 1.6rem;
+    }
+
+    .cuaderno-subtitulo {
+        font-size: 0.95rem;
+    }
+
+    /* Resumen compacto: número y texto en un renglón */
+    .cuaderno-resumen {
+        margin-bottom: 1rem;
+    }
+
+    .cuaderno-resumen li {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+        padding: 0.55rem 0.7rem;
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+
+    .cuaderno-resumen strong {
+        display: inline;
+        font-size: 1.2rem;
+    }
+
+    /* Filtros en varias filas: nada queda cortado en el borde */
+    .filtros-reino {
+        flex-wrap: wrap;
+        overflow: visible;
+        gap: 0.4rem;
+    }
+
+    .filtro-reino {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    /* Vista de lista: foto a la izquierda, texto y botones a la derecha */
+    .vista-lista .hallazgo-tarjeta {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        grid-template-areas:
+            "media cuerpo"
+            "media acciones";
+        align-items: stretch;
+    }
+
+    .vista-lista .hallazgo-media {
+        grid-area: media;
+        width: auto;
+        min-height: 0;
+    }
+
+    .vista-lista .hallazgo-cuerpo {
+        grid-area: cuerpo;
+        padding: 0.6rem 0.75rem 0;
+    }
+
+    .vista-lista .hallazgo-titulo {
+        font-size: 0.95rem;
+    }
+
+    .vista-lista .hallazgo-especie {
+        margin-bottom: 0.3rem;
+        font-size: 0.82rem;
+    }
+
+    .vista-lista .hallazgo-meta {
+        font-size: 0.75rem;
+    }
+
+    .vista-lista .hallazgo-acciones {
+        grid-area: acciones;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0.4rem 0.6rem 0.6rem;
+    }
+
+    .vista-lista .hallazgo-acciones .btn {
+        flex: 0 0 auto;
+    }
+
+    /* Modales a pantalla completa */
+    #modal-publicacion .modal-content,
+    #modalEditar .modal-content {
+        border-radius: 0;
+        border: 0;
+    }
+}
+
+/* =====================================================
+   EFECTOS DEL MODAL DE ELIMINAR
+   ===================================================== */
+#modalEliminar .modal-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+#modalEliminar .modal-footer .btn i {
+    transition: transform 0.2s;
+}
+
+/* Hover: ambos se elevan un poco */
+#modalEliminar .modal-footer .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0.4rem 0.9rem var(--salvia);
+}
+
+/* Al presionar se hunden */
+#modalEliminar .modal-footer .btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.96);
+    box-shadow: none;
+}
+
+/* Cancelar: la flecha se mueve hacia atrás */
+#modalEliminar .btn-cancelar-eliminar:hover i {
+    transform: translateX(-4px);
+}
+
+/* Sí, eliminar: el bote de basura se sacude */
+#modalEliminar .btn-confirmar-eliminar:hover:not(:disabled) .icono-basura {
+    animation: sacudir-basura 0.5s ease-in-out;
+}
+
+@keyframes sacudir-basura {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-14deg); }
+    40% { transform: rotate(12deg); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(5deg); }
+}
+
+/* Al confirmar: pulso del botón y la tapa del bote se abre */
+#modalEliminar .btn-confirmar-eliminar.confirmando {
+    --bs-btn-disabled-color: var(--bs-btn-color);
+    --bs-btn-disabled-bg: var(--bs-btn-bg);
+    --bs-btn-disabled-border-color: var(--bs-btn-border-color);
+    opacity: 1;
+    animation: pulso-confirmar 0.35s ease-out;
+}
+
+#modalEliminar .btn-confirmar-eliminar.confirmando .icono-basura {
+    animation: abrir-basura 0.35s ease-out forwards;
+}
+
+@keyframes pulso-confirmar {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 var(--salvia); }
+    40% { transform: scale(1.06); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0.75rem transparent; }
+}
+
+@keyframes abrir-basura {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-3px) rotate(-20deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+/* Tarjeta eliminada: la foto se seca; el movimiento lo calcula el JS */
+.hallazgo.saliendo {
+    pointer-events: none;
+}
+
+.hallazgo.saliendo .hallazgo-imagen {
+    filter: sepia(0.85) saturate(0.7) brightness(0.9);
+    transition: filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hojas sueltas: encima de todo, no las recorta la tarjeta */
+.capa-hojas {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hoja-caida {
+    --hoja-vena: var(--crema);
+    position: absolute;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.hoja-caida svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hoja-tono-0 { color: var(--verde-pino); }
+.hoja-tono-1 { color: var(--verde-esmeralda); }
+.hoja-tono-2 { color: var(--salvia-oscuro); }
+
+@media (prefers-reduced-motion: reduce) {
+    #modalEliminar .modal-footer .btn,
+    #modalEliminar .modal-footer .btn i {
+        transition: none;
+    }
+
+    #modalEliminar .modal-footer .btn:hover:not(:disabled),
+    #modalEliminar .btn-cancelar-eliminar:hover i {
+        transform: none;
+    }
+
+    #modalEliminar .btn-confirmar-eliminar:hover .icono-basura,
+    #modalEliminar .btn-confirmar-eliminar.confirmando,
+    #modalEliminar .btn-confirmar-eliminar.confirmando .icono-basura {
+        animation: none;
+    }
+
+    .hallazgo.saliendo .hallazgo-imagen {
+        transition: none;
+    }
+}
+
+/* =====================================================
+   PERSONAJE DEL MODAL DE ELIMINAR (Champi)
+   ===================================================== */
+#modalEliminar .modal-body {
+    text-align: center;
+}
+
+.personaje-eliminar {
+    /* Colores del personaje (modo claro) */
+    --champi-sombrero: var(--verde-pino);
+    --champi-puntos: var(--crema);
+    --champi-tallo: var(--salvia);
+    --champi-rasgos: var(--verde-noche);
+    --champi-mejillas: var(--salvia-oscuro);
+    --champi-lagrima: var(--verde-esmeralda);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+:root[data-tema="oscuro"] .personaje-eliminar {
+    --champi-sombrero: #609966;
+    --champi-puntos: #EDF1D6;
+    --champi-tallo: #EDF1D6;
+    --champi-rasgos: #161C15;
+    --champi-mejillas: #9DC08B;
+    --champi-lagrima: #9DC08B;
+}
+
+.personaje-svg {
+    width: 110px;
+    height: 110px;
+    overflow: visible;
+}
+
+.personaje-sombra { fill: var(--champi-rasgos); opacity: 0.12; transform-origin: 60px 112px; }
+.personaje-tallo { fill: var(--champi-tallo); }
+.personaje-sombrero { fill: var(--champi-sombrero); }
+.personaje-punto { fill: var(--champi-puntos); }
+.rasgo { fill: var(--champi-rasgos); }
+.rasgo-linea { fill: none; stroke: var(--champi-rasgos); stroke-width: 3; stroke-linecap: round; }
+.mejilla { fill: var(--champi-mejillas); opacity: 0.8; }
+.lagrima { fill: var(--champi-lagrima); }
+
+/* Globo de diálogo */
+.personaje-dialogo {
+    position: relative;
+    margin: 0 0 0.6rem;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--salvia);
+    border-radius: 999px;
+    background-color: var(--crema);
+    color: var(--verde-noche);
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: transform 0.2s;
+}
+
+.personaje-dialogo::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 10px;
+    height: 10px;
+    background-color: inherit;
+    border-right: 1px solid var(--salvia);
+    border-bottom: 1px solid var(--salvia);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.mensaje-eliminar {
+    margin: 0;
+}
+
+/* Solo se ve la cara del ánimo actual */
+.cara {
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+[data-animo="normal"] .cara-normal,
+[data-animo="feliz"] .cara-feliz,
+[data-animo="triste"] .cara-triste,
+[data-animo="adios"] .cara-triste {
+    opacity: 1;
+}
+
+/* Animaciones por ánimo */
+.personaje-cuerpo {
+    transform-box: view-box;
+    transform-origin: 60px 104px;
+}
+
+[data-animo="normal"] .personaje-cuerpo {
+    animation: champi-respirar 2.4s ease-in-out infinite;
+}
+
+[data-animo="feliz"] .personaje-cuerpo {
+    animation: champi-brincar 0.6s ease-in-out infinite;
+}
+
+[data-animo="feliz"] .personaje-sombra {
+    animation: champi-sombra-brinco 0.6s ease-in-out infinite;
+}
+
+[data-animo="triste"] .personaje-cuerpo {
+    animation: champi-temblar 0.3s linear infinite;
+}
+
+[data-animo="triste"] .lagrima {
+    animation: champi-lagrima 1.1s ease-in infinite;
+}
+
+[data-animo="adios"] .personaje-cuerpo {
+    animation: champi-hundirse 0.35s ease-in forwards;
+}
+
+[data-animo="feliz"] .personaje-dialogo {
+    transform: translateY(-3px) scale(1.04);
+}
+
+[data-animo="triste"] .personaje-dialogo {
+    transform: rotate(-2deg);
+}
+
+@keyframes champi-respirar {
+    0%, 100% { transform: scale(1, 1); }
+    50% { transform: scale(1.03, 0.97); }
+}
+
+@keyframes champi-brincar {
+    0%, 100% { transform: translateY(0) scale(1.04, 0.96); }
+    40% { transform: translateY(-14px) scale(0.97, 1.04); }
+    60% { transform: translateY(-14px) scale(0.97, 1.04); }
+}
+
+@keyframes champi-sombra-brinco {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.7); }
+}
+
+@keyframes champi-temblar {
+    0%, 100% { transform: translate(0, 3px) rotate(0); }
+    25% { transform: translate(-1.5px, 3px) rotate(-1.5deg); }
+    75% { transform: translate(1.5px, 3px) rotate(1.5deg); }
+}
+
+@keyframes champi-lagrima {
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(16px); opacity: 0; }
+}
+
+@keyframes champi-hundirse {
+    0% { transform: translateY(3px) scale(1); opacity: 1; }
+    100% { transform: translateY(26px) scale(0.6, 0.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .personaje-eliminar .personaje-cuerpo,
+    .personaje-eliminar .personaje-sombra,
+    .personaje-eliminar .lagrima {
+        animation: none !important;
+    }
+
+    .personaje-dialogo {
+        transition: none;
+    }
+}
+
+/* =====================================================
+   ANIMACIÓN DE CARGA (una nutria sigue un rastro de puntitos)
+   La nutria cruza en --nutria-vuelta y se "come" cada puntito
+   al pasar; cada uno reaparece después, ya lejos de ella.
+   ===================================================== */
+.cargando-hallazgos {
+    /* Colores de la nutria (modo claro) */
+    --nutria-piel: var(--verde-pino);
+    --nutria-panza: var(--salvia);
+    --nutria-rasgos: var(--verde-noche);
+    --nutria-puntos: var(--verde-esmeralda);
+    --nutria-suelo: var(--salvia);
+    --nutria-vuelta: 3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2.5rem 1rem;
+    color: var(--verde-musgo);
+}
+
+:root[data-tema="oscuro"] .cargando-hallazgos {
+    --nutria-piel: #609966;
+    --nutria-panza: #EDF1D6;
+    --nutria-rasgos: #161C15;
+    --nutria-puntos: #9DC08B;
+}
+
+.nutria-svg {
+    width: 240px;
+    max-width: 100%;
+    height: auto;
+}
+
+.nutria-suelo {
+    stroke: var(--nutria-suelo);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 2 6;
+}
+
+.nutria-rastro circle {
+    fill: var(--nutria-puntos);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: nutria-comer var(--nutria-vuelta) linear infinite;
+    animation-delay: var(--t);
+}
+
+/* Cruza de izquierda a derecha; la nariz llega a cada puntito en su --t */
+.nutria {
+    animation: nutria-cruzar var(--nutria-vuelta) linear infinite;
+}
+
+.nutria-cuerpo {
+    animation: nutria-saltito 0.3s ease-in-out infinite alternate;
+}
+
+.nutria-piel,
+.nutria-pata {
+    fill: var(--nutria-piel);
+}
+
+.nutria-panza {
+    fill: var(--nutria-panza);
+}
+
+.nutria-rasgo {
+    fill: var(--nutria-rasgos);
+}
+
+.nutria-cola {
+    fill: none;
+    stroke: var(--nutria-piel);
+    stroke-width: 5;
+    stroke-linecap: round;
+    transform-box: view-box;
+    transform-origin: 14px 54px;
+    animation: nutria-cola 0.6s ease-in-out infinite alternate;
+}
+
+.nutria-bigote {
+    fill: none;
+    stroke: var(--nutria-rasgos);
+    stroke-width: 0.8;
+    stroke-linecap: round;
+}
+
+/* Las patas se mueven por turnos */
+.nutria-pata {
+    animation: nutria-paso 0.3s ease-in-out infinite alternate;
+}
+
+.nutria-pata--frente {
+    animation-direction: alternate-reverse;
+}
+
+.cargando-hallazgos-texto {
+    margin: 0;
+    font-weight: 600;
+}
+
+@keyframes nutria-cruzar {
+    from { transform: translateX(-60px); }
+    to { transform: translateX(240px); }
+}
+
+@keyframes nutria-saltito {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2px); }
+}
+
+@keyframes nutria-paso {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
+}
+
+@keyframes nutria-cola {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(10deg); }
+}
+
+@keyframes nutria-comer {
+    0% { transform: scale(1); opacity: 1; }
+    4%, 85% { transform: scale(0); opacity: 0; }
+    95%, 100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cargando-hallazgos * {
+        animation: none !important;
+    }
+
+    .nutria {
+        transform: translateX(80px);
+    }
+}

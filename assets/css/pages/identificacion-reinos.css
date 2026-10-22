@@ -1,0 +1,402 @@
+/* =========================================================
+   IDENTIFICACIÓN RÁPIDA DE REINOS
+   ========================================================= */
+.identificador-reino{
+  width:100%;
+  max-width:none;
+  height:100%;
+  min-height:100%;
+  flex:1;
+  margin:0;
+  padding:1.6rem;
+  align-self:stretch;
+  display:flex;
+  flex-direction:column;
+  border:1px solid #C8D9C0;
+  border-radius:1.4rem;
+  background:linear-gradient(145deg,#F8FBF5 0%,#EDF1D6 100%);
+  box-shadow:0 10px 28px rgba(64,81,59,0.10);
+}
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+.identificador-encabezado{
+  display:flex;
+  align-items:flex-start;
+  gap:1rem;
+  margin-bottom:1.3rem;
+}
+.identificador-icono{
+  width:3.4rem;
+  height:3.4rem;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border-radius:50%;
+  background:linear-gradient(145deg,#B8D5A9,#8DB77A);
+  font-size:1.55rem;
+  box-shadow:0 5px 12px rgba(64,81,59,0.12);
+}
+.identificador-encabezado h6{
+  margin:0 0 0.3rem;
+  color:#40513B;
+  font-family:"Montserrat Alternates",sans-serif;
+  font-size:1.2rem;
+  font-weight:800;
+  line-height:1.3;
+}
+.identificador-encabezado p{
+  margin:0;
+  color:#61705A;
+  font-family:"Nunito",sans-serif;
+  font-size:0.95rem;
+  line-height:1.5;
+}
+/* =========================================================
+   BUSCADOR
+   ========================================================= */
+.identificador-buscador{
+  width:100%;
+}
+.identificador-buscador .form-control{
+  width:100%;
+  min-height:3.4rem;
+  padding:0.8rem 1rem;
+  border:1px solid #9DC08B;
+  border-radius:0.85rem;
+  background-color:#FFFFFF;
+  color:#40513B;
+  font-family:"Nunito",sans-serif;
+  font-size:1rem;
+  box-shadow:0 3px 10px rgba(64,81,59,0.05);
+  transition:border-color 0.25s ease,box-shadow 0.25s ease;
+}
+.identificador-buscador .form-control::placeholder{
+  color:#8A9684;
+}
+.identificador-buscador .form-control:focus{
+  border-color:#609966;
+  outline:none;
+  box-shadow:0 0 0 0.2rem rgba(96,153,102,0.15);
+}
+/* =========================================================
+   ESTADO INICIAL DEL IDENTIFICADOR
+   ========================================================= */
+.estado-inicial-reino{
+  min-height:20rem;
+  margin-top:1.3rem;
+  padding:1.4rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed #B7CDAE;
+  border-radius:1.1rem;
+  background-color:rgba(255,255,255,0.55);
+  text-align:center;
+}
+.estado-inicial-icono{
+  width:4.2rem;
+  height:4.2rem;
+  display:grid;
+  place-items:center;
+  margin:0 auto 0.8rem;
+  border-radius:50%;
+  background:linear-gradient(145deg,#EDF1D6,#DDE9C9);
+  font-size:2rem;
+  box-shadow:0 5px 14px rgba(64,81,59,0.08);
+}
+.estado-inicial-reino h6{
+  margin:0 0 0.4rem;
+  color:#40513B;
+  font-family:"Montserrat Alternates",sans-serif;
+  font-size:1.1rem;
+  font-weight:800;
+}
+.estado-inicial-reino p{
+  margin:0 0 1rem;
+  color:#61705A;
+  font-family:"Nunito",sans-serif;
+  font-size:0.9rem;
+}
+/* =========================================================
+   BOTONES DE EJEMPLOS
+   ========================================================= */
+.ejemplos-reinos{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0.6rem;
+  margin-bottom:1rem;
+}
+.ejemplo-reino{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.35rem;
+  min-height:2.4rem;
+  padding:0.5rem 0.8rem;
+  border:1px solid #9DC08B;
+  border-radius:50px;
+  background-color:#FFFFFF;
+  color:#40513B;
+  font-family:"Nunito",sans-serif;
+  font-size:0.85rem;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 3px 8px rgba(64,81,59,0.06);
+  transition:all 0.25s ease;
+}
+.ejemplo-reino:hover{
+  border-color:#609966;
+  background-color:#609966;
+  color:#FFFFFF;
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px rgba(64,81,59,0.14);
+}
+.ejemplo-reino:active{
+  transform:translateY(0);
+}
+.estado-inicial-reino small{
+  display:block;
+  color:#7A8874;
+  font-family:"Nunito",sans-serif;
+  font-size:0.8rem;
+  line-height:1.4;
+}
+/* =========================================================
+   OCULTAR ESTADO INICIAL CUANDO HAY RESULTADO
+   ========================================================= */
+.identificador-reino:has(.resultado-reino:not(.d-none)) .estado-inicial-reino{
+  display:none;
+}
+/* =========================================================
+   RESULTADO DEL REINO
+   ========================================================= */
+.resultado-reino{
+  min-height:20rem;
+  grid-template-columns:9rem 1fr;
+  align-items:center;
+  gap:1.3rem;
+  margin-top:1.3rem;
+  padding:1.3rem;
+  border:1px solid rgba(96,153,102,0.3);
+  border-radius:1.1rem;
+  background-color:#FFFFFF;
+  box-shadow:0 7px 20px rgba(64,81,59,0.08);
+}
+.resultado-reino:not(.d-none){
+  display:grid;
+}
+.resultado-reino-imagen{
+  width:9rem;
+  height:9rem;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  border:2px solid #DCE8D5;
+  border-radius:1rem;
+  background-color:#F4F7F1;
+  box-shadow:0 5px 14px rgba(64,81,59,0.12);
+}
+.resultado-reino-info{
+  min-width:0;
+}
+.resultado-reino-etiqueta{
+  display:block;
+  margin-bottom:0.3rem;
+  color:#609966;
+  font-family:"Onest",sans-serif;
+  font-size:0.82rem;
+  font-weight:800;
+  letter-spacing:0.03rem;
+  text-transform:uppercase;
+}
+.resultado-reino-info strong{
+  display:block;
+  margin-bottom:0.45rem;
+  color:#40513B;
+  font-family:"Montserrat Alternates",sans-serif;
+  font-size:1.45rem;
+  font-weight:800;
+  line-height:1.2;
+}
+.resultado-reino-info p{
+  margin:0;
+  color:#61705A;
+  font-family:"Nunito",sans-serif;
+  font-size:0.95rem;
+  line-height:1.5;
+}
+/* =========================================================
+   AYUDA Y ENLACE
+   ========================================================= */
+.identificador-ayuda{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.6rem;
+  margin-top:auto;
+  padding-top:1rem;
+  border-top:1px solid rgba(157,192,139,0.35);
+  font-family:"Nunito",sans-serif;
+  font-size:0.88rem;
+}
+.identificador-ayuda span{
+  color:#61705A;
+}
+.identificador-ayuda a{
+  color:#609966;
+  font-weight:800;
+  text-decoration:none;
+  transition:color 0.25s ease;
+}
+.identificador-ayuda a:hover{
+  color:#40513B;
+  text-decoration:underline;
+}
+/* =========================================================
+   POSICIÓN JUNTO AL FORMULARIO
+   MISMA ALTURA PARA AMBAS COLUMNAS
+   ========================================================= */
+.fondo-responsivo .row.justify-content-center{
+  align-items:stretch;
+  gap:1.5rem;
+}
+.fondo-responsivo .row.justify-content-center>.col-12{
+  display:flex;
+}
+.fondo-responsivo .row.justify-content-center>.col-12>.card{
+  width:100%;
+  height:100%;
+}
+/* =========================================================
+   RESPONSIVE TABLET
+   ========================================================= */
+@media(max-width:992px){
+  .fondo-responsivo .row.justify-content-center{
+    align-items:flex-start;
+  }
+  .fondo-responsivo .row.justify-content-center>.col-12{
+    display:block;
+  }
+  .fondo-responsivo .row.justify-content-center>.col-12>.card{
+    height:auto;
+  }
+  .identificador-reino{
+    width:100%;
+    max-width:100%;
+    height:auto;
+    min-height:auto;
+    margin-top:1.5rem;
+  }
+  .identificador-ayuda{
+    margin-top:1.1rem;
+  }
+}
+/* =========================================================
+   RESPONSIVE CELULAR
+   ========================================================= */
+@media(max-width:36rem){
+  .identificador-reino{
+    max-width:100%;
+    padding:1.2rem;
+    border-radius:1rem;
+  }
+  .identificador-encabezado{
+    gap:0.8rem;
+    margin-bottom:1rem;
+  }
+  .identificador-icono{
+    width:2.9rem;
+    height:2.9rem;
+    font-size:1.3rem;
+  }
+  .identificador-encabezado h6{
+    font-size:1.05rem;
+  }
+  .identificador-encabezado p{
+    font-size:0.88rem;
+  }
+  .identificador-buscador .form-control{
+    min-height:3rem;
+    font-size:0.92rem;
+  }
+  .estado-inicial-reino{
+    min-height:18rem;
+    padding:1.1rem 0.8rem;
+  }
+  .estado-inicial-icono{
+    width:3.5rem;
+    height:3.5rem;
+    font-size:1.7rem;
+  }
+  .ejemplos-reinos{
+    gap:0.45rem;
+  }
+  .ejemplo-reino{
+    min-height:2.2rem;
+    padding:0.45rem 0.7rem;
+    font-size:0.8rem;
+  }
+  .resultado-reino{
+    min-height:18rem;
+    grid-template-columns:7rem 1fr;
+    gap:1rem;
+    padding:1rem;
+  }
+  .resultado-reino-imagen{
+    width:7rem;
+    height:7rem;
+  }
+  .resultado-reino-info strong{
+    font-size:1.15rem;
+  }
+  .resultado-reino-info p{
+    font-size:0.88rem;
+  }
+  .resultado-reino-etiqueta{
+    font-size:0.72rem;
+  }
+  .identificador-ayuda{
+    flex-direction:column;
+    align-items:flex-start;
+    font-size:0.83rem;
+  }
+}
+/* =========================================================
+   RESPONSIVE CELULAR PEQUEÑO
+   ========================================================= */
+@media(max-width:24rem){
+  .identificador-reino{
+    padding:1rem;
+  }
+  .identificador-encabezado{
+    flex-direction:column;
+  }
+  .estado-inicial-reino{
+    min-height:auto;
+    text-align:center;
+  }
+  .ejemplos-reinos{
+    flex-direction:column;
+    width:100%;
+  }
+  .ejemplo-reino{
+    width:100%;
+  }
+  .resultado-reino{
+    min-height:auto;
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .resultado-reino-imagen{
+    width:8rem;
+    height:8rem;
+    margin-inline:auto;
+  }
+  .resultado-reino-info strong{
+    font-size:1.25rem;
+  }
+}
