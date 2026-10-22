@@ -1,0 +1,251 @@
+/* ==========================================
+   PÁGINAS EN CONSTRUCCIÓN
+   Notificaciones y recuperar contraseña.
+   Solo usa las variables de paleta.css
+   ========================================== */
+
+.obra {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(circle at 15% 20%, var(--ir-crema) 0 18%, transparent 19%),
+    radial-gradient(circle at 85% 80%, var(--ir-crema) 0 22%, transparent 23%),
+    var(--ir-fondo);
+  color: var(--ir-verde-oscuro);
+  font-family: "Nunito", sans-serif;
+}
+
+/* Cinta de obra, en verde para respetar la paleta */
+.obra-cinta {
+  position: fixed;
+  left: -5%;
+  width: 110%;
+  height: 28px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--ir-verde-oscuro) 0 18px,
+    var(--ir-verde-claro) 18px 36px
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.obra-cinta--arriba {
+  top: 18px;
+  transform: rotate(-2deg);
+}
+
+.obra-cinta--abajo {
+  bottom: 18px;
+  transform: rotate(2deg);
+}
+
+.obra-logo {
+  width: 120px;
+  height: auto;
+}
+
+.obra-tarjeta {
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem 1.5rem;
+  border-radius: 24px;
+  background: var(--ir-blanco);
+  border: 2px solid var(--ir-verde-claro);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--ir-verde-oscuro) 18%, transparent);
+  text-align: center;
+}
+
+.obra-letrero {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 8px;
+  background: var(--ir-verde-oscuro);
+  color: var(--ir-crema);
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+
+.obra-ilustracion {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  margin: 1.25rem auto 0.5rem;
+}
+
+.obra-titulo {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0.5rem 0;
+}
+
+.obra-texto {
+  margin: 0 auto 1.25rem;
+  max-width: 44ch;
+  line-height: 1.5;
+}
+
+/* Lista de avance */
+.obra-avance {
+  list-style: none;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  max-width: 360px;
+  border-radius: 16px;
+  background: var(--ir-crema);
+  text-align: left;
+}
+
+.obra-avance li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+}
+
+.obra-avance li::before {
+  content: "";
+  flex: 0 0 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--ir-verde);
+}
+
+.obra-avance .hecho::before {
+  background: var(--ir-verde);
+}
+
+.obra-avance .hecho {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.obra-avance .en-curso::before {
+  background: var(--ir-verde-claro);
+  animation: obra-latido 1.4s ease-in-out infinite;
+}
+
+.obra-avance .en-curso {
+  font-weight: 700;
+}
+
+/* Botones */
+.obra-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.obra-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid var(--ir-verde);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.obra-btn--principal {
+  background: var(--ir-verde);
+  color: var(--ir-blanco);
+}
+
+.obra-btn--principal:hover {
+  background: var(--ir-verde-oscuro);
+  border-color: var(--ir-verde-oscuro);
+  color: var(--ir-blanco);
+}
+
+.obra-btn--secundario {
+  background: transparent;
+  color: var(--ir-verde-oscuro);
+}
+
+.obra-btn--secundario:hover {
+  background: var(--ir-crema);
+  color: var(--ir-verde-oscuro);
+}
+
+.obra-pie {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* ===== Animaciones de las ilustraciones ===== */
+
+/* Notificaciones: campana que se mece y huevo que tiembla */
+.campana {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: obra-mecer 2.4s ease-in-out infinite;
+}
+
+.huevo-inquieto {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: obra-temblar 2.8s ease-in-out infinite;
+}
+
+/* Contraseña: capullo que cuelga y se balancea */
+.capullo {
+  transform-box: view-box;
+  transform-origin: 130px 40px;
+  animation: obra-mecer 3.2s ease-in-out infinite;
+}
+
+.destello {
+  animation: obra-latido 1.8s ease-in-out infinite;
+}
+
+@keyframes obra-mecer {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+@keyframes obra-temblar {
+  0%, 70%, 100% { transform: rotate(0); }
+  75% { transform: rotate(-8deg); }
+  80% { transform: rotate(8deg); }
+  85% { transform: rotate(-5deg); }
+  90% { transform: rotate(4deg); }
+}
+
+@keyframes obra-latido {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campana,
+  .huevo-inquieto,
+  .capullo,
+  .destello,
+  .obra-avance .en-curso::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .obra-tarjeta {
+    padding: 1.5rem 1rem;
+  }
+
+  .obra-cinta {
+    height: 18px;
+  }
+}

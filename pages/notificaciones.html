@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <script>
+    if (localStorage.getItem("usuarioId") == null) {
+      window.location.href = "/pages/login.html"
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notificaciones | InstaRama</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/base/paleta.css" />
+  <link rel="stylesheet" href="../assets/css/base/global.css" />
+  <link rel="stylesheet" href="../assets/css/pages/en-construccion.css" />
+</head>
+
+<body class="obra">
+  <div class="obra-cinta obra-cinta--arriba" aria-hidden="true"></div>
+
+  <a href="./feed.html">
+    <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama" class="obra-logo" />
+  </a>
+
+  <main class="obra-tarjeta">
+    <span class="obra-letrero">🚧 En construcción</span>
+
+    <!-- Nido con huevos y una campana: los avisos todavía no eclosionan -->
+    <svg class="obra-ilustracion" viewBox="0 0 260 200" role="img"
+      aria-label="Un nido con huevos y una campana colgando de una rama">
+      <!-- Rama -->
+      <path d="M10 30 Q130 10 250 34" fill="none" stroke="var(--ir-verde-oscuro)" stroke-width="6"
+        stroke-linecap="round" />
+      <ellipse cx="60" cy="18" rx="16" ry="7" fill="var(--ir-verde)" transform="rotate(-20 60 18)" />
+      <ellipse cx="205" cy="22" rx="16" ry="7" fill="var(--ir-verde-claro)" transform="rotate(25 205 22)" />
+
+      <!-- Campana -->
+      <g class="campana">
+        <line x1="130" y1="20" x2="130" y2="44" stroke="var(--ir-verde-oscuro)" stroke-width="3" />
+        <path d="M108 86 Q108 50 130 46 Q152 50 152 86 L158 94 L102 94 Z" fill="var(--ir-verde)"
+          stroke="var(--ir-verde-oscuro)" stroke-width="3" stroke-linejoin="round" />
+        <circle cx="130" cy="100" r="6" fill="var(--ir-verde-oscuro)" />
+      </g>
+
+      <!-- Huevos -->
+      <ellipse cx="100" cy="150" rx="15" ry="20" fill="var(--ir-crema)" stroke="var(--ir-verde-claro)"
+        stroke-width="2" />
+      <ellipse class="huevo-inquieto" cx="130" cy="146" rx="16" ry="22" fill="var(--ir-blanco)"
+        stroke="var(--ir-verde-claro)" stroke-width="2" />
+      <ellipse cx="160" cy="150" rx="15" ry="20" fill="var(--ir-crema)" stroke="var(--ir-verde-claro)"
+        stroke-width="2" />
+
+      <!-- Nido -->
+      <path d="M62 150 Q130 215 198 150 Q190 182 130 186 Q70 182 62 150 Z" fill="var(--ir-verde-oscuro)" />
+      <path d="M70 160 Q130 196 190 160 M80 172 Q130 200 180 172" fill="none" stroke="var(--ir-verde-claro)"
+        stroke-width="2" stroke-linecap="round" />
+    </svg>
+
+    <h1 class="obra-titulo">Tus avisos aún están empollando</h1>
+    <p class="obra-texto">
+      Estamos construyendo el nido donde llegarán tus notificaciones: comentarios,
+      reacciones y novedades de tus hallazgos. Muy pronto eclosionan. 🐣
+    </p>
+
+    <ul class="obra-avance" aria-label="Avance de la sección">
+      <li class="hecho">Recolectar ramitas</li>
+      <li class="hecho">Tejer el nido</li>
+      <li class="en-curso">Incubar las notificaciones</li>
+      <li>Avisarte cuando algo pase</li>
+    </ul>
+
+    <div class="obra-acciones">
+      <a href="./feed.html" class="obra-btn obra-btn--principal">Volver al feed</a>
+      <a href="./gestionarPublicaciones.html" class="obra-btn obra-btn--secundario">Ver mis publicaciones</a>
+    </div>
+  </main>
+
+  <p class="obra-pie">© 2026 — InstaRama · Code&amp;Cell</p>
+
+  <div class="obra-cinta obra-cinta--abajo" aria-hidden="true"></div>
+
+  <script src="../assets/js/core/main.js" type="module"></script>
+</body>
+
+</html>
