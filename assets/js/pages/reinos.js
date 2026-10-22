@@ -1,3 +1,5 @@
+import { cerrarSesion } from "../core/utils.js";
+
 /* =========================================================
    INSTARAMA - REINOS BIOLÓGICOS
    Archivo: reinos.js
@@ -895,4 +897,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
     }
 
+});
+
+document.addEventListener("click", (e) => {
+    const enlace = e.target.closest("[data-cerrar-sesion]");
+    if (!enlace) return;
+    e.preventDefault();
+    cerrarSesion();
 });
