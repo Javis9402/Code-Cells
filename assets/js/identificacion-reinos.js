@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const nombreReino = document.getElementById("nombreReinoDetectado");
     const descripcionReino = document.getElementById("descripcionReinoDetectado");
     const imagenReino = document.getElementById("imagenReinoDetectado");
+     const botonesEjemplo = document.querySelectorAll(".ejemplo-reino");
     if (!inputBuscarReino) {
         return;
     }
@@ -483,13 +484,10 @@ document.addEventListener("DOMContentLoaded", () => {
         /* =====================================================
        CREAR DICCIONARIO NORMALIZADO
        ===================================================== */
-
     const organismosNormalizados = {};
-
     Object.entries(organismos).forEach(([nombre, reino]) => {
         organismosNormalizados[normalizarTexto(nombre)] = reino;
     });
-
     /* =====================================================
        BUSCAR EL REINO
        ===================================================== */
@@ -657,5 +655,22 @@ document.addEventListener("DOMContentLoaded", () => {
             resultadoReino.classList.add("d-none");
         }
     });
+    /* =====================================================
+   BOTONES DE EJEMPLOS
+   Al hacer clic escribe la palabra en el buscador
+   y activa automáticamente la identificación.
+   ===================================================== */
+botonesEjemplo.forEach((boton) => {
+    boton.addEventListener("click", () => {
+        const organismo = boton.dataset.organismo;
+        inputBuscarReino.value = organismo;
+        inputBuscarReino.dispatchEvent(
+            new Event("input", {
+                bubbles: true
+            })
+        );
+        inputBuscarReino.focus();
+    });
+});
     console.log("Identificador de reinos cargado correctamente.");
 });
