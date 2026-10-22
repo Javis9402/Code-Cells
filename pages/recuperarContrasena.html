@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar contraseña | InstaRama</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/base/paleta.css" />
+  <link rel="stylesheet" href="../assets/css/base/global.css" />
+  <link rel="stylesheet" href="../assets/css/pages/en-construccion.css" />
+</head>
+
+<body class="obra">
+  <div class="obra-cinta obra-cinta--arriba" aria-hidden="true"></div>
+
+  <a href="../index.html">
+    <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama" class="obra-logo" />
+  </a>
+
+  <main class="obra-tarjeta">
+    <span class="obra-letrero">🚧 En construcción</span>
+
+    <!-- Capullo con candado colgando de una rama: la contraseña está en metamorfosis -->
+    <svg class="obra-ilustracion" viewBox="0 0 260 200" role="img"
+      aria-label="Un capullo con un candado colgando de una rama">
+      <!-- Rama -->
+      <path d="M10 40 Q130 26 250 44" fill="none" stroke="var(--ir-verde-oscuro)" stroke-width="6"
+        stroke-linecap="round" />
+      <ellipse cx="50" cy="30" rx="18" ry="8" fill="var(--ir-verde)" transform="rotate(-25 50 30)" />
+      <ellipse cx="215" cy="32" rx="18" ry="8" fill="var(--ir-verde-claro)" transform="rotate(20 215 32)" />
+
+      <!-- Capullo -->
+      <g class="capullo">
+        <line x1="130" y1="40" x2="130" y2="62" stroke="var(--ir-verde-oscuro)" stroke-width="2" />
+        <path d="M130 60 Q166 92 156 140 Q146 182 130 186 Q114 182 104 140 Q94 92 130 60 Z"
+          fill="var(--ir-verde-claro)" stroke="var(--ir-verde-oscuro)" stroke-width="3" />
+        <path d="M108 100 Q130 110 152 100 M104 128 Q130 140 156 128 M110 156 Q130 166 150 156" fill="none"
+          stroke="var(--ir-verde)" stroke-width="3" stroke-linecap="round" />
+        <!-- Candado -->
+        <path d="M122 118 V110 Q122 102 130 102 Q138 102 138 110 V118" fill="none" stroke="var(--ir-verde-oscuro)"
+          stroke-width="3" />
+        <rect x="117" y="116" width="26" height="20" rx="4" fill="var(--ir-verde-oscuro)" />
+        <circle cx="130" cy="126" r="3" fill="var(--ir-crema)" />
+      </g>
+
+      <!-- Destellos -->
+      <g class="destello" fill="var(--ir-verde)">
+        <path d="M60 110 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z" />
+        <path d="M200 140 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z" />
+      </g>
+    </svg>
+
+    <h1 class="obra-titulo">Tu contraseña está en metamorfosis</h1>
+    <p class="obra-texto">
+      Estamos tejiendo el capullo que te permitirá recuperar tu contraseña de forma segura.
+      Mientras sale la mariposa 🦋, escríbenos desde Contacto y te ayudamos a entrar.
+    </p>
+
+    <ul class="obra-avance" aria-label="Avance de la sección">
+      <li class="hecho">Huevo: idea del flujo</li>
+      <li class="hecho">Oruga: diseño del formulario</li>
+      <li class="en-curso">Capullo: envío del correo de recuperación</li>
+      <li>Mariposa: ¡nueva contraseña!</li>
+    </ul>
+
+    <div class="obra-acciones">
+      <a href="./login.html" class="obra-btn obra-btn--principal">Volver a iniciar sesión</a>
+      <a href="./contacto.html" class="obra-btn obra-btn--secundario">Contáctanos</a>
+    </div>
+  </main>
+
+  <p class="obra-pie">© 2026 — InstaRama · Code&amp;Cell</p>
+
+  <div class="obra-cinta obra-cinta--abajo" aria-hidden="true"></div>
+
+  <script src="../assets/js/core/main.js" type="module"></script>
+</body>
+
+</html>
