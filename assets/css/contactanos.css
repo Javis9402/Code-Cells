@@ -189,139 +189,103 @@ nav #navbarNavAltMarkup a:hover {
 }
 /*estilos footer*/
 
-/* Distribución de la sección de contacto */
+/* =========================================
+   DISTRIBUCIÓN DE CONTACTO
+   ========================================= */
+
 .contacto-layout {
-  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 700px) 180px;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1400px;
   margin: 40px auto;
   padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
 }
-/*imagen de catarina*/
 
-.catarina {
+/* Catarina a la izquierda */
+.contacto-layout > .contacto-ilustracion:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Formulario al centro */
+.contacto-layout > .contenedor {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: 700px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Imágenes */
+.catarina,
+.nutria {
   display: block;
   width: 100%;
-  max-width: 350px;
+  max-width: 180px;
   height: auto;
   margin: 0 auto;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
 }
 
-.catarina-izquierda {
-  position: static;
+/* Nutria a la derecha aunque esté dentro del contenedor */
+.contacto-layout .contenedor > .contacto-ilustracion:has(.nutria) {
+  position: absolute;
+  top: 50%;
+  right: -210px;
+  transform: translateY(-50%);
+  width: 180px;
 }
 
-/* Prueba para visualizar la imagen derecha */
-.nutria-derecha {
-  display: flex !important;
-  flex: 1;
-  min-width: 200px;
-  justify-content: center;
-  align-items: center;
-}
-
-.nutria {
-  display: block !important;
-  width: 250px;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
+/* Contenedor de referencia para la nutria */
+.contacto-layout .contenedor:has(.nutria) {
+  position: relative;
 }
 
 /* =========================================
-   RESPONSIVIDAD DE CONTACTANOS
+   RESPONSIVIDAD
    ========================================= */
 
-/* Tabletas y pantallas medianas */
-@media (max-width: 991.98px) {
+@media (max-width: 1100px) {
   .contacto-layout {
+    grid-template-columns: 130px minmax(0, 1fr) 130px;
     gap: 20px;
-    padding: 15px;
   }
 
-  .catarina,
-  .nutria {
-    max-width: 220px;
-  }
-
-  .contenedor {
-    max-width: 600px;
-  }
-
-  form.border {
-    padding: 20px !important;
-  }
-}
-
-/* Celulares */
-@media (max-width: 576px) {
-  .contacto-layout {
-    flex-direction: column;
-    gap: 20px;
-    margin: 15px auto;
-    padding: 15px;
-  }
-
-  .contacto-ilustracion,
-  .nutria-derecha,
-  .contenedor {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
-  }
-
-  .catarina,
-  .nutria {
-    width: 100%;
-    max-width: 160px;
-    height: auto;
-  }
-
-  .contenedor {
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  form.border {
-    padding: 20px !important;
-  }
-
-  .form-control,
-  .form-select {
-    width: 100%;
-  }
-
-  .btn-form {
-    width: 100%;
-  }
-}
-
-/* Celulares pequeños */
-@media (max-width: 380px) {
-  .contacto-layout {
-    padding: 10px;
-    gap: 15px;
+  .contacto-layout .contenedor > .contacto-ilustracion:has(.nutria) {
+    right: -145px;
+    width: 125px;
   }
 
   .catarina,
   .nutria {
     max-width: 130px;
   }
+}
 
-  h1 {
-    font-size: 1.3rem;
+@media (max-width: 768px) {
+  .contacto-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  form.border {
-    padding: 15px !important;
+  .contacto-layout > .contenedor {
+    width: 100%;
+  }
+
+  .contacto-layout .contenedor > .contacto-ilustracion:has(.nutria) {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .catarina,
+  .nutria {
+    max-width: 130px;
   }
 }
