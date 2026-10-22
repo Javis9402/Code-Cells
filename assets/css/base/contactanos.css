@@ -26,7 +26,7 @@ body {
 }
 
 .contenedor {
-  max-width: 700px;
+  max-width: 560px;
   margin: 40px auto;
   padding: 0 20px;
 }
@@ -89,8 +89,6 @@ form.border {
   box-shadow: 0 0 0 3px rgba(157, 192, 139, 0.25);
 }
 
-
-
 /*todo: Navbar personalizada */
 .navbar-custom {
   background-color: var(--color-verde-navbar);
@@ -120,9 +118,8 @@ form.border {
   transition: all 0.3s ease;
 }
 
-
 .navbar-custom .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0%; /* Empieza sin ancho */
   height: 3px; /* Grosor de la línea */
@@ -134,22 +131,18 @@ form.border {
   border-radius: 5px;
 }
 
-
 .navbar-custom .nav-link:hover {
   color: var(--blanco);
 }
-
 
 .navbar-custom .nav-link:hover::after {
   width: 100%; /* La línea crece hacia los lados */
 }
 
-
 .navbar-custom .nav-link.active {
   color: var(--blanco);
   font-weight: 700;
 }
-
 
 .navbar-custom .nav-link.active::after {
   width: 100%;
@@ -158,12 +151,11 @@ form.border {
   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Leve efecto de luz/Glow */
 }
 
-
 /* * =========================================
    * BOTONES Inicair Sesión / Registrarse Navbar
    * ========================================= */
 
-.btn-iniciar{
+.btn-iniciar {
   font-family: "Open Sans", sans-serif;
   font-weight: 400; /* Bold */
   font-size: 16px;
@@ -182,7 +174,6 @@ form.border {
   color: var(--verde-oscuro);
   border-color: var(--blanco-calido);
 }
-
 
 .btn-registrar {
   display: inline-block;
@@ -208,18 +199,18 @@ form.border {
 
 @media (min-width: 992px) {
   .navbar-custom {
-    position: relative; 
+    position: relative;
   }
-  
+
   .navbar-custom .navbar-nav.mx-auto {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: max-content; 
+    width: max-content;
   }
 
   .navbar-custom .navbar-collapse {
-    justify-content: flex-end; 
+    justify-content: flex-end;
   }
 }
 /** terminan estilos para la Navbar */
@@ -251,7 +242,7 @@ form.border {
 
 /* Distribución de la sección de contacto */
 .contacto-layout {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 40px auto;
   padding: 20px;
   display: flex;
@@ -259,14 +250,28 @@ form.border {
   justify-content: center;
   gap: 50px;
 }
+
+.contacto-layout .contenedor {
+  flex: 0 1 700px;
+  margin: 0;
+  padding: 0;
+}
+
+.contacto-ilustracion {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 /*imagen de catarina*/
 
 .catarina {
   display: block;
   width: 100%;
-  max-width: 350px;
+  max-width: 260px;
   height: auto;
-  margin: 0 auto;
+  margin: 0;
   object-fit: contain;
   pointer-events: none;
   user-select: none;
@@ -280,17 +285,24 @@ form.border {
 .nutria-derecha {
   display: flex !important;
   flex: 1;
-  min-width: 200px;
-  justify-content: center;
+  min-width: 0;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .nutria {
   display: block !important;
-  width: 250px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
   height: auto;
   object-fit: contain;
+}
+
+@media (min-width: 992px) {
+  .nutria {
+    transform: scale(1);
+    transform-origin: left center;
+  }
 }
 
 /* =========================================
@@ -306,7 +318,7 @@ form.border {
 
   .catarina,
   .nutria {
-    max-width: 220px;
+    max-width: 300px;
   }
 
   .contenedor {
@@ -338,7 +350,7 @@ form.border {
   .catarina,
   .nutria {
     width: 100%;
-    max-width: 160px;
+    max-width: 300px;
     height: auto;
   }
 
@@ -374,7 +386,7 @@ form.border {
 
   .catarina,
   .nutria {
-    max-width: 130px;
+    max-width: 300px;
   }
 
   h1 {
