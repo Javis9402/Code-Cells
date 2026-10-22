@@ -1,27 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinos Biológicos | InstaRama</title>
+     <!-- CSS Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="../assets/css/pages/clasificacion.css">
-  <link rel="stylesheet" href="../assets/css/base/global.css" />
+    <link rel="stylesheet" href="../assets/css/base/global.css" />
+    <link rel="stylesheet" href="../assets/css/pages/gestionarPublicacion.css">
 </head>
+
 <body>
+    <!--Inicia nav-->
+    <nav class="navbar navbar-expand-lg bg sticky-top navbar-custom">
+        <div class="container-fluid px-4 px-lg-5">
+            <!--Logo-->
+            <a class="navbar-brand" href="../pages/feed.html">
+                <img src="../assets/img/logo/Logo contexto.svg" alt="logo de la red social" class="logo" />
+            </a>
+            <!--Logo-->
+            <!--Botón responsive-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Botón responsive-->
+            <!--Navegación-->
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav mx-auto gap-3 gap-lg-5">
+                    <a class="nav-link btn-nav" href="../index.html">Inicio</a>
+                    <a class="nav-link btn-nav fw-semibold" href="./feed.html">Explorar</a>
+                    <a class="nav-link btn-nav" href="../pages/acercaDe.html">Acerca de</a>
+                    <a class="nav-link btn-nav" href="../pages/contacto.html">Contacto</a>
+                    <a class="nav-link btn-nav" href="./perfil.html">Perfil</a>
+                    <a class="nav-link btn-nav" href="../index.html" data-cerrar-sesion>Cerrar sesión</a>
+                </div>
+
+            </div>
+            <!--Navegación-->
+        </div>
+    </nav>
+    <!--termina nav-->
+
     <!-- HERO -->
     <header class="hero-reinos">
         <div class="hero-contenido">
             <p class="hero-etiqueta">Aprende sobre biodiversidad</p>
             <h1>Aprende a identificar los 5 reinos biológicos</h1>
-            <p class="hero-descripcion">Observa las características de los seres vivos y descubre a qué reino pertenece cada organismo.</p>
-       <div class="hero-botones">
-    <a href="#identificar" class="btn btn-principal">Aprender a identificar</a>
-    <a href="#reinos" class="btn btn-secundario">Explorar reinos</a>
-    <a href="publicacion.html" class="btn btn-principal">Publicar descubrimiento</a>
-</div>
+            <p class="hero-descripcion">Observa las características de los seres vivos y descubre a qué reino pertenece
+                cada organismo.</p>
+            <div class="hero-botones">
+                <a href="#identificar" class="btn btn-principal">Aprender a identificar</a>
+                <a href="#reinos" class="btn btn-secundario">Explorar reinos</a>
+                <a href="publicacion.html" class="btn btn-principal">Publicar descubrimiento</a>
+            </div>
         </div>
         <div class="hero-imagen">
-            <img src="../assets/img/clasificacion/reino.png" alt="Los cinco reinos biológicos" class="imagen-ampliable" tabindex="0">
+            <img src="../assets/img/clasificacion/reino.png" alt="Los cinco reinos biológicos" class="imagen-ampliable"
+                tabindex="0">
         </div>
     </header>
     <main>
@@ -35,7 +75,9 @@
             <div class="contenedor-pasos">
                 <article class="paso">
                     <div class="paso-imagen">
-                        <img src="../assets/img/clasificacion/1C.png" alt="Comparación entre organismo unicelular y pluricelular" class="imagen-ampliable" tabindex="0">
+                        <img src="../assets/img/clasificacion/1C.png"
+                            alt="Comparación entre organismo unicelular y pluricelular" class="imagen-ampliable"
+                            tabindex="0">
                     </div>
                     <div class="paso-contenido">
                         <span class="numero-paso">1</span>
@@ -45,7 +87,9 @@
                 </article>
                 <article class="paso">
                     <div class="paso-imagen">
-                        <img src="../assets/img/clasificacion/1D.png" alt="Comparación entre célula procariota y célula eucariota" class="imagen-ampliable" tabindex="0">
+                        <img src="../assets/img/clasificacion/1D.png"
+                            alt="Comparación entre célula procariota y célula eucariota" class="imagen-ampliable"
+                            tabindex="0">
                     </div>
                     <div class="paso-contenido">
                         <span class="numero-paso">2</span>
@@ -55,7 +99,8 @@
                 </article>
                 <article class="paso">
                     <div class="paso-imagen">
-                        <img src="../assets/img/clasificacion/1E.png" alt="Formas de alimentación de los organismos" class="imagen-ampliable" tabindex="0">
+                        <img src="../assets/img/clasificacion/1E.png" alt="Formas de alimentación de los organismos"
+                            class="imagen-ampliable" tabindex="0">
                     </div>
                     <div class="paso-contenido">
                         <span class="numero-paso">3</span>
@@ -65,7 +110,9 @@
                 </article>
                 <article class="paso">
                     <div class="paso-imagen">
-                        <img src="../assets/img/clasificacion/1F.png" alt="Movilidad, estructura y reproducción de los organismos" class="imagen-ampliable" tabindex="0">
+                        <img src="../assets/img/clasificacion/1F.png"
+                            alt="Movilidad, estructura y reproducción de los organismos" class="imagen-ampliable"
+                            tabindex="0">
                     </div>
                     <div class="paso-contenido">
                         <span class="numero-paso">4</span>
@@ -107,7 +154,8 @@
                         <h3 id="actividadTitulo">Descubre el reino</h3>
                         <p id="actividadDescripcion">Responde según las características del organismo.</p>
                     </div>
-                    <button type="button" class="btn-cerrar-actividad" id="btnReiniciar" aria-label="Volver al menú de actividades">×</button>
+                    <button type="button" class="btn-cerrar-actividad" id="btnReiniciar"
+                        aria-label="Volver al menú de actividades">×</button>
                 </div>
                 <div class="progreso-actividad">
                     <div class="progreso-informacion">
@@ -128,7 +176,7 @@
                 </div>
             </div>
         </section>
-      
+
         <!-- SECCIÓN 4: DATOS RÁPIDOS -->
         <section class="seccion-datos-rapidos">
             <div class="titulo-seccion">
@@ -231,7 +279,8 @@
                     <summary>Reino Monera</summary>
                     <div class="contenido-reino">
                         <div class="reino-imagen">
-                            <img src="../assets/img/clasificacion/monera.png" alt="Ejemplo del reino Monera" class="imagen-ampliable" tabindex="0">
+                            <img src="../assets/img/clasificacion/monera.png" alt="Ejemplo del reino Monera"
+                                class="imagen-ampliable" tabindex="0">
                         </div>
                         <div class="reino-informacion">
                             <h3>Reino Monera</h3>
@@ -250,7 +299,8 @@
                     <summary>Reino Protista</summary>
                     <div class="contenido-reino">
                         <div class="reino-imagen">
-                            <img src="../assets/img/clasificacion/protista.png" alt="Ejemplo del reino Protista" class="imagen-ampliable" tabindex="0">
+                            <img src="../assets/img/clasificacion/protista.png" alt="Ejemplo del reino Protista"
+                                class="imagen-ampliable" tabindex="0">
                         </div>
                         <div class="reino-informacion">
                             <h3>Reino Protista</h3>
@@ -268,7 +318,8 @@
                     <summary>Reino Fungi</summary>
                     <div class="contenido-reino">
                         <div class="reino-imagen">
-                            <img src="../assets/img/clasificacion/fungi.png" alt="Ejemplo del reino Fungi" class="imagen-ampliable" tabindex="0">
+                            <img src="../assets/img/clasificacion/fungi.png" alt="Ejemplo del reino Fungi"
+                                class="imagen-ampliable" tabindex="0">
                         </div>
                         <div class="reino-informacion">
                             <h3>Reino Fungi</h3>
@@ -286,7 +337,8 @@
                     <summary>Reino Plantae</summary>
                     <div class="contenido-reino">
                         <div class="reino-imagen">
-                            <img src="../assets/img/clasificacion/plantas.png" alt="Ejemplo del reino Plantae" class="imagen-ampliable" tabindex="0">
+                            <img src="../assets/img/clasificacion/plantas.png" alt="Ejemplo del reino Plantae"
+                                class="imagen-ampliable" tabindex="0">
                         </div>
                         <div class="reino-informacion">
                             <h3>Reino Plantae</h3>
@@ -304,7 +356,8 @@
                     <summary>Reino Animalia</summary>
                     <div class="contenido-reino">
                         <div class="reino-imagen">
-                            <img src="../assets/img/clasificacion/animal.png" alt="Ejemplo del reino Animalia" class="imagen-ampliable" tabindex="0">
+                            <img src="../assets/img/clasificacion/animal.png" alt="Ejemplo del reino Animalia"
+                                class="imagen-ampliable" tabindex="0">
                         </div>
                         <div class="reino-informacion">
                             <h3>Reino Animalia</h3>
@@ -314,7 +367,8 @@
                                 <li><strong>Organización:</strong> Multicelular</li>
                                 <li><strong>Alimentación:</strong> Heterótrofa</li>
                                 <li><strong>Vertebrados:</strong> Mamíferos, aves, reptiles, anfibios y peces</li>
-                                <li><strong>Invertebrados:</strong> Insectos, arácnidos, crustáceos, moluscos y otros</li>
+                                <li><strong>Invertebrados:</strong> Insectos, arácnidos, crustáceos, moluscos y otros
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -377,6 +431,8 @@
     </script>
     <!-- JAVASCRIPT DEL CUESTIONARIO DE REINOS -->
     <script src="../assets/js/pages/reinos.js"></script>
-  <script src="../assets/js/core/main.js" type="module"></script>
+    <script src="../assets/js/core/main.js" type="module"></script>
+    <script src="./assets/js/core/render.js" type="module"></script>
 </body>
+
 </html>
