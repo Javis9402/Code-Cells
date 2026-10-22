@@ -38,14 +38,21 @@ const randIndex = Math.floor(Math.random() * personajes.length);
 let personajeActual = isIndexPage ? 0 : randIndex;
 
 // ==========================================
-// CREAR EL CURSOR CON LA IMAGEN
+// CREAR EL CURSOR: FLECHA + PERSONAJE DEBAJO
+// La punta de la flecha marca el punto exacto del clic
+// y el personaje va pegado detrás de ella.
 // ==========================================
 
-const cursorPersonaje = document.createElement("img");
+const cursorPersonaje = document.createElement("div");
 
 cursorPersonaje.id = "personaje-cursor";
+cursorPersonaje.setAttribute("aria-hidden", "true");
+cursorPersonaje.innerHTML =
+    '<svg class="punta" viewBox="0 0 20 24"><path d="M1 1 L1 19 L6 14.5 L9.5 22 L13 20.5 L9.5 13 L16 13 Z"/></svg>' +
+    '<img alt="">';
 
-cursorPersonaje.src = personajes[personajeActual];
+const imgPersonaje = cursorPersonaje.querySelector("img");
+imgPersonaje.src = personajes[personajeActual];
 
 document.body.appendChild(cursorPersonaje);
 
@@ -55,15 +62,26 @@ document.body.classList.add("cursor-personaje");
 
 
 // ==========================================
-// HACER QUE EL PERSONAJE SIGA AL MOUSE
+// HACER QUE EL CURSOR SIGA AL MOUSE
 // ==========================================
+
+const clicables = "a, button, input, select, textarea, label, summary, [role='button']";
 
 document.addEventListener("mousemove", (event) => {
 
-    cursorPersonaje.style.left = `${event.clientX}px`;
+    cursorPersonaje.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+    cursorPersonaje.classList.add("visible");
 
-    cursorPersonaje.style.top = `${event.clientY}px`;
+    // Sobre algo clicable, la punta cambia de color y crece
+    const sobreClic = event.target.closest && event.target.closest(clicables);
+    cursorPersonaje.classList.toggle("sobre-clic", !!sobreClic);
 
+});
+
+document.addEventListener("mousedown", () => cursorPersonaje.classList.add("presionado"));
+document.addEventListener("mouseup", () => cursorPersonaje.classList.remove("presionado"));
+document.documentElement.addEventListener("mouseleave", () => {
+    cursorPersonaje.classList.remove("visible");
 });
 
 
@@ -86,7 +104,7 @@ window.addEventListener("scroll", () => {
         personajeActual = 0;
     }
 
-    cursorPersonaje.src = personajes[personajeActual];
+    imgPersonaje.src = personajes[personajeActual];
 
     console.log(
         "Ahora aparece:",

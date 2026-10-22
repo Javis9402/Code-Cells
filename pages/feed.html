@@ -30,7 +30,9 @@
 
 <body class="feed-layout">
   <!-- ========== SIDEBAR ========== -->
-  <aside class="ir-sidebar">
+  <aside class="ir-sidebar" id="ir-sidebar">
+    <!-- Solo en celular, donde el sidebar es un menú lateral -->
+    <button type="button" class="ir-menu-cerrar" aria-label="Cerrar menú">✕</button>
     <h1 class="ir-sidebar-title">InstaRama</h1>
     <a href="../pages/feed.html">
       <img src="../assets/img/logo/Logo contexto.svg" alt="Logo de InstaRama" class="ir-sidebar-logo" />
@@ -38,6 +40,13 @@
 
     <a class="ir-sidebar-btn" href="../pages/publicacion.html">Crear publicación</a>
     <a class="ir-sidebar-btn" href="#">Notificaciones</a>
+
+    <!-- Solo en celular: en escritorio estos enlaces están en la barra de arriba -->
+    <nav class="ir-sidebar-cuenta" aria-label="Cuenta">
+      <a class="ir-sidebar-btn" href="./gestionarPublicaciones.html">Mis publicaciones</a>
+      <a class="ir-sidebar-btn" href="./perfil.html">Perfil</a>
+      <a class="ir-sidebar-btn" href="../index.html" data-cerrar-sesion>Log out</a>
+    </nav>
 
     <section class="ir-sidebar-box" aria-labelledby="tendencias">
       <h2 id="tendencias">Tendencias</h2>
@@ -58,6 +67,9 @@
       <span>2026</span>
     </div>
   </aside>
+
+  <!-- Fondo oscuro detrás del menú lateral en celular; al tocarlo se cierra -->
+  <div class="ir-sidebar-fondo" aria-hidden="true"></div>
 
   <!-- ========== CONTENIDO ========== -->
   <main class="ir-main">
@@ -380,6 +392,7 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
   <script src="../assets/js/render.js" type="module"></script>
+  <script src="../assets/js/main.js" type="module"></script>
 </body>
 
 </html>

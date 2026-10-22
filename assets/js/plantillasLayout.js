@@ -233,6 +233,14 @@ export const header_registro = `
 export const header_feed = `
     <!-- ========== TOPBAR ========== -->
     <header class="ir-topbar">
+      <!-- Solo en celular: abre el sidebar como menú lateral -->
+      <button
+        type="button"
+        class="ir-menu-btn"
+        aria-label="Abrir menú"
+        aria-controls="ir-sidebar"
+        aria-expanded="false"
+      >☰</button>
       <form class="ir-search" role="search">
         <input
           type="search"
