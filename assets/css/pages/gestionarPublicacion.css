@@ -925,7 +925,7 @@
     background-color: var(--oscuro-fondo);
     background-image:
         linear-gradient(rgba(22, 28, 21, 0.88), rgba(22, 28, 21, 0.88)),
-        url("../img/publicacion/hojasverdes3.jpg");
+        url("../../img/publicacion/hojasverdes3.jpg");
 }
 
 /* Panel */

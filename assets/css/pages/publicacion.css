@@ -24,7 +24,7 @@
 
 
 .fondo-responsivo {
-    background-image: url('../img/publicacion/hojasverdes3.jpg');
+    background-image: url('../../img/publicacion/hojasverdes3.jpg');
 
     /*Hace que la imagen cubra todo el espacio disponible sin deformarse*/
     background-size: cover;
