@@ -502,3 +502,22 @@ filtroCategoria.addEventListener("change", () => {
 
   mostrarPublicaciones(publicacionesFiltradas);
 });
+
+// MENÚ LATERAL EN CELULAR
+// El botón ☰ lo inserta render.js después, por eso se escucha en todo el documento
+function abrirMenu(abrir) {
+  document.body.classList.toggle("ir-menu-abierto", abrir);
+  const boton = document.querySelector(".ir-menu-btn");
+  boton?.setAttribute("aria-expanded", String(abrir));
+  if (abrir) document.querySelector(".ir-menu-cerrar")?.focus();
+  else boton?.focus();
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".ir-menu-btn")) abrirMenu(true);
+  else if (e.target.closest(".ir-menu-cerrar, .ir-sidebar-fondo")) abrirMenu(false);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.body.classList.contains("ir-menu-abierto")) abrirMenu(false);
+});
