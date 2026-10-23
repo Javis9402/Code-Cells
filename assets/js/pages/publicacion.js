@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Espera 2 segundos y redirige al muro
                     setTimeout(function () {
                         window.location.href = '../pages/feed.html';
-                    }, 10000);
+                    }, 3000);
 
                 }
             });
