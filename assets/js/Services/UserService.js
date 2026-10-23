@@ -31,7 +31,7 @@
  * URL base de los endpoints de usuarios.
  * @constant {string}
  */
-const API_URL = "http://localhost:8080/api/users";
+const API_URL = "/api/users";
 
 // ==========================================
 // MANEJO DE RESPUESTAS

@@ -26,7 +26,7 @@
  * URL base de los endpoints de reinos.
  * @constant {string}
  */
-const API_URL = "http://localhost:8080/api/kingdoms";
+const API_URL = "/api/kingdoms";
 
 // ==========================================
 // MANEJO DE RESPUESTAS

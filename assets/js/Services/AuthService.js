@@ -9,7 +9,7 @@
 // ==========================================
 
 // URL base de la API apuntando al puerto de Spring Boot
-const BASE_URL = "http://localhost:8080/api/users";
+const BASE_URL = "/api/users";
 
 // ==========================================
 // MANEJO DE RESPUESTAS DEL BACKEND
